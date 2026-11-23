@@ -537,3 +537,584 @@ html{scroll-behavior:auto}
 #back-to-top[hidden]{display:block;opacity:0;pointer-events:none}
 @media(max-width:700px){.trending-list button{flex-wrap:wrap;gap:8px 14px}.trending-achievement{margin-left:0;width:100%;text-align:left;padding-left:64px}.trending-name{font-size:20px}.ticker-track{animation-duration:26s}}
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none}.trending-list button,.trending-arrow,#back-to-top{transition:none}}
+
+/* === Ad slots 2026-11-23: placeholder spaces for future brand collaborations === */
+.ad-slot{background:#F4F0FF;border:2px dashed #6335EB;border-radius:16px;padding:28px 24px;text-align:center}
+.ad-label{display:inline-block;font-size:9px;font-weight:800;letter-spacing:2px;color:#fff;background:#6335EB;border-radius:30px;padding:5px 12px}
+.ad-title{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:600;color:#1A1033;margin-top:14px}
+.ad-text{font-size:13px;color:#5A5470;margin-top:8px}
+.ad-contact{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.ad-button{display:inline-flex;align-items:center;min-height:42px;padding:10px 18px;border-radius:40px;font-size:13px;font-weight:700;color:#fff}
+.ad-button.whatsapp{background:#128C7E}
+.ad-button.email{background:#6335EB}
+.ad-button:hover{transform:translateY(-2px)}
+.ad-leaderboard{margin-top:25px}
+.ad-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:65px}
+.dialog-ad{margin-top:28px}
+@media(max-width:700px){.ad-row{grid-template-columns:1fr}.ad-title{font-size:22px}}
+
+/* === Advertise page 2026-11-23 === */
+.advertise-hero{background:#6335EB;color:#fff;margin-top:25px;border-radius:10px;padding:64px 48px}
+.advertise-hero h1{font-size:clamp(40px,5vw,68px);letter-spacing:-2.5px;line-height:1.08;margin-top:22px;max-width:800px}
+.advertise-hero h1 em{color:#F59E0B;font-weight:500}
+.advertise-hero-text{max-width:560px;color:#EDE7FF;font-size:15px;line-height:1.8;margin-top:22px}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.price-card{position:relative;background:#fff;border:1px solid #e3d9f0;border-radius:18px;padding:28px 24px;display:flex;flex-direction:column}
+.price-card.popular{border:2px solid #6335EB;box-shadow:0 14px 35px #6335EB1F}
+.price-badge{position:absolute;top:-13px;left:24px;background:#6335EB;color:#fff;font-size:9px;font-weight:800;letter-spacing:1.6px;border-radius:30px;padding:6px 12px}
+.price-card h3{font-size:26px;color:#1A1033}
+.price-position{font-size:13px;color:#5A5470;line-height:1.7;margin-top:8px;min-height:44px}
+.price-amount{font-family:'Playfair Display',Georgia,serif;font-size:42px;font-weight:700;color:#6335EB;margin-top:16px}
+.price-amount span{font-family:Inter,sans-serif;font-size:14px;font-weight:600;color:#5A5470}
+.price-month{font-size:13px;font-weight:600;color:#1A1033;margin-top:4px}
+.price-card ul{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:8px;font-size:13px;color:#5A5470}
+.price-card ul li:before{content:'✓ ';color:#6335EB;font-weight:800}
+.price-card .button{margin-top:auto}
+.price-note{font-size:12px;color:#5A5470;margin-top:24px;text-align:center}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.how-grid article{background:#F4F0FF;border-radius:16px;padding:28px 24px}
+.how-number{font-family:'Playfair Display',Georgia,serif;font-size:44px;color:#6335EB}
+.how-grid h3{font-size:22px;color:#1A1033;margin-top:10px}
+.how-grid p{font-size:13px;color:#5A5470;line-height:1.7;margin-top:8px}
+.why-advertise .why-grid article{background:#F4F0FF;border:1px solid #EDE7FF}
+.why-advertise .why-grid h3{color:#1A1033}
+.why-advertise .why-grid p{color:#5A5470}
+.why-advertise .why-icon{background:#6335EB;color:#fff}
+.ad-policy{text-align:center;font-size:13px;color:#5A5470;margin-top:28px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-card{display:flex;flex-direction:column;gap:8px;border-radius:16px;padding:28px 24px;color:#fff}
+.whatsapp-card{background:#128C7E}
+.email-card{background:#6335EB}
+.contact-label{font-size:10px;font-weight:800;letter-spacing:1.8px}
+.contact-value{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:600}
+.contact-hint{font-size:13px;opacity:.9}
+.ad-form{max-width:640px;margin:36px auto 0;background:#F4F0FF;border-radius:18px;padding:32px 28px}
+.ad-form h3{font-size:26px;color:#1A1033}
+.ad-form>p{font-size:13px;color:#5A5470;margin-top:8px}
+.ad-form label{display:block;font-size:12px;font-weight:700;margin-top:18px;color:#1A1033}
+.ad-form input,.ad-form select,.ad-form textarea{width:100%;margin-top:8px;background:#fff;border:1px solid #e3d9f0;border-radius:8px;padding:12px 14px;font-size:14px;font-family:Inter,sans-serif;color:#1A1033}
+.ad-form textarea{resize:vertical}
+.ad-form .button{margin-top:22px}
+.ad-form .form-success{font-size:14px;color:#166534;min-height:24px;margin-top:12px;font-weight:600}
+.ad-link{display:inline-flex;margin-top:14px;font-size:12px;font-weight:700;color:#6335EB;text-decoration:underline}
+@media(max-width:900px){.price-grid{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.advertise-hero{padding:48px 28px}}
+@media(max-width:580px){.price-grid{grid-template-columns:1fr}.advertise-hero{padding:40px 22px}}
+
+/* === Finch-style glass dropdown 2026-11-23: heading + provider grid, glass background === */
+.nav-row{position:relative;background:#F4F4F2;border:1px solid #E7E7E2;border-radius:12px;padding:0 18px}
+.nav-row nav{align-items:center;gap:28px}
+.nav-dropdown{position:static;display:flex;align-items:center}
+.nav-dropdown-toggle{display:flex;align-items:center;gap:6px;background:none;border:0;padding:17px 0;font-size:13px;font-weight:500;color:inherit;cursor:pointer}
+.nav-chevron{display:inline-block;font-size:11px;transition:transform .25s ease}
+.nav-dropdown-toggle[aria-expanded="true"] .nav-chevron{transform:rotate(180deg)}
+.mega-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:min(1180px,calc(100vw - 32px));z-index:70;background:#FFFFFF8C;backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border:1px solid #FFFFFFA6;border-radius:18px;box-shadow:0 30px 60px #0000002E;display:grid;grid-template-columns:300px 1fr;gap:40px;padding:36px 40px}
+.mega-menu[hidden]{display:none}
+.mega-menu a:after{display:none!important}
+.mega-intro h3{font-family:var(--serif);font-size:40px;line-height:1.15;font-weight:500;color:#111}
+.mega-see-all{display:inline-flex;align-items:center;gap:8px;margin-top:22px;background:#fff;border:1px solid #E5E5E0;border-radius:40px;padding:10px 18px;font-size:14px;font-weight:500;color:#111;text-decoration:none}
+.mega-see-all:hover{border-color:#111}
+.mega-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 28px;align-content:start}
+.mega-provider{display:flex;align-items:center;gap:12px;padding:10px 8px;border-radius:10px;font-size:15px;font-weight:500;color:#111;text-decoration:none}
+.mega-provider:hover{background:#FFFFFF80}
+.mega-logo{display:flex;align-items:center;justify-content:center;flex:none;width:34px;height:34px;border-radius:8px;color:#fff;font-size:13px;font-weight:700;letter-spacing:.5px}
+.nav-actions{display:flex;align-items:center;gap:18px}
+.nav-featured{font-size:13px;font-weight:500}
+.nav-subscribe{min-height:38px;padding:9px 18px;border:1px solid #111;border-radius:8px;background:#fff;color:#111;font-size:13px}
+.nav-subscribe:hover{background:#111;color:#fff}
+.mobile-only{display:none}
+@media(max-width:900px){.mega-menu{grid-template-columns:1fr;gap:24px;padding:24px}.mega-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){
+  .nav-row{padding:0 12px}
+  .nav-edition{display:none}
+  .nav-actions .nav-featured,.nav-actions .nav-subscribe{display:none}
+  .mobile-only{display:block}
+  .nav-dropdown{display:block;width:100%}
+  .nav-dropdown-toggle{width:100%;justify-content:space-between;padding:12px 0;font-size:14px}
+  .mega-menu{position:static;transform:none;width:100%;box-shadow:none;border:0;border-top:1px solid #ECECEA;border-radius:0;padding:16px 0 8px;margin-top:4px;background:#FFFFFFCC}
+  .mega-intro h3{font-size:28px}
+  .mega-grid{grid-template-columns:1fr 1fr;gap:4px 12px}
+  .mega-provider{font-size:13px;padding:8px 4px}
+  .mega-logo{width:30px;height:30px;font-size:12px}
+}
+
+/* === Hover-expand floating nav 2026-11-23: collapsed pill on other pages, opens on hover === */
+.hover-nav-page{padding-top:84px}
+.hover-nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:80;width:280px;max-width:calc(100vw - 32px)}
+.hover-nav-pill{display:flex;align-items:center;justify-content:space-between;gap:14px;width:fit-content;margin:0 auto;background:#FFFFFF99;backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);border:1px solid #FFFFFFB3;color:#111;border-radius:999px;padding:8px 14px;box-shadow:0 12px 30px #0000001F}
+.hover-nav-logo{font-family:var(--serif);font-size:15px;font-weight:600;color:#111;text-decoration:none}
+.hover-nav-menu-btn{display:flex;align-items:center;gap:6px;background:none;border:0;color:#111;font-size:13px;font-weight:500;cursor:pointer;padding:0}
+.hover-nav-panel{background:#FFFFFF99;backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid #FFFFFFB3;border-radius:20px;margin-top:10px;padding:16px 22px 20px;box-shadow:0 30px 60px #0000001F;opacity:0;visibility:hidden;transform:translateY(-10px) scale(.97);transform-origin:top center;transition:opacity .35s ease,transform .45s cubic-bezier(.22,1,.36,1),visibility 0s linear .45s}
+.hover-nav:hover .hover-nav-panel,.hover-nav:focus-within .hover-nav-panel,.hover-nav.is-open .hover-nav-panel{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .45s cubic-bezier(.22,1,.36,1),visibility 0s}
+.hover-nav-label{font-size:12px;color:#6B7280;margin:0 0 6px}
+.hover-nav-panel>a{display:block;padding:6px 0;font-size:18px;font-weight:600;color:#111;text-decoration:none}
+.hover-nav-panel>a:hover{color:#6335EB}
+.hover-nav-panel>a.active{color:#6335EB}
+.hover-nav-panel>a.small{font-size:14px;font-weight:500;padding:4px 0}
+.hover-nav-panel>hr{border:0;border-top:1px solid #0000001A;margin:10px 0}
+@media(max-width:580px){.hover-nav{top:12px}.hover-nav-pill{padding:7px 12px}.hover-nav-logo{font-size:14px}.hover-nav-menu-btn{font-size:12px}.hover-nav-panel{padding:14px 18px 18px}.hover-nav-panel>a{font-size:17px}.hover-nav-page{padding-top:76px}}
+@media(prefers-reduced-motion:reduce){.hover-nav-panel{transition:none}}
+
+/* === THEME: Light (default) / Night — added 2026-11-23 on the user's ask ===
+   Light mode = the original white site, unchanged.
+   Night mode = html[data-theme="dark"]: black page, white text, violet
+   accents stay violet. The middle sections keep their solid dark colours
+   (red, navy, mustard, teal, slate, orange, burgundy) — they already work
+   on black. The magazine cover stays white on purpose: a printed magazine
+   on a dark table. Choice is saved in localStorage ("rise-theme"). */
+html[data-theme="dark"]{
+  --ink:#FFFFFF;
+  --muted:#EDEAF7;
+  --line:#2A2340;
+  --navy:#6335EB;
+  --violet:#6335EB;
+  --violet-dark:#4B23C4;
+  --amber:#F59E0B;
+  --lavender:#171226;
+  --mint:#171226;
+  --peach:#171226;
+}
+html[data-theme="dark"],html[data-theme="dark"] body{background:#0A0912;color:var(--ink)}
+
+/* Header: masthead, topbar, nav, mega menu, search */
+html[data-theme="dark"] .topbar{border-bottom-color:var(--line)}
+html[data-theme="dark"] .masthead{color:#fff}
+html[data-theme="dark"] .masthead a{color:#fff}
+html[data-theme="dark"] .nav-row{background:#100E1A;border-block-color:var(--line)}
+html[data-theme="dark"] .nav-row a{color:#EDEAF7}
+html[data-theme="dark"] .nav-row .nav-featured{color:#C4B5FD}
+html[data-theme="dark"] .nav-subscribe{background:#6335EB!important;color:#fff!important;border-color:#6335EB!important}
+html[data-theme="dark"] .mega-menu{background:rgba(16,14,26,0.9);border:1px solid rgba(255,255,255,0.14);box-shadow:0 24px 60px rgba(0,0,0,0.55)}
+html[data-theme="dark"] .mega-intro h3{color:#fff}
+html[data-theme="dark"] .mega-intro p{color:var(--muted)}
+html[data-theme="dark"] .mega-see-all{background:#2A2340;color:#fff;border-color:#3D3359}
+html[data-theme="dark"] .mega-provider{color:#EDEAF7}
+html[data-theme="dark"] .mega-provider small{color:var(--muted)}
+html[data-theme="dark"] .mega-provider:hover{background:rgba(255,255,255,0.08)}
+html[data-theme="dark"] .search-panel input{background:#171226;color:#F2EFFA;border-color:var(--line)}
+html[data-theme="dark"] .search-panel input::placeholder{color:#7C7398}
+
+/* Hero + footer: violet stays violet */
+html[data-theme="dark"] .hero{background:#6335EB!important;color:#fff}
+html[data-theme="dark"] .site-footer{background:#6335EB;color:#fff}
+html[data-theme="dark"] .site-footer a{color:#fff}
+html[data-theme="dark"] .site-footer h4{color:#fff}
+
+/* Sections: light sections go dark; dark section colours are kept */
+html[data-theme="dark"] .category-section{background:#100E1A}
+html[data-theme="dark"] .contributors-section{background:#334155!important}
+html[data-theme="dark"] .winners-section{background:#0F2040!important}
+html[data-theme="dark"] .nominate-section{background:#0F766E!important}
+html[data-theme="dark"] .newsletter{background:#9A3412!important}
+html[data-theme="dark"] .why-section{background:#831843!important}
+
+/* Cards, tiles, dialogs, forms: white surfaces go dark */
+html[data-theme="dark"] .featured-spotlight{background:#131022!important;border-color:#2A2340;color:var(--ink)}
+html[data-theme="dark"] .spotlight-card{background:#171226;border-color:var(--line)}
+html[data-theme="dark"] .spotlight-card:hover{border-color:#6335EB}
+html[data-theme="dark"] .spotlight-person-copy{background:#171226}
+html[data-theme="dark"] .person-card{background:rgba(19,16,34,0.85);border-color:rgba(255,255,255,0.14);color:var(--ink)}
+html[data-theme="dark"] .feature-label,html[data-theme="dark"] .profile-sample,html[data-theme="dark"] .award,html[data-theme="dark"] .image-read{background:#171226;color:var(--ink)}
+html[data-theme="dark"] .winner-card{background:#171226;border-color:var(--line)}
+html[data-theme="dark"] .category-tile{background:var(--navy)}
+html[data-theme="dark"] .category-plus{background:#171226;color:#F2EFFA}
+html[data-theme="dark"] .award-badge{background:#171226;color:#F2EFFA;border-color:var(--line)}
+html[data-theme="dark"] .latest-spotlights .count-pill,html[data-theme="dark"] .latest-spotlights .empty-state{background:#171226;color:#F2EFFA;border-color:var(--line)}
+html[data-theme="dark"] .person-info .person-meta .tag{background:#171226;color:#F2EFFA;border-color:var(--line)}
+html[data-theme="dark"] .trending-tab{background:#171226;color:#F2EFFA;border-color:var(--line)}
+html[data-theme="dark"] .why-grid article{background:#171226;color:var(--ink)}
+html[data-theme="dark"] .why-icon{background:#171226}
+html[data-theme="dark"] .content-dialog{background:#171226;color:var(--ink)}
+html[data-theme="dark"] .profile-story-body{background:#171226;color:var(--ink)}
+html[data-theme="dark"] .dialog-close{background:#2A2340!important;color:#F2EFFA!important}
+html[data-theme="dark"] .newsletter form{background:#171226}
+html[data-theme="dark"] .newsletter input{background:#100E1A;color:#F2EFFA;border-color:var(--line)}
+html[data-theme="dark"] .newsletter input::placeholder{color:#7C7398}
+
+/* Buttons: the white amber button becomes violet */
+html[data-theme="dark"] .button.amber{background:#6335EB!important;color:#fff!important;box-shadow:none!important}
+
+/* Ad slots + advertise page */
+html[data-theme="dark"] .ad-slot{background:#171226;border:2px dashed #6335EB;color:var(--ink)}
+html[data-theme="dark"] .advertise-hero{background:#6335EB}
+html[data-theme="dark"] .price-card{background:#171226;border-color:var(--line)}
+html[data-theme="dark"] .ad-form input,html[data-theme="dark"] .ad-form select,html[data-theme="dark"] .ad-form textarea{background:#171226;color:#F2EFFA;border-color:var(--line)}
+html[data-theme="dark"] .ad-form input::placeholder,html[data-theme="dark"] .ad-form textarea::placeholder{color:#7C7398}
+
+/* Hover-expand floating nav (advertise page): glass goes dark */
+html[data-theme="dark"] .hover-nav-pill{background:rgba(16,14,26,0.72);color:#F2EFFA}
+html[data-theme="dark"] .hover-nav-panel{background:rgba(16,14,26,0.85);border-color:rgba(255,255,255,0.14)}
+html[data-theme="dark"] .hover-nav-panel a{color:#F2EFFA}
+html[data-theme="dark"] .hover-nav-panel .hover-nav-label{color:#A49DC0}
+
+/* Theme toggle: icon-only button in the topbar (above the masthead) — no text, click the icon to switch */
+.topbar-actions{display:flex;align-items:center;gap:10px}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;min-width:38px;min-height:38px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);font-size:17px;line-height:1;cursor:pointer}
+.theme-toggle:hover{border-color:var(--violet);color:var(--violet)}
+html[data-theme="dark"] .theme-toggle{background:transparent;color:#F2EFFA;border-color:#2A2340}
+html[data-theme="dark"] .theme-toggle:hover{border-color:#6335EB;color:#C4B5FD}
+
+/* === NIGHT MODE: all text white by default — added 2026-11-23 on the user's ask ===
+   In night mode every readable text is white. Violet and other colours
+   appear only on hover / active states, or as backgrounds (hero, buttons,
+   badges). Exceptions that stay coloured because they sit on LIGHT
+   backgrounds: the magazine cover (stays white with dark text), medal
+   badges (gold/silver/bronze on white), the amber brand dot, and the
+   lime/amber footer accents on violet. */
+html[data-theme="dark"] .section-heading h2,
+html[data-theme="dark"] .category-section .section-heading h2,
+html[data-theme="dark"] .latest-spotlights .section-heading h2,
+html[data-theme="dark"] .winners-section .section-heading h2,
+html[data-theme="dark"] .contributors h3,
+html[data-theme="dark"] .newsletter h2,
+html[data-theme="dark"] .nominate-intro h2,
+html[data-theme="dark"] .featured-person-copy h3,
+html[data-theme="dark"] .spotlight-person-copy h3,
+html[data-theme="dark"] .winner-card h3,
+html[data-theme="dark"] .winner-card h4,
+html[data-theme="dark"] .profile-dialog-intro h2,
+html[data-theme="dark"] .price-card h3,
+html[data-theme="dark"] .ad-form h3,
+html[data-theme="dark"] .ad-title,
+html[data-theme="dark"] .how-grid h3,
+html[data-theme="dark"] .why-advertise .why-grid h3,
+html[data-theme="dark"] .trending-name,
+html[data-theme="dark"] .quote-box p,
+html[data-theme="dark"] .steps>h3,
+html[data-theme="dark"] .steps h4,
+html[data-theme="dark"] .person-info h2,
+html[data-theme="dark"] .masthead-caption{color:#fff}
+html[data-theme="dark"] .section-heading .eyebrow,
+html[data-theme="dark"] .issue-note .eyebrow,
+html[data-theme="dark"] .featured-person-copy>.eyebrow,
+html[data-theme="dark"] .nominate-intro>.eyebrow,
+html[data-theme="dark"] .contributors-section .eyebrow,
+html[data-theme="dark"] .newsletter .eyebrow,
+html[data-theme="dark"] .latest-spotlights .section-heading .eyebrow,
+html[data-theme="dark"] .winners-section .eyebrow,
+html[data-theme="dark"] .edition,
+html[data-theme="dark"] .nav-edition{color:#fff}
+html[data-theme="dark"] .section-aside,
+html[data-theme="dark"] .featured-summary,
+html[data-theme="dark"] .featured-recognition,
+html[data-theme="dark"] .featured-recognition>p,
+html[data-theme="dark"] .featured-recognition>span,
+html[data-theme="dark"] .spotlight-person-copy>p,
+html[data-theme="dark"] .winner-person,
+html[data-theme="dark"] .winner-description,
+html[data-theme="dark"] .contributors p,
+html[data-theme="dark"] .contributors-section .section-aside,
+html[data-theme="dark"] .steps p,
+html[data-theme="dark"] .nominate-intro>p:not(.eyebrow),
+html[data-theme="dark"] .newsletter>p:not(.eyebrow),
+html[data-theme="dark"] .newsletter-note,
+html[data-theme="dark"] .content-dialog p,
+html[data-theme="dark"] .content-dialog ul,
+html[data-theme="dark"] .content-dialog .dialog-note,
+html[data-theme="dark"] .profile-advice,
+html[data-theme="dark"] .trending-achievement,
+html[data-theme="dark"] .price-card ul,
+html[data-theme="dark"] .price-note,
+html[data-theme="dark"] .price-month,
+html[data-theme="dark"] .price-position,
+html[data-theme="dark"] .how-grid p,
+html[data-theme="dark"] .why-advertise .why-grid p,
+html[data-theme="dark"] .why-grid p,
+html[data-theme="dark"] .ad-text,
+html[data-theme="dark"] .ad-form>p,
+html[data-theme="dark"] .ad-form label,
+html[data-theme="dark"] .ad-policy,
+html[data-theme="dark"] .story-meta,
+html[data-theme="dark"] .story-card time,
+html[data-theme="dark"] .person-info p,
+html[data-theme="dark"] .sample-label,
+html[data-theme="dark"] .rank,
+html[data-theme="dark"] .issue-note p,
+html[data-theme="dark"] .latest-spotlights .section-aside,
+html[data-theme="dark"] .latest-spotlights .results-row,
+html[data-theme="dark"] .hero-bottom{color:#fff}
+/* Violet / coloured text becomes white in its normal state */
+html[data-theme="dark"] .text-button,
+html[data-theme="dark"] .count-pill,
+html[data-theme="dark"] .tag,
+html[data-theme="dark"] .award-badge,
+html[data-theme="dark"] .award-badge>span,
+html[data-theme="dark"] .person-info .person-meta .tag,
+html[data-theme="dark"] .price-amount,
+html[data-theme="dark"] .price-amount span,
+html[data-theme="dark"] .price-card ul li:before,
+html[data-theme="dark"] .how-number,
+html[data-theme="dark"] .ad-link,
+html[data-theme="dark"] .quote-box cite,
+html[data-theme="dark"] .trending-rank,
+html[data-theme="dark"] .trending-arrow,
+html[data-theme="dark"] .latest-spotlights .text-button,
+html[data-theme="dark"] .winners-section .text-button,
+html[data-theme="dark"] .profile-journey li:before,
+html[data-theme="dark"] .steps article>span,
+html[data-theme="dark"] .section-spark,
+html[data-theme="dark"] .feature-spark,
+html[data-theme="dark"] .hero-spark,
+html[data-theme="dark"] .nominate-spark,
+html[data-theme="dark"] .hero h1 em,
+html[data-theme="dark"] .hero-description,
+html[data-theme="dark"] .hero .light,
+html[data-theme="dark"] .hero .outline,
+html[data-theme="dark"] .nav-row .nav-featured,
+html[data-theme="dark"] .why-icon,
+html[data-theme="dark"] .category-tile[aria-pressed="true"] .category-plus{color:#fff}
+html[data-theme="dark"] .count-pill{background:#171226}
+/* Badges: coloured background, white text (instead of coloured text on white) */
+html[data-theme="dark"] .achievement-badge{background:#6335EB!important;color:#fff!important}
+html[data-theme="dark"] .spotlight-grid .spotlight-card:nth-child(2) .achievement-badge{background:#B91C1C!important;color:#fff!important}
+html[data-theme="dark"] .spotlight-grid .spotlight-card:nth-child(3) .achievement-badge{background:#166534!important;color:#fff!important}
+html[data-theme="dark"] .spotlight-grid .spotlight-card:nth-child(4) .achievement-badge{background:#92400E!important;color:#fff!important}
+html[data-theme="dark"] .spotlight-grid .spotlight-card:nth-child(5) .achievement-badge{background:#0F2040!important;color:#fff!important}
+html[data-theme="dark"] .spotlight-grid .spotlight-card:nth-child(6) .achievement-badge{background:#0F766E!important;color:#fff!important}
+html[data-theme="dark"] .spotlight-grid .spotlight-card:nth-child(7) .achievement-badge{background:#9A3412!important;color:#fff!important}
+/* Brand dot stays amber; star in the hero eyebrow stays amber */
+html[data-theme="dark"] .masthead span,
+html[data-theme="dark"] .amber-dot{color:#F59E0B}
+html[data-theme="dark"] .hero .little-star{color:#F59E0B}
+/* Amber tag keeps dark text (it sits on a light amber background) */
+html[data-theme="dark"] .light-tag{color:#1A1033}
+/* Success messages: light green on dark */
+html[data-theme="dark"] .ad-form .form-success,
+html[data-theme="dark"] .newsletter .form-success{color:#4ADE80}
+/* Footer muted text stays light on the violet footer */
+html[data-theme="dark"] .site-footer{--muted:#EDE7FF}
+/* Hover / active states may be coloured again (light violet, visible on dark) */
+html[data-theme="dark"] .text-button:hover,
+html[data-theme="dark"] .latest-spotlights .text-button:hover,
+html[data-theme="dark"] .winners-section .text-button:hover,
+html[data-theme="dark"] .ad-link:hover,
+html[data-theme="dark"] .hover-nav-panel>a:hover,
+html[data-theme="dark"] .hover-nav-panel>a.active{color:#A78BFA}
+
+/* === AD SLOTS: standard IAB banner sizes — added 2026-11-23 ===
+   Monetag has no fixed banner-slot sizes: its Vignette Banner and
+   In-Page Push float over the page and install with one script tag in
+   <head> (see the placeholder comment there). So the slots use the
+   universal IAB sizes every network and brand expects — the same sizes
+   AdSense uses — and any real creative drops straight in. */
+.ad-leaderboard{max-width:728px;margin-left:auto;margin-right:auto;min-height:90px;padding:14px 20px;text-align:left;display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px}
+.ad-leaderboard .ad-title{font-size:18px;margin-top:0;flex:1 1 160px}
+.ad-leaderboard .ad-text{display:none}
+.ad-leaderboard .ad-contact{margin-top:0}
+.ad-size{display:block;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--muted);margin-top:6px}
+.ad-leaderboard .ad-size{display:inline-block;margin-top:0}
+.ad-box{width:300px;max-width:100%;min-height:250px;margin-left:auto;margin-right:auto;padding:20px}
+.ad-row{justify-items:center}
+.dialog-ad{width:300px;max-width:100%;min-height:250px;margin-left:auto;margin-right:auto;padding:20px}
+.price-size{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);margin-top:6px}
+@media(max-width:760px){
+  .ad-leaderboard{max-width:320px;min-height:50px;padding:10px 14px}
+  .ad-leaderboard .ad-title{display:none}
+  .ad-leaderboard .ad-size{display:none}
+  .ad-leaderboard .ad-contact .email{display:none}
+  .ad-leaderboard .ad-button{font-size:11px;padding:8px 12px;min-height:36px}
+}
+
+/* === FORBES-STYLE FULL MENU — added 2026-11-23 ===
+   Full-screen dark overlay like Forbes' menu: close + wordmark + Subscribe
+   on top, a search row, three columns of sections, and a right rail with
+   the featured story and Today's Highlights. Covers every kind of
+   achiever — not just hackathon and research. */
+body.menu-open{overflow:hidden}
+.menu-toggle{display:inline-flex;flex-direction:row;align-items:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:.4px}
+.menu-toggle .menu-icon{display:flex;flex-direction:column;gap:6px;width:auto;height:auto;background:none;padding:0}
+.menu-toggle .menu-icon span{width:23px;height:1.5px;background:var(--ink);transition:transform .2s}
+.menu-toggle[aria-expanded=true] .menu-icon span:first-child{transform:translateY(3.75px) rotate(45deg)}
+.menu-toggle[aria-expanded=true] .menu-icon span:last-child{transform:translateY(-3.75px) rotate(-45deg)}
+.site-menu{position:fixed;inset:0;z-index:300;background:#0A0912;color:#fff;overflow-y:auto}
+.site-menu[hidden]{display:none}
+.site-menu .site-menu-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.site-menu .site-menu-close{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:16px;line-height:1;cursor:pointer;flex:0 0 auto}
+.site-menu .site-menu-logo{font-family:'Playfair Display',Georgia,serif;font-size:30px;font-weight:700;color:#fff;text-decoration:none}
+.site-menu .site-menu-logo span{color:#F59E0B}
+.site-menu .site-menu-search{display:flex;align-items:flex-start;gap:18px;padding:22px 0;flex-wrap:wrap}
+.site-menu .site-menu-search-field{flex:1 1 420px;display:flex;background:#fff;border-radius:8px;overflow:hidden}
+.site-menu .site-menu-search-field input{flex:1;border:0;outline:0;padding:14px 16px;font-size:15px;color:#111;background:transparent;min-width:0}
+.site-menu .site-menu-search-button{border:0;background:transparent;padding:0 16px;font-size:20px;color:#111;cursor:pointer}
+.site-menu .site-menu-actions{display:flex;gap:10px;flex-wrap:wrap}
+.site-menu .site-menu-pill{background:#26262E;color:#fff;border-radius:40px;padding:12px 20px;font-size:13px;font-weight:700;text-decoration:none}
+.site-menu .site-menu-pill:hover{background:#3A3A44}
+.site-menu .menu-search-hint{flex-basis:100%;color:#B9B9C4;font-size:13px;margin:-8px 0 0}
+.site-menu .site-menu-main{display:grid;grid-template-columns:1fr 340px;gap:40px;padding:28px 0 40px}
+.site-menu .menu-sections{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 32px}
+.site-menu .menu-col h3{font-family:'Playfair Display',Georgia,serif;font-size:22px;color:#fff;margin:0 0 12px}
+.site-menu .menu-col ul{list-style:none;margin:0;padding:0}
+.site-menu .menu-col li{margin:0 0 10px}
+.site-menu .menu-col a{color:#C9C9D4;font-size:15px;text-decoration:none}
+.site-menu .menu-col a:hover{color:#fff;text-decoration:underline}
+.site-menu .menu-rail{border-left:1px solid rgba(255,255,255,.14);padding-left:28px}
+.site-menu .menu-feature{display:block;width:100%;text-align:left;background:none;border:0;padding:0;cursor:pointer;color:#fff}
+.site-menu .menu-feature img{width:100%;border-radius:8px;display:block}
+.site-menu .menu-feature-eyebrow{display:block;font-size:10px;font-weight:800;letter-spacing:1.6px;color:#B9B9C4;margin-top:14px}
+.site-menu .menu-feature-headline{display:block;font-family:'Playfair Display',Georgia,serif;font-size:26px;line-height:1.25;margin-top:8px}
+.site-menu .menu-feature-byline{display:block;font-size:13px;color:#B9B9C4;margin-top:8px}
+.site-menu .menu-highlights{margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14)}
+.site-menu .menu-highlights h3,.site-menu .menu-nominate h3{font-family:'Playfair Display',Georgia,serif;font-size:22px;margin:0 0 14px}
+.site-menu .menu-highlight{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;padding:8px 0;cursor:pointer;color:#fff}
+.site-menu .menu-highlight-logo{flex:0 0 44px;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff}
+.site-menu .menu-highlight strong{display:block;font-size:15px}
+.site-menu .menu-highlight small{display:block;font-size:13px;color:#B9B9C4;margin-top:2px}
+.site-menu .menu-nominate{margin-top:28px;padding:24px;border:1px solid rgba(255,255,255,.18);border-radius:12px}
+.site-menu .menu-nominate p{font-size:14px;line-height:1.6;color:#C9C9D4;margin:0 0 16px}
+.site-menu .site-menu-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 0 28px;border-top:1px solid rgba(255,255,255,.14);font-size:13px;color:#B9B9C4}
+.site-menu .site-menu-footer nav{display:flex;gap:20px;flex-wrap:wrap}
+.site-menu .site-menu-footer a{color:#C9C9D4;text-decoration:none}
+.site-menu .site-menu-footer a:hover{color:#fff;text-decoration:underline}
+@media(max-width:900px){
+  .site-menu .site-menu-main{grid-template-columns:1fr}
+  .site-menu .menu-sections{grid-template-columns:1fr 1fr}
+  .site-menu .menu-rail{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.14);padding-top:28px}
+}
+@media(max-width:580px){
+  .site-menu .menu-sections{grid-template-columns:1fr}
+  .site-menu .site-menu-logo{font-size:24px}
+}
+
+/* === HERO MAGAZINE COVER: realistic redesign — added 2026-11-23 ===
+   References: fashion-magazine spread (giant outlined word, solid colour)
+   + LAYOUT magazine (huge masthead overlapping the photo, cover lines,
+   date / issue / price + barcode, inside spread). The cover is now
+   full-bleed: the photo fills the whole cover, the masthead overlaps it,
+   and the page behind is a real inside spread, not a solid colour block. */
+.magazine-cover:not(.magazine-back){padding:0;overflow:hidden;height:560px;background:#1A1033}
+.magazine-cover .cover-photo{position:absolute;inset:0;height:auto;margin-top:0;border-radius:0}
+.magazine-cover .cover-photo img{width:100%;height:100%;object-fit:cover}
+.magazine-cover .cover-photo:after{background:linear-gradient(to bottom,rgba(26,16,51,.62),rgba(26,16,51,0) 32%,rgba(26,16,51,0) 52%,rgba(26,16,51,.88))}
+.magazine-cover .cover-masthead{position:absolute;top:14px;left:0;right:0;z-index:3;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.4)}
+.magazine-cover .cover-masthead span{color:#F59E0B}
+.magazine-cover .cover-kicker{position:absolute;top:88px;left:18px;right:18px;z-index:3;color:#fff;border-top:1px solid rgba(255,255,255,.65);border-bottom:1px solid rgba(255,255,255,.65)}
+.cover-giant{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);z-index:1;font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-size:150px;font-weight:800;letter-spacing:6px;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.4);pointer-events:none;white-space:nowrap}
+.magazine-cover .cover-stamp{top:150px}
+.magazine-cover .cover-headline{bottom:104px}
+.magazine-cover .cover-foot{position:absolute;left:0;right:0;bottom:0;z-index:3;display:block;margin-top:0;padding:12px 16px 14px;color:#fff}
+.cover-foot .cover-caption{font-size:9px;line-height:1.5;color:#EDE7FF;max-width:none;margin:0 0 8px}
+.cover-foot-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.cover-issue-line{font-size:9px;font-weight:700;letter-spacing:1.6px;color:#fff}
+.cover-barcode-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.cover-barcode-wrap .cover-barcode{width:74px;height:30px;background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 4px,#fff 4px 7px,transparent 7px 9px,#fff 9px 10px,transparent 10px 13px)}
+.cover-barcode-num{font-size:7px;letter-spacing:1px;color:#EDE7FF}
+.magazine-stack .cover-button{position:relative;z-index:3;margin-top:-26px}
+.magazine-back{background:#fff;color:#1A1033;padding:20px 20px 16px}
+.cover-back-masthead{font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-size:30px;font-weight:800;letter-spacing:.5px;line-height:1;color:#1A1033;border-bottom:2px solid #6335EB;padding-bottom:8px}
+.cover-back-kicker{font-size:9px;font-weight:800;letter-spacing:2px;color:#DC2626;margin-top:14px}
+.cover-back-head{font-family:'Playfair Display',Georgia,serif;font-size:26px;line-height:1.15;margin-top:6px;color:#1A1033}
+.cover-back-dek{font-size:12px;line-height:1.5;color:#5A5470;margin-top:8px}
+.cover-back-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.cover-back-cols p{font-size:9.5px;line-height:1.6;color:#3D3A4D;text-align:justify}
+.cover-back-quote{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:16px;color:#6335EB;margin-top:14px}
+.cover-back-page{position:absolute;right:20px;bottom:14px;font-size:10px;font-weight:700;color:#5A5470}
+@media(max-width:800px){
+  .magazine-cover:not(.magazine-back){height:520px}
+  .cover-giant{font-size:120px}
+  .magazine-cover .cover-stamp{top:140px}
+}
+@media(max-width:580px){
+  .magazine-cover:not(.magazine-back){height:480px}
+  .cover-giant{font-size:100px}
+  .magazine-cover .cover-stamp{top:130px}
+  .magazine-cover .cover-headline{bottom:96px}
+  .cover-back-head{font-size:22px}
+}
+
+/* === HERO: open magazine — added 2026-11-23, tabletop removed same day ===
+   The hero magazine lies OPEN like a real magazine: two pages, a spine
+   fold with shadows, page thickness underneath, and a big soft shadow
+   grounding it on the violet hero. The latest featured achiever (Nasir)
+   fills both pages. (The wooden tabletop behind it was removed on the
+   user's ask — keep only the magazine.) */
+.hero-visual{padding:36px 28px}
+.mag-wrap{width:100%;max-width:540px}
+.open-magazine{position:relative;display:grid;grid-template-columns:1fr 1fr;transform:rotate(-2deg);filter:drop-shadow(0 34px 26px rgba(0,0,0,.5)) drop-shadow(0 8px 10px rgba(0,0,0,.35))}
+.open-magazine:before{content:'';position:absolute;inset:5px -5px -7px 5px;background:#EFE9DC;border-radius:8px;z-index:-1;transform:rotate(1.2deg)}
+.open-magazine:after{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(0,0,0,.28);transform:translateX(-50%);z-index:3;pointer-events:none}
+.mag-page{position:relative;background:#fff;color:#1A1033;min-height:340px;padding:18px 16px 16px}
+.mag-left{border-radius:8px 2px 2px 8px;box-shadow:inset -26px 0 30px -14px rgba(0,0,0,.5)}
+.mag-right{border-radius:2px 8px 8px 2px;box-shadow:inset 26px 0 30px -14px rgba(0,0,0,.5)}
+.mag-masthead{font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-size:30px;font-weight:800;letter-spacing:.5px;line-height:1;color:#1A1033}
+.mag-masthead span{color:#6335EB}
+.mag-issue{font-size:8px;font-weight:700;letter-spacing:1.8px;color:#6335EB;border-top:1px solid #1A1033;border-bottom:1px solid #1A1033;padding:5px 0;margin-top:8px;text-align:center}
+.mag-photo{position:relative;height:150px;margin-top:10px;overflow:hidden;border-radius:2px}
+.mag-photo img{width:100%;height:100%;object-fit:cover;object-position:28% 30%}
+.mag-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(26,16,51,.35))}
+.mag-stamp{position:absolute;top:10px;right:10px;z-index:2;width:62px;height:62px;border-radius:50%;background:#6335EB;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:8px;font-weight:800;letter-spacing:1px;line-height:1.4;border:2px solid #fff;transform:rotate(8deg)}
+.mag-headline{font-family:'Playfair Display',Georgia,serif;font-size:19px;line-height:1.2;margin-top:10px;color:#1A1033}
+.mag-name{font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-size:15px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-top:8px;color:#1A1033}
+.mag-sub{font-size:9px;line-height:1.5;color:#5A5470;margin-top:4px}
+.mag-kicker{font-size:8px;font-weight:800;letter-spacing:2px;color:#DC2626}
+.mag-article-head{font-family:'Playfair Display',Georgia,serif;font-size:19px;line-height:1.15;margin-top:6px;color:#1A1033}
+.mag-dek{font-size:10px;line-height:1.5;color:#5A5470;margin-top:6px}
+.mag-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.mag-cols p{font-size:8.5px;line-height:1.6;color:#3D3A4D;text-align:justify}
+.mag-quote{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:14px;color:#6335EB;margin-top:12px}
+.mag-page-num{position:absolute;right:16px;bottom:12px;font-size:8px;font-weight:700;letter-spacing:1px;color:#5A5470}
+.mag-wrap .cover-button{position:relative;z-index:3;margin-top:-16px}
+@media(max-width:800px){
+  .mag-page{min-height:310px}
+  .mag-photo{height:130px}
+}
+@media(max-width:580px){
+  .mag-page{min-height:300px;padding:14px 12px}
+  .mag-headline,.mag-article-head{font-size:17px}
+  .mag-photo{height:120px}
+}
+
+/* === REAL PROFILES: monograms instead of stock photos — added 2026-11-23 ===
+   The ten new achievers have no supplied photograph, so their cards and
+   story dialogs use a solid-colour monogram (initials) — never a stranger's
+   stock photo presented as a real person. */
+.spotlight-monogram{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-size:76px;font-weight:800;letter-spacing:2px;color:#fff}
+.profile-dialog-monogram{display:flex;align-items:center;justify-content:center;height:100%;min-height:420px;font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-size:120px;font-weight:800;letter-spacing:4px;color:#fff}
+.dialog-source-link{display:inline-block;margin-top:16px;font-weight:700;color:#6335EB}
+html[data-theme="dark"] .dialog-source-link{color:#A78BFA}
+.about-copy{max-width:720px}
+.about-copy p{font-size:16px;line-height:1.7;margin-bottom:14px}
+@media(max-width:800px){
+  .profile-dialog-monogram{min-height:260px;font-size:88px}
+  .spotlight-monogram{font-size:64px}
+}
+
+/* === Mobile left sidebar 2026-11-23: on phones the Menu button opens a left drawer (Home, Stories, Categories, Advertise + More) instead of the full-screen menu === */
+.mobile-sidebar,.mobile-sidebar-backdrop{display:none}
+.mobile-sidebar[hidden],.mobile-sidebar-backdrop[hidden]{display:none}
+@media(max-width:580px){
+  .mobile-sidebar{display:block;position:fixed;top:0;left:0;bottom:0;width:min(320px,86vw);background:#0A0912;color:#fff;z-index:320;overflow-y:auto;transform:translateX(-102%);transition:transform .28s ease;box-shadow:0 0 40px rgba(0,0,0,.45)}
+  .mobile-sidebar.open{transform:none}
+  .mobile-sidebar-backdrop{display:block;position:fixed;inset:0;background:rgba(10,9,18,.55);z-index:315}
+  body.mobile-sidebar-open{overflow:hidden}
+  .mobile-sidebar-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.14)}
+  .mobile-sidebar-logo{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;color:#fff;text-decoration:none}
+  .mobile-sidebar-logo span{color:#F59E0B}
+  .mobile-sidebar-close{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:16px;line-height:1;cursor:pointer;flex:0 0 auto}
+  .mobile-sidebar-search{display:flex;background:#fff;border-radius:8px;overflow:hidden;margin:16px 20px 0}
+  .mobile-sidebar-search input{flex:1;border:0;outline:0;padding:12px 14px;font-size:14px;color:#111;background:transparent;min-width:0}
+  .mobile-sidebar-search-button{border:0;background:transparent;padding:0 14px;font-size:18px;color:#111;cursor:pointer}
+  .mobile-sidebar-search-hint{color:#B9B9C4;font-size:12px;margin:8px 20px 0}
+  .mobile-sidebar-nav{display:flex;flex-direction:column;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.14);margin:8px 0 0}
+  .mobile-sidebar-nav a{display:block;padding:13px 20px;font-size:16px;font-weight:600;color:#fff;text-decoration:none}
+  .mobile-sidebar-nav a:hover{background:rgba(255,255,255,.07)}
+  .mobile-sidebar-actions{display:flex;flex-direction:column;gap:10px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.14)}
+  .mobile-sidebar-actions .button{justify-content:center;text-align:center}
+  .mobile-sidebar-more{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;padding:15px 20px;font-size:15px;font-weight:700;color:#fff;cursor:pointer}
+  .mobile-sidebar-chevron{display:inline-block;font-size:16px;transition:transform .25s ease}
+  .mobile-sidebar-more[aria-expanded="true"] .mobile-sidebar-chevron{transform:rotate(180deg)}
+  .mobile-sidebar-more-panel{padding:4px 20px 20px;border-bottom:1px solid rgba(255,255,255,.14)}
+  .mobile-sidebar-more-panel[hidden]{display:none}
+  .ms-col{margin-top:16px}
+  .ms-col h3{font-family:'Playfair Display',Georgia,serif;font-size:19px;color:#fff;margin:0 0 8px}
+  .ms-col ul{list-style:none;margin:0;padding:0}
+  .ms-col li{margin:0 0 6px}
+  .ms-col a{color:#C9C9D4;font-size:14px;text-decoration:none}
+  .ms-col a:hover{color:#fff;text-decoration:underline}
+  .ms-highlights{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14)}
+  .ms-highlights h3{font-family:'Playfair Display',Georgia,serif;font-size:19px;margin:0 0 10px}
+  .ms-highlight{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;padding:8px 0;cursor:pointer;color:#fff}
+  .ms-highlight-logo{flex:0 0 44px;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff}
+  .ms-highlight strong{display:block;font-size:15px}
+  .ms-highlight small{display:block;font-size:13px;color:#B9B9C4;margin-top:2px}
+  .mobile-sidebar-foot{color:#B9B9C4;font-size:12px;padding:16px 20px 24px;margin:0}
+  .mobile-sidebar-foot a{color:#B9B9C4}
+}

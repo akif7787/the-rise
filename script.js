@@ -34,214 +34,354 @@ const stories = [
     "sourceNote": "Community-submitted profile. The attendance and first-prize details were supplied to The Rise and have not been independently verified. The photograph was provided with the submission. No paper title, affiliation, official results link, or personal quote was supplied."
   },
   {
-    "id": "water",
-    "name": "Nadia Rahman",
+    "id": "zahid",
+    "name": "M. Zahid Hasan",
     "category": "Research",
     "cats": "Research",
-    "achievement": "Research Paper Published",
-    "image": "photo-1531123897727-8f129e1688ce",
-    "summary": "Turning a coastal water challenge into a carefully tested research idea.",
-    "quote": "Start with a question that matters to someone beyond your lab.",
+    "achievement": "Davisson-Germer Prize",
+    "monogram": "ZH",
+    "color": "#0F2040",
+    "sample": false,
+    "alt": "Monogram for M. Zahid Hasan",
+    "summary": "Davisson-Germer Prize in atomic or surface physics for discovering new topological states in quantum materials.",
+    "headline": "M. Zahid Hasan: a Princeton physicist honoured for quantum discovery",
+    "featuredDate": "19 November 2026",
     "journey": [
       [
-        "Listen first",
-        "Begin with the cost and maintenance challenges families face."
+        "The discovery",
+        "Hasan discovered different topological states in quantum materials using advanced surface science techniques."
       ],
       [
-        "Test with care",
-        "Compare materials, document failed trials, and invite criticism."
+        "The laboratory",
+        "He has led Princeton’s Laboratory for Topological Quantum Matter and Advanced Spectroscopy since 2008."
       ],
       [
-        "Share the learning",
-        "Publish a first paper and define what still needs testing."
+        "The prize",
+        "Princeton announced the Davisson-Germer Prize on 18 November 2026 — one of the American Physical Society’s honours in atomic or surface physics."
       ]
     ],
     "body": [
-      "For Nadia Rahman, the starting point is a question: how can a water filter be useful if a family cannot afford to maintain it? In this fictional profile, the young researcher brings that question into every stage of her work on safer water for coastal communities.",
-      "She studies a low-cost filtration material, comparing early samples and keeping a careful record of the trials that do not work. Conversations about maintenance help her see that a promising laboratory result is only one part of a much larger problem.",
-      "Her first paper brings those experiments together, including the limitations. Nadia’s next ambition is to understand how the material behaves outside the lab. In this sample journey, publication marks a new set of questions, not a claim that the technology is ready for community use."
+      "Princeton University Professor of Physics M. Zahid Hasan received the Davisson-Germer Prize in Atomic or Surface Physics from the American Physical Society for discovering different topological states in quantum materials using advanced surface science techniques. Princeton announced the award on 18 November 2026.",
+      "Born and raised in Dhaka, Hasan joined Princeton in 2002 and has led its Laboratory for Topological Quantum Matter and Advanced Spectroscopy since 2008. He has been Eugene Higgins Professor at Princeton since 2017.",
+      "The prize recognises research that opens new ways of understanding matter at the quantum level — work that began far from Princeton, in Dhaka."
     ],
-    "alt": "Illustrative stock portrait for Nadia Rahman, a fictional sample profile"
+    "sourceNote": "Source: The Daily Inqilab (English), 19 November 2026.",
+    "sourceUrl": "https://en.dailyinqilab.com/bangladeshi-scientist-zahid-hasan-wins-prestigious-davisson-germer-award-for-quantum-research/"
   },
   {
-    "id": "signal",
-    "name": "Arif Hasan",
+    "id": "muammar",
+    "name": "Muammar Tazwar Asfi",
     "category": "Hackathon",
-    "cats": "Hackathon",
-    "achievement": "Hackathon 1st Place",
-    "image": "photo-1500648767791-00dcc994a43e",
-    "summary": "Building clearer emergency information with Team Signal.",
-    "quote": "Build the smallest thing that makes someone’s difficult moment easier.",
+    "cats": "Hackathon Technology",
+    "achievement": "NASA Space Apps — Regional Champion",
+    "monogram": "MA",
+    "color": "#166534",
+    "sample": false,
+    "alt": "Monogram for Muammar Tazwar Asfi",
+    "summary": "Led Team Galactic Poet to the Mymensingh regional championship at the NASA Space Apps Challenge 2026.",
+    "headline": "Muammar Tazwar Asfi: leading a team to a NASA Space Apps regional title",
+    "featuredDate": "19 November 2026",
     "journey": [
       [
-        "Find the friction",
-        "Notice how hard essential updates can be to navigate."
+        "The team",
+        "Five Jagannath University CSE students formed Galactic Poet, with Asfi as team lead."
       ],
       [
-        "Build together",
-        "Turn one clear information flow into a weekend prototype."
+        "The project",
+        "“Rover Villa” presents the history and missions of space robots, rovers, landers and probes as a digital museum."
       ],
       [
-        "Keep going",
-        "Use the first-place result to begin a deeper round of testing."
+        "The win",
+        "Galactic Poet won the Mymensingh regional championship at the NASA Space Apps Challenge 2026 and was nominated for the Global Round."
       ]
     ],
     "body": [
-      "An emergency is the wrong moment to search through a maze of information. Arif Hasan and the fictional Team Signal choose that problem for a weekend hackathon, setting themselves a simple goal: help someone find the next useful piece of information quickly.",
-      "Arif works with his teammates to remove confusing steps from their prototype. They build Signal, a readable interface for essential updates, and spend their final hours rehearsing a demonstration that explains the problem as clearly as the solution. In this sample competition, their work earns first place.",
-      "The win is a beginning. Before a tool like Signal could serve the public, its sources would need checking, its interface would need testing, and its behaviour on unreliable connections would need attention. Arif’s story is about the willingness to keep doing that less visible work after the applause."
+      "Five computer science and engineering students from Jagannath University, competing as Team Galactic Poet, won the regional championship in the Mymensingh division at the NASA Space Apps Challenge 2026. Their project, “Rover Villa”, is a digital museum-style platform showcasing the history, missions and contributions of space-bound robots, rovers, landers and probes.",
+      "The hackathon ran on 14–15 November 2026, and the winners were announced at the closing ceremony on 17 November at the American International University-Bangladesh auditorium in Dhaka. The team was nominated for the Global Round.",
+      "Asfi led the team of Md. Ramjan Mia, Atoshi Sharma, Susmita Ghosh and Jihad Rahman. He had previously been on Jagannath University’s “Quantum Voyager” team, Dhaka divisional champion in 2024."
     ],
-    "alt": "Illustrative stock portrait for Arif Hasan, a fictional sample profile"
+    "sourceNote": "Source: The Daily Inqilab (English), 19 November 2026. Corroborated by The Daily Star, 19 November 2026.",
+    "sourceUrl": "https://en.dailyinqilab.com/team-galactic-poet-from-jagannath-university-wins-regional-championship-in-nasas-international-hackathon/"
   },
   {
-    "id": "dean",
-    "name": "Mehnaz Karim",
-    "category": "Award",
-    "cats": "Awards",
-    "achievement": "Dean’s Award",
-    "image": "photo-1580489944761-15a19d654956",
-    "summary": "Pairing academic excellence with a habit of helping classmates.",
-    "quote": "Share the explanation you wish someone had given you.",
+    "id": "suhana",
+    "name": "Suhana Rahman Sukanya",
+    "category": "Awards",
+    "cats": "Awards Impact",
+    "achievement": "The Diana Award 2026",
+    "monogram": "SR",
+    "color": "#DC2626",
+    "sample": false,
+    "alt": "Monogram for Suhana Rahman Sukanya",
+    "summary": "The Diana Award 2026 for mental-health awareness and suicide-prevention work.",
+    "headline": "Suhana Rahman Sukanya: a 17-year-old recognised with the Diana Award",
+    "featuredDate": "6 November 2026",
     "journey": [
       [
-        "Build a routine",
-        "Make time for steady study and honest questions."
+        "The work",
+        "As a Child Coordinator at Talk Hope, she works on mental-health awareness and suicide prevention."
       ],
       [
-        "Learn together",
-        "Create a study circle where classmates can ask for help."
+        "The award",
+        "The Diana Award 2026 recognised her social development and humanitarian work."
       ],
       [
-        "Bring others along",
-        "Turn recognition into encouragement for the next learner."
+        "The recognition",
+        "She received congratulatory messages from Prince William and Prince Harry."
       ]
     ],
     "body": [
-      "Mehnaz Karim’s story begins with ordinary routines: careful notes, regular study sessions, and the courage to ask for help. In this fictional profile, she learns that consistency matters more than appearing to understand everything on the first try.",
-      "As her confidence grows, Mehnaz begins organising informal study circles. She shares the explanations she once needed and listens when a classmate approaches a problem differently. Teaching becomes another way to learn, rather than a distraction from her own goals.",
-      "A fictional Dean’s Award recognises her academic achievement. Mehnaz sees the moment as a chance to thank the people who helped her and welcome others into the circle. No real university or award record is associated with this sample story."
+      "Seventeen-year-old Suhana Rahman Sukanya won the international Diana Award 2026 for her contributions to social development, humanitarian work, mental-health awareness and suicide prevention.",
+      "She is a 12th-grade student at Bir Shrestha Noor Mohammad Public School and College in Dhaka and serves as a Child Coordinator at Talk Hope, a Bangladeshi initiative for mental-health awareness and suicide prevention.",
+      "She received congratulatory messages from Prince William and Prince Harry, and was previously nominated for the International Children’s Peace Prize in 2024."
     ],
-    "alt": "Illustrative stock portrait for Mehnaz Karim, a fictional sample profile"
+    "sourceNote": "Source: New Age, 6 November 2026.",
+    "sourceUrl": "https://www.newagebd.net/post/country/321209/suhana-wins-the-diana-award-2026"
   },
   {
-    "id": "path",
-    "name": "Ishrat Nila",
-    "category": "Hackathon",
-    "cats": "Hackathon",
-    "achievement": "Hackathon 2nd Place",
-    "image": "photo-1534528741775-53994a69daeb",
-    "summary": "Making a confusing journey easier to plan with Team Path.",
-    "quote": "A useful first version beats a perfect idea that never leaves your notebook.",
-    "journey": [
-      [
-        "Ask commuters",
-        "Start with the questions people have before a journey."
-      ],
-      [
-        "Make it clearer",
-        "Prototype a simple route-information flow with Team Path."
-      ],
-      [
-        "Learn from feedback",
-        "Use a second-place finish to sharpen the next version."
-      ]
-    ],
-    "body": [
-      "Ishrat Nila starts with a familiar frustration: trying to plan a journey when the information is scattered. In this fictional hackathon story, she brings Team Path together around a modest challenge—make a route easier to understand before someone leaves home.",
-      "Their project, Path Planner, turns a complex set of choices into a short, readable flow. Ishrat helps the team keep the prototype focused, choosing a few clear interactions over a long feature list. The sample competition awards their work second place.",
-      "After the event, she returns to the questions raised during the demonstration. Keeping route details current and learning from commuters would matter more than polishing a pitch. Her imagined next step is a small, careful round of feedback, with no claim that the prototype is a live travel service."
-    ],
-    "alt": "Illustrative stock portrait for Ishrat Nila, a fictional sample profile"
-  },
-  {
-    "id": "leadership",
-    "name": "Tanisha Haque",
-    "category": "Leadership",
-    "cats": "Awards Leadership",
-    "achievement": "Youth Prize",
-    "image": "photo-1544005313-94ddf0286df2",
-    "summary": "Creating a peer-learning circle where new voices belong.",
-    "quote": "Make room for the person who has not found the confidence to speak yet.",
-    "journey": [
-      [
-        "Make an invitation",
-        "Welcome learners who are unsure where to begin."
-      ],
-      [
-        "Show up regularly",
-        "Build trust through practical, supportive sessions."
-      ],
-      [
-        "Share responsibility",
-        "Help participants lead and welcome the next group."
-      ]
-    ],
-    "body": [
-      "Tanisha Haque does not describe leadership as being the loudest person in a room. In this fictional profile, she begins with a small peer-learning circle and a promise to make every question welcome.",
-      "The group exchanges practical skills, from preparing a first presentation to understanding how to read a research paper. Tanisha pays attention to who has not spoken yet and invites participants to shape the next session. The community grows through shared responsibility rather than one person having every answer.",
-      "A fictional youth prize recognises that patient work. Tanisha’s focus remains on making the next meeting useful and welcoming. This sample story celebrates an approach to leadership; it does not claim a real award, organisation, or measured community impact."
-    ],
-    "alt": "Illustrative stock portrait for Tanisha Haque, a fictional sample profile"
-  },
-  {
-    "id": "platform",
-    "name": "Rafiq Alam",
+    "id": "shamim",
+    "name": "Dr Md Shamim Alam",
     "category": "Innovation",
-    "cats": "Innovation",
-    "achievement": "Platform Builder",
-    "image": "photo-1506794778202-cad84cf45f1d",
-    "summary": "Designing a simpler first connection between students and mentors.",
-    "quote": "Before adding another feature, understand the person asking for help.",
+    "cats": "Innovation Technology",
+    "achievement": "Best Innovation Award — Smart Textiles",
+    "monogram": "SA",
+    "color": "#0F766E",
+    "sample": false,
+    "alt": "Monogram for Dr Md Shamim Alam",
+    "summary": "Best Innovation Award at the TIE–ITET Textile Innovation Expo 2026 for three smart textiles.",
+    "headline": "Dr Md Shamim Alam: smart textiles that heal, warm and protect",
+    "featuredDate": "16 November 2026",
     "journey": [
       [
-        "Listen to students",
-        "Understand what makes asking for guidance difficult."
+        "The lab",
+        "Alam leads the Sustainable Smart Textile Lab at Southeast University and is Associate Professor and Coordinator of Textile Engineering."
       ],
       [
-        "Design the introduction",
-        "Match questions to the experience a mentor can share."
+        "The innovations",
+        "FLUOROVA, FeMats and ThermoTex — three smart, sustainable textiles for health, warmth and protection."
       ],
       [
-        "Earn trust",
-        "Plan consent, clear expectations, and responsible moderation."
+        "The award",
+        "The Best Innovation Award was announced on 12 November 2026 at the Textile Innovation Expo in Dhaka."
       ]
     ],
     "body": [
-      "A student looking for direction often needs a conversation before a career plan. Rafiq Alam’s fictional platform concept begins with that idea: make it easier to find a mentor who remembers what the first step felt like.",
-      "He sketches First Door, an experience that groups mentors by the questions they can help answer. Clear availability and expectations matter as much as an impressive job title. Rafiq keeps returning to the moment when a student has to decide whether they feel comfortable asking.",
-      "The prototype is not a live service. An actual platform would need consent, privacy safeguards, reliable moderation, and evidence that its introductions are useful. This sample builder’s journey is about treating those responsibilities as part of the product from the beginning."
+      "Dr Md Shamim Alam of Southeast University, Dhaka, and Dr Md Raju Ahmed of the University of Manchester jointly won the Best Innovation Award for three innovations developed with the Sustainable Smart Textile Lab.",
+      "The three innovations are FLUOROVA, a waterproof, breathable textile made without PFAS “forever chemicals”; FeMats, a graphene-enhanced wearable textile that tracks the health of mother and baby during pregnancy; and ThermoTex, a self-charging smart heating textile.",
+      "The award was announced on 12 November 2026 at the Open Innovation Zone of the TIE–ITET Textile Innovation Expo at the International Convention City Bashundhara, Dhaka."
     ],
-    "alt": "Illustrative stock portrait for Rafiq Alam, a fictional sample profile"
+    "sourceNote": "Source: Bangladesh Textile Today, 16 November 2026.",
+    "sourceUrl": "https://textiletoday.com.bd/dr-md-shamim-alam-and-dr-md-raju-ahmed-win-best-innovation-award-for-smart-textile-innovations-at-tie-itet-textile-innovation-expo-2026"
   },
   {
-    "id": "harvest",
-    "name": "Ayan Sarker",
-    "category": "Hackathon",
-    "cats": "Hackathon Innovation",
-    "achievement": "Hackathon 3rd Place",
-    "image": "photo-1500648767791-00dcc994a43e",
-    "summary": "Helping small growers record deliveries with Team Harvest.",
-    "quote": "Respect the everyday work before you try to redesign it.",
+    "id": "bonna",
+    "name": "Bonna Akter",
+    "category": "Sports",
+    "cats": "Sports",
+    "achievement": "Two Golds — Asia Cup Archery",
+    "monogram": "BA",
+    "color": "#92400E",
+    "sample": false,
+    "alt": "Monogram for Bonna Akter",
+    "summary": "Two gold medals at the Asia Cup archery — women’s compound individual and team.",
+    "headline": "Bonna Akter: two Asia Cup archery golds",
+    "featuredDate": "10 November 2026",
     "journey": [
       [
-        "Understand the routine",
-        "Explore how a grower records an everyday delivery."
+        "The final",
+        "On 29 October 2026 she beat Kazakhstan’s Milana Burleva 145–143 to win the women’s compound individual gold."
       ],
       [
-        "Keep it simple",
-        "Build a short recording flow with Team Harvest."
+        "The team gold",
+        "With Sriporna Biswas and Kulsuma Akter Moni, she won the women’s compound team gold 230–220."
       ],
       [
-        "Test the assumptions",
-        "Take third-place feedback into the next prototype."
+        "The journey",
+        "From school football to archery in 2014, and a first international trophy in 2017 — this was her first individual gold."
       ]
     ],
     "body": [
-      "Ayan Sarker and the fictional Team Harvest choose a quiet problem for their hackathon: how might small growers keep a clearer record of deliveries? They begin by mapping a simple routine rather than imagining a complete business platform.",
-      "Their prototype, Harvest Log, puts the delivery record at the centre of the experience. Ayan helps his teammates keep the flow short and readable, so the idea can be explained without a long demonstration. In this fictional competition, their work receives third place.",
-      "The result gives the team a reason to keep listening. Before turning the idea into a service, they would need to test it with growers, consider data privacy, and learn what happens when connectivity is poor. This is a sample account of an early prototype, not a claim of a deployed product."
+      "Bonna Akter won two gold medals at the Asia Cup World Ranking Tournament Leg 2 in Sulaymaniyah, Iraq: her first international individual gold, beating Kazakhstan’s Milana Burleva 145–143 in the women’s compound individual final on 29 October 2026, and the women’s compound team gold with Sriporna Biswas and Kulsuma Akter Moni, beating Kazakhstan 230–220.",
+      "Her journey began in school football before she took up archery in 2014. Her first international trophy came in 2017 — this was her first individual gold.",
+      "The Daily Star profiled her on 10 November 2026, tracing a path from self-doubt to the top of the podium."
     ],
-    "alt": "Illustrative stock portrait for Ayan Sarker, a fictional sample profile"
+    "sourceNote": "Source: The Daily Star, 10 November 2026.",
+    "sourceUrl": "https://www.thedailystar.net/life-living/news/bonna-akters-journey-self-doubt-asia-cup-archery-gold-4320141"
+  },
+  {
+    "id": "nazifa",
+    "name": "Nazifa Tushi",
+    "category": "Arts",
+    "cats": "Arts",
+    "achievement": "Best Actress — Asian World Film Festival",
+    "monogram": "NT",
+    "color": "#BE185D",
+    "sample": false,
+    "alt": "Monogram for Nazifa Tushi",
+    "summary": "Snow Leopard Award for Best Actress at the 12th Asian World Film Festival for “Roid”.",
+    "headline": "Nazifa Tushi: Best Actress in Los Angeles for “Roid”",
+    "featuredDate": "20 November 2026",
+    "journey": [
+      [
+        "The film",
+        "“Roid”, directed by Mejbaur Rahman Sumon, follows Sadhu and his mentally unstable wife near a solitary palm tree."
+      ],
+      [
+        "The festival",
+        "The 12th Asian World Film Festival ran 12–19 November 2026 in Los Angeles."
+      ],
+      [
+        "The award",
+        "Tushi won the Snow Leopard Award for Best Actress — and “Roid” is Bangladesh’s official entry for the 99th Academy Awards."
+      ]
+    ],
+    "body": [
+      "Bangladeshi actress Nazifa Tushi won the 2026 Snow Leopard Award for Best Actress at the 12th Asian World Film Festival in Los Angeles for her performance in “Roid”, directed by Mejbaur Rahman Sumon.",
+      "The festival ran from 12 to 19 November 2026 at The Culver Theater in Los Angeles. “Roid” follows Sadhu, a man living with his mentally unstable wife near a solitary palm tree, with Mostafizur Noor Imran starring opposite Tushi.",
+      "“Roid” has also been selected as Bangladesh’s official entry for the 99th Academy Awards."
+    ],
+    "sourceNote": "Source: New Age, 20 November 2026.",
+    "sourceUrl": "https://www.newagebd.net/post/film/323293/nazifa-tushi-wins-best-actress-at-asian-world-film-festival"
+  },
+  {
+    "id": "tanvir",
+    "name": "Tanvir Sadat",
+    "category": "Education",
+    "cats": "Education",
+    "achievement": "Silver Medal — Youth Geography Olympiad",
+    "monogram": "TS",
+    "color": "#6D28D9",
+    "sample": false,
+    "alt": "Monogram for Tanvir Sadat",
+    "summary": "Silver medal at the Multinational Youth Geography Olympiad (MY-GEO 2026) in Russia.",
+    "headline": "Tanvir Sadat: a silver medal at the Youth Geography Olympiad",
+    "featuredDate": "18 November 2026",
+    "journey": [
+      [
+        "The olympiad",
+        "The inaugural Multinational Youth Geography Olympiad ran 24–31 October 2026 in Russia’s Sirius Federal Territory."
+      ],
+      [
+        "The medal",
+        "Tanvir won an individual silver medal; all five Bangladeshi team members won medals."
+      ],
+      [
+        "The team",
+        "Bangladesh jointly finished second overall."
+      ]
+    ],
+    "body": [
+      "Bangladesh jointly secured second place at Russia’s inaugural Multinational Youth Geography Olympiad (MY-GEO 2026), held from 24 to 31 October in Russia’s Sirius Federal Territory, with all five members of its team winning individual medals.",
+      "In the individual competition, Tanvir Sadat won a silver medal. Arifa Atiq Mim also won silver, while Md Tawsikul Islam, Minhajul Islam Tahmid and Shahriar Noor received bronze.",
+      "The competition featured theoretical, practical and multimedia stages, including a field stage on 28 October at Rosa Khutor Mountain Resort."
+    ],
+    "sourceNote": "Source: Dhaka Tribune, 18 November 2026.",
+    "sourceUrl": "https://www.dhakatribune.com/bangladesh/education/425045/five-bangladeshi-students-win-medals-at-russia%E2%80%99s"
+  },
+  {
+    "id": "runa",
+    "name": "Runa Khan",
+    "category": "Health",
+    "cats": "Health Impact",
+    "achievement": "Ramon Magsaysay Award 2026",
+    "monogram": "RK",
+    "color": "#831843",
+    "sample": false,
+    "alt": "Monogram for Runa Khan",
+    "summary": "The 2026 Ramon Magsaysay Award for Friendship’s work with marginalised communities.",
+    "headline": "Runa Khan: the Ramon Magsaysay Award for two decades of service",
+    "featuredDate": "16 November 2026",
+    "journey": [
+      [
+        "The organisation",
+        "She founded Friendship in 2002, starting with a floating hospital for the remote river islands."
+      ],
+      [
+        "The work",
+        "Friendship grew into healthcare, education, climate adaptation, economic development and cultural preservation."
+      ],
+      [
+        "The award",
+        "She received the 2026 Ramon Magsaysay Award in Manila on 15 November 2026 — the 14th Bangladeshi recipient."
+      ]
+    ],
+    "body": [
+      "Runa Khan, founder of Friendship, received the 2026 Ramon Magsaysay Award at a ceremony at the Metropolitan Theatre in Manila on 15 November 2026. She is the 14th Bangladeshi to receive the distinction, often called Asia’s Nobel Prize.",
+      "She founded Friendship in 2002, initially introducing a floating hospital to provide healthcare to people on the remote river islands (chars) beyond the reach of conventional services.",
+      "The organisation has since expanded into healthcare, education, climate adaptation, sustainable economic development, inclusive citizenship and cultural preservation."
+    ],
+    "sourceNote": "Source: The Financial Express, 16 November 2026.",
+    "sourceUrl": "https://thefinancialexpress.com.bd/national/runa-gets-ramon-magsaysay-award"
+  },
+  {
+    "id": "ridoy",
+    "name": "Mahmudul Hasan Ridoy",
+    "category": "Business",
+    "cats": "Business",
+    "achievement": "Best Emerging Entrepreneur 2026",
+    "monogram": "MR",
+    "color": "#9A3412",
+    "sample": false,
+    "alt": "Monogram for Mahmudul Hasan Ridoy",
+    "summary": "Best Emerging Entrepreneur at the Bangladesh Achievers Award 2026.",
+    "headline": "Mahmudul Hasan Ridoy: Best Emerging Entrepreneur 2026",
+    "featuredDate": "18 November 2026",
+    "journey": [
+      [
+        "The companies",
+        "He leads MHR Education and Easydrop Limited — education services and e-commerce."
+      ],
+      [
+        "The award",
+        "He won Best Emerging Entrepreneur at the fifth Bangladesh Achievers Award 2026."
+      ],
+      [
+        "The ceremony",
+        "The award was presented at the China-Maitree Conference Centre, Dhaka, on 14 November 2026."
+      ]
+    ],
+    "body": [
+      "Mahmudul Hasan Ridoy, CEO of MHR Education and Easydrop Limited, won the Best Emerging Entrepreneur award at the fifth edition of the Bangladesh Achievers Award 2026.",
+      "He leads two companies: MHR Education, which helps students explore educational opportunities including pathways to study abroad, and Easydrop Limited, which operates in dropshipping and e-commerce.",
+      "Actress Sabila Nur and cultural personality Ivan Shahriar Sohag presented the award at the China-Maitree Conference Centre in Agargaon, Dhaka, on 14 November 2026."
+    ],
+    "sourceNote": "Source: The Business Standard, 18 November 2026.",
+    "sourceUrl": "https://www.tbsnews.net/economy/corporates/mahmudul-hasan-ridoy-wins-best-emerging-entrepreneur-bangladesh-achievers-award"
+  },
+  {
+    "id": "fatiha",
+    "name": "Fatiha Ayat",
+    "category": "Leadership",
+    "cats": "Leadership Impact",
+    "achievement": "Youth of the Year — Promise Awards 2026",
+    "monogram": "FA",
+    "color": "#334155",
+    "sample": false,
+    "alt": "Monogram for Fatiha Ayat",
+    "summary": "Youth of the Year at the Promise Awards 2026, beating 500,000+ young people worldwide.",
+    "headline": "Fatiha Ayat: Youth of the Year on a world stage",
+    "featuredDate": "18 November 2026",
+    "journey": [
+      [
+        "The initiative",
+        "She founded Zero Olympiad, a global competition encouraging young people to contribute to the UN Sustainable Development Goals."
+      ],
+      [
+        "The award",
+        "She was named Youth of the Year at the Promise Awards 2026, organised by World Youth Clubs."
+      ],
+      [
+        "The scale",
+        "She beat more than 500,000 young people from over 50 countries and three other finalists."
+      ]
+    ],
+    "body": [
+      "Bangladeshi teenager Fatiha Ayat was named Youth of the Year at the Promise Awards 2026, organised by US-based international organisation World Youth Clubs, beating more than 500,000 young people from over 50 countries.",
+      "She was nominated for her initiative and social leadership engaging young people in the UN Sustainable Development Goals, and founded Zero Olympiad, a global competition encouraging young people to contribute to sustainable development.",
+      "Born in Dhaka, she has worked on children’s rights, climate change and human rights since childhood, and first attracted international attention aged seven when she addressed the 74th session of the UN General Assembly."
+    ],
+    "sourceNote": "Source: Sarabangla (English), 18 November 2026.",
+    "sourceUrl": "https://en.sarabangla.net/achievement/post-53263/bangladeshi-teen-fatiha-ayat-wins-global-promise-award/"
   }
 ];
 
@@ -293,28 +433,173 @@ searchToggle.addEventListener('click', () => {
 });
 const menuToggle = select('#menu-toggle');
 const mainNav = select('#main-nav');
-function closeMenu() {
-  mainNav.classList.remove('is-open');
+const siteMenu = select('#site-menu');
+const menuClose = select('#menu-close');
+const menuSearch = select('#menu-search');
+const menuSearchHint = select('#menu-search-hint');
+function hideSiteMenu() {
+  siteMenu.hidden = true;
+  document.body.classList.remove('menu-open');
   menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-label', 'Open navigation');
+  menuToggle.setAttribute('aria-label', 'Open menu');
+  if (window.__lenis) window.__lenis.start();
 }
+function openSiteMenu() {
+  siteMenu.hidden = false;
+  document.body.classList.add('menu-open');
+  menuToggle.setAttribute('aria-expanded', 'true');
+  menuToggle.setAttribute('aria-label', 'Close menu');
+  if (window.__lenis) window.__lenis.stop();
+  menuClose.focus();
+}
+function closeSiteMenu() { hideSiteMenu(); menuToggle.focus(); }
 menuToggle.addEventListener('click', () => {
-  const open = mainNav.classList.toggle('is-open');
-  menuToggle.setAttribute('aria-expanded', String(open));
-  menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  if (isMobileMenu()) {
+    mobileSidebar.hidden ? openMobileSidebar() : closeMobileSidebar();
+  } else {
+    siteMenu.hidden ? openSiteMenu() : closeSiteMenu();
+  }
 });
+menuClose.addEventListener('click', closeSiteMenu);
 mainNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-  closeMenu();
   mainNav.querySelectorAll('a').forEach((item) => item.classList.toggle('active', item === link));
 }));
-window.matchMedia('(min-width: 581px)').addEventListener('change', (event) => { if (event.matches) closeMenu(); });
+function scrollToId(id) {
+  const target = select(id);
+  if (!target) return;
+  if (window.__lenis) { window.__lenis.scrollTo(target); } else { target.scrollIntoView(); }
+}
+siteMenu.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {
+  hideSiteMenu();
+  scrollToId(link.getAttribute('href'));
+}));
+siteMenu.querySelectorAll('[data-menu-filter]').forEach((link) => link.addEventListener('click', (event) => {
+  event.preventDefault();
+  activeCategory = link.dataset.menuFilter;
+  filterStories();
+  hideSiteMenu();
+  scrollToId('#stories');
+}));
+siteMenu.querySelectorAll('[data-menu-tab]').forEach((link) => link.addEventListener('click', (event) => {
+  event.preventDefault();
+  const tab = select(`[data-tab="${link.dataset.menuTab}"]`);
+  if (tab) tab.click();
+  hideSiteMenu();
+  scrollToId('#trending');
+}));
+siteMenu.querySelectorAll('[data-story]').forEach((button) => button.addEventListener('click', () => {
+  siteMenu.hidden = true;
+  document.body.classList.remove('menu-open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Open menu');
+  // Safety net: the story dialog restarts Lenis when it closes, but if it
+  // never opened, restart here so the mouse wheel never stays locked.
+  if (!dialog.open && window.__lenis) window.__lenis.start();
+}));
+menuSearch.addEventListener('input', () => {
+  const query = menuSearch.value.trim();
+  if (!query) { menuSearchHint.textContent = ''; return; }
+  const count = cards.filter((card) => card.dataset.search.toLocaleLowerCase().includes(query.toLocaleLowerCase())).length;
+  menuSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
+});
+function submitMenuSearch() {
+  const query = menuSearch.value.trim();
+  resetFilters();
+  searchInput.value = query;
+  filterStories();
+  hideSiteMenu();
+  scrollToId('#stories');
+}
+menuSearch.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); submitMenuSearch(); } });
+select('#menu-search-button').addEventListener('click', submitMenuSearch);
+
+/* Mobile left sidebar: on phones (<=580px) the Menu button opens a left drawer instead of the full-screen menu. */
+const mobileSidebar = select('#mobile-sidebar');
+const mobileSidebarBackdrop = select('#mobile-sidebar-backdrop');
+const mobileSidebarClose = select('#mobile-sidebar-close');
+const mobileSidebarSearch = select('#mobile-sidebar-search');
+const mobileSidebarSearchHint = select('#mobile-sidebar-search-hint');
+const mobileSidebarMore = select('#mobile-sidebar-more');
+const mobileSidebarMorePanel = select('#mobile-sidebar-more-panel');
+const isMobileMenu = () => window.matchMedia('(max-width: 580px)').matches;
+function hideMobileSidebar() {
+  mobileSidebar.hidden = true;
+  mobileSidebar.classList.remove('open');
+  mobileSidebarBackdrop.hidden = true;
+  document.body.classList.remove('mobile-sidebar-open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Open menu');
+  if (window.__lenis) window.__lenis.start();
+}
+function openMobileSidebar() {
+  mobileSidebar.hidden = false;
+  mobileSidebarBackdrop.hidden = false;
+  requestAnimationFrame(() => mobileSidebar.classList.add('open'));
+  document.body.classList.add('mobile-sidebar-open');
+  menuToggle.setAttribute('aria-expanded', 'true');
+  menuToggle.setAttribute('aria-label', 'Close menu');
+  if (window.__lenis) window.__lenis.stop();
+  mobileSidebarClose.focus();
+}
+function closeMobileSidebar() { hideMobileSidebar(); menuToggle.focus(); }
+mobileSidebarClose.addEventListener('click', closeMobileSidebar);
+mobileSidebarBackdrop.addEventListener('click', closeMobileSidebar);
+mobileSidebar.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {
+  hideMobileSidebar();
+  scrollToId(link.getAttribute('href'));
+}));
+mobileSidebar.querySelectorAll('[data-menu-filter]').forEach((link) => link.addEventListener('click', (event) => {
+  event.preventDefault();
+  activeCategory = link.dataset.menuFilter;
+  filterStories();
+  hideMobileSidebar();
+  scrollToId('#stories');
+}));
+mobileSidebar.querySelectorAll('[data-menu-tab]').forEach((link) => link.addEventListener('click', (event) => {
+  event.preventDefault();
+  const tab = select(`[data-tab="${link.dataset.menuTab}"]`);
+  if (tab) tab.click();
+  hideMobileSidebar();
+  scrollToId('#trending');
+}));
+mobileSidebar.querySelectorAll('[data-story]').forEach((button) => button.addEventListener('click', () => {
+  mobileSidebar.hidden = true;
+  mobileSidebarBackdrop.hidden = true;
+  document.body.classList.remove('mobile-sidebar-open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Open menu');
+  // Safety net: the story dialog restarts Lenis when it closes, but if it
+  // never opened, restart here so the mouse wheel never stays locked.
+  if (!dialog.open && window.__lenis) window.__lenis.start();
+}));
+mobileSidebarMore.addEventListener('click', () => {
+  const opening = mobileSidebarMorePanel.hidden;
+  mobileSidebarMorePanel.hidden = !opening;
+  mobileSidebarMore.setAttribute('aria-expanded', String(opening));
+});
+mobileSidebarSearch.addEventListener('input', () => {
+  const query = mobileSidebarSearch.value.trim();
+  if (!query) { mobileSidebarSearchHint.textContent = ''; return; }
+  const count = cards.filter((card) => card.dataset.search.toLocaleLowerCase().includes(query.toLocaleLowerCase())).length;
+  mobileSidebarSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
+});
+function submitMobileSidebarSearch() {
+  const query = mobileSidebarSearch.value.trim();
+  resetFilters();
+  searchInput.value = query;
+  filterStories();
+  hideMobileSidebar();
+  scrollToId('#stories');
+}
+mobileSidebarSearch.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); submitMobileSidebarSearch(); } });
+select('#mobile-sidebar-search-button').addEventListener('click', submitMobileSidebarSearch);
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     if (!searchPanel.hidden) { closeSearch(); searchToggle.focus(); }
-    if (mainNav.classList.contains('is-open')) { closeMenu(); menuToggle.focus(); }
+    if (!siteMenu.hidden) { closeSiteMenu(); }
+    if (!mobileSidebar.hidden) { closeMobileSidebar(); }
   }
 });
-
 select('#newsletter-form').addEventListener('submit', (event) => {
   event.preventDefault();
   if (!event.currentTarget.reportValidity()) return;
@@ -351,10 +636,18 @@ document.querySelectorAll('[data-story]').forEach((button) => button.addEventLis
   content.classList.add('profile-article');
   const head = document.createElement('div');
   head.classList.add('profile-dialog-head');
-  const img = document.createElement('img');
-  img.src = story.localImage || `https://images.unsplash.com/${story.image}?auto=format&fit=crop&w=1000&q=85`;
-  img.alt = story.alt;
-  img.className = story.localImage ? 'profile-dialog-portrait nasir-photo' : 'profile-dialog-portrait';
+  let portrait;
+  if (story.monogram) {
+    portrait = document.createElement('div');
+    portrait.className = 'profile-dialog-monogram';
+    portrait.style.background = story.color || '#6335EB';
+    portrait.textContent = story.monogram;
+  } else {
+    portrait = document.createElement('img');
+    portrait.src = story.localImage || `https://images.unsplash.com/${story.image}?auto=format&fit=crop&w=1000&q=85`;
+    portrait.alt = story.alt;
+    portrait.className = story.localImage ? 'profile-dialog-portrait nasir-photo' : 'profile-dialog-portrait';
+  }
   const intro = document.createElement('div');
   intro.classList.add('profile-dialog-intro');
   const title = textElement('h2', story.name);
@@ -363,8 +656,8 @@ document.querySelectorAll('[data-story]').forEach((button) => button.addEventLis
   intro.append(textElement('p', isSample ? 'SAMPLE PROFILE · SAMPLE STORY' : `COMMUNITY PROFILE · FEATURED ${story.featuredDate.toUpperCase()}`, 'eyebrow'), title,
     textElement('span', story.achievement, `achievement-badge ${story.category.toLowerCase()}`),
     textElement('p', story.summary, 'profile-dialog-summary'),
-    textElement('p', isSample ? 'A fictional achiever. An illustrative stock portrait.' : 'Photograph and achievement details supplied to The Rise.', 'profile-disclaimer'));
-  head.append(img, intro);
+    textElement('p', isSample ? 'A fictional achiever. An illustrative stock portrait.' : (story.localImage ? 'Photograph and achievement details supplied to The Rise.' : 'No photograph supplied. Achievement details as reported in the press.'), 'profile-disclaimer'));
+  head.append(portrait, intro);
   content.append(head);
   const body = document.createElement('div');
   body.classList.add('profile-story-body');
@@ -387,6 +680,34 @@ document.querySelectorAll('[data-story]').forEach((button) => button.addEventLis
   body.append(textElement('p', isSample
     ? 'Sample Story: this person, achievement, journey, and quote are fictional. Stock photography does not identify a real award recipient. No actual publication, prize, or competition result is claimed.'
     : story.sourceNote, 'dialog-note'));
+  if (story.sourceUrl) {
+    const sourceLink = document.createElement('a');
+    sourceLink.className = 'dialog-source-link';
+    sourceLink.href = story.sourceUrl;
+    sourceLink.target = '_blank';
+    sourceLink.rel = 'noopener';
+    sourceLink.textContent = 'Read the news report →';
+    body.append(sourceLink);
+  }
+  const adSlot = document.createElement('div');
+  adSlot.className = 'ad-slot dialog-ad';
+  const adContact = document.createElement('div');
+  adContact.className = 'ad-contact';
+  const waLink = textElement('a', 'WhatsApp: +880 1643-442518', 'ad-button whatsapp');
+  waLink.href = 'https://wa.me/8801643442518';
+  waLink.target = '_blank';
+  waLink.rel = 'noopener';
+  const mailLink = textElement('a', 'Email: ahanafakif21@gmail.com', 'ad-button email');
+  mailLink.href = 'mailto:ahanafakif21@gmail.com';
+  adContact.append(waLink, mailLink);
+  adSlot.append(
+    textElement('span', 'ADVERTISEMENT', 'ad-label'),
+    textElement('span', '300 × 250', 'ad-size'),
+    textElement('p', 'Your brand could be here', 'ad-title'),
+    textElement('p', 'Advertise on The Rise — contact us on WhatsApp or email.', 'ad-text'),
+    adContact
+  );
+  body.append(adSlot);
   content.append(body);
   openDialog(content, button);
 }));
@@ -411,7 +732,7 @@ select('#standards-open').addEventListener('click', (event) => {
   const title = textElement('h2', 'Great stories begin with good evidence.');
   title.id = 'dialog-title';
   content.append(textElement('span', 'OUR EDITORIAL APPROACH', 'eyebrow'), title);
-  ['The Rise is a Bangladesh-first magazine concept about research, invention, awards, and thoughtful leadership. We want the work behind an achievement to be as visible as the recognition.', 'For a real edition, editors would check original papers, official results, award records, and working projects. Profiles would distinguish verified outcomes from ambitions and prototypes, and include relevant limitations.', 'Everyone deserves an accurate portrayal. Real contributors would seek consent, confirm names and quotations, credit photographs, and correct errors openly. Payment would never substitute for evidence.', 'Nasir’s featured profile uses a supplied photograph and community-submitted achievement details; the story states its verification status. Other profiles, contributors, awards, projects, journeys, and advice quotes are fictional samples with illustrative Unsplash photographs. Social links open the platforms, not official The Rise accounts.'].forEach((p) => content.append(textElement('p', p)));
+  ['The Rise is a Bangladesh-first magazine concept about research, invention, awards, and thoughtful leadership. We want the work behind an achievement to be as visible as the recognition.', 'For a real edition, editors would check original papers, official results, award records, and working projects. Profiles would distinguish verified outcomes from ambitions and prototypes, and include relevant limitations.', 'Everyone deserves an accurate portrayal. Real contributors would seek consent, confirm names and quotations, credit photographs, and correct errors openly. Payment would never substitute for evidence.', 'Nasir’s featured profile uses a supplied photograph and community-submitted achievement details; the story states its verification status. The other profiles are based on news reports, with the source credited in each story. Social links open the platforms, not official The Rise accounts.'].forEach((p) => content.append(textElement('p', p)));
   openDialog(content, event.currentTarget);
 });
 
@@ -444,7 +765,7 @@ select('#standards-open').addEventListener('click', (event) => {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   revealTargets.forEach((el) => observer.observe(el));
-  const magazine = document.querySelector('.magazine-stack');
+  const magazine = document.querySelector('.open-magazine');
   if (magazine) {
     let ticking = false;
     window.addEventListener('scroll', () => {
@@ -452,7 +773,7 @@ select('#standards-open').addEventListener('click', (event) => {
       ticking = true;
       requestAnimationFrame(() => {
         const y = Math.min(window.scrollY, 600);
-        magazine.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+        magazine.style.transform = 'translateY(' + (y * 0.06) + 'px) rotate(-2deg)';
         ticking = false;
       });
     }, { passive: true });
@@ -499,4 +820,64 @@ select('#standards-open').addEventListener('click', (event) => {
       else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     });
   }
+})();
+
+
+/* Ruul-style mega menu: Stories dropdown (desktop + mobile). */
+(function () {
+  var toggle = document.querySelector('#stories-toggle');
+  var menu = document.querySelector('#stories-menu');
+  if (!toggle || !menu) return;
+  var closeMega = function () {
+    menu.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+  toggle.addEventListener('click', function (event) {
+    event.stopPropagation();
+    var open = menu.hidden;
+    menu.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  menu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMega);
+  });
+  document.addEventListener('click', function (event) {
+    if (!menu.hidden && !menu.contains(event.target)) closeMega();
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeMega();
+  });
+})();
+
+/* Refresh starts at the top: after a reload, jump to the hero even if the URL has a #section. */
+window.addEventListener('load', function () {
+  var isReload = false;
+  try {
+    var nav = performance.getEntriesByType('navigation')[0];
+    isReload = !!nav && nav.type === 'reload';
+  } catch (e) {}
+  if (!isReload && performance.navigation) { isReload = performance.navigation.type === 1; }
+  if (isReload) {
+    if (window.__lenis) { window.__lenis.scrollTo(0, { immediate: true, force: true }); }
+    window.scrollTo(0, 0);
+  }
+});
+
+/* Theme toggle: Light / Night — saved in localStorage, applied before paint by the head script. */
+(function () {
+  var root = document.documentElement;
+  function label() { return root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
+  function sync() {
+    var buttons = document.querySelectorAll('[data-theme-toggle]');
+    for (var i = 0; i < buttons.length; i++) { buttons[i].textContent = label(); }
+  }
+  function toggle() {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    if (next === 'dark') { root.setAttribute('data-theme', 'dark'); } else { root.removeAttribute('data-theme'); }
+    try { localStorage.setItem('rise-theme', next); } catch (e) {}
+    sync();
+  }
+  var buttons = document.querySelectorAll('[data-theme-toggle]');
+  for (var i = 0; i < buttons.length; i++) { buttons[i].addEventListener('click', toggle); }
+  sync();
 })();

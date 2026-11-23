@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    /* Refresh always starts at the top: stop the browser restoring the old scroll position on reload. */
+    (function () {
+      try {
+        var nav = performance.getEntriesByType('navigation')[0];
+        var isReload = !!nav && nav.type === 'reload';
+        if (!isReload && performance.navigation) { isReload = performance.navigation.type === 1; }
+        if (isReload && 'scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+      } catch (e) {}
+    })();
+  </script>
+  <script>
+    /* Theme: apply the saved Light/Night choice before first paint, so the page never flashes the wrong theme. */
+    (function () {
+      try {
+        if (localStorage.getItem('rise-theme') === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+      } catch (e) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6335EB">
+  <meta name="description" content="Advertise with The Rise — price list for banner, box, in-story and sponsored spotlight placements, and how to book.">
+  <title>Advertise With Us — The Rise</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.27/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js" defer></script>
+  <!-- Monetag: paste your Vignette Banner / In-Page Push / MultiTag zone code here once your site is approved on monetag.com. These formats float over the page and need no banner slot — the ad slots below already use the standard 728x90 / 300x250 sizes. -->
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="home" class="site-header wrap hover-nav-page">
+    <div class="hover-nav" id="hover-nav">
+      <div class="hover-nav-pill">
+        <a class="hover-nav-logo" href="index.html">The Rise.</a>
+        <button class="hover-nav-menu-btn" id="hover-nav-toggle" aria-expanded="false" aria-controls="hover-nav-panel">Menu <span aria-hidden="true">☰</span></button>
+      </div>
+      <div class="hover-nav-panel" id="hover-nav-panel">
+        <p class="hover-nav-label">Menu</p>
+        <a href="index.html">Home</a>
+        <a href="index.html#stories">Stories</a>
+        <a href="index.html#categories">Categories</a>
+        <a class="active" href="advertise.html">Advertise</a>
+        <a href="index.html#about">About</a>
+        <hr>
+        <p class="hover-nav-label">Other</p>
+        <a class="small" href="index.html#nominate">Nominate Someone</a>
+        <a class="small" href="index.html#newsletter">Subscribe</a>
+        <a class="small" href="index.html#why-rise">Why Get Featured</a>
+      </div>
+    </div>
+    <div class="topbar"><time datetime="2026-11-23">Monday, 23 November 2026</time><span class="edition">BANGLADESH FIRST. BOUNDLESS IN SPIRIT.</span><span class="topbar-actions"><a class="button subscribe small" href="index.html#newsletter">Subscribe</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between Light and Night mode">🌙</button></span></div>
+    <a class="masthead" href="index.html" aria-label="The Rise home">The Rise<span>.</span></a>
+    <p class="masthead-caption">PEOPLE. PURPOSE. PROGRESS.</p>
+  </header>
+  <main id="main">
+    <section class="advertise-hero wrap" aria-labelledby="ad-hero-title">
+      <p class="eyebrow light"><span class="little-star" aria-hidden="true">✳</span> ADVERTISE WITH THE RISE</p>
+      <h1 id="ad-hero-title">Put your brand in front of people who celebrate <em>good work.</em></h1>
+      <p class="advertise-hero-text">The Rise is a Bangladesh-first magazine about researchers, hackathon winners, award recipients, and builders. Our readers come for real achievements — and they notice the brands that support them.</p>
+      <div class="hero-actions"><a class="button amber" href="#prices">See price list</a><a class="button outline" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20to%20advertise%20on%20The%20Rise." target="_blank" rel="noopener">Chat on WhatsApp</a></div>
+    </section>
+
+    <section class="section wrap" id="prices" aria-labelledby="prices-title">
+      <div class="section-heading"><div><p class="eyebrow">PRICE LIST · ALL PRICES IN BANGLADESHI TAKA (৳)</p><h2 id="prices-title">Choose your spot<span class="amber-dot">.</span></h2></div><span class="section-aside">Starting prices. Discounts for 3+ months.</span></div>
+      <div class="price-grid">
+        <article class="price-card popular"><span class="price-badge">MOST POPULAR</span><h3>Hero Banner</h3><p class="price-position">Full-width banner right under the hero — the first ad every visitor sees.</p><p class="price-size">SIZE: 728 × 90 desktop · 320 × 50 mobile</p><p class="price-amount">৳3,000<span> / week</span></p><p class="price-month">৳10,000 / month</p><ul><li>Top of the homepage</li><li>Your image + link</li><li>Seen on every visit</li></ul><a class="button navy" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20to%20book%20the%20Hero%20Banner%20on%20The%20Rise." target="_blank" rel="noopener">Book this slot</a></article>
+        <article class="price-card"><h3>Mid-Page Banner</h3><p class="price-position">Wide banner in the middle of the homepage, before the Winners wall.</p><p class="price-size">SIZE: 728 × 90 desktop · 320 × 50 mobile</p><p class="price-amount">৳2,000<span> / week</span></p><p class="price-month">৳7,000 / month</p><ul><li>High-reading area</li><li>Your image + link</li><li>Great for campaigns</li></ul><a class="button navy" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20to%20book%20the%20Mid-Page%20Banner%20on%20The%20Rise." target="_blank" rel="noopener">Book this slot</a></article>
+        <article class="price-card"><h3>Spotlight Box</h3><p class="price-position">One of two side-by-side boxes on the homepage.</p><p class="price-size">SIZE: 300 × 250</p><p class="price-amount">৳1,500<span> / week</span></p><p class="price-month">৳5,000 / month</p><ul><li>Compact, eye-catching</li><li>Your image + link</li><li>Two boxes available</li></ul><a class="button navy" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20to%20book%20a%20Spotlight%20Box%20on%20The%20Rise." target="_blank" rel="noopener">Book this slot</a></article>
+        <article class="price-card"><h3>In-Story Ad</h3><p class="price-position">Inside a story view, at the bottom of a full spotlight article.</p><p class="price-size">SIZE: 300 × 250</p><p class="price-amount">৳1,000<span> / week</span></p><p class="price-month">৳3,500 / month</p><ul><li>Readers are engaged</li><li>Your image + link</li><li>Appears in every story</li></ul><a class="button navy" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20to%20book%20the%20In-Story%20Ad%20on%20The%20Rise." target="_blank" rel="noopener">Book this slot</a></article>
+        <article class="price-card"><h3>Sponsored Spotlight</h3><p class="price-position">A full featured story about your product, team, or event — written with our editors.</p><p class="price-amount">৳5,000<span> / story</span></p><p class="price-month">One-time · stays published</p><ul><li>Full spotlight article</li><li>Marked as sponsored</li><li>Shared on our socials</li></ul><a class="button navy" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20a%20Sponsored%20Spotlight%20on%20The%20Rise." target="_blank" rel="noopener">Book this slot</a></article>
+        <article class="price-card"><h3>Social Boost</h3><p class="price-position">Add-on: your ad or story shared on our LinkedIn and Facebook pages.</p><p class="price-amount">৳2,000<span> / post</span></p><p class="price-month">Add to any placement</p><ul><li>LinkedIn + Facebook</li><li>Your caption + link</li><li>Extra reach beyond the site</li></ul><a class="button navy" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20a%20Social%20Boost%20with%20The%20Rise." target="_blank" rel="noopener">Book this slot</a></article>
+      </div>
+      <p class="price-note">Prices are starting prices and can change. Custom packages for longer campaigns, events, or collaborations — just ask. Payment by bKash, Nagad, or bank transfer; details are shared after confirmation.</p>
+    </section>
+
+    <section class="section wrap how-section" aria-labelledby="how-title">
+      <div class="section-heading"><div><p class="eyebrow">SIMPLE, FROM FIRST MESSAGE TO LIVE AD</p><h2 id="how-title">How it works<span class="amber-dot">.</span></h2></div></div>
+      <div class="how-grid">
+        <article><span class="how-number">01</span><h3>Contact us</h3><p>Message us on WhatsApp or email. Tell us your product and which spot you want.</p></article>
+        <article><span class="how-number">02</span><h3>We confirm &amp; design</h3><p>We confirm the dates and price, review your ad, and place it on the site.</p></article>
+        <article><span class="how-number">03</span><h3>Your ad goes live</h3><p>Your brand appears on The Rise from the agreed date — and stays for the full booking.</p></article>
+      </div>
+    </section>
+
+    <section class="section wrap why-advertise" aria-labelledby="why-ad-title">
+      <div class="section-heading"><div><p class="eyebrow">WHY BRANDS CHOOSE THE RISE</p><h2 id="why-ad-title">Real stories. Real attention<span class="amber-dot">.</span></h2></div></div>
+      <div class="why-grid">
+        <article><span class="why-icon" aria-hidden="true">✦</span><h3>An audience that cares</h3><p>Our readers come for achievements — research, hackathons, awards — not noise.</p></article>
+        <article><span class="why-icon" aria-hidden="true">✓</span><h3>Trusted, verified stories</h3><p>Every spotlight is checked before publishing, so your brand sits next to real work.</p></article>
+        <article><span class="why-icon" aria-hidden="true">↗</span><h3>Affordable to start</h3><p>Spots start at ৳1,000 a week — made for small businesses and growing brands.</p></article>
+        <article><span class="why-icon" aria-hidden="true">♥</span><h3>Bangladesh-first</h3><p>Rooted in Bangladesh, open to the world — your brand reaches local achievers first.</p></article>
+      </div>
+      <p class="ad-policy">Our promise: we review every ad before it goes live. We do not accept ads for gambling, scams, or misleading products.</p>
+    </section>
+
+    <section class="section wrap contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="section-heading"><div><p class="eyebrow">LET’S TALK</p><h2 id="contact-title">Contact us<span class="amber-dot">.</span></h2></div><span class="section-aside">We usually reply within a day.</span></div>
+      <div class="contact-grid">
+        <a class="contact-card whatsapp-card" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20to%20advertise%20on%20The%20Rise." target="_blank" rel="noopener"><span class="contact-label">WHATSAPP — FASTEST</span><span class="contact-value">+880 1643-442518</span><span class="contact-hint">Tap to start a chat →</span></a>
+        <a class="contact-card email-card" href="mailto:ahanafakif21@gmail.com?subject=The%20Rise%20%E2%80%94%20Advertising%20enquiry"><span class="contact-label">EMAIL</span><span class="contact-value">ahanafakif21@gmail.com</span><span class="contact-hint">Tap to write an email →</span></a>
+      </div>
+      <form id="ad-form" class="ad-form">
+        <h3>Or send an enquiry</h3>
+        <p>Fill this in — it opens your email app with everything ready to send.</p>
+        <label for="ad-name">Your name</label>
+        <input id="ad-name" name="name" type="text" placeholder="Your name" required autocomplete="name">
+        <label for="ad-company">Company / brand</label>
+        <input id="ad-company" name="company" type="text" placeholder="Company or brand name" required>
+        <label for="ad-slot">Which spot do you want?</label>
+        <select id="ad-slot" name="slot">
+          <option>Hero Banner — ৳3,000 / week</option>
+          <option>Mid-Page Banner — ৳2,000 / week</option>
+          <option>Spotlight Box — ৳1,500 / week</option>
+          <option>In-Story Ad — ৳1,000 / week</option>
+          <option>Sponsored Spotlight — ৳5,000 / story</option>
+          <option>Social Boost — ৳2,000 / post</option>
+          <option>Custom package — let’s talk</option>
+        </select>
+        <label for="ad-message">Tell us about your product or campaign</label>
+        <textarea id="ad-message" name="message" rows="4" placeholder="What do you want to advertise?"></textarea>
+        <button class="button navy" type="submit">Send enquiry by email</button>
+        <p class="form-success" id="ad-success" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div class="footer-about"><a href="index.html" class="footer-logo">The Rise<span>.</span></a><p>An independent magazine concept celebrating the people who move us forward. Rooted in Bangladesh. Open to the world.</p><a class="contact-link" href="mailto:hello@therise.media">hello@therise.media</a></div><div><h2>Explore</h2><a href="index.html#stories">Latest Stories</a><a href="index.html#categories">Categories</a><a href="index.html#most-read">Most Read</a><a href="index.html#editors-pick">Editor’s Pick</a></div><div><h2>About</h2><a href="index.html#about">Our People</a><a href="index.html#nominate">Get Featured</a><a href="advertise.html">Advertise With Us</a><a href="index.html#newsletter">Newsletter</a></div><div><h2>Follow</h2><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div></div><div class="footer-wordmark" aria-hidden="true">THE RISE<span>.</span></div><div class="footer-bottom"><span>© 2026 The Rise. All rights reserved.</span><span>PEOPLE. PURPOSE. PROGRESS.</span><a href="#home">Back to top</a></div></div></footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduceMotion && typeof Lenis !== 'undefined') {
+        var lenis = new Lenis({ lerp: 0.07, smoothWheel: true });
+        window.__lenis = lenis;
+        var raf = function (time) { lenis.raf(time); requestAnimationFrame(raf); };
+        requestAnimationFrame(raf);
+      }
+      window.addEventListener('load', function () {
+        var isReload = false;
+        try {
+          var nav = performance.getEntriesByType('navigation')[0];
+          isReload = !!nav && nav.type === 'reload';
+        } catch (e) {}
+        if (!isReload && performance.navigation) { isReload = performance.navigation.type === 1; }
+        if (isReload) {
+          if (window.__lenis) { window.__lenis.scrollTo(0, { immediate: true, force: true }); }
+          window.scrollTo(0, 0);
+        }
+      });
+
+      var hoverNav = document.getElementById('hover-nav');
+      var hoverToggle = document.getElementById('hover-nav-toggle');
+      if (hoverNav && hoverToggle) {
+        hoverToggle.addEventListener('click', function () {
+          var open = hoverNav.classList.toggle('is-open');
+          hoverToggle.setAttribute('aria-expanded', String(open));
+        });
+        hoverNav.addEventListener('mouseleave', function () {
+          hoverNav.classList.remove('is-open');
+          hoverToggle.setAttribute('aria-expanded', 'false');
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') {
+            hoverNav.classList.remove('is-open');
+            hoverToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+      var form = document.getElementById('ad-form');
+      if (form) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          var name = document.getElementById('ad-name').value.trim();
+          var company = document.getElementById('ad-company').value.trim();
+          var slot = document.getElementById('ad-slot').value;
+          var message = document.getElementById('ad-message').value.trim();
+          var subject = 'The Rise — Advertising enquiry: ' + slot;
+          var body = 'Name: ' + name + '\nCompany: ' + company + '\nSlot: ' + slot + '\n\n' + message;
+          window.location.href = 'mailto:ahanafakif21@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+          document.getElementById('ad-success').textContent = 'Opening your email app with the enquiry ready to send.';
+        });
+      }
+    });
+  </script>
+  <script>
+/* Theme toggle: Light / Night — saved in localStorage, applied before paint by the head script. */
+(function () {
+  var root = document.documentElement;
+  function label() { return root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
+  function sync() {
+    var buttons = document.querySelectorAll('[data-theme-toggle]');
+    for (var i = 0; i < buttons.length; i++) { buttons[i].textContent = label(); }
+  }
+  function toggle() {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    if (next === 'dark') { root.setAttribute('data-theme', 'dark'); } else { root.removeAttribute('data-theme'); }
+    try { localStorage.setItem('rise-theme', next); } catch (e) {}
+    sync();
+  }
+  var buttons = document.querySelectorAll('[data-theme-toggle]');
+  for (var i = 0; i < buttons.length; i++) { buttons[i].addEventListener('click', toggle); }
+  sync();
+})();
+  </script>
+</body>
+</html>
