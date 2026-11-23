@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    /* Refresh always starts at the top: stop the browser restoring the old scroll position on reload. */
+    (function () {
+      try {
+        var nav = performance.getEntriesByType('navigation')[0];
+        var isReload = !!nav && nav.type === 'reload';
+        if (!isReload && performance.navigation) { isReload = performance.navigation.type === 1; }
+        if (isReload && 'scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+      } catch (e) {}
+    })();
+  </script>
+  <script>
+    /* Theme: apply the saved Light/Night choice before first paint, so the page never flashes the wrong theme. */
+    (function () {
+      try {
+        if (localStorage.getItem('rise-theme') === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+      } catch (e) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6335EB">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="description" content="The Rise — stories of curiosity, courage, and meaningful achievement. A Bangladesh-first magazine celebrating people who do great work.">
+  <title>All Spotlights — The Rise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.27/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js" defer></script>
+  <script src="script.js" defer></script>
+  <!-- Monetag: paste your Vignette Banner / In-Page Push / MultiTag zone code here once your site is approved on monetag.com. These formats float over the page and need no banner slot — the ad slots below already use the standard 728x90 / 300x250 sizes. -->
+</head>
+<body class="spotlights-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="home" class="site-header wrap">
+    <div class="topbar"><time id="today" datetime="2026-11-23">Monday, 23 November 2026</time><span class="edition">BANGLADESH FIRST. BOUNDLESS IN SPIRIT.</span><span class="topbar-actions"><a class="button subscribe small" href="index.html#newsletter">Subscribe</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between Light and Night mode">🌙</button></span></div>
+    <a class="masthead" href="index.html#home" aria-label="The Rise home">The Rise<span>.</span></a>
+    <p class="masthead-caption">PEOPLE. PURPOSE. PROGRESS.</p>
+    <div class="nav-row">
+      <button class="menu-toggle icon-button" id="menu-toggle" aria-label="Open menu" aria-controls="site-menu" aria-expanded="false"><span class="menu-icon" aria-hidden="true"><span></span><span></span></span>Menu</button>
+      <span class="nav-edition">THE ACHIEVERS ISSUE</span>
+      <nav id="main-nav" aria-label="Main navigation">
+        <a class="active" href="index.html#home">Home</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" id="stories-toggle" aria-expanded="false" aria-controls="stories-menu">Stories <span class="nav-chevron" aria-hidden="true">⌃</span></button>
+          <div class="mega-menu" id="stories-menu" hidden>
+            <div class="mega-intro">
+              <h3>Featuring 11 Achievers</h3>
+              <a class="mega-see-all" href="#stories">See all <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="mega-grid"> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#6335EB">NU</span>Nasir Uddin</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#0F2040">ZH</span>M. Zahid Hasan</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#166534">MA</span>Muammar Tazwar Asfi</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#DC2626">SR</span>Suhana Rahman Sukanya</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#0F766E">SA</span>Dr Md Shamim Alam</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#92400E">BA</span>Bonna Akter</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#BE185D">NT</span>Nazifa Tushi</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#6D28D9">TS</span>Tanvir Sadat</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#831843">RK</span>Runa Khan</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#9A3412">MR</span>Mahmudul Hasan Ridoy</a> <a class="mega-provider" href="#stories"><span class="mega-logo" style="background:#334155">FA</span>Fatiha Ayat</a> <a class="mega-provider" href="index.html#categories"><span class="mega-logo" style="background:#166534">R</span>Research</a>
+              <a class="mega-provider" href="index.html#categories"><span class="mega-logo" style="background:#92400E">H</span>Hackathon</a>
+              <a class="mega-provider" href="index.html#categories"><span class="mega-logo" style="background:#B91C1C">A</span>Awards</a>
+              <a class="mega-provider" href="index.html#categories"><span class="mega-logo" style="background:#0F2040">I</span>Innovation</a>
+              <a class="mega-provider" href="index.html#categories"><span class="mega-logo" style="background:#0F766E">L</span>Leadership</a>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#categories">Categories</a>
+        <a href="advertise.html">Advertise</a>
+        <a href="index.html#about">About</a>
+        <a class="mobile-only" href="index.html#nominate">Get Featured</a>
+        <a class="mobile-only" href="index.html#newsletter">Subscribe</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="nav-featured" href="index.html#nominate">Get Featured</a>
+        <a class="button nav-subscribe" href="index.html#newsletter">Subscribe</a>
+        <button class="search-toggle icon-button" id="search-toggle" aria-label="Search stories" aria-expanded="false" aria-controls="search-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>Search</span></button>
+      </div>
+    </div>
+    <div id="search-panel" class="search-panel" hidden><label for="story-search">Find your next good read</label><div><input type="search" id="story-search" placeholder="Search story titles…" autocomplete="off" aria-controls="story-grid"><button class="text-button" id="clear-search">Clear</button></div><a href="#stories">See matching stories</a></div>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow light"><span class="little-star" aria-hidden="true">✳</span> BIG IDEAS. REAL DEDICATION.</p><h1 id="hero-title">Celebrating<br>People Who Do<br><em>Great Work.</em></h1><p class="hero-description">The research that moves us forward. The ideas that win against the odds. The people building what comes next. Their stories deserve to rise.</p><div class="hero-actions"><a class="button amber" href="#stories">Explore Stories</a><a class="button outline" href="index.html#nominate">Submit a Nomination</a></div><div class="hero-bottom"><span>FROM BANGLADESH, TO THE WORLD</span><span class="hero-line"></span><span>EST. 2026</span></div></div>
+      <div class="hero-visual"><div class="mag-wrap"><div class="open-magazine" aria-label="The Rise magazine open on a table, featuring Mohammad Nasir Uddin"><div class="mag-page mag-left"><p class="mag-masthead">THE RISE<span>.</span></p><p class="mag-issue">THE ACHIEVERS ISSUE · NOVEMBER 2026</p><div class="mag-photo"><img class="nasir-photo" src="nasir%20.jpg" alt="Mohammad Nasir Uddin at the OSH research conference" fetchpriority="high"><span class="mag-stamp"><span aria-hidden="true">✦</span> FIRST<br>PRIZE</span></div><h3 class="mag-headline">Safer Industries, Stronger Policies</h3><p class="mag-name">Mohammad Nasir Uddin</p><p class="mag-sub">First Prize — Research Paper · 2nd Annual International OSH Research Conference 2026</p></div><div class="mag-page mag-right"><p class="mag-kicker">INSIDE THE ISSUE</p><h3 class="mag-article-head">The Man Behind the Research</h3><p class="mag-dek">How one paper on workplace safety earned first prize — and what comes next.</p><div class="mag-cols"><p>At the 2nd Annual International OSH Research Conference 2026, Mohammad Nasir Uddin presented a research paper on safer industries and stronger policies. The work earned first prize.</p><p>The Rise features people whose work moves others forward — researchers, builders, winners, and quiet achievers. Nasir opens our first issue.</p></div><p class="mag-quote">"Start with better evidence."</p><p class="mag-page-num">02 — 03</p></div></div></div></div>
+    </section>
+    <div class="ad-slot ad-leaderboard wrap" role="complementary" aria-label="Advertisement space">
+      <span class="ad-label">ADVERTISEMENT</span>
+      <span class="ad-size">728 × 90 desktop · 320 × 50 mobile</span>
+      <p class="ad-title">Your brand could be here</p>
+      <p class="ad-text">Advertise on The Rise and reach readers who celebrate good work.</p>
+      <div class="ad-contact"><a class="ad-button whatsapp" href="https://wa.me/8801643442518" target="_blank" rel="noopener">WhatsApp: +880 1643-442518</a><a class="ad-button email" href="mailto:ahanafakif21@gmail.com">Email: ahanafakif21@gmail.com</a></div>
+      <a class="ad-link" href="advertise.html">See price list →</a>
+    </div>
+    <div class="ticker" aria-label="Latest achievements"><div class="ticker-track"><span>FIRST PRIZE ✦ Mohammad Nasir Uddin — Research Paper, OSH 2026</span><span>DAVISSON-GERMER PRIZE ✦ M. Zahid Hasan — Quantum Research, Princeton</span><span>NASA SPACE APPS CHAMPION ✦ Muammar Tazwar Asfi — Team Galactic Poet</span><span>DIANA AWARD 2026 ✦ Suhana Rahman Sukanya — Mental Health</span><span>BEST INNOVATION ✦ Dr Md Shamim Alam — Smart Textiles</span><span>TWO ARCHERY GOLDS ✦ Bonna Akter — Asia Cup</span><span>BEST ACTRESS ✦ Nazifa Tushi — Asian World Film Festival</span><span>GEOGRAPHY OLYMPIAD SILVER ✦ Tanvir Sadat — MY-GEO 2026</span><span>RAMON MAGSAYSAY AWARD ✦ Runa Khan — Friendship</span><span>BEST EMERGING ENTREPRENEUR ✦ Mahmudul Hasan Ridoy</span><span>YOUTH OF THE YEAR ✦ Fatiha Ayat — Promise Awards 2026</span><span>FIRST PRIZE ✦ Mohammad Nasir Uddin — Research Paper, OSH 2026</span><span>DAVISSON-GERMER PRIZE ✦ M. Zahid Hasan — Quantum Research, Princeton</span><span>NASA SPACE APPS CHAMPION ✦ Muammar Tazwar Asfi — Team Galactic Poet</span><span>DIANA AWARD 2026 ✦ Suhana Rahman Sukanya — Mental Health</span><span>BEST INNOVATION ✦ Dr Md Shamim Alam — Smart Textiles</span><span>TWO ARCHERY GOLDS ✦ Bonna Akter — Asia Cup</span><span>BEST ACTRESS ✦ Nazifa Tushi — Asian World Film Festival</span><span>GEOGRAPHY OLYMPIAD SILVER ✦ Tanvir Sadat — MY-GEO 2026</span><span>RAMON MAGSAYSAY AWARD ✦ Runa Khan — Friendship</span><span>BEST EMERGING ENTREPRENEUR ✦ Mahmudul Hasan Ridoy</span><span>YOUTH OF THE YEAR ✦ Fatiha Ayat — Promise Awards 2026</span></div></div>
+    <div class="issue-note wrap"><span class="eyebrow">AMBITION HAS MANY FACES</span><p>Researchers. Problem-solvers. Quiet changemakers.</p><span class="sample-note">Real people · Real achievements</span></div>
+
+    <section class="section wrap featured-spotlight" id="editors-pick" aria-labelledby="featured-title">
+      <div class="section-heading"><div><p class="eyebrow">THE PERSON BEHIND THE PROGRESS</p><h2 id="featured-title">Featured Achiever Spotlight<span class="amber-dot">.</span></h2></div><span class="section-aside">One person. A purpose worth sharing.</span></div>
+      <article class="featured-achiever">
+        <div class="featured-portrait"><img class="nasir-photo" src="nasir%20.jpg" alt="Mohammad Nasir Uddin beside the OSH conference display" loading="lazy"><span class="achievement-badge featured-badge">Research Paper — First Prize</span><span class="portrait-caption">FEATURED 23 NOVEMBER 2026 · PHOTO PROVIDED</span></div>
+        <div class="featured-person-copy"><span class="section-spark feature-spark" aria-hidden="true">✳</span><p class="eyebrow">RESEARCH · TODAY’S FEATURE</p><h3>Mohammad<br>Nasir Uddin<span class="amber-dot">.</span></h3>
+          <p class="featured-summary"><span>A research achievement worth celebrating.</span><span>Mohammad Nasir Uddin attended the 2nd Annual International OSH Research Conference 2026.</span><span>According to the update shared with The Rise, his research paper received first prize.</span></p>
+          <div class="featured-recognition"><p>A moment of recognition.<br>A story worth sharing.</p><span>Celebrating Nasir’s research milestone.</span></div>
+          <button class="button navy spotlight-trigger" data-story="nasir" aria-label="Read Mohammad Nasir Uddin’s full story">Read his full story</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="section wrap latest-spotlights" id="stories" aria-labelledby="stories-title">
+      <div class="section-heading"><div><p class="eyebrow">MEET THE PEOPLE MAKING A DIFFERENCE</p><h2 id="stories-title">All Spotlights<span class="amber-dot">.</span></h2></div><button id="reset-filters" class="text-button">View all people <span class="count-pill">11</span></button></div>
+      <div class="results-row"><p>Meet the people behind the work.</p><p><span id="filter-status" role="status" aria-live="polite">Showing all 11 spotlights</span> <button id="clear-filters-inline" type="button" hidden>Clear</button></p></div>
+      <p class="spotlight-disclosure">Nasir’s profile uses a supplied photograph and community-submitted information. The other profiles are based on news reports, with sources credited in each story.</p>
+      <div class="spotlight-grid" id="story-grid"><article class="spotlight-card" id="mohammad-nasir-uddin" data-categories="Research Awards" data-search="Mohammad Mohammed Md Nasir Uddin মোহাম্মদ নাসির উদ্দিন First Prize Research Paper 2nd Annual International OSH Research Conference 2026">
+          <div class="spotlight-portrait"><img class="nasir-photo" src="nasir%20.jpg" alt="Mohammad Nasir Uddin at the OSH research conference" loading="lazy"><span class="profile-sample">Community Profile</span></div>
+          <div class="spotlight-person-copy"><h3>Mohammad Nasir Uddin</h3><span class="achievement-badge research">Research Paper — First Prize</span><p>Research recognition at the 2nd Annual International OSH Research Conference 2026.</p><button class="text-button spotlight-trigger" data-story="nasir" aria-label="Read Mohammad Nasir Uddin’s story">Read his story <span class="link-mark" aria-hidden="true">+</span></button></div>
+        </article> <article class="spotlight-card" data-categories="Research" data-search="M. Zahid Hasan Research Davisson-Germer Prize Princeton quantum materials"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#0F2040">ZH</div></div><div class="spotlight-person-copy"><h3>M. Zahid Hasan</h3><span class="achievement-badge research">Davisson-Germer Prize</span><p>A Princeton physicist honoured for discovering new topological states in quantum materials.</p><button class="text-button spotlight-trigger" data-story="zahid" aria-label="Read M. Zahid Hasan’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article> <article class="spotlight-card" data-categories="Hackathon Technology" data-search="Muammar Tazwar Asfi Hackathon NASA Space Apps Galactic Poet Rover Villa Jagannath"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#166534">MA</div></div><div class="spotlight-person-copy"><h3>Muammar Tazwar Asfi</h3><span class="achievement-badge hackathon">NASA Space Apps Champion</span><p>Leading Team Galactic Poet to a NASA Space Apps regional championship.</p><button class="text-button spotlight-trigger" data-story="muammar" aria-label="Read Muammar Tazwar Asfi’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article> <article class="spotlight-card" data-categories="Awards Impact" data-search="Suhana Rahman Sukanya Awards Diana Award mental health suicide prevention Talk Hope"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#DC2626">SR</div></div><div class="spotlight-person-copy"><h3>Suhana Rahman Sukanya</h3><span class="achievement-badge awards">The Diana Award 2026</span><p>A 17-year-old recognised for mental-health awareness and suicide-prevention work.</p><button class="text-button spotlight-trigger" data-story="suhana" aria-label="Read Suhana Rahman Sukanya’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article> <article class="spotlight-card" data-categories="Innovation Technology" data-search="Md Shamim Alam Innovation smart textiles FLUOROVA FeMats ThermoTex Southeast University"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#0F766E">SA</div></div><div class="spotlight-person-copy"><h3>Dr Md Shamim Alam</h3><span class="achievement-badge innovation">Best Innovation Award</span><p>Three smart textiles that heal, warm and protect — without forever chemicals.</p><button class="text-button spotlight-trigger" data-story="shamim" aria-label="Read Dr Md Shamim Alam’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article> <article class="spotlight-card" data-categories="Sports" data-search="Bonna Akter Sports archery Asia Cup gold compound Iraq"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#92400E">BA</div></div><div class="spotlight-person-copy"><h3>Bonna Akter</h3><span class="achievement-badge sports">Two Asia Cup Golds</span><p>From school football to two Asia Cup archery golds.</p><button class="text-button spotlight-trigger" data-story="bonna" aria-label="Read Bonna Akter’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article> <article class="spotlight-card" data-categories="Arts" data-search="Nazifa Tushi Arts Best Actress Asian World Film Festival Roid"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#BE185D">NT</div></div><div class="spotlight-person-copy"><h3>Nazifa Tushi</h3><span class="achievement-badge arts">Best Actress</span><p>Best Actress in Los Angeles for her performance in ‘Roid’.</p><button class="text-button spotlight-trigger" data-story="nazifa" aria-label="Read Nazifa Tushi’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article> <article class="spotlight-card" data-categories="Education" data-search="Tanvir Sadat Education Geography Olympiad silver Russia MY-GEO"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#6D28D9">TS</div></div><div class="spotlight-person-copy"><h3>Tanvir Sadat</h3><span class="achievement-badge education">Silver Medal</span><p>A silver medal for Bangladesh at the Youth Geography Olympiad in Russia.</p><button class="text-button spotlight-trigger" data-story="tanvir" aria-label="Read Tanvir Sadat’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article> <article class="spotlight-card" data-categories="Health Impact" data-search="Runa Khan Health Ramon Magsaysay Award Friendship floating hospital chars"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#831843">RK</div></div><div class="spotlight-person-copy"><h3>Runa Khan</h3><span class="achievement-badge health">Ramon Magsaysay Award</span><p>Two decades of healthcare and hope for Bangladesh’s river-island communities.</p><button class="text-button spotlight-trigger" data-story="runa" aria-label="Read Runa Khan’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article> <article class="spotlight-card" data-categories="Business" data-search="Mahmudul Hasan Ridoy Business Best Emerging Entrepreneur MHR Education Easydrop"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#9A3412">MR</div></div><div class="spotlight-person-copy"><h3>Mahmudul Hasan Ridoy</h3><span class="achievement-badge business">Best Emerging Entrepreneur</span><p>Building two companies — education and e-commerce — from Dhaka.</p><button class="text-button spotlight-trigger" data-story="ridoy" aria-label="Read Mahmudul Hasan Ridoy’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article> <article class="spotlight-card" data-categories="Leadership Impact" data-search="Fatiha Ayat Leadership Youth of the Year Promise Awards Zero Olympiad"><div class="spotlight-portrait"><div class="spotlight-monogram" style="background:#334155">FA</div></div><div class="spotlight-person-copy"><h3>Fatiha Ayat</h3><span class="achievement-badge leadership">Youth of the Year</span><p>Youth of the Year, beating 500,000+ young people from 50+ countries.</p><button class="text-button spotlight-trigger" data-story="fatiha" aria-label="Read Fatiha Ayat’s story">Read their story <span class="link-mark" aria-hidden="true">+</span></button></div></article></div><div class="empty-state" id="empty-state" hidden><h3>No spotlights found. Keep exploring.</h3><p>Try a person’s name, achievement, or a different category.</p><button class="button navy" id="empty-reset">Show all people</button></div><noscript><p>Enable JavaScript to search, filter, and open full stories. All eleven profiles are shown above.</p></noscript>
+    </section>
+
+    <div class="ad-slot ad-leaderboard wrap" role="complementary" aria-label="Advertisement space">
+      <span class="ad-label">ADVERTISEMENT</span>
+      <span class="ad-size">728 × 90 desktop · 320 × 50 mobile</span>
+      <p class="ad-title">Advertise Here</p>
+      <p class="ad-text">Put your company in front of The Rise readers. Contact us to book this space.</p>
+      <div class="ad-contact"><a class="ad-button whatsapp" href="https://wa.me/8801643442518" target="_blank" rel="noopener">WhatsApp: +880 1643-442518</a><a class="ad-button email" href="mailto:ahanafakif21@gmail.com">Email: ahanafakif21@gmail.com</a></div>
+      <a class="ad-link" href="advertise.html">See price list →</a>
+    </div>
+    <section class="section wrap winners-section" id="most-read" aria-labelledby="winners-title">
+      <div class="section-heading"><div><p class="eyebrow">THE TEAMS BEHIND THE IDEAS</p><h2 id="winners-title">Hackathon Winners.<br><em>Real people, real wins.</em></h2></div><span class="section-aside">A celebration of teamwork and persistence.</span></div>
+      <p class="spotlight-disclosure">Verified results — Hack for Humanity: Hack to Protect the Environment, grand finale 29 October 2026, AIUB Dhaka. Source: Fintech Magazine, 7 November 2026.</p>
+      <div class="winners-wall">         <article class="winner-card"><div class="winner-top"><span class="medal gold" aria-label="Gold medal, 1st place"><span>1st</span><small>PLACE</small></span></div><p class="winner-person">Led by Rakibul Hasan</p><h3>Notun Alo</h3><p class="project-label">THE PROJECT</p><h4>AI-Driven Waste Recycling Platform</h4><p class="winner-description">An AI-driven, reward-based waste recycling platform built by three ULAB computer science students — Rakibul Hasan, Mohammad Talha and Rabbi Sadnan Khan. Champion of Hack for Humanity 2026, winning BDT 25,000.</p></article>         <article class="winner-card"><div class="winner-top"><span class="medal silver" aria-label="Silver medal, 2nd place"><span>2nd</span><small>PLACE</small></span></div><p class="winner-person">Neuroflight Lab</p><h3>JolRekha</h3><p class="project-label">THE PROJECT</p><h4>JolRekha: The Water Line</h4><p class="winner-description">A project on water from Neuroflight Lab. Runner-up at Hack for Humanity 2026, winning BDT 15,000.</p></article>         <article class="winner-card"><div class="winner-top"><span class="medal bronze" aria-label="Bronze medal, 3rd place"><span>3rd</span><small>PLACE</small></span></div><p class="winner-person">AIUB</p><h3>Social Catalyst</h3><p class="project-label">THE PROJECT</p><h4>Reroute Agro</h4><p class="winner-description">AI-powered market routing for perishable vegetables. Second runner-up at Hack for Humanity 2026, winning BDT 15,000.</p></article>       </div>
+    </section>
+
+    <section class="section wrap trending-section" id="trending" aria-labelledby="trending-title">
+      <div class="section-heading"><div><p class="eyebrow">WHAT READERS LOVE MOST</p><h2 id="trending-title">Top Spotlights<span class="amber-dot">.</span></h2></div><div class="trending-tabs" role="tablist" aria-label="Spotlight lists"><button class="trending-tab active" role="tab" aria-selected="true" data-tab="top">Top Spotlights</button><button class="trending-tab" role="tab" aria-selected="false" data-tab="editors">Editors’ Picks</button></div></div>
+      <ol class="trending-list" data-panel="top"> <li><button data-story="nasir"><span class="trending-rank">1</span><span class="trending-name">Mohammad Nasir Uddin</span><span class="trending-achievement">Research Paper — First Prize</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> <li><button data-story="zahid"><span class="trending-rank">2</span><span class="trending-name">M. Zahid Hasan</span><span class="trending-achievement">Davisson-Germer Prize</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> <li><button data-story="runa"><span class="trending-rank">3</span><span class="trending-name">Runa Khan</span><span class="trending-achievement">Ramon Magsaysay Award</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> <li><button data-story="bonna"><span class="trending-rank">4</span><span class="trending-name">Bonna Akter</span><span class="trending-achievement">Two Asia Cup Golds</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> <li><button data-story="muammar"><span class="trending-rank">5</span><span class="trending-name">Muammar Tazwar Asfi</span><span class="trending-achievement">NASA Space Apps Champion</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> </ol>
+      <ol class="trending-list" data-panel="editors" hidden> <li><button data-story="suhana"><span class="trending-rank">1</span><span class="trending-name">Suhana Rahman Sukanya</span><span class="trending-achievement">The Diana Award 2026</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> <li><button data-story="fatiha"><span class="trending-rank">2</span><span class="trending-name">Fatiha Ayat</span><span class="trending-achievement">Youth of the Year</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> <li><button data-story="nazifa"><span class="trending-rank">3</span><span class="trending-name">Nazifa Tushi</span><span class="trending-achievement">Best Actress</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> <li><button data-story="shamim"><span class="trending-rank">4</span><span class="trending-name">Dr Md Shamim Alam</span><span class="trending-achievement">Best Innovation Award</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> <li><button data-story="tanvir"><span class="trending-rank">5</span><span class="trending-name">Tanvir Sadat</span><span class="trending-achievement">Geography Olympiad Silver</span><span class="trending-arrow" aria-hidden="true">→</span></button></li> </ol>
+    </section>
+
+    <section class="category-section" id="categories" aria-labelledby="categories-title"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">FOLLOW YOUR CURIOSITY</p><h2 id="categories-title">Great work, in every field.</h2></div><span class="section-aside">Pick a category. Find your inspiration.</span></div><div class="category-grid">
+      <button class="category-tile" data-filter="Research" aria-pressed="false" aria-controls="story-grid"><img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy"><span><small>NEW KNOWLEDGE</small>Research</span><span class="category-plus" aria-hidden="true">+</span></button>
+      <button class="category-tile" data-filter="Hackathon" aria-pressed="false" aria-controls="story-grid"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy"><span><small>IDEAS IN ACTION</small>Hackathon</span><span class="category-plus" aria-hidden="true">+</span></button>
+      <button class="category-tile" data-filter="Awards" aria-pressed="false" aria-controls="story-grid"><img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy"><span><small>EARNED EXCELLENCE</small>Awards</span><span class="category-plus" aria-hidden="true">+</span></button>
+      <button class="category-tile" data-filter="Innovation" aria-pressed="false" aria-controls="story-grid"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy"><span><small>WHAT COMES NEXT</small>Innovation</span><span class="category-plus" aria-hidden="true">+</span></button>
+      <button class="category-tile" data-filter="Leadership" aria-pressed="false" aria-controls="story-grid"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy"><span><small>OTHERS RISE, TOO</small>Leadership</span><span class="category-plus" aria-hidden="true">+</span></button>
+    </div></div></section>
+
+    <div class="ad-row wrap" role="complementary" aria-label="Advertisement spaces">
+      <div class="ad-slot ad-box">
+        <span class="ad-label">ADVERTISEMENT</span>
+        <span class="ad-size">300 × 250</span>
+        <p class="ad-title">Your brand here</p>
+        <p class="ad-text">A medium space for your company or campaign.</p>
+        <div class="ad-contact"><a class="ad-button whatsapp" href="https://wa.me/8801643442518" target="_blank" rel="noopener">WhatsApp</a><a class="ad-button email" href="mailto:ahanafakif21@gmail.com">Email</a></div>
+      </div>
+      <div class="ad-slot ad-box">
+        <span class="ad-label">ADVERTISEMENT</span>
+        <span class="ad-size">300 × 250</span>
+        <p class="ad-title">Partner with The Rise</p>
+        <p class="ad-text">Sponsor a spotlight, a series, or an event with us.</p>
+        <div class="ad-contact"><a class="ad-button whatsapp" href="https://wa.me/8801643442518" target="_blank" rel="noopener">WhatsApp</a><a class="ad-button email" href="mailto:ahanafakif21@gmail.com">Email</a></div>
+      </div>
+    </div>
+    <section class="section wrap why-section" id="why-rise" aria-labelledby="why-title">
+      <div class="section-heading"><div><p class="eyebrow">WHY THE RISE MATTERS</p><h2 id="why-title">Your work deserves<br>an audience.</h2></div><span class="section-aside">Free to nominate. No paywalls. Just good work, seen.</span></div>
+      <div class="why-grid">
+        <article><span class="why-icon" aria-hidden="true">✦</span><h3>Real exposure</h3><p>Your story is shared on the website, where people actually see it.</p></article>
+        <article><span class="why-icon" aria-hidden="true">✓</span><h3>Verified, so it is trusted</h3><p>Every achievement is checked against real proof — papers, results, and award records — before it is published.</p></article>
+        <article><span class="why-icon" aria-hidden="true">↗</span><h3>A story to show off</h3><p>Your spotlight is a story you can show on your CV, in your portfolio, or on your LinkedIn profile.</p></article>
+        <article><span class="why-icon" aria-hidden="true">♥</span><h3>A community that lifts you</h3><p>People are nominated by others who saw their work — so being featured means someone already believes in you.</p></article>
+      </div>
+    </section>
+
+    <section class="nominate-section wrap" id="nominate" aria-labelledby="nominate-title"><div class="nominate-intro"><span class="section-spark nominate-spark" aria-hidden="true">✳</span><p class="eyebrow">GOOD WORK DESERVES TO BE SEEN</p><h2 id="nominate-title">Your work.<br>Our next <em>great story.</em></h2><p>Know someone moving things forward? Help us put their work in the spotlight.</p><button class="button navy" id="nomination-open">Submit a Nomination</button></div><div class="steps"><h3>How to get featured in 3 steps</h3><article><span>01</span><div><h4>Submit Nomination</h4><p>Tell us who they are, what they’ve achieved, and why it matters. You can nominate yourself, too.</p></div></article><article><span>02</span><div><h4>Editorial Review</h4><p>We verify proof: published papers, official results, award records, and the work itself.</p></div></article><article><span>03</span><div><h4>Publish &amp; Spotlight</h4><p>Selected stories become thoughtful features, sharing the person and the purpose behind the achievement.</p></div></article></div></section>
+
+    <section class="contributors-section" id="about" aria-labelledby="contributors-title"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">OUR STORY</p><h2 id="contributors-title">About The Rise</h2></div><span class="section-aside">Real people. Real achievements.</span></div><div class="about-copy"><p>The Rise is a Bangladesh-first magazine about people who do good work — researchers, inventors, award winners, athletes, artists and quiet changemakers. Every profile is based on a real achievement, with its source credited in the story.</p><p>Know someone doing great work? Nominate them — and tell us where the achievement can be checked.</p></div></div></section>
+
+    <section class="section wrap quote-section" id="quote" aria-labelledby="quote-title">
+      <div class="section-heading"><div><p class="eyebrow">WORDS TO RISE BY</p><h2 id="quote-title">Quote of the Day<span class="amber-dot">.</span></h2></div><button class="button navy" id="next-quote">Another quote</button></div>
+      <blockquote class="quote-box" id="quote-box"><p id="quote-text">“It always seems impossible until it’s done.”</p><cite id="quote-author">— Nelson Mandela</cite></blockquote>
+    </section>
+
+    <section class="newsletter wrap" id="newsletter" aria-labelledby="newsletter-title"><span class="newsletter-star" aria-hidden="true">✳</span><p class="eyebrow">A LITTLE PERSPECTIVE FOR YOUR INBOX</p><h2 id="newsletter-title">Five good stories,<br><em>every Sunday.</em></h2><p>Remarkable people. Meaningful work. A weekly reminder<br class="desktop-break"> that there’s a lot worth celebrating.</p><form id="newsletter-form"><label class="sr-only" for="email">Your email address</label><input type="email" id="email" name="email" placeholder="Your email address" required autocomplete="email"><button class="button subscribe" type="submit">Subscribe</button></form><p class="newsletter-note">A preview of our Sunday ritual. Demo only; no email is stored or sent.</p><p class="form-success" id="newsletter-success" role="status" aria-live="polite"></p></section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div class="footer-about"><a href="index.html#home" class="footer-logo">The Rise<span>.</span></a><p>An independent magazine concept celebrating the people who move us forward. Rooted in Bangladesh. Open to the world.</p><a class="contact-link" href="mailto:hello@therisebd.com">hello@therisebd.com</a></div><div><h2>Explore</h2><a href="#stories">Latest Stories</a><a href="index.html#categories">Categories</a><a href="index.html#trending">Most Read</a><a href="index.html#editors-pick">Editor’s Pick</a></div><div><h2>About</h2><a href="index.html#about">About The Rise</a><a href="index.html#nominate">Get Featured</a><a href="advertise.html">Advertise With Us</a><a href="index.html#newsletter">Newsletter</a><button class="footer-button" id="standards-open">Editorial Standards</button></div><div><h2>Follow</h2><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div></div><div class="footer-wordmark" aria-hidden="true">THE RISE<span>.</span></div><div class="footer-bottom"><span>© 2026 The Rise. All rights reserved.</span><span>PEOPLE. PURPOSE. PROGRESS.</span><a href="index.html#home">Back to top</a></div></div></footer>
+  <button id="back-to-top" aria-label="Back to top" hidden>↑</button>
+  <dialog id="story-dialog" class="content-dialog" data-lenis-prevent aria-labelledby="dialog-title"><button class="dialog-close icon-button" aria-label="Close dialog">×</button><div id="dialog-content"></div></dialog>
+
+  <div class="site-menu" id="site-menu" data-lenis-prevent hidden role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="site-menu-top wrap">
+      <button class="site-menu-close" id="menu-close" type="button" aria-label="Close menu">✕</button>
+      <a class="site-menu-logo" href="index.html#home">The Rise<span>.</span></a>
+      <a class="button subscribe small" href="index.html#newsletter">Subscribe</a>
+    </div>
+    <div class="site-menu-search wrap">
+      <div class="site-menu-search-field">
+        <input type="search" id="menu-search" placeholder="Search The Rise for people, stories, and more..." aria-label="Search The Rise">
+        <button class="site-menu-search-button" id="menu-search-button" type="button" aria-label="Search">⌕</button>
+      </div>
+      <div class="site-menu-actions">
+        <a class="site-menu-pill" href="index.html#nominate">Nominate Someone</a>
+        <a class="site-menu-pill" href="advertise.html">Advertise With Us</a>
+        <a class="site-menu-pill" href="index.html#newsletter">Subscribe</a>
+      </div>
+      <p class="menu-search-hint" id="menu-search-hint" role="status"></p>
+    </div>
+    <div class="site-menu-main wrap">
+      <div class="menu-sections">
+        <section class="menu-col" aria-labelledby="menu-featured">
+          <h3 id="menu-featured">Featured</h3>
+          <ul>
+            <li><a href="index.html#trending">Top Spotlights</a></li>
+            <li><a href="index.html#trending" data-menu-tab="editors">Editors' Picks</a></li>
+            <li><a href="#stories">Latest Spotlights</a></li>
+            <li><a href="index.html#most-read">Hackathon Winners</a></li>
+            <li><a href="index.html#quote">Quote of the Day</a></li>
+          </ul>
+        </section>
+        <section class="menu-col" aria-labelledby="menu-research">
+          <h3 id="menu-research">Research</h3>
+          <ul>
+            <li><a href="#stories" data-menu-filter="Research">Research Papers</a></li>
+            <li><a href="#stories" data-menu-filter="Awards">Award Winners</a></li>
+            <li><a href="#stories" data-menu-filter="Research">Scientists &amp; Scholars</a></li>
+            <li><a href="index.html#nominate">Nominate a Researcher</a></li>
+          </ul>
+        </section>
+        <section class="menu-col" aria-labelledby="menu-innovation">
+          <h3 id="menu-innovation">Innovation</h3>
+          <ul>
+            <li><a href="#stories" data-menu-filter="Innovation">Innovation</a></li>
+            <li><a href="#stories" data-menu-filter="Hackathon">Hackathon</a></li>
+            <li><a href="#stories" data-menu-filter="Technology">Technology</a></li>
+            <li><a href="#stories" data-menu-filter="Technology">AI &amp; Future</a></li>
+          </ul>
+        </section>
+        <section class="menu-col" aria-labelledby="menu-leadership">
+          <h3 id="menu-leadership">Leadership</h3>
+          <ul>
+            <li><a href="#stories" data-menu-filter="Leadership">Leadership</a></li>
+            <li><a href="#stories" data-menu-filter="Business">Founders &amp; CEOs</a></li>
+            <li><a href="#stories" data-menu-filter="Impact">Community Leaders</a></li>
+            <li><a href="index.html#trending">Rising Stars</a></li>
+          </ul>
+        </section>
+        <section class="menu-col" aria-labelledby="menu-business">
+          <h3 id="menu-business">Business</h3>
+          <ul>
+            <li><a href="#stories" data-menu-filter="Business">Entrepreneurs</a></li>
+            <li><a href="#stories" data-menu-filter="Business">Startups</a></li>
+            <li><a href="#stories" data-menu-filter="Business">Money &amp; Finance</a></li>
+            <li><a href="#stories" data-menu-filter="Business">Small Business</a></li>
+          </ul>
+        </section>
+        <section class="menu-col" aria-labelledby="menu-technology">
+          <h3 id="menu-technology">Technology</h3>
+          <ul>
+            <li><a href="#stories" data-menu-filter="Technology">Software &amp; AI</a></li>
+            <li><a href="#stories" data-menu-filter="Technology">Cybersecurity</a></li>
+            <li><a href="#stories" data-menu-filter="Technology">Data &amp; Science</a></li>
+            <li><a href="#stories" data-menu-filter="Technology">Builders &amp; Makers</a></li>
+          </ul>
+        </section>
+        <section class="menu-col" aria-labelledby="menu-arts">
+          <h3 id="menu-arts">Arts &amp; Culture</h3>
+          <ul>
+            <li><a href="#stories" data-menu-filter="Arts">Artists</a></li>
+            <li><a href="#stories" data-menu-filter="Arts">Writers</a></li>
+            <li><a href="#stories" data-menu-filter="Arts">Musicians</a></li>
+            <li><a href="#stories" data-menu-filter="Arts">Designers</a></li>
+          </ul>
+        </section>
+        <section class="menu-col" aria-labelledby="menu-sports">
+          <h3 id="menu-sports">Sports</h3>
+          <ul>
+            <li><a href="#stories" data-menu-filter="Sports">Athletes</a></li>
+            <li><a href="#stories" data-menu-filter="Sports">Champions</a></li>
+            <li><a href="#stories" data-menu-filter="Sports">Coaches</a></li>
+            <li><a href="#stories" data-menu-filter="Sports">Teams</a></li>
+          </ul>
+        </section>
+        <section class="menu-col" aria-labelledby="menu-health">
+          <h3 id="menu-health">Health &amp; Impact</h3>
+          <ul>
+            <li><a href="#stories" data-menu-filter="Health">Doctors &amp; Healers</a></li>
+            <li><a href="#stories" data-menu-filter="Impact">Changemakers</a></li>
+            <li><a href="#stories" data-menu-filter="Education">Educators</a></li>
+            <li><a href="#stories" data-menu-filter="Impact">Volunteers</a></li>
+          </ul>
+        </section>
+      </div>
+      <aside class="menu-rail" aria-label="Featured story and highlights">
+        <button class="menu-feature" type="button" data-story="nasir">
+          <img src="nasir%20.jpg" alt="Mohammad Nasir Uddin at the 2nd Annual International OSH Research Conference 2026" loading="lazy">
+          <span class="menu-feature-eyebrow">RESEARCH · FIRST PRIZE</span>
+          <span class="menu-feature-headline">Safer Industries, Stronger Policies</span>
+          <span class="menu-feature-byline">By The Rise Editors</span>
+        </button>
+        <div class="menu-highlights">
+          <h3>Today's Highlights</h3> <button class="menu-highlight" type="button" data-story="zahid"><span class="menu-highlight-logo" style="background:#0F2040">ZH</span><span><strong>M. Zahid Hasan</strong><small>Davisson-Germer Prize</small></span></button>           <button class="menu-highlight" type="button" data-story="bonna"><span class="menu-highlight-logo" style="background:#92400E">BA</span><span><strong>Bonna Akter</strong><small>Two Asia Cup Golds</small></span></button>           <button class="menu-highlight" type="button" data-story="runa"><span class="menu-highlight-logo" style="background:#831843">RK</span><span><strong>Runa Khan</strong><small>Ramon Magsaysay Award</small></span></button>         <div class="menu-nominate">
+          <h3>Know someone doing great work?</h3>
+          <p>Research, a prize, a hackathon win, a platform built — or anything else worth celebrating. Tell us about them.</p>
+          <a class="button amber" href="index.html#nominate">Nominate Them</a>
+        </div>
+      </aside>
+    </div>
+    <div class="site-menu-footer wrap">
+      <p>© 2026 The Rise. All Rights Reserved.</p>
+      <nav aria-label="Menu footer links">
+        <a href="advertise.html">Advertise With Us</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#nominate">Nominate Someone</a>
+        <a href="mailto:hello@therisebd.com">Contact</a>
+      </nav>
+    </div>
+  </div>
+  <div class="mobile-sidebar-backdrop" id="mobile-sidebar-backdrop" hidden></div>
+  <aside class="mobile-sidebar" id="mobile-sidebar" data-lenis-prevent hidden role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="mobile-sidebar-top">
+      <a class="mobile-sidebar-logo" href="index.html#home">The Rise<span>.</span></a>
+      <button class="mobile-sidebar-close" id="mobile-sidebar-close" type="button" aria-label="Close menu">✕</button>
+    </div>
+    <div class="mobile-sidebar-search">
+      <input type="search" id="mobile-sidebar-search" placeholder="Search people, stories..." aria-label="Search The Rise">
+      <button class="mobile-sidebar-search-button" id="mobile-sidebar-search-button" type="button" aria-label="Search">⌕</button>
+    </div>
+    <p class="mobile-sidebar-search-hint" id="mobile-sidebar-search-hint" role="status"></p>
+    <nav class="mobile-sidebar-nav" aria-label="Main navigation">
+      <a href="index.html#home">Home</a>
+      <a href="#stories">Stories</a>
+      <a href="index.html#categories">Categories</a>
+      <a href="advertise.html">Advertise</a>
+      <a href="index.html#about">About</a>
+    </nav>
+    <div class="mobile-sidebar-actions">
+      <a class="button amber" href="index.html#nominate">Get Featured</a>
+      <a class="button" href="index.html#newsletter">Subscribe</a>
+    </div>
+    <button class="mobile-sidebar-more" id="mobile-sidebar-more" type="button" aria-expanded="false" aria-controls="mobile-sidebar-more-panel">More options <span class="mobile-sidebar-chevron" aria-hidden="true">⌄</span></button>
+    <div class="mobile-sidebar-more-panel" id="mobile-sidebar-more-panel" hidden>
+      <section class="ms-col" aria-labelledby="ms-featured">
+        <h3 id="ms-featured">Featured</h3>
+        <ul>
+          <li><a href="index.html#trending">Top Spotlights</a></li>
+          <li><a href="index.html#trending" data-menu-tab="editors">Editors' Picks</a></li>
+          <li><a href="#stories">Latest Spotlights</a></li>
+          <li><a href="index.html#most-read">Hackathon Winners</a></li>
+          <li><a href="index.html#quote">Quote of the Day</a></li>
+        </ul>
+      </section>
+      <section class="ms-col" aria-labelledby="ms-research">
+        <h3 id="ms-research">Research</h3>
+        <ul>
+          <li><a href="#stories" data-menu-filter="Research">Research Papers</a></li>
+          <li><a href="#stories" data-menu-filter="Awards">Award Winners</a></li>
+          <li><a href="#stories" data-menu-filter="Research">Scientists &amp; Scholars</a></li>
+          <li><a href="index.html#nominate">Nominate a Researcher</a></li>
+        </ul>
+      </section>
+      <section class="ms-col" aria-labelledby="ms-innovation">
+        <h3 id="ms-innovation">Innovation</h3>
+        <ul>
+          <li><a href="#stories" data-menu-filter="Innovation">Innovation</a></li>
+          <li><a href="#stories" data-menu-filter="Hackathon">Hackathon</a></li>
+          <li><a href="#stories" data-menu-filter="Technology">Technology</a></li>
+          <li><a href="#stories" data-menu-filter="Technology">AI &amp; Future</a></li>
+        </ul>
+      </section>
+      <section class="ms-col" aria-labelledby="ms-leadership">
+        <h3 id="ms-leadership">Leadership</h3>
+        <ul>
+          <li><a href="#stories" data-menu-filter="Leadership">Leadership</a></li>
+          <li><a href="#stories" data-menu-filter="Business">Founders &amp; CEOs</a></li>
+          <li><a href="#stories" data-menu-filter="Impact">Community Leaders</a></li>
+          <li><a href="index.html#trending">Rising Stars</a></li>
+        </ul>
+      </section>
+      <section class="ms-col" aria-labelledby="ms-business">
+        <h3 id="ms-business">Business</h3>
+        <ul>
+          <li><a href="#stories" data-menu-filter="Business">Entrepreneurs</a></li>
+          <li><a href="#stories" data-menu-filter="Business">Startups</a></li>
+          <li><a href="#stories" data-menu-filter="Business">Money &amp; Finance</a></li>
+          <li><a href="#stories" data-menu-filter="Business">Small Business</a></li>
+        </ul>
+      </section>
+      <section class="ms-col" aria-labelledby="ms-technology">
+        <h3 id="ms-technology">Technology</h3>
+        <ul>
+          <li><a href="#stories" data-menu-filter="Technology">Software &amp; AI</a></li>
+          <li><a href="#stories" data-menu-filter="Technology">Cybersecurity</a></li>
+          <li><a href="#stories" data-menu-filter="Technology">Data &amp; Science</a></li>
+          <li><a href="#stories" data-menu-filter="Technology">Builders &amp; Makers</a></li>
+        </ul>
+      </section>
+      <section class="ms-col" aria-labelledby="ms-arts">
+        <h3 id="ms-arts">Arts &amp; Culture</h3>
+        <ul>
+          <li><a href="#stories" data-menu-filter="Arts">Artists</a></li>
+          <li><a href="#stories" data-menu-filter="Arts">Writers</a></li>
+          <li><a href="#stories" data-menu-filter="Arts">Musicians</a></li>
+          <li><a href="#stories" data-menu-filter="Arts">Designers</a></li>
+        </ul>
+      </section>
+      <section class="ms-col" aria-labelledby="ms-sports">
+        <h3 id="ms-sports">Sports</h3>
+        <ul>
+          <li><a href="#stories" data-menu-filter="Sports">Athletes</a></li>
+          <li><a href="#stories" data-menu-filter="Sports">Champions</a></li>
+          <li><a href="#stories" data-menu-filter="Sports">Coaches</a></li>
+          <li><a href="#stories" data-menu-filter="Sports">Teams</a></li>
+        </ul>
+      </section>
+      <section class="ms-col" aria-labelledby="ms-health">
+        <h3 id="ms-health">Health &amp; Impact</h3>
+        <ul>
+          <li><a href="#stories" data-menu-filter="Health">Doctors &amp; Healers</a></li>
+          <li><a href="#stories" data-menu-filter="Impact">Changemakers</a></li>
+          <li><a href="#stories" data-menu-filter="Education">Educators</a></li>
+          <li><a href="#stories" data-menu-filter="Impact">Volunteers</a></li>
+        </ul>
+      </section>
+      <div class="ms-highlights">
+        <h3>Today's Highlights</h3>
+        <button class="ms-highlight" type="button" data-story="zahid"><span class="ms-highlight-logo" style="background:#0F2040">ZH</span><span><strong>M. Zahid Hasan</strong><small>Davisson-Germer Prize</small></span></button>
+        <button class="ms-highlight" type="button" data-story="bonna"><span class="ms-highlight-logo" style="background:#92400E">BA</span><span><strong>Bonna Akter</strong><small>Two Asia Cup Golds</small></span></button>
+        <button class="ms-highlight" type="button" data-story="runa"><span class="ms-highlight-logo" style="background:#831843">RK</span><span><strong>Runa Khan</strong><small>Ramon Magsaysay Award</small></span></button>
+      </div>
+    </div>
+    <p class="mobile-sidebar-foot">© 2026 The Rise · <a href="mailto:hello@therisebd.com">Contact</a></p>
+  </aside>
+</body>
+</html>

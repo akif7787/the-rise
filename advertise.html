@@ -57,7 +57,7 @@
         <a class="small" href="index.html#why-rise">Why Get Featured</a>
       </div>
     </div>
-    <div class="topbar"><time datetime="2026-11-23">Monday, 23 November 2026</time><span class="edition">BANGLADESH FIRST. BOUNDLESS IN SPIRIT.</span><span class="topbar-actions"><a class="button subscribe small" href="index.html#newsletter">Subscribe</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between Light and Night mode">🌙</button></span></div>
+    <div class="topbar"><time id="today" datetime="2026-11-23">Monday, 23 November 2026</time><span class="edition">BANGLADESH FIRST. BOUNDLESS IN SPIRIT.</span><span class="topbar-actions"><a class="button subscribe small" href="index.html#newsletter">Subscribe</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between Light and Night mode">🌙</button></span></div>
     <a class="masthead" href="index.html" aria-label="The Rise home">The Rise<span>.</span></a>
     <p class="masthead-caption">PEOPLE. PURPOSE. PROGRESS.</p>
   </header>
@@ -79,7 +79,7 @@
         <article class="price-card"><h3>Sponsored Spotlight</h3><p class="price-position">A full featured story about your product, team, or event — written with our editors.</p><p class="price-amount">৳5,000<span> / story</span></p><p class="price-month">One-time · stays published</p><ul><li>Full spotlight article</li><li>Marked as sponsored</li><li>Shared on our socials</li></ul><a class="button navy" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20a%20Sponsored%20Spotlight%20on%20The%20Rise." target="_blank" rel="noopener">Book this slot</a></article>
         <article class="price-card"><h3>Social Boost</h3><p class="price-position">Add-on: your ad or story shared on our LinkedIn and Facebook pages.</p><p class="price-amount">৳2,000<span> / post</span></p><p class="price-month">Add to any placement</p><ul><li>LinkedIn + Facebook</li><li>Your caption + link</li><li>Extra reach beyond the site</li></ul><a class="button navy" href="https://wa.me/8801643442518?text=Hi%2C%20I%20want%20a%20Social%20Boost%20with%20The%20Rise." target="_blank" rel="noopener">Book this slot</a></article>
       </div>
-      <p class="price-note">Prices are starting prices and can change. Custom packages for longer campaigns, events, or collaborations — just ask. Payment by bKash, Nagad, or bank transfer; details are shared after confirmation.</p>
+      <p class="price-note">Prices are starting prices and can change. Monthly prices are already discounted against the weekly rate — Hero Banner, for example, is ৳10,000 a month instead of ৳12,000 for four weeks. Custom packages for longer campaigns, events, or collaborations — just ask. Payment by bKash, Nagad, or bank transfer; details are shared after confirmation.</p>
     </section>
 
     <section class="section wrap how-section" aria-labelledby="how-title">
@@ -132,9 +132,11 @@
       </form>
     </section>
   </main>
-  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div class="footer-about"><a href="index.html" class="footer-logo">The Rise<span>.</span></a><p>An independent magazine concept celebrating the people who move us forward. Rooted in Bangladesh. Open to the world.</p><a class="contact-link" href="mailto:hello@therise.media">hello@therise.media</a></div><div><h2>Explore</h2><a href="index.html#stories">Latest Stories</a><a href="index.html#categories">Categories</a><a href="index.html#most-read">Most Read</a><a href="index.html#editors-pick">Editor’s Pick</a></div><div><h2>About</h2><a href="index.html#about">Our People</a><a href="index.html#nominate">Get Featured</a><a href="advertise.html">Advertise With Us</a><a href="index.html#newsletter">Newsletter</a></div><div><h2>Follow</h2><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div></div><div class="footer-wordmark" aria-hidden="true">THE RISE<span>.</span></div><div class="footer-bottom"><span>© 2026 The Rise. All rights reserved.</span><span>PEOPLE. PURPOSE. PROGRESS.</span><a href="#home">Back to top</a></div></div></footer>
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div class="footer-about"><a href="index.html" class="footer-logo">The Rise<span>.</span></a><p>An independent magazine concept celebrating the people who move us forward. Rooted in Bangladesh. Open to the world.</p><a class="contact-link" href="mailto:hello@therisebd.com">hello@therisebd.com</a></div><div><h2>Explore</h2><a href="index.html#stories">Latest Stories</a><a href="index.html#categories">Categories</a><a href="index.html#most-read">Most Read</a><a href="index.html#editors-pick">Editor’s Pick</a></div><div><h2>About</h2><a href="index.html#about">Our People</a><a href="index.html#nominate">Get Featured</a><a href="advertise.html">Advertise With Us</a><a href="index.html#newsletter">Newsletter</a></div><div><h2>Follow</h2><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div></div><div class="footer-wordmark" aria-hidden="true">THE RISE<span>.</span></div><div class="footer-bottom"><span>© 2026 The Rise. All rights reserved.</span><span>PEOPLE. PURPOSE. PROGRESS.</span><a href="#home">Back to top</a></div></div></footer>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      var todayEl = document.getElementById('today');
+      if (todayEl) { todayEl.textContent = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Dhaka' }).format(new Date()); }
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!reduceMotion && typeof Lenis !== 'undefined') {
         var lenis = new Lenis({ lerp: 0.07, smoothWheel: true });
@@ -161,18 +163,32 @@
         hoverToggle.addEventListener('click', function () {
           var open = hoverNav.classList.toggle('is-open');
           hoverToggle.setAttribute('aria-expanded', String(open));
+          if (open) { hoverNav.classList.remove('is-dismissed'); }
+          else { hoverNav.classList.add('is-dismissed'); hoverToggle.blur(); }
         });
         hoverNav.addEventListener('mouseleave', function () {
           hoverNav.classList.remove('is-open');
+          hoverNav.classList.remove('is-dismissed');
           hoverToggle.setAttribute('aria-expanded', 'false');
         });
         document.addEventListener('keydown', function (event) {
           if (event.key === 'Escape') {
             hoverNav.classList.remove('is-open');
+            hoverNav.classList.add('is-dismissed');
             hoverToggle.setAttribute('aria-expanded', 'false');
+            hoverToggle.blur();
           }
         });
       }
+      var lastScrollY = window.scrollY || 0;
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY || 0;
+        if (hoverNav) {
+          if (y > 140 && y > lastScrollY && !hoverNav.classList.contains('is-open')) { hoverNav.classList.add('hover-nav-hidden'); }
+          else if (y < lastScrollY || y <= 140) { hoverNav.classList.remove('hover-nav-hidden'); }
+        }
+        lastScrollY = y;
+      }, { passive: true });
       var form = document.getElementById('ad-form');
       if (form) {
         form.addEventListener('submit', function (event) {

@@ -1118,3 +1118,71 @@ html[data-theme="dark"] .dialog-source-link{color:#A78BFA}
   .mobile-sidebar-foot{color:#B9B9C4;font-size:12px;padding:16px 20px 24px;margin:0}
   .mobile-sidebar-foot a{color:#B9B9C4}
 }
+
+/* === Fixes 2026-11-24: nav label, magazine stamp, featured photo, advertise pill nav, filter clear === */
+.nav-edition{white-space:nowrap;flex-shrink:0}
+@media(max-width:1150px){.nav-edition{display:none}}
+.mag-stamp{top:auto;bottom:8px;right:8px}
+.featured-portrait img.nasir-photo{object-position:85% 38%}
+.hover-nav-pill{background:#FFFFFF}
+.hover-nav-panel{background:#FFFFFF}
+html[data-theme="dark"] .hover-nav-pill{background:#100E1A}
+html[data-theme="dark"] .hover-nav-panel{background:#100E1A}
+.hover-nav{transition:transform .3s ease}
+.hover-nav.hover-nav-hidden{transform:translateX(-50%) translateY(-160%)}
+.hover-nav.is-dismissed .hover-nav-panel{opacity:0!important;visibility:hidden!important;transform:translateY(-10px) scale(.97)!important}
+#clear-filters-inline{margin-left:10px;font-size:12px;font-weight:600;color:#6335EB;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+
+/* === Mobile magazine 2026-11-24: smaller spread on phones (user: magazine looks too big/bad on mobile) === */
+@media(max-width:580px){
+  .hero-visual{padding:24px 16px 28px}
+  .mag-wrap{max-width:280px;margin-inline:auto}
+  .mag-page{min-height:210px;padding:12px 10px}
+  .mag-masthead{font-size:22px}
+  .mag-issue{margin-top:6px;padding:4px 0}
+  .mag-headline{font-size:14px}
+  .mag-article-head{font-size:14px}
+  .mag-photo{height:80px;margin-top:8px}
+  .mag-stamp{width:48px;height:48px;font-size:7px}
+  .mag-cols{grid-template-columns:1fr;gap:6px;margin-top:8px}
+  .mag-cols p:last-child{display:none}
+  .mag-dek{font-size:9px}
+}
+
+/* === Blank cards fix 2026-11-24: cards 8-11 had white text on a white background — coloured copy backgrounds were only defined for cards 1-7 (site originally had 7 spotlights). Extends the same pattern using each person's monogram colour. === */
+.spotlight-card:nth-child(8) .spotlight-person-copy{background:#6D28D9!important}
+.spotlight-card:nth-child(8) .achievement-badge{background:#6D28D9!important;color:#fff!important}
+.spotlight-card:nth-child(9) .spotlight-person-copy{background:#831843!important}
+.spotlight-card:nth-child(9) .achievement-badge{background:#831843!important;color:#fff!important}
+.spotlight-card:nth-child(10) .spotlight-person-copy{background:#9A3412!important}
+.spotlight-card:nth-child(10) .achievement-badge{background:#9A3412!important;color:#fff!important}
+.spotlight-card:nth-child(11) .spotlight-person-copy{background:#334155!important}
+.spotlight-card:nth-child(11) .achievement-badge{background:#334155!important;color:#fff!important}
+
+/* === See more (Latest Spotlights) 2026-11-24: show the first 4 cards, the rest behind a See more button === */
+.spotlight-card.beyond-see-more{display:none}
+.see-more-row{display:flex;justify-content:center;margin-top:34px}
+.see-more-row.is-hidden{display:none}
+.see-more-row .count-pill{width:auto;height:auto;min-width:0;border-radius:999px;padding:4px 10px;font-size:11px;line-height:1.4}
+
+/* === Polish 2026-11-24: tighter section gaps on phones + stronger category-tile label scrim === */
+@media(max-width:580px){.section{padding-top:34px}}
+.category-tile:after{background:linear-gradient(transparent 0%,rgba(15,32,64,.92) 62%)}
+
+/* === See more as a full-width link to the All Spotlights page 2026-11-24 === */
+.see-more-row .button{width:100%;min-height:56px;font-size:15px}
+
+/* === All Spotlights page (spotlights.html) 2026-11-24: show only the stories section; other homepage sections stay in the DOM so the shared script keeps working, but are hidden === */
+.spotlights-page .hero,
+.spotlights-page .ticker,
+.spotlights-page .issue-note,
+.spotlights-page .ad-slot,
+.spotlights-page #editors-pick,
+.spotlights-page #most-read,
+.spotlights-page #trending,
+.spotlights-page #categories,
+.spotlights-page #why-rise,
+.spotlights-page #nominate,
+.spotlights-page #about,
+.spotlights-page #quote,
+.spotlights-page #newsletter{display:none}

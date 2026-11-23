@@ -387,12 +387,19 @@ const stories = [
 
 const select = (query) => document.querySelector(query);
 const cards = [...document.querySelectorAll('.spotlight-card')];
+const countPill = select('#reset-filters .count-pill');
+if (countPill) countPill.textContent = String(cards.length);
 const categoryButtons = [...document.querySelectorAll('[data-filter]')];
 const searchInput = select('#story-search');
 let activeCategory = 'All';
+const SEE_MORE_COUNT = 3;
+let spotlightsExpanded = false;
+const seeMoreRow = select('#see-more-row');
+const seeMoreBtn = select('#see-more-spotlights');
 
 function filterStories() {
   const query = searchInput.value.trim().toLocaleLowerCase();
+  const filtering = activeCategory !== 'All' || Boolean(query);
   let count = 0;
   cards.forEach((card) => {
     const categoryMatches = activeCategory === 'All' || card.dataset.categories.split(' ').includes(activeCategory);
@@ -400,27 +407,65 @@ function filterStories() {
     card.hidden = !(categoryMatches && personMatches);
     if (!card.hidden) count += 1;
   });
+  let shown = 0;
+  cards.forEach((card) => {
+    if (card.hidden) return;
+    shown += 1;
+    card.classList.toggle('beyond-see-more', !filtering && !spotlightsExpanded && seeMoreRow && shown > SEE_MORE_COUNT);
+  });
   categoryButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.filter === activeCategory)));
-  select('#story-grid').classList.toggle('is-filtered', activeCategory !== 'All' || Boolean(query));
+  select('#story-grid').classList.toggle('is-filtered', filtering);
   select('#empty-state').hidden = count > 0;
   const categoryLabel = activeCategory === 'All' ? '' : ` in ${activeCategory}`;
-  select('#filter-status').textContent = activeCategory === 'All' && !query ? `Showing all ${cards.length} spotlights` : `${count} ${count === 1 ? 'spotlight' : 'spotlights'}${categoryLabel}${query ? ` matching “${searchInput.value.trim()}”` : ''}`;
+  if (!filtering) {
+    select('#filter-status').textContent = (spotlightsExpanded || !seeMoreRow) ? `Showing all ${cards.length} spotlights` : `Showing ${Math.min(SEE_MORE_COUNT, cards.length)} of ${cards.length} spotlights`;
+  } else {
+    select('#filter-status').textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'}${categoryLabel}${query ? ` matching “${searchInput.value.trim()}”` : ''}`;
+  }
+  const clearFiltersInline = select('#clear-filters-inline');
+  if (clearFiltersInline) clearFiltersInline.hidden = !filtering;
+  if (seeMoreRow) seeMoreRow.classList.toggle('is-hidden', filtering || cards.length <= SEE_MORE_COUNT);
+  if (seeMoreBtn) {
+    seeMoreBtn.setAttribute('aria-expanded', String(spotlightsExpanded));
+    const label = seeMoreBtn.querySelector('.see-more-label');
+    if (label) label.textContent = spotlightsExpanded ? 'Show less' : 'See more';
+    const pill = seeMoreBtn.querySelector('.count-pill');
+    if (pill) {
+      pill.textContent = `${cards.length - SEE_MORE_COUNT} more`;
+      pill.hidden = spotlightsExpanded;
+    }
+  }
 }
 function resetFilters() {
   activeCategory = 'All';
   searchInput.value = '';
+  // 'View all people' / 'Show all people' must show all 11, not collapse to 3.
+  spotlightsExpanded = true;
   filterStories();
 }
 categoryButtons.forEach((button) => button.addEventListener('click', () => {
   activeCategory = activeCategory === button.dataset.filter ? 'All' : button.dataset.filter;
+  if (activeCategory === 'All') spotlightsExpanded = false;
   filterStories();
   if (window.__lenis) { window.__lenis.scrollTo('#stories'); }
   else { select('#stories').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }
 }));
 searchInput.addEventListener('input', filterStories);
 select('#reset-filters').addEventListener('click', resetFilters);
+const clearFiltersInlineBtn = select('#clear-filters-inline');
+if (clearFiltersInlineBtn) clearFiltersInlineBtn.addEventListener('click', resetFilters);
 select('#empty-reset').addEventListener('click', resetFilters);
 select('#clear-search').addEventListener('click', () => { searchInput.value = ''; filterStories(); searchInput.focus(); });
+
+if (seeMoreBtn) seeMoreBtn.addEventListener('click', () => {
+  spotlightsExpanded = !spotlightsExpanded;
+  filterStories();
+  if (!spotlightsExpanded) {
+    if (window.__lenis) { window.__lenis.scrollTo('#stories'); }
+    else { select('#stories').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }
+  }
+});
+
 
 const searchToggle = select('#search-toggle');
 const searchPanel = select('#search-panel');
@@ -723,7 +768,7 @@ select('#nomination-open').addEventListener('click', (event) => {
   ['The nominee’s name, field, and connection to Bangladesh.', 'A short description of the work and why it matters.', 'Public links to a paper, official competition result, award announcement, or working platform.', 'The nominee’s consent and a contact method they are comfortable sharing.'].forEach((item) => list.append(textElement('li', item)));
   content.append(list, textElement('p', 'This is a website concept. Nominations are not collected here, and the contact mailbox has not been verified. The button below only prepares an email in your mail app; review the recipient before sending.', 'dialog-note'));
   const emailLink = textElement('a', 'Prepare an email draft', 'button navy');
-  emailLink.href = 'mailto:hello@therise.media?subject=' + encodeURIComponent('The Rise — Story nomination') + '&body=' + encodeURIComponent('Nominee name:\nField / category:\nConnection to Bangladesh:\nAchievement and why it matters:\nPublic evidence links:\nConsent and contact details:\n');
+  emailLink.href = 'mailto:hello@therisebd.com?subject=' + encodeURIComponent('The Rise — Story nomination') + '&body=' + encodeURIComponent('Nominee name:\nField / category:\nConnection to Bangladesh:\nAchievement and why it matters:\nPublic evidence links:\nConsent and contact details:\n');
   content.append(emailLink);
   openDialog(content, event.currentTarget);
 });
@@ -756,15 +801,20 @@ select('#standards-open').addEventListener('click', (event) => {
   if (reduceMotion) return;
   const revealTargets = document.querySelectorAll('.hero, main section, .site-footer');
   revealTargets.forEach((el) => el.classList.add('reveal'));
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  revealTargets.forEach((el) => observer.observe(el));
+  /* Threshold 0 (was 0.12): the Latest Spotlights section is ~6,000px tall on phones, so it could never reach 12% visibility on a small screen and stayed invisible (opacity:0) forever. */
+  if (typeof IntersectionObserver === 'undefined') {
+    revealTargets.forEach((el) => el.classList.add('in'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+    revealTargets.forEach((el) => observer.observe(el));
+  }
   const magazine = document.querySelector('.open-magazine');
   if (magazine) {
     let ticking = false;
