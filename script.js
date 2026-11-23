@@ -734,22 +734,21 @@ document.querySelectorAll('[data-story]').forEach((button) => button.addEventLis
     sourceLink.textContent = 'Read the news report →';
     body.append(sourceLink);
   }
-  const adSlot = document.createElement('div');
+  const adSlot = document.createElement('a');
   adSlot.className = 'ad-slot dialog-ad';
+  adSlot.href = 'https://uplcm.com/4/12335958';
+  adSlot.target = '_blank';
+  adSlot.rel = 'noopener noreferrer';
+  adSlot.setAttribute('aria-label', 'Sponsored partner offer');
   const adContact = document.createElement('div');
   adContact.className = 'ad-contact';
-  const waLink = textElement('a', 'WhatsApp: +880 1643-442518', 'ad-button whatsapp');
-  waLink.href = 'https://wa.me/8801643442518';
-  waLink.target = '_blank';
-  waLink.rel = 'noopener';
-  const mailLink = textElement('a', 'Email: ahanafakif21@gmail.com', 'ad-button email');
-  mailLink.href = 'mailto:ahanafakif21@gmail.com';
-  adContact.append(waLink, mailLink);
+  const ctaBtn = textElement('span', 'Explore Partner Offer →', 'ad-button ad-cta');
+  adContact.append(ctaBtn);
   adSlot.append(
-    textElement('span', 'ADVERTISEMENT', 'ad-label'),
-    textElement('span', '300 × 250', 'ad-size'),
-    textElement('p', 'Your brand could be here', 'ad-title'),
-    textElement('p', 'Advertise on The Rise — contact us on WhatsApp or email.', 'ad-text'),
+    textElement('span', 'SPONSORED', 'ad-label'),
+    textElement('span', 'SPECIAL OFFER', 'ad-size'),
+    textElement('p', 'Recommended for You', 'ad-title'),
+    textElement('p', 'Click to check out curated deals and partner content.', 'ad-text'),
     adContact
   );
   body.append(adSlot);

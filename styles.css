@@ -538,13 +538,17 @@ html{scroll-behavior:auto}
 @media(max-width:700px){.trending-list button{flex-wrap:wrap;gap:8px 14px}.trending-achievement{margin-left:0;width:100%;text-align:left;padding-left:64px}.trending-name{font-size:20px}.ticker-track{animation-duration:26s}}
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none}.trending-list button,.trending-arrow,#back-to-top{transition:none}}
 
-/* === Ad slots 2026-11-23: placeholder spaces for future brand collaborations === */
-.ad-slot{background:#F4F0FF;border:2px dashed #6335EB;border-radius:16px;padding:28px 24px;text-align:center}
+/* === Ad slots 2026-11-23: Monetag partner & sponsored banners === */
+.ad-slot{display:block;text-decoration:none;background:#F4F0FF;border:2px dashed #6335EB;border-radius:16px;padding:28px 24px;text-align:center;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;cursor:pointer;color:inherit}
+.ad-slot:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,53,235,0.18);background:#ECE6FF}
 .ad-label{display:inline-block;font-size:9px;font-weight:800;letter-spacing:2px;color:#fff;background:#6335EB;border-radius:30px;padding:5px 12px}
-.ad-title{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:600;color:#1A1033;margin-top:14px}
+.ad-title{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:600;color:#1A1033;margin-top:14px;transition:color .2s ease}
+.ad-slot:hover .ad-title{color:#6335EB}
 .ad-text{font-size:13px;color:#5A5470;margin-top:8px}
 .ad-contact{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
 .ad-button{display:inline-flex;align-items:center;min-height:42px;padding:10px 18px;border-radius:40px;font-size:13px;font-weight:700;color:#fff}
+.ad-button.ad-cta{background:#6335EB;box-shadow:0 4px 14px rgba(99,53,235,0.25);transition:background .2s ease,transform .2s ease}
+.ad-slot:hover .ad-button.ad-cta{background:#4E27C4;transform:scale(1.03)}
 .ad-button.whatsapp{background:#128C7E}
 .ad-button.email{background:#6335EB}
 .ad-button:hover{transform:translateY(-2px)}
@@ -735,6 +739,11 @@ html[data-theme="dark"] .button.amber{background:#6335EB!important;color:#fff!im
 
 /* Ad slots + advertise page */
 html[data-theme="dark"] .ad-slot{background:#171226;border:2px dashed #6335EB;color:var(--ink)}
+html[data-theme="dark"] .ad-slot:hover{background:#201838}
+html[data-theme="dark"] .ad-slot .ad-title{color:#F2EFFA}
+html[data-theme="dark"] .ad-slot:hover .ad-title{color:#A78BFA}
+html[data-theme="dark"] .ad-slot .ad-text{color:#9E97B3}
+html[data-theme="dark"] .ad-slot .ad-size{color:#A78BFA}
 html[data-theme="dark"] .advertise-hero{background:#6335EB}
 html[data-theme="dark"] .price-card{background:#171226;border-color:var(--line)}
 html[data-theme="dark"] .ad-form input,html[data-theme="dark"] .ad-form select,html[data-theme="dark"] .ad-form textarea{background:#171226;color:#F2EFFA;border-color:var(--line)}
