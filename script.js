@@ -1342,7 +1342,99 @@ if (todayEl) {
 })();
 
 /* Newsroom / Articles Data, Articles Page, Article Reader & Submission Form */
-const newsArticles = [];
+const newsAuthors = {
+  akif: {
+    id: 'akif',
+    name: 'Mohammed Ahanaf Akif Rahman',
+    photo: 'akif-profile.jpg',
+    location: 'Dhaka, Bangladesh',
+    role: 'MSc in Cyber Security, Daffodil International University',
+    tagline: 'Researcher, Cyber Security Graduate Student & Editorial Contributor',
+    bio: 'Mohammed Ahanaf Akif Rahman is a Dhaka-based researcher and MSc candidate in Cyber Security at Daffodil International University. Alongside his work in cybersecurity and digital systems, he collaborates with interdisciplinary teams across Bangladeshi universities on climate governance, institutional policy, and sustainable development research.',
+    history: [
+      'Co-Author — "Climate Governance and Local Sustainable Development: Institutional Capacity and Policy Implementation in Bangladesh" (British Journal of Arts and Humanities, 8(5), 819–833, 2026)',
+      'MSc in Cyber Security — Daffodil International University, Dhaka, Bangladesh',
+      'Editorial Contributor & Research Writer — The Rise Newsroom'
+    ],
+    links: [
+      { label: 'View Published Paper (DOI)', url: 'https://doi.org/10.34104/bjah.02608190833' },
+      { label: 'Journal Homepage (UniversePG)', url: 'https://www.universepg.com/journal/bjah' }
+    ]
+  }
+};
+
+const newsArticles = [
+  {
+    id: 'climate-governance-bangladesh-local-capacity',
+    topic: 'Policy & Society',
+    badgeClass: 'policy',
+    headline: 'Why National Climate Policies Struggle at Bangladesh’s Local Level — And What Must Change',
+    dek: 'A peer-reviewed study co-authored by researchers from seven Bangladeshi universities examines why strong national climate frameworks often stall between central ministries and local government institutions.',
+    authorId: 'akif',
+    author: 'Mohammed Ahanaf Akif Rahman',
+    affiliation: 'MSc in Cyber Security, Daffodil International University · Dhaka',
+    date: '8 September 2026',
+    readTime: '6 min read',
+    image: 'https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1200&q=80',
+    imageCaption: 'Riverine and coastal communities across Bangladesh face recurring floods, cyclones, and salinity—putting local institutions on the frontlines.',
+    inlinePhotos: [
+      {
+        src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1000&q=80',
+        alt: 'Clean energy and climate resilience infrastructure',
+        caption: 'Bridging national climate commitments and local outcomes requires dedicated technical capacity, climate finance, and resilient infrastructure.'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=1000&q=80',
+        alt: 'Community stakeholders collaborating on local resilience',
+        caption: 'Meaningful community participation ensures local priorities—not only top-down directives—guide climate adaptation planning.'
+      }
+    ],
+    charts: {
+      participantsTitle: 'Study Sample Breakdown (Table 1: 30 KIIs & 6 FGDs · ~70–78 Participants)',
+      participants: [
+        { label: 'Climate-Affected Community Members (FGDs)', count: 28, display: '24–32' },
+        { label: 'Local Leaders & Livelihood Groups (FGDs)', count: 18, display: '16–20' },
+        { label: 'Local Government Representatives (KIIs)', count: 12, display: '12' },
+        { label: 'Government Officials (KIIs)', count: 8, display: '8' },
+        { label: 'NGO & Development Practitioners (KIIs)', count: 6, display: '6' },
+        { label: 'Climate Policy & Adaptation Experts (KIIs)', count: 4, display: '4' }
+      ],
+      themesTitle: 'Core Governance Challenges Identified (Table 2)',
+      themes: [
+        ['Institutional Capacity Limitations', 'Limited technical expertise, inadequate staffing, and weak planning capacity at local level.'],
+        ['Financial & Resource Constraints', 'Heavy dependence on external projects, delayed allocations, and low local fiscal autonomy.'],
+        ['Multi-Level Governance Challenges', 'Weak vertical & horizontal coordination and fragmented responsibilities across agencies.'],
+        ['Policy Implementation Gaps', 'Mismatch between national policy goals and local realities, with limited monitoring.'],
+        ['Community Participation & Inclusion', 'Communities treated as passive beneficiaries rather than active co-planners.'],
+        ['Institutional Strengthening Pathways', 'Decentralization, targeted training, direct climate finance, and integrated planning.']
+      ]
+    },
+    highlights: [
+      'Qualitative institutional case study drawing on 30 Key Informant Interviews (KIIs) and 6 Focus Group Discussions (FGDs).',
+      'Identifies 4 decisive capacity pillars: Administrative, Technical, Financial, and Coordination capacity.',
+      'Shows that national frameworks (BCCSAP, National Adaptation Plan) falter locally without decentralized authority and funding.',
+      'Recommends shifting from short-term isolated projects to integrated, community-embedded local climate governance.'
+    ],
+    body: [
+      'Bangladesh is widely recognized for building ambitious national climate policy frameworks—from the Bangladesh Climate Change Strategy and Action Plan (BCCSAP) and the Climate Change Trust Fund to the National Adaptation Plan. Yet on the frontlines of cyclones, river erosion, flooding, and salinity intrusion, the gap between national policy commitments and local execution remains wide.',
+      'In a newly published peer-reviewed study in the British Journal of Arts and Humanities (Vol. 8, Issue 5, 2026), researchers from seven Bangladeshi universities—including Mohammed Ahanaf Akif Rahman of Daffodil International University alongside lead author Md. Rajiur Rahman Arif (University of Chittagong) and co-authors from State University of Bangladesh, Green University, BUP, Canadian University of Bangladesh, and Jagannath University—investigated why local government institutions struggle to turn climate policies into durable resilience.',
+      'Using a qualitative institutional case study approach, the team conducted 30 Key Informant Interviews (KIIs) with local government representatives, central officials, NGO practitioners, and climate experts, alongside six Focus Group Discussions (FGDs) involving 40–48 community members and local leaders—triangulated with national policy documents.',
+      'The findings point to four interconnected dimensions that determine whether local climate governance succeeds: administrative capacity, technical expertise, financial resources, and inter-institutional coordination. While Union Parishads, Upazila Parishads, and municipalities are expected to lead local adaptation, their responsibilities have expanded far faster than their staffing, climate-risk assessment skills, or independent budgets.',
+      'Equally critical is the disconnect across governance levels. Local actors frequently operate as passive implementers of top-down or project-driven directives rather than active contributors to policy design, while climate-affected communities are often consulted only after plans are already set—limiting both local ownership and long-term sustainability.',
+      'To close this implementation gap, the study calls for long-term institutional capacity building, simpler and more direct access to climate finance for local governments, stronger vertical and horizontal coordination between ministries, NGOs, and local bodies, and genuine community participation in planning and monitoring.'
+    ],
+    quote: 'Effective climate governance requires more than strong national policy documents—it depends on local institutions having the technical skills, funding, and coordination to act.',
+    sources: 'Published peer-reviewed research article in British Journal of Arts and Humanities, 8(5), 819–833 (2026).',
+    journal: {
+      name: 'British Journal of Arts and Humanities',
+      volume: 'Vol. 8, Issue 5, pp. 819–833 (Published: 8 September 2026)',
+      publisher: 'UniversePG (eISSN: 2663-7782)',
+      doiUrl: 'https://doi.org/10.34104/bjah.02608190833',
+      journalUrl: 'https://www.universepg.com/journal/bjah',
+      citation: 'Arif MRR, Sutradhar BC, Shawon SE, Fuad SMMA, Rahman MAK, Uddin N, Foysal AM. (2026). Climate governance and local sustainable development: institutional capacity and policy implementation in Bangladesh, Br. J. Arts Humanit., 8(5), 819–833.'
+    }
+  }
+];
 
 function createSponsoredAdCard(variantClass, sizeLabel, titleText, descText, ctaText) {
   const ad = document.createElement('a');
@@ -1408,7 +1500,13 @@ function createSponsoredAdCard(variantClass, sizeLabel, titleText, descText, cta
 
     const foot = document.createElement('div');
     foot.className = 'news-card-foot';
-    foot.append(textElement('span', `By ${article.author}`, 'news-card-author'));
+    if (article.authorId && newsAuthors[article.authorId]) {
+      const aLink = textElement('a', `By ${article.author}`, 'news-card-author news-author-link');
+      aLink.href = `author.html?id=${encodeURIComponent(article.authorId)}`;
+      foot.append(aLink);
+    } else {
+      foot.append(textElement('span', `By ${article.author}`, 'news-card-author'));
+    }
     const readMore = textElement('a', 'Read article →', 'news-card-link');
     readMore.href = `article.html?id=${encodeURIComponent(article.id)}`;
     foot.append(readMore);
@@ -1568,8 +1666,17 @@ function createSponsoredAdCard(variantClass, sizeLabel, titleText, descText, cta
 
   const byline = document.createElement('div');
   byline.className = 'story-byline-bar';
+  const byAuthor = document.createElement('span');
+  if (article.authorId && newsAuthors[article.authorId]) {
+    byAuthor.append('By ');
+    const aLink = textElement('a', article.author, 'news-author-link');
+    aLink.href = `author.html?id=${encodeURIComponent(article.authorId)}`;
+    byAuthor.append(aLink, ` · ${article.affiliation}`);
+  } else {
+    byAuthor.textContent = `By ${article.author} · ${article.affiliation}`;
+  }
   byline.append(
-    textElement('span', `By ${article.author} · ${article.affiliation}`),
+    byAuthor,
     textElement('span', `${article.date} · ${article.readTime}`)
   );
 
@@ -1589,6 +1696,16 @@ function createSponsoredAdCard(variantClass, sizeLabel, titleText, descText, cta
     if (idx === 0) p.className = 'story-lead-paragraph';
     body.append(p);
     if (idx === 1) {
+      if (article.inlinePhotos && article.inlinePhotos[0]) {
+        const fig = document.createElement('figure');
+        fig.className = 'story-inline-figure';
+        const img = document.createElement('img');
+        img.src = article.inlinePhotos[0].src;
+        img.alt = article.inlinePhotos[0].alt;
+        img.loading = 'lazy';
+        fig.append(img, textElement('figcaption', article.inlinePhotos[0].caption));
+        body.append(fig);
+      }
       body.append(createSponsoredAdCard(
         'story-inline-ad',
         '728 × 90 IN-ARTICLE BANNER',
@@ -1597,7 +1714,65 @@ function createSponsoredAdCard(variantClass, sizeLabel, titleText, descText, cta
         'Visit Sponsor →'
       ));
     }
+    if (idx === 3 && article.inlinePhotos && article.inlinePhotos[1]) {
+      const fig2 = document.createElement('figure');
+      fig2.className = 'story-inline-figure';
+      const img2 = document.createElement('img');
+      img2.src = article.inlinePhotos[1].src;
+      img2.alt = article.inlinePhotos[1].alt;
+      img2.loading = 'lazy';
+      fig2.append(img2, textElement('figcaption', article.inlinePhotos[1].caption));
+      body.append(fig2);
+    }
   });
+
+  if (article.charts) {
+    const chartSec = document.createElement('div');
+    chartSec.className = 'news-charts-wrap';
+
+    if (article.charts.participants) {
+      const card1 = document.createElement('div');
+      card1.className = 'news-chart-card';
+      card1.append(textElement('span', 'EMPIRICAL DATA · TABLE 1', 'ad-label'), textElement('h3', article.charts.participantsTitle));
+      const bars = document.createElement('div');
+      bars.className = 'news-bar-list';
+      const maxVal = Math.max(...article.charts.participants.map((d) => d.count), 1);
+      article.charts.participants.forEach((item) => {
+        const row = document.createElement('div');
+        row.className = 'news-bar-row';
+        const head = document.createElement('div');
+        head.className = 'news-bar-head';
+        head.append(textElement('span', item.label), textElement('strong', item.display));
+        const track = document.createElement('div');
+        track.className = 'news-bar-track';
+        const fill = document.createElement('div');
+        fill.className = 'news-bar-fill';
+        fill.style.width = `${Math.round((item.count / maxVal) * 100)}%`;
+        track.append(fill);
+        row.append(head, track);
+        bars.append(row);
+      });
+      card1.append(bars);
+      chartSec.append(card1);
+    }
+
+    if (article.charts.themes) {
+      const card2 = document.createElement('div');
+      card2.className = 'news-chart-card';
+      card2.append(textElement('span', 'THEMATIC MATRIX · TABLE 2', 'ad-label'), textElement('h3', article.charts.themesTitle));
+      const grid2 = document.createElement('div');
+      grid2.className = 'news-themes-grid';
+      article.charts.themes.forEach(([title, desc], i) => {
+        const box = document.createElement('div');
+        box.className = 'news-theme-item';
+        box.append(textElement('span', `0${i + 1}`, 'news-theme-num'), textElement('strong', title), textElement('p', desc));
+        grid2.append(box);
+      });
+      card2.append(grid2);
+      chartSec.append(card2);
+    }
+    body.append(chartSec);
+  }
 
   if (article.highlights && article.highlights.length) {
     const takeBox = document.createElement('div');
@@ -1616,6 +1791,29 @@ function createSponsoredAdCard(variantClass, sizeLabel, titleText, descText, cta
   }
 
   body.append(textElement('p', `Editorial verification: ${article.sources}`, 'dialog-note'));
+  if (article.journal) {
+    const jBox = document.createElement('div');
+    jBox.className = 'news-journal-box';
+    jBox.append(
+      textElement('span', 'PUBLISHED RESEARCH & JOURNAL LINK', 'ad-label'),
+      textElement('h3', article.journal.name),
+      textElement('p', `${article.journal.volume} · ${article.journal.publisher}`, 'news-journal-meta'),
+      textElement('p', article.journal.citation, 'news-journal-cite')
+    );
+    const jLinks = document.createElement('div');
+    jLinks.className = 'news-journal-actions';
+    const doiBtn = textElement('a', `DOI: ${article.journal.doiUrl.replace('https://doi.org/', '')} →`, 'button navy');
+    doiBtn.href = article.journal.doiUrl;
+    doiBtn.target = '_blank';
+    doiBtn.rel = 'noopener noreferrer';
+    const jBtn = textElement('a', 'Visit Journal Homepage →', 'button outline-dark');
+    jBtn.href = article.journal.journalUrl;
+    jBtn.target = '_blank';
+    jBtn.rel = 'noopener noreferrer';
+    jLinks.append(doiBtn, jBtn);
+    jBox.append(jLinks);
+    body.append(jBox);
+  }
   body.append(createSponsoredAdCard(
     'story-bottom-ad',
     '728 × 90 END-OF-ARTICLE BANNER',
@@ -1823,6 +2021,86 @@ function createSponsoredAdCard(variantClass, sizeLabel, titleText, descText, cta
       }
     });
   }
+})();
+
+/* Contributor / Author Profile Page (author.html?id=...) */
+(function () {
+  const root = select('#author-profile-root');
+  if (!root) return;
+  const params = new URLSearchParams(window.location.search);
+  const reqId = params.get('id') || 'akif';
+  const author = newsAuthors[reqId] || newsAuthors.akif;
+  if (!author) return;
+  document.title = `${author.name} — Contributor Profile · The Rise`;
+
+  const card = document.createElement('section');
+  card.className = 'author-hero-card';
+
+  const avatarWrap = document.createElement('div');
+  avatarWrap.className = 'author-avatar-wrap';
+  const img = document.createElement('img');
+  img.src = author.photo;
+  img.alt = author.name;
+  avatarWrap.append(img);
+
+  const info = document.createElement('div');
+  info.className = 'author-hero-info';
+  info.append(
+    textElement('span', 'THE RISE CONTRIBUTOR PROFILE', 'ad-label'),
+    textElement('h1', author.name),
+    textElement('p', `${author.role} · ${author.location}`, 'author-role-line'),
+    textElement('p', author.bio, 'author-bio-text')
+  );
+
+  if (author.links && author.links.length) {
+    const linksRow = document.createElement('div');
+    linksRow.className = 'author-links-row';
+    author.links.forEach((l, idx) => {
+      const a = textElement('a', `${l.label} →`, idx === 0 ? 'button navy' : 'button outline-dark');
+      a.href = l.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      linksRow.append(a);
+    });
+    info.append(linksRow);
+  }
+
+  card.append(avatarWrap, info);
+
+  const historyCard = document.createElement('section');
+  historyCard.className = 'author-history-card';
+  historyCard.append(textElement('span', 'BACKGROUND & PUBLICATIONS', 'ad-label'), textElement('h2', 'Academic & Editorial History'));
+  const ul = document.createElement('ul');
+  ul.className = 'author-history-list';
+  author.history.forEach((h) => ul.append(textElement('li', h)));
+  historyCard.append(ul);
+
+  const pubsSec = document.createElement('section');
+  pubsSec.className = 'author-articles-section';
+  pubsSec.append(textElement('span', 'PUBLISHED ON THE RISE', 'ad-label'), textElement('h2', `Articles by ${author.name}`));
+  const grid = document.createElement('div');
+  grid.className = 'news-grid';
+  newsArticles.filter((a) => a.authorId === author.id).forEach((art) => {
+    const aCard = document.createElement('article');
+    aCard.className = 'news-card';
+    const media = document.createElement('a');
+    media.className = 'news-card-media';
+    media.href = `article.html?id=${encodeURIComponent(art.id)}`;
+    const aImg = document.createElement('img');
+    aImg.src = art.image;
+    aImg.alt = art.headline;
+    media.append(aImg, textElement('span', art.topic, `news-topic-tag ${art.badgeClass}`));
+    const cBody = document.createElement('div');
+    cBody.className = 'news-card-body';
+    const tLink = textElement('a', art.headline, 'news-card-title');
+    tLink.href = `article.html?id=${encodeURIComponent(art.id)}`;
+    cBody.append(textElement('div', `${art.date} · ${art.readTime}`, 'news-card-meta'), tLink, textElement('p', art.dek, 'news-card-dek'));
+    aCard.append(media, cBody);
+    grid.append(aCard);
+  });
+  pubsSec.append(grid);
+
+  root.replaceChildren(card, historyCard, pubsSec);
 })();
 
 /* Auto-updating Impact Counters (index.html & about.html) */
