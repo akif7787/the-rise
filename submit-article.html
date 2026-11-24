@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(s){s.dataset.zone='12335948',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <script>
+    (function () {
+      try {
+        var nav = performance.getEntriesByType('navigation')[0];
+        var isReload = !!nav && nav.type === 'reload';
+        if (!isReload && performance.navigation) { isReload = performance.navigation.type === 1; }
+        if (isReload && 'scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+      } catch (e) {}
+    })();
+  </script>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('rise-theme') === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+      } catch (e) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6335EB">
+  <meta name="description" content="Submit an original news, tech, AI, or opinion article to The Rise Newsroom for editorial review and publication.">
+  <title>Submit an Article — The Rise Newsroom</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.27/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js" defer></script>
+  <script src="script.js" defer></script>
+  <meta name="monetag" content="82458bad3b383bba9da0e95670305484">
+</head>
+<body class="submit-article-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="home" class="site-header wrap hover-nav-page">
+    <div class="hover-nav" id="hover-nav">
+      <div class="hover-nav-pill">
+        <a class="hover-nav-logo" href="index.html">The Rise.</a>
+        <button class="hover-nav-menu-btn" id="hover-nav-toggle" aria-expanded="false" aria-controls="hover-nav-panel">Menu <span aria-hidden="true">☰</span></button>
+      </div>
+      <div class="hover-nav-panel" id="hover-nav-panel">
+        <p class="hover-nav-label">Menu</p>
+        <a href="index.html">Home</a>
+        <a href="spotlights.html">Stories</a>
+        <a href="articles.html">Articles</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="advertise.html">Advertise</a>
+        <a href="about.html">About</a>
+        <hr>
+        <p class="hover-nav-label">Submit &amp; Join</p>
+        <a class="small active" href="submit-article.html">Submit an Article</a>
+        <a class="small" href="nominate.html">Submit a Nomination</a>
+        <a class="small" href="careers.html">Careers &amp; Jobs</a>
+        <a class="small" href="ambassador.html">Campus Ambassador</a>
+        <a class="small" href="standards.html">Editorial Standards</a>
+      </div>
+    </div>
+    <div class="topbar"><time id="today" datetime="2026-11-25">Wednesday, 25 November 2026</time><span class="edition">BANGLADESH FIRST. BOUNDLESS IN SPIRIT.</span><span class="topbar-actions"><a class="button subscribe small" href="index.html#newsletter">Subscribe</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between Light and Night mode">🌙</button></span></div>
+    <a class="masthead" href="index.html" aria-label="The Rise home">The Rise<span>.</span></a>
+    <p class="masthead-caption">PEOPLE. PURPOSE. PROGRESS.</p>
+  </header>
+
+  <main id="main">
+    <section class="wrap art-studio-head" aria-labelledby="art-studio-title">
+      <div class="art-studio-head-top">
+        <div>
+          <span class="art-desk-badge">NEWSROOM CONTRIBUTOR DESK</span>
+          <h1 id="art-studio-title">Send Your Article for Publication<span class="amber-dot">.</span></h1>
+          <p class="art-studio-lead">Write on AI, science, startups, education, policy, or public ideas. Once submitted, our editors verify accuracy and publish accepted pieces in The Rise Newsroom.</p>
+        </div>
+        <div class="art-desk-process">
+          <div><span>01</span><small>Draft &amp; Sources</small></div>
+          <div><span>02</span><small>Editorial Check</small></div>
+          <div><span>03</span><small>Live in Newsroom</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap art-studio-section" id="article-form-section" aria-label="Article submission workspace">
+      <form id="article-submit-form" class="art-desk-sheet" novalidate>
+        <div class="art-sheet-bar">
+          <div class="art-sheet-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span class="art-sheet-label">MANUSCRIPT &amp; PITCH SHEET · DIRECT TO <a href="mailto:hello@therisebd.com">HELLO@THERISEBD.COM</a></span>
+          <span class="art-sheet-counter" id="art-word-count">0 words</span>
+        </div>
+
+        <div class="art-sheet-grid">
+          <div class="art-sheet-main">
+            <div class="art-headline-field">
+              <label for="art-headline">Article Headline <span class="req">*</span></label>
+              <input id="art-headline" name="headline" type="text" placeholder="Enter a clear, informative headline (e.g. How Small AI Models Are Transforming Local Tech)" required>
+            </div>
+
+            <div class="art-summary-field">
+              <label for="art-summary">Standfirst / Deck (1–2 sentence summary) <span class="req">*</span></label>
+              <input id="art-summary" name="summary" type="text" placeholder="Brief overview readers see right beneath your headline..." required>
+            </div>
+
+            <div class="art-body-field">
+              <label for="art-body">Full Article Manuscript <span class="req">*</span></label>
+              <textarea id="art-body" name="body" rows="13" placeholder="Write or paste your complete article here. Keep paragraphs clear, objective, and backed by concrete facts or examples..." required></textarea>
+            </div>
+
+            <div class="art-sources-field">
+              <label for="art-sources">Reference Links / Cited Sources</label>
+              <input id="art-sources" name="sources" type="text" placeholder="https://... (research papers, official announcements, data sources)">
+            </div>
+          </div>
+
+          <aside class="art-sheet-meta">
+            <div class="art-meta-block">
+              <h2>Classification &amp; Writer</h2>
+              <label for="art-topic">Newsroom Section <span class="req">*</span></label>
+              <select id="art-topic" name="topic" required>
+                <option value="AI &amp; Tech">AI &amp; Tech</option>
+                <option value="Science">Science &amp; Research</option>
+                <option value="Economy &amp; Startups">Economy &amp; Startups</option>
+                <option value="Education">Education &amp; Careers</option>
+                <option value="Policy &amp; Society">Policy &amp; Society</option>
+                <option value="Environment">Climate &amp; Environment</option>
+                <option value="Opinion">Analysis &amp; Opinion</option>
+              </select>
+
+              <label for="art-author">Author Name <span class="req">*</span></label>
+              <input id="art-author" name="author" type="text" placeholder="Your full name" required autocomplete="name">
+
+              <label for="art-affiliation">Byline Title / Affiliation <span class="req">*</span></label>
+              <input id="art-affiliation" name="affiliation" type="text" placeholder="e.g. Tech Writer, Student at BUET" required>
+
+              <label for="art-email">Email Address <span class="req">*</span></label>
+              <input id="art-email" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+
+              <label for="art-whatsapp">WhatsApp Number <span class="req">*</span></label>
+              <input id="art-whatsapp" name="whatsapp" type="tel" placeholder="+880 1XXX-XXXXXX" required autocomplete="tel">
+
+              <label for="art-city">City / Country <span class="req">*</span></label>
+              <input id="art-city" name="city" type="text" placeholder="e.g. Dhaka, Bangladesh" required>
+            </div>
+
+            <div class="art-meta-block">
+              <h2>Cover &amp; Visuals (Optional)</h2>
+              <p class="art-meta-note">Attach a cover photo, chart, or diagram if you have usage rights.</p>
+              <label class="art-dropzone-btn" for="art-images">+ Select Cover / Diagram Images</label>
+              <input id="art-images" name="images" type="file" accept="image/*" multiple class="sr-only">
+              <div id="art-images-preview" class="upload-preview-grid" aria-live="polite"></div>
+            </div>
+
+            <label class="nom-consent art-sheet-consent">
+              <input id="art-consent" type="checkbox" required>
+              <span>I confirm this article is my original work, facts/sources are accurate, and The Rise editors may review and edit before publication.</span>
+            </label>
+
+            <p class="nom-error" id="art-error" role="alert" aria-live="assertive"></p>
+            <button class="button navy art-submit-btn" type="submit">Prepare Article for Review →</button>
+          </aside>
+        </div>
+      </form>
+
+      <div id="art-result" class="nom-result" hidden aria-live="polite">
+        <div class="nom-result-head">
+          <span class="ad-label">READY TO DISPATCH</span>
+          <h3>Your manuscript packet is prepared!</h3>
+          <p>Choose Email or WhatsApp below to deliver your draft to The Rise editors (attach selected cover images manually if emailing). Accepted pieces appear in the Newsroom.</p>
+        </div>
+        <div id="art-summary-box" class="nom-summary-box"></div>
+        <div class="nom-send-actions">
+          <a id="art-send-email" class="button navy" href="#">Send via Email (hello@therisebd.com) →</a>
+          <a id="art-send-whatsapp" class="ad-button whatsapp" href="#" target="_blank" rel="noopener noreferrer">Send via WhatsApp →</a>
+          <button id="art-copy-btn" class="button outline-dark" type="button">Copy Full Manuscript</button>
+        </div>
+        <p id="art-copy-status" class="form-success" role="status"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div class="footer-about"><a href="index.html" class="footer-logo">The Rise<span>.</span></a><p>An independent magazine concept celebrating the people who move us forward. Rooted in Bangladesh. Open to the world.</p><a class="contact-link" href="mailto:hello@therisebd.com">hello@therisebd.com</a></div><div><h2>Explore</h2><a href="spotlights.html">Latest Stories</a><a href="articles.html">Articles &amp; Newsroom</a><a href="index.html#categories">Categories</a><a href="index.html#trending">Most Read</a><a href="index.html#editors-pick">Editor’s Pick</a></div><div><h2>Submit &amp; Join</h2><a href="nominate.html">Submit a Nomination</a><a href="submit-article.html">Submit an Article</a><a href="careers.html">Careers &amp; Jobs</a><a href="ambassador.html">Campus Ambassador &amp; Volunteer</a><a href="advertise.html">Advertise With Us</a><a href="about.html">About The Rise</a><a href="standards.html">Editorial Standards</a></div><div><h2>Follow</h2><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div></div><div class="footer-wordmark" aria-hidden="true">THE RISE<span>.</span></div><div class="footer-bottom"><span>© 2026 The Rise. All rights reserved.</span><span>PEOPLE. PURPOSE. PROGRESS.</span><a href="#home">Back to top</a></div></div></footer>
+  <button id="back-to-top" aria-label="Back to top" hidden>↑</button>
+</body>
+</html>

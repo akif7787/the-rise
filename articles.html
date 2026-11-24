@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(s){s.dataset.zone='12335948',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <script>
+    (function () {
+      try {
+        var nav = performance.getEntriesByType('navigation')[0];
+        var isReload = !!nav && nav.type === 'reload';
+        if (!isReload && performance.navigation) { isReload = performance.navigation.type === 1; }
+        if (isReload && 'scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+      } catch (e) {}
+    })();
+  </script>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('rise-theme') === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+      } catch (e) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6335EB">
+  <meta name="description" content="The Rise News &amp; Articles — Independent contributor articles on AI, technology, science, education, startups, and public ideas reviewed before publication.">
+  <title>Articles &amp; Newsroom — The Rise</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.27/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js" defer></script>
+  <script src="script.js" defer></script>
+  <meta name="monetag" content="82458bad3b383bba9da0e95670305484">
+</head>
+<body class="articles-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="home" class="site-header wrap">
+    <div class="topbar"><time id="today" datetime="2026-11-25">Wednesday, 25 November 2026</time><span class="edition">BANGLADESH FIRST. BOUNDLESS IN SPIRIT.</span><span class="topbar-actions"><a class="button subscribe small" href="index.html#newsletter">Subscribe</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between Light and Night mode">🌙</button></span></div>
+    <a class="masthead" href="index.html" aria-label="The Rise home">The Rise<span>.</span></a>
+    <p class="masthead-caption">PEOPLE. PURPOSE. PROGRESS.</p>
+    <div class="nav-row">
+      <button class="menu-toggle icon-button" id="menu-toggle" aria-label="Open menu" aria-controls="site-menu" aria-expanded="false"><span class="menu-icon" aria-hidden="true"><span></span><span></span></span>Menu</button>
+      <span class="nav-edition">THE RISE NEWSROOM</span>
+      <nav id="main-nav" aria-label="Main navigation">
+        <a href="index.html#home">Home</a>
+        <a href="spotlights.html">Stories</a>
+        <a class="active" href="articles.html">Articles</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="advertise.html">Advertise</a>
+        <a href="about.html">About</a>
+        <a class="mobile-only" href="nominate.html">Get Featured</a>
+        <a class="mobile-only" href="index.html#newsletter">Subscribe</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="nav-featured" href="nominate.html">Get Featured</a>
+        <a class="button nav-subscribe" href="index.html#newsletter">Subscribe</a>
+        <button class="search-toggle icon-button" id="search-toggle" aria-label="Open menu search" aria-expanded="false" aria-controls="site-menu"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>Search</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="newsroom-header wrap" aria-labelledby="newsroom-title">
+      <div class="newsroom-title-row">
+        <div>
+          <p class="eyebrow">THE RISE NEWSROOM · EDITORIALLY REVIEWED</p>
+          <h1 id="newsroom-title">News, Ideas &amp; Perspectives<span class="amber-dot">.</span></h1>
+          <p class="newsroom-sub">Well-researched articles and timely reports on AI, science, education, startups, and society—written by contributors and reviewed before publication.</p>
+        </div>
+        <div class="newsroom-cta-box">
+          <a class="button navy" href="submit-article.html">Submit an Article →</a>
+          <span class="newsroom-cta-note">Verified &amp; approved before publishing</span>
+        </div>
+      </div>
+
+      <div class="newsroom-toolbar">
+        <div class="newsroom-filters" id="news-filters" role="group" aria-label="Filter articles by topic">
+          <button class="filter-chip active" type="button" data-news-cat="All" aria-pressed="true">All Topics</button>
+          <button class="filter-chip" type="button" data-news-cat="AI &amp; Tech" aria-pressed="false">AI &amp; Tech</button>
+          <button class="filter-chip" type="button" data-news-cat="Science" aria-pressed="false">Science</button>
+          <button class="filter-chip" type="button" data-news-cat="Economy &amp; Startups" aria-pressed="false">Economy &amp; Startups</button>
+          <button class="filter-chip" type="button" data-news-cat="Education" aria-pressed="false">Education</button>
+          <button class="filter-chip" type="button" data-news-cat="Policy &amp; Society" aria-pressed="false">Policy &amp; Society</button>
+        </div>
+        <div class="newsroom-search-box">
+          <label class="sr-only" for="news-search">Search news articles</label>
+          <input type="search" id="news-search" placeholder="Search headlines, topics (e.g. AI, energy)..." autocomplete="off">
+        </div>
+      </div>
+    </section>
+
+    <section class="news-front-section wrap" id="news-front" aria-label="Top news stories">
+      <div class="news-front-layout">
+        <div id="news-lead-slot" class="news-lead-slot"></div>
+        <aside class="news-briefs-rail" aria-label="Latest news briefings and sponsor">
+          <div class="news-rail-box">
+            <div class="news-rail-head">
+              <span class="eyebrow">LATEST BRIEFINGS</span>
+              <span class="news-rail-pill">EDITOR’S DESK</span>
+            </div>
+            <div id="news-rail-list" class="news-rail-list"></div>
+          </div>
+          <a class="ad-slot ad-box" href="https://uplcm.com/4/12335958" target="_blank" rel="noopener noreferrer" aria-label="Sponsored advertisement">
+            <span class="ad-label">SPONSORED</span>
+            <span class="ad-size">300 × 250 NEWSROOM BOX</span>
+            <p class="ad-title">Partner Announcements</p>
+            <p class="ad-text">Featured sponsor placements inside The Rise Newsroom.</p>
+            <div class="ad-contact"><span class="ad-button ad-cta">Explore Offer →</span></div>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <a class="ad-slot ad-leaderboard ad-fullrow wrap" href="https://uplcm.com/4/12335958" target="_blank" rel="noopener noreferrer" aria-label="Sponsored advertisement">
+      <div class="ad-row-left">
+        <span class="ad-label">SPONSORED</span>
+        <span class="ad-size">1280 × 120 NEWSROOM BANNER</span>
+      </div>
+      <div class="ad-row-copy">
+        <p class="ad-title">Featured Partner Resources &amp; Opportunities</p>
+        <p class="ad-text">Click to explore curated tools, tech deals, and announcements.</p>
+      </div>
+      <div class="ad-contact"><span class="ad-button ad-cta">Learn More →</span></div>
+    </a>
+
+    <section class="section wrap news-grid-section" aria-labelledby="all-articles-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PUBLISHED DISPATCHES</p>
+          <h2 id="all-articles-title">Published Articles<span class="amber-dot">.</span></h2>
+        </div>
+        <span class="section-aside" id="news-count-status" role="status" aria-live="polite">0 published articles yet</span>
+      </div>
+      <div id="news-launch-state" class="news-launch-card" hidden>
+        <span class="ad-label">EDITORIAL DESK OPEN</span>
+        <h3>No articles have been published yet.</h3>
+        <p>Contributors can submit well-researched articles on AI, science, startups, education, or society using the <strong>Submit an Article</strong> button above or from the footer. Every submission is reviewed before acceptance and publication.</p>
+      </div>
+      <div id="news-grid" class="news-grid"></div>
+      <div id="news-empty" class="empty-state" hidden>
+        <h3>No matching articles found.</h3>
+        <p>Try another keyword like AI, research, startups, or reset the topic filter.</p>
+        <button id="news-reset-btn" class="button navy" type="button">Show all articles</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div class="footer-about"><a href="index.html#home" class="footer-logo">The Rise<span>.</span></a><p>An independent magazine concept celebrating the people who move us forward. Rooted in Bangladesh. Open to the world.</p><a class="contact-link" href="mailto:hello@therisebd.com">hello@therisebd.com</a></div><div><h2>Explore</h2><a href="spotlights.html">Latest Stories</a><a href="articles.html">Articles &amp; Newsroom</a><a href="index.html#categories">Categories</a><a href="index.html#trending">Most Read</a><a href="index.html#editors-pick">Editor’s Pick</a></div><div><h2>Submit &amp; Join</h2><a href="nominate.html">Submit a Nomination</a><a href="submit-article.html">Submit an Article</a><a href="careers.html">Careers &amp; Jobs</a><a href="ambassador.html">Campus Ambassador &amp; Volunteer</a><a href="advertise.html">Advertise With Us</a><a href="about.html">About The Rise</a><a href="standards.html">Editorial Standards</a></div><div><h2>Follow</h2><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div></div><div class="footer-wordmark" aria-hidden="true">THE RISE<span>.</span></div><div class="footer-bottom"><span>© 2026 The Rise. All rights reserved.</span><span>PEOPLE. PURPOSE. PROGRESS.</span><a href="#home">Back to top</a></div></div></footer>
+  <button id="back-to-top" aria-label="Back to top" hidden>↑</button>
+
+  <div class="site-menu" id="site-menu" data-lenis-prevent hidden role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="site-menu-top wrap">
+      <button class="site-menu-close" id="menu-close" type="button" aria-label="Close menu">✕</button>
+      <a class="site-menu-logo" href="index.html#home">The Rise<span>.</span></a>
+      <a class="button subscribe small" href="index.html#newsletter">Subscribe</a>
+    </div>
+    <div class="site-menu-search wrap">
+      <div class="site-menu-search-field">
+        <input type="search" id="menu-search" placeholder="Search The Rise for articles, stories, and more..." aria-label="Search The Rise">
+        <button class="site-menu-search-button" id="menu-search-button" type="button" aria-label="Search">⌕</button>
+      </div>
+      <div class="site-menu-actions">
+        <a class="site-menu-pill" href="articles.html">Articles &amp; Newsroom</a>
+        <a class="site-menu-pill" href="nominate.html">Nominate Someone</a>
+        <a class="site-menu-pill" href="careers.html">Careers &amp; Jobs</a>
+        <a class="site-menu-pill" href="ambassador.html">Campus Ambassador &amp; Volunteer</a>
+        <a class="site-menu-pill" href="advertise.html">Advertise With Us</a>
+      </div>
+      <p class="menu-search-hint" id="menu-search-hint" role="status"></p>
+    </div>
+    <div class="site-menu-main wrap">
+      <div class="menu-sections">
+        <section class="menu-col" aria-labelledby="menu-newsroom">
+          <h3 id="menu-newsroom">Newsroom &amp; Articles</h3>
+          <ul>
+            <li><a href="articles.html">All Published Articles</a></li>
+            <li><a href="spotlights.html">Achiever Spotlights</a></li>
+            <li><a href="index.html#most-read">Global Milestones</a></li>
+          </ul>
+        </section>
+        <section class="menu-col" aria-labelledby="menu-pages">
+          <h3 id="menu-pages">Join &amp; Pages</h3>
+          <ul>
+            <li><a href="nominate.html">Nominate an Achiever</a></li>
+            <li><a href="careers.html">Careers &amp; Job Circulars</a></li>
+            <li><a href="ambassador.html">Campus Ambassador &amp; Volunteer</a></li>
+            <li><a href="advertise.html">Advertise With Us</a></li>
+            <li><a href="standards.html">Editorial Standards</a></li>
+          </ul>
+        </section>
+      </div>
+      <aside class="menu-rail" aria-label="Editorial standards">
+        <div class="menu-nominate">
+          <h3>Verified News &amp; Stories</h3>
+          <p>Every spotlight and contributor article on The Rise is checked by editors before publication.</p>
+          <a class="button amber" href="standards.html">Editorial Standards</a>
+        </div>
+      </aside>
+    </div>
+    <div class="site-menu-footer wrap">
+      <p>© 2026 The Rise. All Rights Reserved.</p>
+      <nav aria-label="Menu footer links">
+        <a href="articles.html">Articles</a>
+        <a href="advertise.html">Advertise With Us</a>
+        <a href="standards.html">Editorial Standards</a>
+        <a href="mailto:hello@therisebd.com">Contact</a>
+      </nav>
+    </div>
+  </div>
+  <div class="mobile-sidebar-backdrop" id="mobile-sidebar-backdrop" hidden></div>
+  <aside class="mobile-sidebar" id="mobile-sidebar" data-lenis-prevent hidden role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="mobile-sidebar-top">
+      <a class="mobile-sidebar-logo" href="index.html#home">The Rise<span>.</span></a>
+      <button class="mobile-sidebar-close" id="mobile-sidebar-close" type="button" aria-label="Close menu">✕</button>
+    </div>
+    <div class="mobile-sidebar-search">
+      <input type="search" id="mobile-sidebar-search" placeholder="Search people, articles..." aria-label="Search The Rise">
+      <button class="mobile-sidebar-search-button" id="mobile-sidebar-search-button" type="button" aria-label="Search">⌕</button>
+    </div>
+    <p class="mobile-sidebar-search-hint" id="mobile-sidebar-search-hint" role="status"></p>
+    <nav class="mobile-sidebar-nav" aria-label="Main navigation">
+      <a href="index.html#home">Home</a>
+      <a href="spotlights.html">Spotlights</a>
+      <a class="active" href="articles.html">Articles &amp; Newsroom</a>
+      <a href="advertise.html">Advertise</a>
+      <a href="standards.html">Editorial Standards</a>
+    </nav>
+    <div class="mobile-sidebar-actions">
+      <a class="button amber" href="nominate.html">Nominate Someone</a>
+      <a class="button" href="index.html#newsletter">Subscribe</a>
+    </div>
+    <button class="mobile-sidebar-more" id="mobile-sidebar-more" type="button" aria-expanded="false" aria-controls="mobile-sidebar-more-panel">More options <span class="mobile-sidebar-chevron" aria-hidden="true">⌄</span></button>
+    <div class="mobile-sidebar-more-panel" id="mobile-sidebar-more-panel" hidden>
+      <section class="ms-col" aria-labelledby="ms-featured">
+        <h3 id="ms-featured">Join &amp; More</h3>
+        <ul>
+          <li><a href="careers.html">Careers &amp; Jobs</a></li>
+          <li><a href="ambassador.html">Campus Ambassador &amp; Volunteer</a></li>
+          <li><a href="index.html#most-read">Global Milestones</a></li>
+          <li><a href="index.html#quote">Quote of the Day</a></li>
+        </ul>
+      </section>
+    </div>
+    <p class="mobile-sidebar-foot">© 2026 The Rise · <a href="mailto:hello@therisebd.com">Contact</a></p>
+  </aside>
+</body>
+</html>

@@ -29,7 +29,21 @@ const stories = [
     "body": [
       "Mohammad Nasir Uddin is today’s featured achiever on The Rise. According to the update shared with us, he attended the 2nd Annual International OSH Research Conference 2026 and received first prize for his research paper.",
       "The recognition puts his research at the centre of this spotlight. The photograph supplied with the story shows Nasir beside a conference display connecting better evidence with safer industries and stronger policies—a fitting setting for a moment of research recognition.",
+      "Across occupational safety and health research, clear evidence is often the bridge between lab findings and real-world policy changes that protect workers on the ground. Nasir’s first-prize presentation highlights how rigorous study can earn international recognition.",
       "We are sharing this milestone to celebrate the person behind the achievement. For Nasir, the conference and the first-prize recognition are the focus of today’s feature; the account here stays with the details provided to The Rise."
+    ],
+    "gallery": [
+      {
+        "src": "nasir%20.jpg",
+        "alt": "Mohammad Nasir Uddin standing beside the conference banner at the 2nd Annual International OSH Research Conference 2026",
+        "caption": "Supplied photograph: Mohammad Nasir Uddin at the 2nd Annual International OSH Research Conference 2026.",
+        "className": "nasir-photo"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1000&q=80",
+        "alt": "Academic conference and research presentation setting",
+        "caption": "Illustrative conference scene: International research gatherings bring evidence and safer industry policy together."
+      }
     ],
     "sourceNote": "Community-submitted profile. The attendance and first-prize details were supplied to The Rise and have not been independently verified. The photograph was provided with the submission. No paper title, affiliation, official results link, or personal quote was supplied."
   },
@@ -63,7 +77,20 @@ const stories = [
     "body": [
       "Princeton University Professor of Physics M. Zahid Hasan received the Davisson-Germer Prize in Atomic or Surface Physics from the American Physical Society for discovering different topological states in quantum materials using advanced surface science techniques. Princeton announced the award on 18 November 2026.",
       "Born and raised in Dhaka, Hasan joined Princeton in 2002 and has led its Laboratory for Topological Quantum Matter and Advanced Spectroscopy since 2008. He has been Eugene Higgins Professor at Princeton since 2017.",
+      "Topological quantum materials exhibit exotic electronic properties on their surfaces that remain stable despite defects—opening possibilities for future low-energy electronics and quantum computing research worldwide.",
       "The prize recognises research that opens new ways of understanding matter at the quantum level — work that began far from Princeton, in Dhaka."
+    ],
+    "gallery": [
+      {
+        "src": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1000&q=80",
+        "alt": "Scientific laboratory instrumentation and precision research",
+        "caption": "Illustrative research photo: Advanced spectroscopy and surface science uncover how electrons behave in quantum matter."
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=80",
+        "alt": "Academic research environment",
+        "caption": "Illustrative editorial photo: Decades of laboratory leadership from Dhaka to Princeton University."
+      }
     ],
     "sourceNote": "Source: The Daily Inqilab (English), 19 November 2026.",
     "sourceUrl": "https://en.dailyinqilab.com/bangladeshi-scientist-zahid-hasan-wins-prestigious-davisson-germer-award-for-quantum-research/"
@@ -98,7 +125,20 @@ const stories = [
     "body": [
       "Five computer science and engineering students from Jagannath University, competing as Team Galactic Poet, won the regional championship in the Mymensingh division at the NASA Space Apps Challenge 2026. Their project, “Rover Villa”, is a digital museum-style platform showcasing the history, missions and contributions of space-bound robots, rovers, landers and probes.",
       "The hackathon ran on 14–15 November 2026, and the winners were announced at the closing ceremony on 17 November at the American International University-Bangladesh auditorium in Dhaka. The team was nominated for the Global Round.",
+      "By turning complex space-exploration history into an accessible interactive experience, Rover Villa stood out among dozens of regional entries focused on science communication and open space data.",
       "Asfi led the team of Md. Ramjan Mia, Atoshi Sharma, Susmita Ghosh and Jihad Rahman. He had previously been on Jagannath University’s “Quantum Voyager” team, Dhaka divisional champion in 2024."
+    ],
+    "gallery": [
+      {
+        "src": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1000&q=80",
+        "alt": "Student engineering team collaborating during a hackathon",
+        "caption": "Illustrative hackathon photo: Team collaboration over 48 hours brought the Rover Villa digital museum to life."
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1000&q=80",
+        "alt": "Award ceremony stage and student recognition",
+        "caption": "Illustrative ceremony photo: Regional champions were announced at the closing ceremony in Dhaka ahead of the Global Round."
+      }
     ],
     "sourceNote": "Source: The Daily Inqilab (English), 19 November 2026. Corroborated by The Daily Star, 19 November 2026.",
     "sourceUrl": "https://en.dailyinqilab.com/team-galactic-poet-from-jagannath-university-wins-regional-championship-in-nasas-international-hackathon/"
@@ -133,7 +173,20 @@ const stories = [
     "body": [
       "Dr Md Shamim Alam of Southeast University, Dhaka, and Dr Md Raju Ahmed of the University of Manchester jointly won the Best Innovation Award for three innovations developed with the Sustainable Smart Textile Lab.",
       "The three innovations are FLUOROVA, a waterproof, breathable textile made without PFAS “forever chemicals”; FeMats, a graphene-enhanced wearable textile that tracks the health of mother and baby during pregnancy; and ThermoTex, a self-charging smart heating textile.",
+      "Together, the three materials show how Bangladesh’s textile expertise is expanding beyond conventional garment manufacturing into high-value medical, sustainable, and functional engineering.",
       "The award was announced on 12 November 2026 at the Open Innovation Zone of the TIE–ITET Textile Innovation Expo at the International Convention City Bashundhara, Dhaka."
+    ],
+    "gallery": [
+      {
+        "src": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1000&q=80",
+        "alt": "Material science testing in a sustainable textile laboratory",
+        "caption": "Illustrative laboratory photo: Sustainable Smart Textile Lab research focuses on safer, chemical-free performance materials."
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=80",
+        "alt": "Modern textile innovation showcase",
+        "caption": "Illustrative expo photo: Smart wearable and heating fabrics debuted at the TIE–ITET Textile Innovation Expo in Dhaka."
+      }
     ],
     "sourceNote": "Source: Bangladesh Textile Today, 16 November 2026.",
     "sourceUrl": "https://textiletoday.com.bd/dr-md-shamim-alam-and-dr-md-raju-ahmed-win-best-innovation-award-for-smart-textile-innovations-at-tie-itet-textile-innovation-expo-2026"
@@ -168,7 +221,20 @@ const stories = [
     "body": [
       "Bangladeshi teenager Fatiha Ayat was named Youth of the Year at the Promise Awards 2026, organised by US-based international organisation World Youth Clubs, beating more than 500,000 young people from over 50 countries.",
       "She was nominated for her initiative and social leadership engaging young people in the UN Sustainable Development Goals, and founded Zero Olympiad, a global competition encouraging young people to contribute to sustainable development.",
+      "Through Zero Olympiad and community advocacy, her work connects young participants across borders around climate action, equality, and grassroots problem-solving.",
       "Born in Dhaka, she has worked on children’s rights, climate change and human rights since childhood, and first attracted international attention aged seven when she addressed the 74th session of the UN General Assembly."
+    ],
+    "gallery": [
+      {
+        "src": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80",
+        "alt": "Young changemakers collaborating on community initiatives",
+        "caption": "Illustrative leadership photo: Empowering young voices across communities to engage with global sustainability goals."
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1000&q=80",
+        "alt": "International youth recognition stage",
+        "caption": "Illustrative recognition photo: Selected from over 500,000 young people across more than 50 countries."
+      }
     ],
     "sourceNote": "Source: Sarabangla (English), 18 November 2026.",
     "sourceUrl": "https://en.sarabangla.net/achievement/post-53263/bangladeshi-teen-fatiha-ayat-wins-global-promise-award/"
@@ -305,6 +371,16 @@ if (searchToggle && searchPanel) {
     searchToggle.setAttribute('aria-expanded', String(opening));
     if (opening && searchInput) searchInput.focus();
   });
+} else if (searchToggle) {
+  searchToggle.addEventListener('click', () => {
+    const newsSearch = select('#news-search');
+    if (newsSearch) {
+      newsSearch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      newsSearch.focus();
+    } else if (siteMenu) {
+      openSiteMenu();
+    }
+  });
 }
 
 const menuToggle = select('#menu-toggle');
@@ -413,11 +489,25 @@ if (siteMenu) {
     menuSearch.addEventListener('input', () => {
       const query = menuSearch.value.trim();
       if (!query) { menuSearchHint.textContent = ''; return; }
-      const count = cards.filter((card) => (card.dataset.search || '').toLocaleLowerCase().includes(query.toLocaleLowerCase())).length;
-      menuSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
+      const qLower = query.toLocaleLowerCase();
+      if (select('#news-search')) {
+        const count = newsArticles.filter((a) => `${a.headline} ${a.dek} ${a.topic} ${a.author}`.toLocaleLowerCase().includes(qLower)).length;
+        menuSearchHint.textContent = `${count} ${count === 1 ? 'article' : 'articles'} matching “${query}” — press Enter to view.`;
+      } else {
+        const count = cards.filter((card) => (card.dataset.search || '').toLocaleLowerCase().includes(qLower)).length;
+        menuSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
+      }
     });
     const submitMenuSearch = () => {
       const query = menuSearch.value.trim();
+      const newsSearchEl = select('#news-search');
+      if (newsSearchEl) {
+        newsSearchEl.value = query;
+        newsSearchEl.dispatchEvent(new Event('input'));
+        hideSiteMenu();
+        scrollToId('#news-grid');
+        return;
+      }
       resetFilters();
       if (searchInput) searchInput.value = query;
       filterStories();
@@ -463,11 +553,25 @@ if (mobileSidebar) {
     mobileSidebarSearch.addEventListener('input', () => {
       const query = mobileSidebarSearch.value.trim();
       if (!query) { mobileSidebarSearchHint.textContent = ''; return; }
-      const count = cards.filter((card) => (card.dataset.search || '').toLocaleLowerCase().includes(query.toLocaleLowerCase())).length;
-      mobileSidebarSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
+      const qLower = query.toLocaleLowerCase();
+      if (select('#news-search')) {
+        const count = newsArticles.filter((a) => `${a.headline} ${a.dek} ${a.topic} ${a.author}`.toLocaleLowerCase().includes(qLower)).length;
+        mobileSidebarSearchHint.textContent = `${count} ${count === 1 ? 'article' : 'articles'} matching “${query}” — press Enter to view.`;
+      } else {
+        const count = cards.filter((card) => (card.dataset.search || '').toLocaleLowerCase().includes(qLower)).length;
+        mobileSidebarSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
+      }
     });
     const submitMobileSidebarSearch = () => {
       const query = mobileSidebarSearch.value.trim();
+      const newsSearchEl = select('#news-search');
+      if (newsSearchEl) {
+        newsSearchEl.value = query;
+        newsSearchEl.dispatchEvent(new Event('input'));
+        hideMobileSidebar();
+        scrollToId('#news-grid');
+        return;
+      }
       resetFilters();
       if (searchInput) searchInput.value = query;
       filterStories();
@@ -508,7 +612,7 @@ if (todayEl) {
   todayEl.dateTime = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Dhaka', year: 'numeric', month: '2-digit', day: '2-digit' }).format(today);
 }
 
-/* Dedicated Story Page renderer (story.html?id=...) */
+/* Dedicated Story Page renderer — Newspaper Editorial Layout (story.html?id=...) */
 (function () {
   const root = select('#story-article-root');
   if (!root) return;
@@ -516,6 +620,42 @@ if (todayEl) {
   const requestedId = params.get('id');
   const story = stories.find((item) => item.id === requestedId) || stories[0];
   document.title = `${story.name} — The Rise`;
+
+  function createSponsoredBanner(variantClass, sizeLabel, titleText, descText, ctaText) {
+    const ad = document.createElement('a');
+    ad.className = `ad-slot ${variantClass}`;
+    ad.href = 'https://uplcm.com/4/12335958';
+    ad.target = '_blank';
+    ad.rel = 'noopener noreferrer';
+    ad.setAttribute('aria-label', 'Sponsored partner offer');
+    const contact = document.createElement('div');
+    contact.className = 'ad-contact';
+    contact.append(textElement('span', ctaText, 'ad-button ad-cta'));
+    ad.append(
+      textElement('span', 'SPONSORED', 'ad-label'),
+      textElement('span', sizeLabel, 'ad-size'),
+      textElement('p', titleText, 'ad-title'),
+      textElement('p', descText, 'ad-text'),
+      contact
+    );
+    return ad;
+  }
+
+  function createInlineFigure(photo) {
+    const fig = document.createElement('figure');
+    fig.className = 'story-inline-figure';
+    const img = document.createElement('img');
+    img.src = photo.src;
+    img.alt = photo.alt;
+    img.loading = 'lazy';
+    if (photo.className) img.className = photo.className;
+    const cap = textElement('figcaption', photo.caption);
+    fig.append(img, cap);
+    return fig;
+  }
+
+  const layout = document.createElement('div');
+  layout.className = 'story-newspaper-layout';
 
   const article = document.createElement('article');
   article.className = 'profile-article story-page-article';
@@ -553,7 +693,37 @@ if (todayEl) {
   const body = document.createElement('div');
   body.className = 'profile-story-body story-page-body';
   body.append(textElement('h2', story.headline || 'The story behind the achievement'));
-  story.body.forEach((paragraph) => body.append(textElement('p', paragraph)));
+
+  const byline = document.createElement('div');
+  byline.className = 'story-byline-bar';
+  byline.append(
+    textElement('span', `By The Rise Editorial Desk · ${story.featuredDate}`),
+    textElement('span', `${story.category} · 3 min read`)
+  );
+  body.append(byline);
+
+  const gallery = Array.isArray(story.gallery) ? story.gallery : [];
+  story.body.forEach((paragraph, index) => {
+    const p = textElement('p', paragraph, index === 0 ? 'story-lead-paragraph' : '');
+    body.append(p);
+
+    if (index === 0 && gallery[0]) {
+      body.append(createInlineFigure(gallery[0]));
+    }
+    if (index === 1) {
+      body.append(createSponsoredBanner(
+        'story-inline-ad',
+        '728 × 90 IN-ARTICLE BANNER',
+        'Partner Spotlight & Recommended Offers',
+        'Click to explore verified deals and resources supporting The Rise.',
+        'Visit Sponsor →'
+      ));
+    }
+    if (index === 2 && gallery[1]) {
+      body.append(createInlineFigure(gallery[1]));
+    }
+  });
+
   body.append(textElement('h3', 'The milestone, in three parts'));
 
   const journey = document.createElement('ol');
@@ -582,26 +752,50 @@ if (todayEl) {
     body.append(sourceLink);
   }
 
-  const adSlot = document.createElement('a');
-  adSlot.className = 'ad-slot dialog-ad';
-  adSlot.href = 'https://uplcm.com/4/12335958';
-  adSlot.target = '_blank';
-  adSlot.rel = 'noopener noreferrer';
-  adSlot.setAttribute('aria-label', 'Sponsored partner offer');
-  const adContact = document.createElement('div');
-  adContact.className = 'ad-contact';
-  adContact.append(textElement('span', 'Explore Partner Offer →', 'ad-button ad-cta'));
-  adSlot.append(
-    textElement('span', 'SPONSORED', 'ad-label'),
-    textElement('span', 'SPECIAL OFFER', 'ad-size'),
-    textElement('p', 'Recommended for You', 'ad-title'),
-    textElement('p', 'Click to check out curated deals and partner content.', 'ad-text'),
-    adContact
-  );
-  body.append(adSlot);
+  body.append(createSponsoredBanner(
+    'story-bottom-ad',
+    '728 × 90 END-OF-STORY BANNER',
+    'Recommended for Readers',
+    'Click to check out curated deals and partner announcements.',
+    'Explore Partner Offer →'
+  ));
 
   article.append(body);
-  root.replaceChildren(article);
+
+  const sidebar = document.createElement('aside');
+  sidebar.className = 'story-sidebar';
+  sidebar.setAttribute('aria-label', 'Story facts and partner column');
+
+  const factsCard = document.createElement('div');
+  factsCard.className = 'story-facts-card';
+  factsCard.append(textElement('span', 'AT A GLANCE', 'ad-label'));
+  factsCard.append(textElement('h3', story.name));
+  const factsList = document.createElement('dl');
+  factsList.className = 'story-facts-list';
+  [
+    ['Field', story.category],
+    ['Recognition', story.achievement],
+    ['Featured', story.featuredDate],
+    ['Verification', story.sourceUrl ? 'Press-reported & sourced' : 'Community-submitted']
+  ].forEach(([term, val]) => {
+    factsList.append(textElement('dt', term), textElement('dd', val));
+  });
+  factsCard.append(factsList);
+  const nomBtn = textElement('a', 'Nominate Someone →', 'button navy');
+  nomBtn.href = 'nominate.html';
+  factsCard.append(nomBtn);
+
+  const tallAd = createSponsoredBanner(
+    'ad-skyscraper story-sidebar-ad',
+    '300 × 600 VERTICAL COLUMN',
+    'Featured Brand Column',
+    'High-visibility vertical sponsor placement right beside full spotlight articles.',
+    'Explore Offer →'
+  );
+
+  sidebar.append(factsCard, tallAd);
+  layout.append(article, sidebar);
+  root.replaceChildren(layout);
 
   const moreGrid = select('#more-stories-grid');
   if (moreGrid) {
@@ -976,20 +1170,51 @@ if (todayEl) {
   }
 })();
 
-/* Mega menu: Stories dropdown */
+/* Mega menu: Stories dropdown (hover on desktop + click/keyboard accessible) */
 (function () {
   var toggle = document.querySelector('#stories-toggle');
   var menu = document.querySelector('#stories-menu');
   if (!toggle || !menu) return;
+  var dropdown = toggle.closest('.nav-dropdown') || toggle.parentElement;
+  var closeTimer = null;
+
+  var cancelClose = function () {
+    if (closeTimer) {
+      window.clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+  };
+  var openMega = function () {
+    cancelClose();
+    menu.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+  };
   var closeMega = function () {
+    cancelClose();
     menu.hidden = true;
     toggle.setAttribute('aria-expanded', 'false');
   };
+  var scheduleClose = function () {
+    cancelClose();
+    closeTimer = window.setTimeout(closeMega, 180);
+  };
+
+  if (dropdown) {
+    dropdown.addEventListener('mouseenter', function () {
+      if (window.innerWidth > 580) openMega();
+    });
+    dropdown.addEventListener('mouseleave', function () {
+      if (window.innerWidth > 580) scheduleClose();
+    });
+  }
+  menu.addEventListener('mouseenter', function () {
+    if (window.innerWidth > 580) cancelClose();
+  });
+
   toggle.addEventListener('click', function (event) {
     event.stopPropagation();
-    var open = menu.hidden;
-    menu.hidden = !open;
-    toggle.setAttribute('aria-expanded', String(open));
+    if (menu.hidden) openMega();
+    else closeMega();
   });
   menu.querySelectorAll('a, button').forEach(function (item) {
     item.addEventListener('click', closeMega);
@@ -1005,11 +1230,609 @@ if (todayEl) {
     });
   });
   document.addEventListener('click', function (event) {
-    if (!menu.hidden && !menu.contains(event.target)) closeMega();
+    if (!menu.hidden && !menu.contains(event.target) && (!dropdown || !dropdown.contains(event.target))) closeMega();
   });
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') closeMega();
   });
+})();
+
+/* Careers & Campus Ambassador / Volunteer forms (careers.html & ambassador.html) */
+(function () {
+  var roleSelect = document.getElementById('car-role');
+  document.querySelectorAll('.apply-role-btn[data-role]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (roleSelect && btn.dataset.role) {
+        roleSelect.value = btn.dataset.role;
+      }
+      var target = document.getElementById('apply');
+      if (target) {
+        if (window.__lenis) { window.__lenis.scrollTo(target, { offset: -20 }); }
+        else { target.scrollIntoView({ behavior: 'smooth' }); }
+      }
+      var nameEl = document.getElementById('car-name');
+      if (nameEl) nameEl.focus({ preventScroll: true });
+    });
+  });
+
+  function bindApplicationForm(cfg) {
+    var form = document.getElementById(cfg.formId);
+    if (!form) return;
+    var errEl = document.getElementById(cfg.errorId);
+    var resEl = document.getElementById(cfg.resultId);
+    var mailBtn = document.getElementById(cfg.mailId);
+    var waBtn = document.getElementById(cfg.waId);
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (errEl) errEl.textContent = '';
+      var values = {};
+      for (var i = 0; i < cfg.fields.length; i++) {
+        var f = cfg.fields[i];
+        var el = document.getElementById(f.id);
+        var val = el ? String(el.value || '').trim() : '';
+        if (f.required && !val) {
+          if (errEl) errEl.textContent = 'Please complete all required fields (' + f.label + ').';
+          if (el) el.focus();
+          return;
+        }
+        values[f.label] = val || '—';
+      }
+
+      var lines = [cfg.header, '===================================='];
+      Object.keys(values).forEach(function (k) {
+        lines.push(k + ': ' + values[k]);
+      });
+      var packet = lines.join('\n');
+      var subject = cfg.subjectPrefix + (values[cfg.subjectField] || 'Application');
+
+      if (mailBtn) {
+        mailBtn.href = 'mailto:hello@therisebd.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(packet);
+      }
+      if (waBtn) {
+        waBtn.href = 'https://wa.me/8801643442518?text=' + encodeURIComponent(packet);
+      }
+      if (resEl) {
+        resEl.hidden = false;
+        resEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
+
+  bindApplicationForm({
+    formId: 'career-form',
+    errorId: 'car-error',
+    resultId: 'car-result',
+    mailId: 'car-send-email',
+    waId: 'car-send-wa',
+    header: 'THE RISE — CAREERS & JOB APPLICATION',
+    subjectPrefix: 'The Rise Career Application — ',
+    subjectField: 'Position',
+    fields: [
+      { id: 'car-name', label: 'Full Name', required: true },
+      { id: 'car-whatsapp', label: 'WhatsApp Number', required: true },
+      { id: 'car-email', label: 'Email Address', required: true },
+      { id: 'car-city', label: 'City / Country', required: true },
+      { id: 'car-role', label: 'Position', required: true },
+      { id: 'car-portfolio', label: 'Portfolio / CV / LinkedIn', required: false },
+      { id: 'car-note', label: 'Short Pitch', required: true }
+    ]
+  });
+
+  bindApplicationForm({
+    formId: 'ambassador-form',
+    errorId: 'amb-error',
+    resultId: 'amb-result',
+    mailId: 'amb-send-email',
+    waId: 'amb-send-wa',
+    header: 'THE RISE — CAMPUS AMBASSADOR & VOLUNTEER APPLICATION',
+    subjectPrefix: 'The Rise Community Application — ',
+    subjectField: 'Program Track',
+    fields: [
+      { id: 'amb-name', label: 'Full Name', required: true },
+      { id: 'amb-whatsapp', label: 'WhatsApp Number', required: true },
+      { id: 'amb-email', label: 'Email Address', required: true },
+      { id: 'amb-city', label: 'City / District', required: true },
+      { id: 'amb-track', label: 'Program Track', required: true },
+      { id: 'amb-inst', label: 'University / College / Workplace', required: true },
+      { id: 'amb-social', label: 'LinkedIn / Facebook Profile', required: false },
+      { id: 'amb-why', label: 'Motivation & Impact Plan', required: true }
+    ]
+  });
+})();
+
+/* Newsroom / Articles Data, Articles Page, Article Reader & Submission Form */
+const newsArticles = [];
+
+function createSponsoredAdCard(variantClass, sizeLabel, titleText, descText, ctaText) {
+  const ad = document.createElement('a');
+  ad.className = `ad-slot ${variantClass}`;
+  ad.href = 'https://uplcm.com/4/12335958';
+  ad.target = '_blank';
+  ad.rel = 'noopener noreferrer';
+  ad.setAttribute('aria-label', 'Sponsored partner offer');
+  const contact = document.createElement('div');
+  contact.className = 'ad-contact';
+  contact.append(textElement('span', ctaText, 'ad-button ad-cta'));
+  ad.append(
+    textElement('span', 'SPONSORED', 'ad-label'),
+    textElement('span', sizeLabel, 'ad-size'),
+    textElement('p', titleText, 'ad-title'),
+    textElement('p', descText, 'ad-text'),
+    contact
+  );
+  return ad;
+}
+
+/* Articles Newsroom Front Page (articles.html) */
+(function () {
+  const grid = select('#news-grid');
+  if (!grid) return;
+  const leadSlot = select('#news-lead-slot');
+  const railList = select('#news-rail-list');
+  const frontSec = select('#news-front');
+  const emptyEl = select('#news-empty');
+  const countEl = select('#news-count-status');
+  const searchEl = select('#news-search');
+  const resetBtn = select('#news-reset-btn');
+  const filterBtns = [...document.querySelectorAll('[data-news-cat]')];
+
+  let activeTopic = 'All';
+
+  function buildNewsCard(article) {
+    const card = document.createElement('article');
+    card.className = 'news-card';
+
+    const media = document.createElement('a');
+    media.className = 'news-card-media';
+    media.href = `article.html?id=${encodeURIComponent(article.id)}`;
+    const img = document.createElement('img');
+    img.src = article.image;
+    img.alt = article.headline;
+    img.loading = 'lazy';
+    media.append(img, textElement('span', article.topic, `news-topic-tag ${article.badgeClass}`));
+
+    const body = document.createElement('div');
+    body.className = 'news-card-body';
+
+    const meta = document.createElement('div');
+    meta.className = 'news-card-meta';
+    meta.append(textElement('span', article.date), textElement('span', `· ${article.readTime}`));
+
+    const titleLink = document.createElement('a');
+    titleLink.className = 'news-card-title';
+    titleLink.href = `article.html?id=${encodeURIComponent(article.id)}`;
+    titleLink.textContent = article.headline;
+
+    const dek = textElement('p', article.dek, 'news-card-dek');
+
+    const foot = document.createElement('div');
+    foot.className = 'news-card-foot';
+    foot.append(textElement('span', `By ${article.author}`, 'news-card-author'));
+    const readMore = textElement('a', 'Read article →', 'news-card-link');
+    readMore.href = `article.html?id=${encodeURIComponent(article.id)}`;
+    foot.append(readMore);
+
+    body.append(meta, titleLink, dek, foot);
+    card.append(media, body);
+    return card;
+  }
+
+  function renderLeadAndRail() {
+    if (leadSlot && newsArticles[0]) {
+      const lead = newsArticles[0];
+      const leadCard = document.createElement('article');
+      leadCard.className = 'news-lead-card';
+
+      const imgWrap = document.createElement('a');
+      imgWrap.className = 'news-lead-media';
+      imgWrap.href = `article.html?id=${encodeURIComponent(lead.id)}`;
+      const img = document.createElement('img');
+      img.src = lead.image;
+      img.alt = lead.headline;
+      imgWrap.append(img, textElement('span', `LEAD DISPATCH · ${lead.topic.toUpperCase()}`, 'news-lead-badge'));
+
+      const copy = document.createElement('div');
+      copy.className = 'news-lead-copy';
+      const meta = textElement('p', `${lead.date} · ${lead.readTime} · By ${lead.author}`, 'news-lead-meta');
+      const h2 = document.createElement('h2');
+      const link = document.createElement('a');
+      link.href = `article.html?id=${encodeURIComponent(lead.id)}`;
+      link.textContent = lead.headline;
+      h2.append(link);
+      const dek = textElement('p', lead.dek, 'news-lead-dek');
+      const cta = textElement('a', 'Read Full Report →', 'button navy');
+      cta.href = `article.html?id=${encodeURIComponent(lead.id)}`;
+      copy.append(meta, h2, dek, cta);
+      leadCard.append(imgWrap, copy);
+      leadSlot.replaceChildren(leadCard);
+    }
+
+    if (railList) {
+      railList.replaceChildren();
+      newsArticles.slice(1, 5).forEach((art) => {
+        const item = document.createElement('a');
+        item.className = 'news-rail-item';
+        item.href = `article.html?id=${encodeURIComponent(art.id)}`;
+        item.append(
+          textElement('span', art.topic.toUpperCase(), 'news-rail-topic'),
+          textElement('strong', art.headline),
+          textElement('small', `${art.date} · ${art.readTime}`)
+        );
+        railList.append(item);
+      });
+    }
+  }
+
+  function renderNewsroom() {
+    const launchEl = select('#news-launch-state');
+    if (newsArticles.length === 0) {
+      if (frontSec) frontSec.hidden = true;
+      if (emptyEl) emptyEl.hidden = true;
+      if (launchEl) launchEl.hidden = false;
+      grid.replaceChildren();
+      if (countEl) countEl.textContent = '0 published articles yet';
+      filterBtns.forEach((btn) => {
+        const active = btn.dataset.newsCat === activeTopic;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', String(active));
+      });
+      return;
+    }
+
+    if (launchEl) launchEl.hidden = true;
+    const q = searchEl ? searchEl.value.trim().toLocaleLowerCase() : '';
+    const filtering = activeTopic !== 'All' || Boolean(q);
+    if (frontSec) frontSec.hidden = filtering;
+
+    const matches = newsArticles.filter((art) => {
+      const catOk = activeTopic === 'All' || art.topic === activeTopic;
+      const hay = `${art.headline} ${art.dek} ${art.topic} ${art.author} ${art.body.join(' ')}`.toLocaleLowerCase();
+      return catOk && (!q || hay.includes(q));
+    });
+
+    grid.replaceChildren();
+    matches.forEach((art) => grid.append(buildNewsCard(art)));
+
+    if (emptyEl) emptyEl.hidden = matches.length > 0;
+    if (countEl) {
+      const topicSuffix = activeTopic === 'All' ? '' : ` in ${activeTopic}`;
+      const querySuffix = q ? ` for “${searchEl.value.trim()}”` : '';
+      countEl.textContent = `Showing ${matches.length} ${matches.length === 1 ? 'article' : 'articles'}${topicSuffix}${querySuffix}`;
+    }
+
+    filterBtns.forEach((btn) => {
+      const active = btn.dataset.newsCat === activeTopic;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeTopic = btn.dataset.newsCat || 'All';
+      renderNewsroom();
+    });
+  });
+
+  if (searchEl) searchEl.addEventListener('input', renderNewsroom);
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      activeTopic = 'All';
+      if (searchEl) searchEl.value = '';
+      renderNewsroom();
+    });
+  }
+
+  renderLeadAndRail();
+  renderNewsroom();
+})();
+
+/* Single Article Reader Page (article.html?id=...) */
+(function () {
+  const root = select('#article-page-root');
+  if (!root) return;
+  const params = new URLSearchParams(window.location.search);
+  const reqId = params.get('id');
+  const article = newsArticles.find((a) => a.id === reqId) || newsArticles[0];
+  if (!article) {
+    document.title = 'Newsroom — The Rise';
+    const box = document.createElement('div');
+    box.className = 'news-launch-card';
+    box.append(
+      textElement('span', 'THE RISE NEWSROOM', 'ad-label'),
+      textElement('h2', 'No published article found yet.'),
+      textElement('p', 'Once a submitted article is verified and accepted by our editorial team, it will be published here.')
+    );
+    const backBtn = textElement('a', '← Back to Articles Newsroom', 'button navy');
+    backBtn.href = 'articles.html';
+    box.append(backBtn);
+    root.replaceChildren(box);
+    return;
+  }
+  document.title = `${article.headline} — The Rise Newsroom`;
+
+  const layout = document.createElement('div');
+  layout.className = 'story-newspaper-layout';
+
+  const mainCol = document.createElement('article');
+  mainCol.className = 'story-page-article news-reader-article';
+
+  const header = document.createElement('header');
+  header.className = 'story-page-hero';
+  header.append(
+    textElement('span', `${article.topic.toUpperCase()} · EDITORIALLY ACCEPTED`, `achievement-badge news-topic-badge ${article.badgeClass}`),
+    textElement('h1', article.headline),
+    textElement('p', article.dek, 'story-lead-dek')
+  );
+
+  const byline = document.createElement('div');
+  byline.className = 'story-byline-bar';
+  byline.append(
+    textElement('span', `By ${article.author} · ${article.affiliation}`),
+    textElement('span', `${article.date} · ${article.readTime}`)
+  );
+
+  const coverWrap = document.createElement('figure');
+  coverWrap.className = 'story-inline-figure';
+  const coverImg = document.createElement('img');
+  coverImg.src = article.image;
+  coverImg.alt = article.headline;
+  coverWrap.append(coverImg, textElement('figcaption', article.imageCaption));
+
+  mainCol.append(header, byline, coverWrap);
+
+  const body = document.createElement('div');
+  body.className = 'story-page-body';
+  article.body.forEach((para, idx) => {
+    const p = textElement('p', para);
+    if (idx === 0) p.className = 'story-lead-paragraph';
+    body.append(p);
+    if (idx === 1) {
+      body.append(createSponsoredAdCard(
+        'story-inline-ad',
+        '728 × 90 IN-ARTICLE BANNER',
+        'Partner Resources & Tools',
+        'Explore curated tech tools and sponsor announcements on The Rise.',
+        'Visit Sponsor →'
+      ));
+    }
+  });
+
+  if (article.highlights && article.highlights.length) {
+    const takeBox = document.createElement('div');
+    takeBox.className = 'news-takeaways-box';
+    takeBox.append(textElement('h3', 'Key Takeaways'));
+    const ul = document.createElement('ul');
+    article.highlights.forEach((item) => ul.append(textElement('li', item)));
+    takeBox.append(ul);
+    body.append(takeBox);
+  }
+
+  if (article.quote) {
+    const quote = textElement('blockquote', `“${article.quote}”`, 'profile-advice');
+    quote.append(textElement('cite', `${article.author} · The Rise Newsroom`));
+    body.append(quote);
+  }
+
+  body.append(textElement('p', `Editorial verification: ${article.sources}`, 'dialog-note'));
+  body.append(createSponsoredAdCard(
+    'story-bottom-ad',
+    '728 × 90 END-OF-ARTICLE BANNER',
+    'Recommended Partner Offers',
+    'Support independent journalism and student innovation across Bangladesh.',
+    'Explore Offer →'
+  ));
+  mainCol.append(body);
+
+  const sidebar = document.createElement('aside');
+  sidebar.className = 'story-sidebar';
+  const factsCard = document.createElement('div');
+  factsCard.className = 'story-facts-card';
+  factsCard.append(textElement('span', 'DISPATCH INFO', 'ad-label'), textElement('h3', article.topic));
+  const dl = document.createElement('dl');
+  dl.className = 'story-facts-list';
+  [
+    ['Author', article.author],
+    ['Role', article.affiliation],
+    ['Published', article.date],
+    ['Review Status', 'Accepted by Editorial Desk']
+  ].forEach(([k, v]) => dl.append(textElement('dt', k), textElement('dd', v)));
+  factsCard.append(dl);
+
+  sidebar.append(factsCard, createSponsoredAdCard(
+    'ad-skyscraper story-sidebar-ad',
+    '300 × 600 VERTICAL COLUMN',
+    'Featured Sponsor Column',
+    'High-visibility vertical sponsor placement inside The Rise Newsroom.',
+    'Explore Offer →'
+  ));
+
+  layout.append(mainCol, sidebar);
+  root.replaceChildren(layout);
+
+  const moreGrid = select('#more-articles-grid');
+  if (moreGrid) {
+    newsArticles.filter((a) => a.id !== article.id).slice(0, 3).forEach((item) => {
+      const card = document.createElement('article');
+      card.className = 'news-card';
+      const media = document.createElement('a');
+      media.className = 'news-card-media';
+      media.href = `article.html?id=${encodeURIComponent(item.id)}`;
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.headline;
+      img.loading = 'lazy';
+      media.append(img, textElement('span', item.topic, `news-topic-tag ${item.badgeClass}`));
+      const cBody = document.createElement('div');
+      cBody.className = 'news-card-body';
+      const titleLink = document.createElement('a');
+      titleLink.className = 'news-card-title';
+      titleLink.href = `article.html?id=${encodeURIComponent(item.id)}`;
+      titleLink.textContent = item.headline;
+      cBody.append(
+        textElement('div', `${item.date} · ${item.readTime}`, 'news-card-meta'),
+        titleLink,
+        textElement('p', item.dek, 'news-card-dek')
+      );
+      card.append(media, cBody);
+      moreGrid.append(card);
+    });
+  }
+})();
+
+/* Dedicated Article Submission Form Page (submit-article.html) */
+(function () {
+  const form = select('#article-submit-form');
+  if (!form) return;
+
+  const bodyInput = select('#art-body');
+  const wordCountEl = select('#art-word-count');
+  const imagesInput = select('#art-images');
+  const imagesPreview = select('#art-images-preview');
+  const errorEl = select('#art-error');
+  const resultEl = select('#art-result');
+  const summaryBox = select('#art-summary-box');
+  const sendEmailBtn = select('#art-send-email');
+  const sendWaBtn = select('#art-send-whatsapp');
+  const copyBtn = select('#art-copy-btn');
+  const copyStatus = select('#art-copy-status');
+
+  let coverFiles = [];
+  let lastManuscriptText = '';
+
+  function refreshCoverPreviews() {
+    if (!imagesPreview) return;
+    imagesPreview.replaceChildren();
+    coverFiles.forEach((file, idx) => {
+      const card = document.createElement('div');
+      card.className = 'upload-thumb-card';
+      const img = document.createElement('img');
+      img.alt = file.name;
+      const url = URL.createObjectURL(file);
+      img.src = url;
+      img.onload = () => URL.revokeObjectURL(url);
+      const meta = document.createElement('div');
+      meta.className = 'upload-thumb-meta';
+      const kb = (file.size / 1024).toFixed(1) + ' KB';
+      meta.append(textElement('span', file.name, 'upload-thumb-name'), textElement('small', kb, 'upload-thumb-size'));
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'upload-thumb-remove';
+      removeBtn.setAttribute('aria-label', `Remove ${file.name}`);
+      removeBtn.textContent = '×';
+      removeBtn.addEventListener('click', () => {
+        coverFiles.splice(idx, 1);
+        refreshCoverPreviews();
+      });
+      card.append(img, meta, removeBtn);
+      imagesPreview.append(card);
+    });
+  }
+
+  if (imagesInput) {
+    imagesInput.addEventListener('change', () => {
+      const incoming = [...imagesInput.files].filter((f) => f.type.startsWith('image/'));
+      coverFiles = coverFiles.concat(incoming);
+      imagesInput.value = '';
+      refreshCoverPreviews();
+    });
+  }
+
+  if (bodyInput && wordCountEl) {
+    bodyInput.addEventListener('input', () => {
+      const words = bodyInput.value.trim() ? bodyInput.value.trim().split(/\s+/).length : 0;
+      wordCountEl.textContent = `${words} ${words === 1 ? 'word' : 'words'}`;
+    });
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (errorEl) errorEl.textContent = '';
+    if (!form.reportValidity()) {
+      if (errorEl) errorEl.textContent = 'Please complete all required fields highlighted above.';
+      return;
+    }
+
+    const author = select('#art-author').value.trim();
+    const whatsapp = select('#art-whatsapp').value.trim();
+    const email = select('#art-email').value.trim();
+    const affiliation = select('#art-affiliation').value.trim();
+    const topic = select('#art-topic').value;
+    const city = select('#art-city').value.trim();
+    const headline = select('#art-headline').value.trim();
+    const summary = select('#art-summary').value.trim();
+    const articleBody = select('#art-body').value.trim();
+    const sources = select('#art-sources').value.trim();
+    const imgNames = coverFiles.length ? coverFiles.map((f) => f.name).join(', ') : 'None attached';
+
+    lastManuscriptText = [
+      'THE RISE NEWSROOM — ARTICLE SUBMISSION FOR REVIEW',
+      '=================================================',
+      `Author: ${author} (${affiliation})`,
+      `Location: ${city}`,
+      `Email: ${email}`,
+      `WhatsApp: ${whatsapp}`,
+      `Topic / Section: ${topic}`,
+      `Headline: ${headline}`,
+      `Summary: ${summary}`,
+      sources ? `References / Sources: ${sources}` : '',
+      `Cover / Diagram Images (${coverFiles.length}): ${imgNames}`,
+      '',
+      'FULL ARTICLE TEXT:',
+      articleBody
+    ].filter(Boolean).join('\n');
+
+    if (summaryBox) {
+      summaryBox.replaceChildren();
+      [
+        ['Author', `${author} (${affiliation})`],
+        ['Topic', topic],
+        ['Headline', headline],
+        ['Email / WhatsApp', `${email} · ${whatsapp}`],
+        ['Images', `${coverFiles.length} file(s): ${imgNames}`]
+      ].forEach(([label, value]) => {
+        const row = document.createElement('div');
+        row.className = 'nom-summary-row';
+        row.append(textElement('strong', `${label}:`), textElement('span', value));
+        summaryBox.append(row);
+      });
+    }
+
+    const subject = `The Rise Article Submission — ${topic}: ${headline}`;
+    if (sendEmailBtn) {
+      sendEmailBtn.href = `mailto:hello@therisebd.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lastManuscriptText)}`;
+    }
+    if (sendWaBtn) {
+      sendWaBtn.href = `https://wa.me/8801643442518?text=${encodeURIComponent(lastManuscriptText)}`;
+    }
+    if (resultEl) {
+      resultEl.hidden = false;
+      resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      if (!lastManuscriptText) return;
+      try {
+        await navigator.clipboard.writeText(lastManuscriptText);
+        if (copyStatus) copyStatus.textContent = 'Full article manuscript copied to clipboard!';
+      } catch (e) {
+        if (copyStatus) copyStatus.textContent = 'Could not auto-copy — please use Email or WhatsApp above.';
+      }
+    });
+  }
+})();
+
+/* Auto-updating Impact Counters (index.html & about.html) */
+(function () {
+  var spotlightCount = typeof stories !== 'undefined' ? stories.length : 0;
+  var articleCount = typeof newsArticles !== 'undefined' ? newsArticles.length : 0;
+  var totalCount = spotlightCount + articleCount;
+  document.querySelectorAll('[data-stat-spotlights]').forEach(function (el) { el.textContent = String(spotlightCount); });
+  document.querySelectorAll('[data-stat-articles]').forEach(function (el) { el.textContent = String(articleCount); });
+  document.querySelectorAll('[data-stat-total]').forEach(function (el) { el.textContent = String(totalCount); });
 })();
 
 /* Refresh starts at the top */
