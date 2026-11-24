@@ -465,6 +465,7 @@ if (seeMoreBtn) seeMoreBtn.addEventListener('click', () => {
     else { select('#stories').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }
   }
 });
+filterStories();
 
 
 const searchToggle = select('#search-toggle');
@@ -520,6 +521,7 @@ siteMenu.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListene
 }));
 siteMenu.querySelectorAll('[data-menu-filter]').forEach((link) => link.addEventListener('click', (event) => {
   event.preventDefault();
+  searchInput.value = '';
   activeCategory = link.dataset.menuFilter;
   filterStories();
   hideSiteMenu();
@@ -595,6 +597,7 @@ mobileSidebar.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventLi
 }));
 mobileSidebar.querySelectorAll('[data-menu-filter]').forEach((link) => link.addEventListener('click', (event) => {
   event.preventDefault();
+  searchInput.value = '';
   activeCategory = link.dataset.menuFilter;
   filterStories();
   hideMobileSidebar();
@@ -757,7 +760,15 @@ document.querySelectorAll('[data-story]').forEach((button) => button.addEventLis
 }));
 select('.dialog-close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', (event) => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
-dialog.addEventListener('close', () => { document.body.classList.remove('dialog-open'); if (window.__lenis) window.__lenis.start(); lastDialogTrigger?.focus(); });
+dialog.addEventListener('close', () => {
+  document.body.classList.remove('dialog-open');
+  if (window.__lenis) window.__lenis.start();
+  if (lastDialogTrigger && lastDialogTrigger.offsetParent !== null) {
+    lastDialogTrigger.focus();
+  } else if (menuToggle && menuToggle.offsetParent !== null) {
+    menuToggle.focus();
+  }
+});
 select('#nomination-open').addEventListener('click', (event) => {
   const content = document.createElement('div');
   const title = textElement('h2', 'Every great story starts with a name.');
@@ -798,8 +809,18 @@ select('#standards-open').addEventListener('click', (event) => {
     }));
   }
   if (reduceMotion) return;
-  const revealTargets = document.querySelectorAll('.hero, main section, .site-footer');
+  const revealTargets = document.querySelectorAll('.hero, main section');
   revealTargets.forEach((el) => el.classList.add('reveal'));
+  const revealVisible = () => {
+    const viewBottom = window.innerHeight + 120;
+    revealTargets.forEach((el) => {
+      if (el.classList.contains('in')) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.height > 0 && rect.top <= viewBottom) {
+        el.classList.add('in');
+      }
+    });
+  };
   /* Threshold 0 (was 0.12): the Latest Spotlights section is ~6,000px tall on phones, so it could never reach 12% visibility on a small screen and stayed invisible (opacity:0) forever. */
   if (typeof IntersectionObserver === 'undefined') {
     revealTargets.forEach((el) => el.classList.add('in'));
@@ -811,8 +832,10 @@ select('#standards-open').addEventListener('click', (event) => {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px 120px 0px' });
     revealTargets.forEach((el) => observer.observe(el));
+    window.addEventListener('scroll', revealVisible, { passive: true });
+    revealVisible();
   }
   const magazine = document.querySelector('.open-magazine');
   if (magazine) {
@@ -887,8 +910,18 @@ select('#standards-open').addEventListener('click', (event) => {
     menu.hidden = !open;
     toggle.setAttribute('aria-expanded', String(open));
   });
-  menu.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', closeMega);
+  menu.querySelectorAll('a, button').forEach(function (item) {
+    item.addEventListener('click', closeMega);
+  });
+  menu.querySelectorAll('[data-menu-filter]').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      searchInput.value = '';
+      activeCategory = link.dataset.menuFilter;
+      filterStories();
+      closeMega();
+      scrollToId('#stories');
+    });
   });
   document.addEventListener('click', function (event) {
     if (!menu.hidden && !menu.contains(event.target)) closeMega();
