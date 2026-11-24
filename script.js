@@ -104,41 +104,6 @@ const stories = [
     "sourceUrl": "https://en.dailyinqilab.com/team-galactic-poet-from-jagannath-university-wins-regional-championship-in-nasas-international-hackathon/"
   },
   {
-    "id": "suhana",
-    "name": "Suhana Rahman Sukanya",
-    "category": "Awards",
-    "cats": "Awards Impact",
-    "achievement": "The Diana Award 2026",
-    "monogram": "SR",
-    "color": "#DC2626",
-    "sample": false,
-    "alt": "Monogram for Suhana Rahman Sukanya",
-    "summary": "The Diana Award 2026 for mental-health awareness and suicide-prevention work.",
-    "headline": "Suhana Rahman Sukanya: a 17-year-old recognised with the Diana Award",
-    "featuredDate": "6 November 2026",
-    "journey": [
-      [
-        "The work",
-        "As a Child Coordinator at Talk Hope, she works on mental-health awareness and suicide prevention."
-      ],
-      [
-        "The award",
-        "The Diana Award 2026 recognised her social development and humanitarian work."
-      ],
-      [
-        "The recognition",
-        "She received congratulatory messages from Prince William and Prince Harry."
-      ]
-    ],
-    "body": [
-      "Seventeen-year-old Suhana Rahman Sukanya won the international Diana Award 2026 for her contributions to social development, humanitarian work, mental-health awareness and suicide prevention.",
-      "She is a 12th-grade student at Bir Shrestha Noor Mohammad Public School and College in Dhaka and serves as a Child Coordinator at Talk Hope, a Bangladeshi initiative for mental-health awareness and suicide prevention.",
-      "She received congratulatory messages from Prince William and Prince Harry, and was previously nominated for the International Children’s Peace Prize in 2024."
-    ],
-    "sourceNote": "Source: New Age, 6 November 2026.",
-    "sourceUrl": "https://www.newagebd.net/post/country/321209/suhana-wins-the-diana-award-2026"
-  },
-  {
     "id": "shamim",
     "name": "Dr Md Shamim Alam",
     "category": "Innovation",
@@ -172,181 +137,6 @@ const stories = [
     ],
     "sourceNote": "Source: Bangladesh Textile Today, 16 November 2026.",
     "sourceUrl": "https://textiletoday.com.bd/dr-md-shamim-alam-and-dr-md-raju-ahmed-win-best-innovation-award-for-smart-textile-innovations-at-tie-itet-textile-innovation-expo-2026"
-  },
-  {
-    "id": "bonna",
-    "name": "Bonna Akter",
-    "category": "Sports",
-    "cats": "Sports",
-    "achievement": "Two Golds — Asia Cup Archery",
-    "monogram": "BA",
-    "color": "#92400E",
-    "sample": false,
-    "alt": "Monogram for Bonna Akter",
-    "summary": "Two gold medals at the Asia Cup archery — women’s compound individual and team.",
-    "headline": "Bonna Akter: two Asia Cup archery golds",
-    "featuredDate": "10 November 2026",
-    "journey": [
-      [
-        "The final",
-        "On 29 October 2026 she beat Kazakhstan’s Milana Burleva 145–143 to win the women’s compound individual gold."
-      ],
-      [
-        "The team gold",
-        "With Sriporna Biswas and Kulsuma Akter Moni, she won the women’s compound team gold 230–220."
-      ],
-      [
-        "The journey",
-        "From school football to archery in 2014, and a first international trophy in 2017 — this was her first individual gold."
-      ]
-    ],
-    "body": [
-      "Bonna Akter won two gold medals at the Asia Cup World Ranking Tournament Leg 2 in Sulaymaniyah, Iraq: her first international individual gold, beating Kazakhstan’s Milana Burleva 145–143 in the women’s compound individual final on 29 October 2026, and the women’s compound team gold with Sriporna Biswas and Kulsuma Akter Moni, beating Kazakhstan 230–220.",
-      "Her journey began in school football before she took up archery in 2014. Her first international trophy came in 2017 — this was her first individual gold.",
-      "The Daily Star profiled her on 10 November 2026, tracing a path from self-doubt to the top of the podium."
-    ],
-    "sourceNote": "Source: The Daily Star, 10 November 2026.",
-    "sourceUrl": "https://www.thedailystar.net/life-living/news/bonna-akters-journey-self-doubt-asia-cup-archery-gold-4320141"
-  },
-  {
-    "id": "nazifa",
-    "name": "Nazifa Tushi",
-    "category": "Arts",
-    "cats": "Arts",
-    "achievement": "Best Actress — Asian World Film Festival",
-    "monogram": "NT",
-    "color": "#BE185D",
-    "sample": false,
-    "alt": "Monogram for Nazifa Tushi",
-    "summary": "Snow Leopard Award for Best Actress at the 12th Asian World Film Festival for “Roid”.",
-    "headline": "Nazifa Tushi: Best Actress in Los Angeles for “Roid”",
-    "featuredDate": "20 November 2026",
-    "journey": [
-      [
-        "The film",
-        "“Roid”, directed by Mejbaur Rahman Sumon, follows Sadhu and his mentally unstable wife near a solitary palm tree."
-      ],
-      [
-        "The festival",
-        "The 12th Asian World Film Festival ran 12–19 November 2026 in Los Angeles."
-      ],
-      [
-        "The award",
-        "Tushi won the Snow Leopard Award for Best Actress — and “Roid” is Bangladesh’s official entry for the 99th Academy Awards."
-      ]
-    ],
-    "body": [
-      "Bangladeshi actress Nazifa Tushi won the 2026 Snow Leopard Award for Best Actress at the 12th Asian World Film Festival in Los Angeles for her performance in “Roid”, directed by Mejbaur Rahman Sumon.",
-      "The festival ran from 12 to 19 November 2026 at The Culver Theater in Los Angeles. “Roid” follows Sadhu, a man living with his mentally unstable wife near a solitary palm tree, with Mostafizur Noor Imran starring opposite Tushi.",
-      "“Roid” has also been selected as Bangladesh’s official entry for the 99th Academy Awards."
-    ],
-    "sourceNote": "Source: New Age, 20 November 2026.",
-    "sourceUrl": "https://www.newagebd.net/post/film/323293/nazifa-tushi-wins-best-actress-at-asian-world-film-festival"
-  },
-  {
-    "id": "tanvir",
-    "name": "Tanvir Sadat",
-    "category": "Education",
-    "cats": "Education",
-    "achievement": "Silver Medal — Youth Geography Olympiad",
-    "monogram": "TS",
-    "color": "#6D28D9",
-    "sample": false,
-    "alt": "Monogram for Tanvir Sadat",
-    "summary": "Silver medal at the Multinational Youth Geography Olympiad (MY-GEO 2026) in Russia.",
-    "headline": "Tanvir Sadat: a silver medal at the Youth Geography Olympiad",
-    "featuredDate": "18 November 2026",
-    "journey": [
-      [
-        "The olympiad",
-        "The inaugural Multinational Youth Geography Olympiad ran 24–31 October 2026 in Russia’s Sirius Federal Territory."
-      ],
-      [
-        "The medal",
-        "Tanvir won an individual silver medal; all five Bangladeshi team members won medals."
-      ],
-      [
-        "The team",
-        "Bangladesh jointly finished second overall."
-      ]
-    ],
-    "body": [
-      "Bangladesh jointly secured second place at Russia’s inaugural Multinational Youth Geography Olympiad (MY-GEO 2026), held from 24 to 31 October in Russia’s Sirius Federal Territory, with all five members of its team winning individual medals.",
-      "In the individual competition, Tanvir Sadat won a silver medal. Arifa Atiq Mim also won silver, while Md Tawsikul Islam, Minhajul Islam Tahmid and Shahriar Noor received bronze.",
-      "The competition featured theoretical, practical and multimedia stages, including a field stage on 28 October at Rosa Khutor Mountain Resort."
-    ],
-    "sourceNote": "Source: Dhaka Tribune, 18 November 2026.",
-    "sourceUrl": "https://www.dhakatribune.com/bangladesh/education/425045/five-bangladeshi-students-win-medals-at-russia%E2%80%99s"
-  },
-  {
-    "id": "runa",
-    "name": "Runa Khan",
-    "category": "Health",
-    "cats": "Health Impact",
-    "achievement": "Ramon Magsaysay Award 2026",
-    "monogram": "RK",
-    "color": "#831843",
-    "sample": false,
-    "alt": "Monogram for Runa Khan",
-    "summary": "The 2026 Ramon Magsaysay Award for Friendship’s work with marginalised communities.",
-    "headline": "Runa Khan: the Ramon Magsaysay Award for two decades of service",
-    "featuredDate": "16 November 2026",
-    "journey": [
-      [
-        "The organisation",
-        "She founded Friendship in 2002, starting with a floating hospital for the remote river islands."
-      ],
-      [
-        "The work",
-        "Friendship grew into healthcare, education, climate adaptation, economic development and cultural preservation."
-      ],
-      [
-        "The award",
-        "She received the 2026 Ramon Magsaysay Award in Manila on 15 November 2026 — the 14th Bangladeshi recipient."
-      ]
-    ],
-    "body": [
-      "Runa Khan, founder of Friendship, received the 2026 Ramon Magsaysay Award at a ceremony at the Metropolitan Theatre in Manila on 15 November 2026. She is the 14th Bangladeshi to receive the distinction, often called Asia’s Nobel Prize.",
-      "She founded Friendship in 2002, initially introducing a floating hospital to provide healthcare to people on the remote river islands (chars) beyond the reach of conventional services.",
-      "The organisation has since expanded into healthcare, education, climate adaptation, sustainable economic development, inclusive citizenship and cultural preservation."
-    ],
-    "sourceNote": "Source: The Financial Express, 16 November 2026.",
-    "sourceUrl": "https://thefinancialexpress.com.bd/national/runa-gets-ramon-magsaysay-award"
-  },
-  {
-    "id": "ridoy",
-    "name": "Mahmudul Hasan Ridoy",
-    "category": "Business",
-    "cats": "Business",
-    "achievement": "Best Emerging Entrepreneur 2026",
-    "monogram": "MR",
-    "color": "#9A3412",
-    "sample": false,
-    "alt": "Monogram for Mahmudul Hasan Ridoy",
-    "summary": "Best Emerging Entrepreneur at the Bangladesh Achievers Award 2026.",
-    "headline": "Mahmudul Hasan Ridoy: Best Emerging Entrepreneur 2026",
-    "featuredDate": "18 November 2026",
-    "journey": [
-      [
-        "The companies",
-        "He leads MHR Education and Easydrop Limited — education services and e-commerce."
-      ],
-      [
-        "The award",
-        "He won Best Emerging Entrepreneur at the fifth Bangladesh Achievers Award 2026."
-      ],
-      [
-        "The ceremony",
-        "The award was presented at the China-Maitree Conference Centre, Dhaka, on 14 November 2026."
-      ]
-    ],
-    "body": [
-      "Mahmudul Hasan Ridoy, CEO of MHR Education and Easydrop Limited, won the Best Emerging Entrepreneur award at the fifth edition of the Bangladesh Achievers Award 2026.",
-      "He leads two companies: MHR Education, which helps students explore educational opportunities including pathways to study abroad, and Easydrop Limited, which operates in dropshipping and e-commerce.",
-      "Actress Sabila Nur and cultural personality Ivan Shahriar Sohag presented the award at the China-Maitree Conference Centre in Agargaon, Dhaka, on 14 November 2026."
-    ],
-    "sourceNote": "Source: The Business Standard, 18 November 2026.",
-    "sourceUrl": "https://www.tbsnews.net/economy/corporates/mahmudul-hasan-ridoy-wins-best-emerging-entrepreneur-bangladesh-achievers-award"
   },
   {
     "id": "fatiha",
@@ -386,9 +176,25 @@ const stories = [
 ];
 
 const select = (query) => document.querySelector(query);
-const cards = [...document.querySelectorAll('.spotlight-card')];
+
+function textElement(tag, text, className) {
+  const element = document.createElement(tag);
+  element.textContent = text;
+  if (className) element.className = className;
+  return element;
+}
+
+function scrollToId(id) {
+  const target = select(id);
+  if (!target) return;
+  if (window.__lenis) { window.__lenis.scrollTo(target); } else { target.scrollIntoView(); }
+}
+
+/* Spotlights filtering & See more toggle (index.html + spotlights.html) */
+const storyGrid = select('#story-grid');
+const cards = [...document.querySelectorAll('#story-grid .spotlight-card')];
 const countPill = select('#reset-filters .count-pill');
-if (countPill) countPill.textContent = String(cards.length);
+if (countPill && cards.length) countPill.textContent = String(cards.length);
 const categoryButtons = [...document.querySelectorAll('[data-filter]')];
 const searchInput = select('#story-search');
 let activeCategory = 'All';
@@ -398,12 +204,13 @@ const seeMoreRow = select('#see-more-row');
 const seeMoreBtn = select('#see-more-spotlights');
 
 function filterStories() {
-  const query = searchInput.value.trim().toLocaleLowerCase();
+  if (!storyGrid) return;
+  const query = searchInput ? searchInput.value.trim().toLocaleLowerCase() : '';
   const filtering = activeCategory !== 'All' || Boolean(query);
   let count = 0;
   cards.forEach((card) => {
-    const categoryMatches = activeCategory === 'All' || card.dataset.categories.split(' ').includes(activeCategory);
-    const personMatches = card.dataset.search.toLocaleLowerCase().includes(query);
+    const categoryMatches = activeCategory === 'All' || (card.dataset.categories || '').split(' ').includes(activeCategory);
+    const personMatches = (card.dataset.search || '').toLocaleLowerCase().includes(query);
     card.hidden = !(categoryMatches && personMatches);
     if (!card.hidden) count += 1;
   });
@@ -414,13 +221,17 @@ function filterStories() {
     card.classList.toggle('beyond-see-more', !filtering && !spotlightsExpanded && seeMoreRow && shown > SEE_MORE_COUNT);
   });
   categoryButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.filter === activeCategory)));
-  select('#story-grid').classList.toggle('is-filtered', filtering);
-  select('#empty-state').hidden = count > 0;
+  storyGrid.classList.toggle('is-filtered', filtering);
+  const emptyState = select('#empty-state');
+  if (emptyState) emptyState.hidden = count > 0;
+  const filterStatus = select('#filter-status');
   const categoryLabel = activeCategory === 'All' ? '' : ` in ${activeCategory}`;
-  if (!filtering) {
-    select('#filter-status').textContent = (spotlightsExpanded || !seeMoreRow) ? `Showing all ${cards.length} spotlights` : `Showing ${Math.min(SEE_MORE_COUNT, cards.length)} of ${cards.length} spotlights`;
-  } else {
-    select('#filter-status').textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'}${categoryLabel}${query ? ` matching “${searchInput.value.trim()}”` : ''}`;
+  if (filterStatus) {
+    if (!filtering) {
+      filterStatus.textContent = (spotlightsExpanded || !seeMoreRow) ? `Showing all ${cards.length} spotlights` : `Showing ${Math.min(SEE_MORE_COUNT, cards.length)} of ${cards.length} spotlights`;
+    } else {
+      filterStatus.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'}${categoryLabel}${query && searchInput ? ` matching “${searchInput.value.trim()}”` : ''}`;
+    }
   }
   const clearFiltersInline = select('#clear-filters-inline');
   if (clearFiltersInline) clearFiltersInline.hidden = !filtering;
@@ -431,59 +242,80 @@ function filterStories() {
     if (label) label.textContent = spotlightsExpanded ? 'Show less' : 'See more';
     const pill = seeMoreBtn.querySelector('.count-pill');
     if (pill) {
-      pill.textContent = `${cards.length - SEE_MORE_COUNT} more`;
+      pill.textContent = `${Math.max(0, cards.length - SEE_MORE_COUNT)} more`;
       pill.hidden = spotlightsExpanded;
     }
   }
 }
+
 function resetFilters() {
   activeCategory = 'All';
-  searchInput.value = '';
-  // 'View all people' / 'Show all people' must show all 11, not collapse to 3.
+  if (searchInput) searchInput.value = '';
   spotlightsExpanded = true;
   filterStories();
 }
-categoryButtons.forEach((button) => button.addEventListener('click', () => {
-  activeCategory = activeCategory === button.dataset.filter ? 'All' : button.dataset.filter;
-  if (activeCategory === 'All') spotlightsExpanded = false;
+
+if (storyGrid) {
+  categoryButtons.forEach((button) => button.addEventListener('click', () => {
+    activeCategory = activeCategory === button.dataset.filter ? 'All' : button.dataset.filter;
+    if (activeCategory === 'All') spotlightsExpanded = false;
+    filterStories();
+    scrollToId('#stories');
+  }));
+
+  document.querySelectorAll('[data-pillar-filter]').forEach((link) => link.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (searchInput) searchInput.value = '';
+    activeCategory = link.dataset.pillarFilter;
+    filterStories();
+    scrollToId('#stories');
+  }));
+
+  if (searchInput) searchInput.addEventListener('input', filterStories);
+  const resetFiltersBtn = select('#reset-filters');
+  if (resetFiltersBtn) resetFiltersBtn.addEventListener('click', resetFilters);
+  const clearFiltersInlineBtn = select('#clear-filters-inline');
+  if (clearFiltersInlineBtn) clearFiltersInlineBtn.addEventListener('click', resetFilters);
+  const emptyResetBtn = select('#empty-reset');
+  if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetFilters);
+  const clearSearchBtn = select('#clear-search');
+  if (clearSearchBtn && searchInput) clearSearchBtn.addEventListener('click', () => { searchInput.value = ''; filterStories(); searchInput.focus(); });
+
+  if (seeMoreBtn) seeMoreBtn.addEventListener('click', () => {
+    spotlightsExpanded = !spotlightsExpanded;
+    filterStories();
+    if (!spotlightsExpanded) scrollToId('#stories');
+  });
+
   filterStories();
-  if (window.__lenis) { window.__lenis.scrollTo('#stories'); }
-  else { select('#stories').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }
-}));
-searchInput.addEventListener('input', filterStories);
-select('#reset-filters').addEventListener('click', resetFilters);
-const clearFiltersInlineBtn = select('#clear-filters-inline');
-if (clearFiltersInlineBtn) clearFiltersInlineBtn.addEventListener('click', resetFilters);
-select('#empty-reset').addEventListener('click', resetFilters);
-select('#clear-search').addEventListener('click', () => { searchInput.value = ''; filterStories(); searchInput.focus(); });
+}
 
-if (seeMoreBtn) seeMoreBtn.addEventListener('click', () => {
-  spotlightsExpanded = !spotlightsExpanded;
-  filterStories();
-  if (!spotlightsExpanded) {
-    if (window.__lenis) { window.__lenis.scrollTo('#stories'); }
-    else { select('#stories').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }
-  }
-});
-filterStories();
-
-
+/* Search panel & Main navigation */
 const searchToggle = select('#search-toggle');
 const searchPanel = select('#search-panel');
-function closeSearch() { searchPanel.hidden = true; searchToggle.setAttribute('aria-expanded', 'false'); }
-searchToggle.addEventListener('click', () => {
-  const opening = searchPanel.hidden;
-  searchPanel.hidden = !opening;
-  searchToggle.setAttribute('aria-expanded', String(opening));
-  if (opening) searchInput.focus();
-});
+function closeSearch() {
+  if (!searchPanel || !searchToggle) return;
+  searchPanel.hidden = true;
+  searchToggle.setAttribute('aria-expanded', 'false');
+}
+if (searchToggle && searchPanel) {
+  searchToggle.addEventListener('click', () => {
+    const opening = searchPanel.hidden;
+    searchPanel.hidden = !opening;
+    searchToggle.setAttribute('aria-expanded', String(opening));
+    if (opening && searchInput) searchInput.focus();
+  });
+}
+
 const menuToggle = select('#menu-toggle');
 const mainNav = select('#main-nav');
 const siteMenu = select('#site-menu');
 const menuClose = select('#menu-close');
 const menuSearch = select('#menu-search');
 const menuSearchHint = select('#menu-search-hint');
+
 function hideSiteMenu() {
+  if (!siteMenu || !menuToggle) return;
   siteMenu.hidden = true;
   document.body.classList.remove('menu-open');
   menuToggle.setAttribute('aria-expanded', 'false');
@@ -491,76 +323,20 @@ function hideSiteMenu() {
   if (window.__lenis) window.__lenis.start();
 }
 function openSiteMenu() {
+  if (!siteMenu || !menuToggle) return;
   siteMenu.hidden = false;
   document.body.classList.add('menu-open');
   menuToggle.setAttribute('aria-expanded', 'true');
   menuToggle.setAttribute('aria-label', 'Close menu');
   if (window.__lenis) window.__lenis.stop();
-  menuClose.focus();
+  if (menuClose) menuClose.focus();
 }
-function closeSiteMenu() { hideSiteMenu(); menuToggle.focus(); }
-menuToggle.addEventListener('click', () => {
-  if (isMobileMenu()) {
-    mobileSidebar.hidden ? openMobileSidebar() : closeMobileSidebar();
-  } else {
-    siteMenu.hidden ? openSiteMenu() : closeSiteMenu();
-  }
-});
-menuClose.addEventListener('click', closeSiteMenu);
-mainNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-  mainNav.querySelectorAll('a').forEach((item) => item.classList.toggle('active', item === link));
-}));
-function scrollToId(id) {
-  const target = select(id);
-  if (!target) return;
-  if (window.__lenis) { window.__lenis.scrollTo(target); } else { target.scrollIntoView(); }
+function closeSiteMenu() {
+  hideSiteMenu();
+  if (menuToggle) menuToggle.focus();
 }
-siteMenu.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {
-  hideSiteMenu();
-  scrollToId(link.getAttribute('href'));
-}));
-siteMenu.querySelectorAll('[data-menu-filter]').forEach((link) => link.addEventListener('click', (event) => {
-  event.preventDefault();
-  searchInput.value = '';
-  activeCategory = link.dataset.menuFilter;
-  filterStories();
-  hideSiteMenu();
-  scrollToId('#stories');
-}));
-siteMenu.querySelectorAll('[data-menu-tab]').forEach((link) => link.addEventListener('click', (event) => {
-  event.preventDefault();
-  const tab = select(`[data-tab="${link.dataset.menuTab}"]`);
-  if (tab) tab.click();
-  hideSiteMenu();
-  scrollToId('#trending');
-}));
-siteMenu.querySelectorAll('[data-story]').forEach((button) => button.addEventListener('click', () => {
-  siteMenu.hidden = true;
-  document.body.classList.remove('menu-open');
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-label', 'Open menu');
-  // Safety net: the story dialog restarts Lenis when it closes, but if it
-  // never opened, restart here so the mouse wheel never stays locked.
-  if (!dialog.open && window.__lenis) window.__lenis.start();
-}));
-menuSearch.addEventListener('input', () => {
-  const query = menuSearch.value.trim();
-  if (!query) { menuSearchHint.textContent = ''; return; }
-  const count = cards.filter((card) => card.dataset.search.toLocaleLowerCase().includes(query.toLocaleLowerCase())).length;
-  menuSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
-});
-function submitMenuSearch() {
-  const query = menuSearch.value.trim();
-  resetFilters();
-  searchInput.value = query;
-  filterStories();
-  hideSiteMenu();
-  scrollToId('#stories');
-}
-menuSearch.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); submitMenuSearch(); } });
-select('#menu-search-button').addEventListener('click', submitMenuSearch);
 
-/* Mobile left sidebar: on phones (<=580px) the Menu button opens a left drawer instead of the full-screen menu. */
+/* Mobile left sidebar */
 const mobileSidebar = select('#mobile-sidebar');
 const mobileSidebarBackdrop = select('#mobile-sidebar-backdrop');
 const mobileSidebarClose = select('#mobile-sidebar-close');
@@ -569,7 +345,9 @@ const mobileSidebarSearchHint = select('#mobile-sidebar-search-hint');
 const mobileSidebarMore = select('#mobile-sidebar-more');
 const mobileSidebarMorePanel = select('#mobile-sidebar-more-panel');
 const isMobileMenu = () => window.matchMedia('(max-width: 580px)').matches;
+
 function hideMobileSidebar() {
+  if (!mobileSidebar || !mobileSidebarBackdrop || !menuToggle) return;
   mobileSidebar.hidden = true;
   mobileSidebar.classList.remove('open');
   mobileSidebarBackdrop.hidden = true;
@@ -579,6 +357,7 @@ function hideMobileSidebar() {
   if (window.__lenis) window.__lenis.start();
 }
 function openMobileSidebar() {
+  if (!mobileSidebar || !mobileSidebarBackdrop || !menuToggle) return;
   mobileSidebar.hidden = false;
   mobileSidebarBackdrop.hidden = false;
   requestAnimationFrame(() => mobileSidebar.classList.add('open'));
@@ -586,104 +365,164 @@ function openMobileSidebar() {
   menuToggle.setAttribute('aria-expanded', 'true');
   menuToggle.setAttribute('aria-label', 'Close menu');
   if (window.__lenis) window.__lenis.stop();
-  mobileSidebarClose.focus();
+  if (mobileSidebarClose) mobileSidebarClose.focus();
 }
-function closeMobileSidebar() { hideMobileSidebar(); menuToggle.focus(); }
-mobileSidebarClose.addEventListener('click', closeMobileSidebar);
-mobileSidebarBackdrop.addEventListener('click', closeMobileSidebar);
-mobileSidebar.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {
+function closeMobileSidebar() {
   hideMobileSidebar();
-  scrollToId(link.getAttribute('href'));
-}));
-mobileSidebar.querySelectorAll('[data-menu-filter]').forEach((link) => link.addEventListener('click', (event) => {
-  event.preventDefault();
-  searchInput.value = '';
-  activeCategory = link.dataset.menuFilter;
-  filterStories();
-  hideMobileSidebar();
-  scrollToId('#stories');
-}));
-mobileSidebar.querySelectorAll('[data-menu-tab]').forEach((link) => link.addEventListener('click', (event) => {
-  event.preventDefault();
-  const tab = select(`[data-tab="${link.dataset.menuTab}"]`);
-  if (tab) tab.click();
-  hideMobileSidebar();
-  scrollToId('#trending');
-}));
-mobileSidebar.querySelectorAll('[data-story]').forEach((button) => button.addEventListener('click', () => {
-  mobileSidebar.hidden = true;
-  mobileSidebarBackdrop.hidden = true;
-  document.body.classList.remove('mobile-sidebar-open');
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-label', 'Open menu');
-  // Safety net: the story dialog restarts Lenis when it closes, but if it
-  // never opened, restart here so the mouse wheel never stays locked.
-  if (!dialog.open && window.__lenis) window.__lenis.start();
-}));
-mobileSidebarMore.addEventListener('click', () => {
-  const opening = mobileSidebarMorePanel.hidden;
-  mobileSidebarMorePanel.hidden = !opening;
-  mobileSidebarMore.setAttribute('aria-expanded', String(opening));
-});
-mobileSidebarSearch.addEventListener('input', () => {
-  const query = mobileSidebarSearch.value.trim();
-  if (!query) { mobileSidebarSearchHint.textContent = ''; return; }
-  const count = cards.filter((card) => card.dataset.search.toLocaleLowerCase().includes(query.toLocaleLowerCase())).length;
-  mobileSidebarSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
-});
-function submitMobileSidebarSearch() {
-  const query = mobileSidebarSearch.value.trim();
-  resetFilters();
-  searchInput.value = query;
-  filterStories();
-  hideMobileSidebar();
-  scrollToId('#stories');
+  if (menuToggle) menuToggle.focus();
 }
-mobileSidebarSearch.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); submitMobileSidebarSearch(); } });
-select('#mobile-sidebar-search-button').addEventListener('click', submitMobileSidebarSearch);
+
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    if (isMobileMenu() && mobileSidebar) {
+      mobileSidebar.hidden ? openMobileSidebar() : closeMobileSidebar();
+    } else if (siteMenu) {
+      siteMenu.hidden ? openSiteMenu() : closeSiteMenu();
+    }
+  });
+}
+
+if (menuClose) menuClose.addEventListener('click', closeSiteMenu);
+if (mainNav) {
+  mainNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+    mainNav.querySelectorAll('a').forEach((item) => item.classList.toggle('active', item === link));
+  }));
+}
+
+if (siteMenu) {
+  siteMenu.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {
+    hideSiteMenu();
+    scrollToId(link.getAttribute('href'));
+  }));
+  siteMenu.querySelectorAll('[data-menu-filter]').forEach((link) => link.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (searchInput) searchInput.value = '';
+    activeCategory = link.dataset.menuFilter;
+    filterStories();
+    hideSiteMenu();
+    scrollToId('#stories');
+  }));
+  siteMenu.querySelectorAll('[data-menu-tab]').forEach((link) => link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const tab = select(`[data-tab="${link.dataset.menuTab}"]`);
+    if (tab) tab.click();
+    hideSiteMenu();
+    scrollToId('#trending');
+  }));
+  if (menuSearch && menuSearchHint) {
+    menuSearch.addEventListener('input', () => {
+      const query = menuSearch.value.trim();
+      if (!query) { menuSearchHint.textContent = ''; return; }
+      const count = cards.filter((card) => (card.dataset.search || '').toLocaleLowerCase().includes(query.toLocaleLowerCase())).length;
+      menuSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
+    });
+    const submitMenuSearch = () => {
+      const query = menuSearch.value.trim();
+      resetFilters();
+      if (searchInput) searchInput.value = query;
+      filterStories();
+      hideSiteMenu();
+      scrollToId('#stories');
+    };
+    menuSearch.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); submitMenuSearch(); } });
+    const menuSearchBtn = select('#menu-search-button');
+    if (menuSearchBtn) menuSearchBtn.addEventListener('click', submitMenuSearch);
+  }
+}
+
+if (mobileSidebar) {
+  if (mobileSidebarClose) mobileSidebarClose.addEventListener('click', closeMobileSidebar);
+  if (mobileSidebarBackdrop) mobileSidebarBackdrop.addEventListener('click', closeMobileSidebar);
+  mobileSidebar.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {
+    hideMobileSidebar();
+    scrollToId(link.getAttribute('href'));
+  }));
+  mobileSidebar.querySelectorAll('[data-menu-filter]').forEach((link) => link.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (searchInput) searchInput.value = '';
+    activeCategory = link.dataset.menuFilter;
+    filterStories();
+    hideMobileSidebar();
+    scrollToId('#stories');
+  }));
+  mobileSidebar.querySelectorAll('[data-menu-tab]').forEach((link) => link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const tab = select(`[data-tab="${link.dataset.menuTab}"]`);
+    if (tab) tab.click();
+    hideMobileSidebar();
+    scrollToId('#trending');
+  }));
+  if (mobileSidebarMore && mobileSidebarMorePanel) {
+    mobileSidebarMore.addEventListener('click', () => {
+      const opening = mobileSidebarMorePanel.hidden;
+      mobileSidebarMorePanel.hidden = !opening;
+      mobileSidebarMore.setAttribute('aria-expanded', String(opening));
+    });
+  }
+  if (mobileSidebarSearch && mobileSidebarSearchHint) {
+    mobileSidebarSearch.addEventListener('input', () => {
+      const query = mobileSidebarSearch.value.trim();
+      if (!query) { mobileSidebarSearchHint.textContent = ''; return; }
+      const count = cards.filter((card) => (card.dataset.search || '').toLocaleLowerCase().includes(query.toLocaleLowerCase())).length;
+      mobileSidebarSearchHint.textContent = `${count} ${count === 1 ? 'spotlight' : 'spotlights'} matching “${query}” — press Enter to view.`;
+    });
+    const submitMobileSidebarSearch = () => {
+      const query = mobileSidebarSearch.value.trim();
+      resetFilters();
+      if (searchInput) searchInput.value = query;
+      filterStories();
+      hideMobileSidebar();
+      scrollToId('#stories');
+    };
+    mobileSidebarSearch.addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); submitMobileSidebarSearch(); } });
+    const mobileSearchBtn = select('#mobile-sidebar-search-button');
+    if (mobileSearchBtn) mobileSearchBtn.addEventListener('click', submitMobileSidebarSearch);
+  }
+}
+
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
-    if (!searchPanel.hidden) { closeSearch(); searchToggle.focus(); }
-    if (!siteMenu.hidden) { closeSiteMenu(); }
-    if (!mobileSidebar.hidden) { closeMobileSidebar(); }
+    if (searchPanel && !searchPanel.hidden) { closeSearch(); if (searchToggle) searchToggle.focus(); }
+    if (siteMenu && !siteMenu.hidden) { closeSiteMenu(); }
+    if (mobileSidebar && !mobileSidebar.hidden) { closeMobileSidebar(); }
   }
 });
-select('#newsletter-form').addEventListener('submit', (event) => {
-  event.preventDefault();
-  if (!event.currentTarget.reportValidity()) return;
-  select('#newsletter-success').textContent = 'Thanks! You are on the list.';
-  event.currentTarget.reset();
-});
 
-const today = new Date();
-select('#today').textContent = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Dhaka' }).format(today);
-select('#today').dateTime = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Dhaka', year: 'numeric', month: '2-digit', day: '2-digit' }).format(today);
+/* Newsletter form */
+const newsletterForm = select('#newsletter-form');
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!event.currentTarget.reportValidity()) return;
+    const successEl = select('#newsletter-success');
+    if (successEl) successEl.textContent = 'Thanks! You are on the list.';
+    event.currentTarget.reset();
+  });
+}
 
-const dialog = select('#story-dialog');
-const dialogContent = select('#dialog-content');
-let lastDialogTrigger;
-function openDialog(content, trigger) {
-  lastDialogTrigger = trigger;
-  dialog.classList.toggle('profile-dialog', content.classList.contains('profile-article'));
-  dialogContent.replaceChildren(content);
-  dialog.showModal();
-  if (window.__lenis) window.__lenis.stop();
-  document.body.classList.add('dialog-open');
-  dialog.scrollTop = 0;
+/* Today's date in topbar */
+const todayEl = select('#today');
+if (todayEl) {
+  const today = new Date();
+  todayEl.textContent = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Dhaka' }).format(today);
+  todayEl.dateTime = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Dhaka', year: 'numeric', month: '2-digit', day: '2-digit' }).format(today);
 }
-function textElement(tag, text, className) {
-  const element = document.createElement(tag);
-  element.textContent = text;
-  if (className) element.className = className;
-  return element;
-}
-document.querySelectorAll('[data-story]').forEach((button) => button.addEventListener('click', () => {
-  const story = stories.find((item) => item.id === button.dataset.story);
-  if (!story) return;
-  const content = document.createElement('article');
-  content.classList.add('profile-article');
+
+/* Dedicated Story Page renderer (story.html?id=...) */
+(function () {
+  const root = select('#story-article-root');
+  if (!root) return;
+  const params = new URLSearchParams(window.location.search);
+  const requestedId = params.get('id');
+  const story = stories.find((item) => item.id === requestedId) || stories[0];
+  document.title = `${story.name} — The Rise`;
+
+  const article = document.createElement('article');
+  article.className = 'profile-article story-page-article';
+
   const head = document.createElement('div');
-  head.classList.add('profile-dialog-head');
+  head.className = 'profile-dialog-head story-page-head';
+
   let portrait;
   if (story.monogram) {
     portrait = document.createElement('div');
@@ -692,51 +531,57 @@ document.querySelectorAll('[data-story]').forEach((button) => button.addEventLis
     portrait.textContent = story.monogram;
   } else {
     portrait = document.createElement('img');
-    portrait.src = story.localImage || `https://images.unsplash.com/${story.image}?auto=format&fit=crop&w=1000&q=85`;
+    portrait.src = story.localImage || '';
     portrait.alt = story.alt;
     portrait.className = story.localImage ? 'profile-dialog-portrait nasir-photo' : 'profile-dialog-portrait';
   }
+
   const intro = document.createElement('div');
-  intro.classList.add('profile-dialog-intro');
-  const title = textElement('h2', story.name);
-  title.id = 'dialog-title';
-  const isSample = story.sample !== false;
-  intro.append(textElement('p', isSample ? 'SAMPLE PROFILE · SAMPLE STORY' : `COMMUNITY PROFILE · FEATURED ${story.featuredDate.toUpperCase()}`, 'eyebrow'), title,
+  intro.className = 'profile-dialog-intro';
+  const title = textElement('h1', story.name);
+  title.className = 'story-page-title';
+  intro.append(
+    textElement('p', `COMMUNITY PROFILE · FEATURED ${story.featuredDate.toUpperCase()}`, 'eyebrow'),
+    title,
     textElement('span', story.achievement, `achievement-badge ${story.category.toLowerCase()}`),
     textElement('p', story.summary, 'profile-dialog-summary'),
-    textElement('p', isSample ? 'A fictional achiever. An illustrative stock portrait.' : (story.localImage ? 'Photograph and achievement details supplied to The Rise.' : 'No photograph supplied. Achievement details as reported in the press.'), 'profile-disclaimer'));
+    textElement('p', story.localImage ? 'Photograph and achievement details supplied to The Rise.' : 'No photograph supplied. Achievement details as reported in the press.', 'profile-disclaimer')
+  );
   head.append(portrait, intro);
-  content.append(head);
+  article.append(head);
+
   const body = document.createElement('div');
-  body.classList.add('profile-story-body');
-  body.append(textElement('h3', story.headline || 'The story behind the achievement'));
+  body.className = 'profile-story-body story-page-body';
+  body.append(textElement('h2', story.headline || 'The story behind the achievement'));
   story.body.forEach((paragraph) => body.append(textElement('p', paragraph)));
-  body.append(textElement('h3', isSample ? 'Their journey, in three steps' : 'The milestone, in three parts'));
+  body.append(textElement('h3', 'The milestone, in three parts'));
+
   const journey = document.createElement('ol');
-  journey.classList.add('profile-journey');
+  journey.className = 'profile-journey';
   story.journey.forEach(([heading, description]) => {
     const step = document.createElement('li');
     step.append(textElement('h4', heading), textElement('p', description));
     journey.append(step);
   });
   body.append(journey);
+
   if (story.quote) {
     const quote = textElement('blockquote', `“${story.quote}”`, 'profile-advice');
-    quote.append(textElement('cite', `Advice from ${story.name}${isSample ? ' · fictional sample quote' : ''}`));
+    quote.append(textElement('cite', `Advice from ${story.name}`));
     body.append(quote);
   }
-  body.append(textElement('p', isSample
-    ? 'Sample Story: this person, achievement, journey, and quote are fictional. Stock photography does not identify a real award recipient. No actual publication, prize, or competition result is claimed.'
-    : story.sourceNote, 'dialog-note'));
+
+  body.append(textElement('p', story.sourceNote, 'dialog-note'));
   if (story.sourceUrl) {
     const sourceLink = document.createElement('a');
     sourceLink.className = 'dialog-source-link';
     sourceLink.href = story.sourceUrl;
     sourceLink.target = '_blank';
-    sourceLink.rel = 'noopener';
+    sourceLink.rel = 'noopener noreferrer';
     sourceLink.textContent = 'Read the news report →';
     body.append(sourceLink);
   }
+
   const adSlot = document.createElement('a');
   adSlot.className = 'ad-slot dialog-ad';
   adSlot.href = 'https://uplcm.com/4/12335958';
@@ -745,8 +590,7 @@ document.querySelectorAll('[data-story]').forEach((button) => button.addEventLis
   adSlot.setAttribute('aria-label', 'Sponsored partner offer');
   const adContact = document.createElement('div');
   adContact.className = 'ad-contact';
-  const ctaBtn = textElement('span', 'Explore Partner Offer →', 'ad-button ad-cta');
-  adContact.append(ctaBtn);
+  adContact.append(textElement('span', 'Explore Partner Offer →', 'ad-button ad-cta'));
   adSlot.append(
     textElement('span', 'SPONSORED', 'ad-label'),
     textElement('span', 'SPECIAL OFFER', 'ad-size'),
@@ -755,41 +599,279 @@ document.querySelectorAll('[data-story]').forEach((button) => button.addEventLis
     adContact
   );
   body.append(adSlot);
-  content.append(body);
-  openDialog(content, button);
-}));
-select('.dialog-close').addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', (event) => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
-dialog.addEventListener('close', () => {
-  document.body.classList.remove('dialog-open');
-  if (window.__lenis) window.__lenis.start();
-  if (lastDialogTrigger && lastDialogTrigger.offsetParent !== null) {
-    lastDialogTrigger.focus();
-  } else if (menuToggle && menuToggle.offsetParent !== null) {
-    menuToggle.focus();
+
+  article.append(body);
+  root.replaceChildren(article);
+
+  const moreGrid = select('#more-stories-grid');
+  if (moreGrid) {
+    const others = stories.filter((item) => item.id !== story.id).slice(0, 3);
+    others.forEach((item) => {
+      const card = document.createElement('article');
+      card.className = 'spotlight-card';
+
+      const visual = document.createElement('div');
+      visual.className = 'spotlight-portrait';
+      if (item.localImage) {
+        const img = document.createElement('img');
+        img.src = item.localImage;
+        img.alt = item.alt;
+        img.className = 'nasir-photo';
+        img.loading = 'lazy';
+        visual.append(img);
+      } else {
+        const mono = document.createElement('div');
+        mono.className = 'spotlight-monogram';
+        mono.style.background = item.color || '#6335EB';
+        mono.textContent = item.monogram || item.name.slice(0, 2).toUpperCase();
+        visual.append(mono);
+      }
+
+      const copy = document.createElement('div');
+      copy.className = 'spotlight-person-copy';
+      const link = document.createElement('a');
+      link.className = 'text-button spotlight-trigger';
+      link.href = `story.html?id=${encodeURIComponent(item.id)}`;
+      link.innerHTML = 'Read their story <span class="link-mark" aria-hidden="true">+</span>';
+      copy.append(
+        textElement('h3', item.name),
+        textElement('span', item.achievement, `achievement-badge ${item.category.toLowerCase()}`),
+        textElement('p', item.summary),
+        link
+      );
+
+      card.append(visual, copy);
+      moreGrid.append(card);
+    });
   }
-});
-select('#nomination-open').addEventListener('click', (event) => {
-  const content = document.createElement('div');
-  const title = textElement('h2', 'Every great story starts with a name.');
-  title.id = 'dialog-title';
-  content.append(textElement('span', 'GET FEATURED', 'eyebrow'), title, textElement('p', 'Prepare a nomination with the details an editor would need to understand and verify the achievement.'));
-  const list = document.createElement('ul');
-  ['The nominee’s name, field, and connection to Bangladesh.', 'A short description of the work and why it matters.', 'Public links to a paper, official competition result, award announcement, or working platform.', 'The nominee’s consent and a contact method they are comfortable sharing.'].forEach((item) => list.append(textElement('li', item)));
-  content.append(list, textElement('p', 'This is a website concept. Nominations are not collected here, and the contact mailbox has not been verified. The button below only prepares an email in your mail app; review the recipient before sending.', 'dialog-note'));
-  const emailLink = textElement('a', 'Prepare an email draft', 'button navy');
-  emailLink.href = 'mailto:hello@therisebd.com?subject=' + encodeURIComponent('The Rise — Story nomination') + '&body=' + encodeURIComponent('Nominee name:\nField / category:\nConnection to Bangladesh:\nAchievement and why it matters:\nPublic evidence links:\nConsent and contact details:\n');
-  content.append(emailLink);
-  openDialog(content, event.currentTarget);
-});
-select('#standards-open').addEventListener('click', (event) => {
-  const content = document.createElement('div');
-  const title = textElement('h2', 'Great stories begin with good evidence.');
-  title.id = 'dialog-title';
-  content.append(textElement('span', 'OUR EDITORIAL APPROACH', 'eyebrow'), title);
-  ['The Rise is a Bangladesh-first magazine concept about research, invention, awards, and thoughtful leadership. We want the work behind an achievement to be as visible as the recognition.', 'For a real edition, editors would check original papers, official results, award records, and working projects. Profiles would distinguish verified outcomes from ambitions and prototypes, and include relevant limitations.', 'Everyone deserves an accurate portrayal. Real contributors would seek consent, confirm names and quotations, credit photographs, and correct errors openly. Payment would never substitute for evidence.', 'Nasir’s featured profile uses a supplied photograph and community-submitted achievement details; the story states its verification status. The other profiles are based on news reports, with the source credited in each story. Social links open the platforms, not official The Rise accounts.'].forEach((p) => content.append(textElement('p', p)));
-  openDialog(content, event.currentTarget);
-});
+})();
+
+/* Dedicated Nomination Form Page (nominate.html) */
+(function () {
+  const form = select('#nomination-form');
+  if (!form) return;
+
+  const articleInput = select('#nom-article');
+  const wordCountEl = select('#nom-word-count');
+  const photosInput = select('#nom-photos');
+  const proofsInput = select('#nom-proofs');
+  const photosPreview = select('#nom-photos-preview');
+  const proofsPreview = select('#nom-proofs-preview');
+  const errorEl = select('#nom-error');
+  const resultEl = select('#nom-result');
+  const summaryBox = select('#nom-summary-box');
+  const sendEmailBtn = select('#nom-send-email');
+  const sendWaBtn = select('#nom-send-whatsapp');
+  const copyBtn = select('#nom-copy-btn');
+  const copyStatus = select('#nom-copy-status');
+
+  let articleFiles = [];
+  let proofFiles = [];
+  let lastFormattedText = '';
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  }
+
+  function renderFilePreviews(list, container, onRemove) {
+    if (!container) return;
+    container.replaceChildren();
+    list.forEach((file, idx) => {
+      const card = document.createElement('div');
+      card.className = 'upload-thumb-card';
+      const img = document.createElement('img');
+      img.alt = file.name;
+      const url = URL.createObjectURL(file);
+      img.src = url;
+      img.onload = () => URL.revokeObjectURL(url);
+
+      const meta = document.createElement('div');
+      meta.className = 'upload-thumb-meta';
+      meta.append(
+        textElement('span', file.name, 'upload-thumb-name'),
+        textElement('small', formatSize(file.size), 'upload-thumb-size')
+      );
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'upload-thumb-remove';
+      removeBtn.setAttribute('aria-label', `Remove ${file.name}`);
+      removeBtn.textContent = '×';
+      removeBtn.addEventListener('click', () => onRemove(idx));
+
+      card.append(img, meta, removeBtn);
+      container.append(card);
+    });
+  }
+
+  function refreshArticlePreviews() {
+    renderFilePreviews(articleFiles, photosPreview, (idx) => {
+      articleFiles.splice(idx, 1);
+      refreshArticlePreviews();
+    });
+  }
+
+  function refreshProofPreviews() {
+    renderFilePreviews(proofFiles, proofsPreview, (idx) => {
+      proofFiles.splice(idx, 1);
+      refreshProofPreviews();
+    });
+  }
+
+  if (photosInput) {
+    photosInput.addEventListener('change', () => {
+      const incoming = [...photosInput.files].filter((f) => f.type.startsWith('image/'));
+      articleFiles = articleFiles.concat(incoming);
+      photosInput.value = '';
+      refreshArticlePreviews();
+    });
+  }
+
+  if (proofsInput) {
+    proofsInput.addEventListener('change', () => {
+      const incoming = [...proofsInput.files].filter((f) => f.type.startsWith('image/'));
+      proofFiles = proofFiles.concat(incoming);
+      proofsInput.value = '';
+      refreshProofPreviews();
+    });
+  }
+
+  if (articleInput && wordCountEl) {
+    articleInput.addEventListener('input', () => {
+      const words = articleInput.value.trim() ? articleInput.value.trim().split(/\s+/).length : 0;
+      wordCountEl.textContent = `${words} ${words === 1 ? 'word' : 'words'}`;
+    });
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (errorEl) errorEl.textContent = '';
+    if (!form.reportValidity()) {
+      if (errorEl) errorEl.textContent = 'Please complete all required fields highlighted above.';
+      return;
+    }
+
+    const name = select('#nom-name').value.trim();
+    const whatsapp = select('#nom-whatsapp').value.trim();
+    const email = select('#nom-email').value.trim();
+    const address = select('#nom-address').value.trim();
+    const category = select('#nom-category').value;
+    const achievement = select('#nom-achievement').value.trim();
+    const articleTitle = select('#nom-title').value.trim();
+    const articleBody = select('#nom-article').value.trim();
+    const proofLink = select('#nom-link').value.trim();
+
+    if (proofFiles.length === 0 && !proofLink) {
+      if (errorEl) errorEl.textContent = 'Please upload at least one proof document image (certificate, award letter, or participation screenshot) or provide a public verification link.';
+      const proofBox = select('.proof-box');
+      if (proofBox) proofBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const photoNames = articleFiles.length ? articleFiles.map((f) => f.name).join(', ') : 'None selected (please attach if available)';
+    const proofNames = proofFiles.length ? proofFiles.map((f) => f.name).join(', ') : 'None (using public link)';
+
+    lastFormattedText = [
+      'THE RISE — STORY & NOMINATION SUBMISSION',
+      '----------------------------------------',
+      `Full Name: ${name}`,
+      `Address: ${address}`,
+      `Email: ${email}`,
+      `WhatsApp: ${whatsapp}`,
+      `Category: ${category}`,
+      `Achievement / Award: ${achievement}`,
+      `Article Headline: ${articleTitle}`,
+      proofLink ? `Public Verification Link: ${proofLink}` : '',
+      `Attached Article Photos (${articleFiles.length}): ${photoNames}`,
+      `Attached Proof Images (${proofFiles.length}): ${proofNames}`,
+      '',
+      'FULL ARTICLE:',
+      articleBody
+    ].filter(Boolean).join('\n');
+
+    if (summaryBox) {
+      summaryBox.replaceChildren();
+      const rows = [
+        ['Name', name],
+        ['Address', address],
+        ['Email', email],
+        ['WhatsApp', whatsapp],
+        ['Category', category],
+        ['Achievement', achievement],
+        ['Headline', articleTitle],
+        ['Article Photos', `${articleFiles.length} file(s): ${photoNames}`],
+        ['Proof Images', `${proofFiles.length} file(s): ${proofNames}`]
+      ];
+      if (proofLink) rows.push(['Reference Link', proofLink]);
+      rows.forEach(([label, value]) => {
+        const row = document.createElement('div');
+        row.className = 'nom-summary-row';
+        row.append(textElement('strong', `${label}:`), textElement('span', value));
+        summaryBox.append(row);
+      });
+    }
+
+    const subject = `The Rise Submission — ${name} (${achievement})`;
+    if (sendEmailBtn) {
+      sendEmailBtn.href = `mailto:hello@therisebd.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lastFormattedText)}`;
+    }
+    if (sendWaBtn) {
+      sendWaBtn.href = `https://wa.me/8801643442518?text=${encodeURIComponent(lastFormattedText)}`;
+    }
+    if (resultEl) {
+      resultEl.hidden = false;
+      resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      if (!lastFormattedText) return;
+      try {
+        await navigator.clipboard.writeText(lastFormattedText);
+        if (copyStatus) copyStatus.textContent = 'Submission text copied to clipboard!';
+      } catch (e) {
+        if (copyStatus) copyStatus.textContent = 'Could not auto-copy — please use Email or WhatsApp above.';
+      }
+    });
+  }
+})();
+
+/* Hover-expand floating nav (story.html, nominate.html, standards.html) */
+(function () {
+  if (document.body.classList.contains('advertise-page')) return;
+  const hoverNav = select('#hover-nav');
+  const hoverToggle = select('#hover-nav-toggle');
+  if (!hoverNav || !hoverToggle) return;
+  hoverToggle.addEventListener('click', () => {
+    const open = hoverNav.classList.toggle('is-open');
+    hoverToggle.setAttribute('aria-expanded', String(open));
+    if (open) hoverNav.classList.remove('is-dismissed');
+    else { hoverNav.classList.add('is-dismissed'); hoverToggle.blur(); }
+  });
+  hoverNav.addEventListener('mouseleave', () => {
+    hoverNav.classList.remove('is-open');
+    hoverNav.classList.remove('is-dismissed');
+    hoverToggle.setAttribute('aria-expanded', 'false');
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      hoverNav.classList.remove('is-open');
+      hoverNav.classList.add('is-dismissed');
+      hoverToggle.setAttribute('aria-expanded', 'false');
+      hoverToggle.blur();
+    }
+  });
+  let lastScrollY = window.scrollY || 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY || 0;
+    if (y > 140 && y > lastScrollY && !hoverNav.classList.contains('is-open')) hoverNav.classList.add('hover-nav-hidden');
+    else if (y < lastScrollY || y <= 140) hoverNav.classList.remove('hover-nav-hidden');
+    lastScrollY = y;
+  }, { passive: true });
+})();
 
 /* Scroll experience: Framer-style slow glide (Lenis) + gentle reveal + soft hero parallax. */
 (function () {
@@ -801,8 +883,9 @@ select('#standards-open').addEventListener('click', (event) => {
     const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
     document.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', (event) => {
-      const target = document.querySelector(link.getAttribute('href'));
-      if (link.getAttribute('href').length > 1 && target) {
+      const href = link.getAttribute('href');
+      const target = href && href.length > 1 ? document.querySelector(href) : null;
+      if (target) {
         event.preventDefault();
         lenis.scrollTo(target);
       }
@@ -821,7 +904,6 @@ select('#standards-open').addEventListener('click', (event) => {
       }
     });
   };
-  /* Threshold 0 (was 0.12): the Latest Spotlights section is ~6,000px tall on phones, so it could never reach 12% visibility on a small screen and stayed invisible (opacity:0) forever. */
   if (typeof IntersectionObserver === 'undefined') {
     revealTargets.forEach((el) => el.classList.add('in'));
   } else {
@@ -852,7 +934,7 @@ select('#standards-open').addEventListener('click', (event) => {
   }
 })();
 
-/* New sections: Top Spotlights tabs, Quote of the Day rotator, back-to-top button. */
+/* Top Spotlights tabs, Quote of the Day rotator, back-to-top button. */
 (function () {
   const tabs = document.querySelectorAll('.trending-tab');
   const panels = document.querySelectorAll('.trending-list');
@@ -894,8 +976,7 @@ select('#standards-open').addEventListener('click', (event) => {
   }
 })();
 
-
-/* Ruul-style mega menu: Stories dropdown (desktop + mobile). */
+/* Mega menu: Stories dropdown */
 (function () {
   var toggle = document.querySelector('#stories-toggle');
   var menu = document.querySelector('#stories-menu');
@@ -916,7 +997,7 @@ select('#standards-open').addEventListener('click', (event) => {
   menu.querySelectorAll('[data-menu-filter]').forEach(function (link) {
     link.addEventListener('click', function (event) {
       event.preventDefault();
-      searchInput.value = '';
+      if (searchInput) searchInput.value = '';
       activeCategory = link.dataset.menuFilter;
       filterStories();
       closeMega();
@@ -931,7 +1012,7 @@ select('#standards-open').addEventListener('click', (event) => {
   });
 })();
 
-/* Refresh starts at the top: after a reload, jump to the hero even if the URL has a #section. */
+/* Refresh starts at the top */
 window.addEventListener('load', function () {
   var isReload = false;
   try {
@@ -945,7 +1026,7 @@ window.addEventListener('load', function () {
   }
 });
 
-/* Theme toggle: Light / Night — saved in localStorage, applied before paint by the head script. */
+/* Theme toggle: Light / Night */
 (function () {
   var root = document.documentElement;
   function label() { return root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
