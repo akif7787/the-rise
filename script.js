@@ -2145,3 +2145,66 @@ window.addEventListener('load', function () {
   for (var i = 0; i < buttons.length; i++) { buttons[i].addEventListener('click', toggle); }
   sync();
 })();
+
+/* Bangla / English Language Toggle */
+(function initLanguageToggle() {
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('[data-lang-toggle]');
+  if (!buttons.length) { return; }
+
+  var i18nMap = [
+    { sel: '.topbar .edition', en: 'BANGLADESH FIRST. BOUNDLESS IN SPIRIT.', bn: 'বাংলাদেশ প্রথম। অসীম প্রেরণা।' },
+    { sel: '.topbar-actions .subscribe', en: 'Subscribe', bn: 'সাবস্ক্রাইব' },
+    { sel: '.masthead-caption', en: 'PEOPLE. PURPOSE. PROGRESS.', bn: 'মানুষ। উদ্দেশ্য। অগ্রগতি।' },
+    { sel: '#main-nav a[href="#home"]', en: 'Home', bn: 'হোম' },
+    { sel: '#main-nav a[href="spotlights.html"]', en: 'Stories', bn: 'স্টোরিজ' },
+    { sel: '#main-nav a[href="articles.html"]', en: 'Articles', bn: 'আর্টিকেল' },
+    { sel: '#main-nav a[href="#categories"]', en: 'Categories', bn: 'ক্যাটাগরি' },
+    { sel: '#main-nav a[href="advertise.html"]', en: 'Advertise', bn: 'বিজ্ঞাপন' },
+    { sel: '#main-nav a[href="about.html"]', en: 'About', bn: 'আমাদের সম্পর্কে' },
+    { sel: '.nav-featured', en: 'Get Featured', bn: 'ফিচার হোন' },
+    { sel: '.nav-subscribe', en: 'Subscribe', bn: 'সাবস্ক্রাইব' },
+    { sel: '.search-toggle span', en: 'Search', bn: 'খুঁজুন' },
+    { sel: '#hero-title', html: true, en: 'Celebrating<br>People Who Do<br><em>Great Work.</em>', bn: 'যাঁরা করছেন<br>অসাধারণ কাজ,<br><em>তাঁদের গল্প।</em>' },
+    { sel: '.hero-description', en: 'The research that moves us forward. The ideas that win against the odds. The people building what comes next. Their stories deserve to rise.', bn: 'যে গবেষণা আমাদের এগিয়ে নেয়। যে ধারণা প্রতিকূলতা জয় করে। যাঁরা গড়ছেন আগামীর পথ—তাঁদের গল্পই উঠে আসুক সবার সামনে।' },
+    { sel: '.hero-actions .button.amber', en: 'Explore Stories', bn: 'গল্পগুলো দেখুন' },
+    { sel: '.hero-actions .button.outline', en: 'Submit a Nomination', bn: 'মনোনয়ন জমা দিন' },
+    { sel: '#featured-title', html: true, en: 'Featured Achiever Spotlight<span class="amber-dot">.</span>', bn: 'ফিচার্ড অ্যাচিভার স্পটলাইট<span class="amber-dot">.</span>' },
+    { sel: '#latest-article-title', html: true, en: 'Latest Published Article<span class="teal-dot">.</span>', bn: 'সর্বশেষ প্রকাশিত আর্টিকেল<span class="teal-dot">.</span>' },
+    { sel: '.dual-btn-primary', en: 'Read his full story →', bn: 'তাঁর পুরো গল্প পড়ুন →' },
+    { sel: '.dual-btn-ghost', en: 'Nominate an Achiever', bn: 'একজন অ্যাচিভার মনোনীত করুন' },
+    { sel: '.dual-btn-article', en: 'Read Full Article →', bn: 'সম্পূর্ণ আর্টিকেল পড়ুন →' },
+    { sel: '.dual-btn-ghost-dark', en: 'All Articles', bn: 'সব আর্টিকেল' },
+    { sel: '#stories-title', html: true, en: 'Latest Spotlights<span class="amber-dot">.</span>', bn: 'সর্বশেষ স্পটলাইট<span class="amber-dot">.</span>' }
+  ];
+
+  function applyLang(lang) {
+    root.setAttribute('lang', lang);
+    for (var i = 0; i < i18nMap.length; i++) {
+      var item = i18nMap[i];
+      var el = document.querySelector(item.sel);
+      if (!el) { continue; }
+      if (item.html) { el.innerHTML = item[lang]; } else { el.textContent = item[lang]; }
+    }
+    for (var j = 0; j < buttons.length; j++) {
+      buttons[j].textContent = lang === 'bn' ? 'English' : 'বাংলা';
+      buttons[j].setAttribute('aria-label', lang === 'bn' ? 'Switch to English' : 'বাংলা ভাষায় দেখুন');
+    }
+  }
+
+  var saved = 'en';
+  try {
+    var stored = localStorage.getItem('rise-lang');
+    if (stored === 'bn' || stored === 'en') { saved = stored; }
+  } catch (e) {}
+
+  applyLang(saved);
+
+  for (var k = 0; k < buttons.length; k++) {
+    buttons[k].addEventListener('click', function () {
+      var next = root.getAttribute('lang') === 'bn' ? 'en' : 'bn';
+      try { localStorage.setItem('rise-lang', next); } catch (e) {}
+      applyLang(next);
+    });
+  }
+})();

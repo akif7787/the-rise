@@ -30,7 +30,7 @@
   <title>The Rise — People. Purpose. Progress.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.27/dist/lenis.css">
   <script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js" defer></script>
@@ -42,7 +42,7 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header id="home" class="site-header wrap">
-    <div class="topbar"><time id="today" datetime="2026-11-23">Monday, 23 November 2026</time><span class="edition">BANGLADESH FIRST. BOUNDLESS IN SPIRIT.</span><span class="topbar-actions"><a class="button subscribe small" href="#newsletter">Subscribe</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between Light and Night mode">🌙</button></span></div>
+    <div class="topbar"><time id="today" datetime="2026-11-23">Monday, 23 November 2026</time><span class="edition">BANGLADESH FIRST. BOUNDLESS IN SPIRIT.</span><span class="topbar-actions"><button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch language between English and Bangla">বাংলা</button><a class="button subscribe small" href="#newsletter">Subscribe</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between Light and Night mode">🌙</button></span></div>
     <a class="masthead" href="#home" aria-label="The Rise home">The Rise<span>.</span></a>
     <p class="masthead-caption">PEOPLE. PURPOSE. PROGRESS.</p>
     <div class="nav-row">
@@ -85,39 +85,56 @@
     <div class="ticker" aria-label="Latest achievements"><div class="ticker-track"><span>FIRST PRIZE ✦ Mohammad Nasir Uddin — Research Paper, OSH 2026</span><span>DAVISSON-GERMER PRIZE ✦ M. Zahid Hasan — Quantum Research, Princeton</span><span>NASA SPACE APPS CHAMPION ✦ Muammar Tazwar Asfi — Team Galactic Poet</span><span>BEST INNOVATION ✦ Dr Md Shamim Alam — Smart Textiles</span><span>YOUTH OF THE YEAR ✦ Fatiha Ayat — Promise Awards 2026</span><span>HACK FOR HUMANITY ✦ Notun Alo, JolRekha &amp; Social Catalyst</span><span>FIRST PRIZE ✦ Mohammad Nasir Uddin — Research Paper, OSH 2026</span><span>DAVISSON-GERMER PRIZE ✦ M. Zahid Hasan — Quantum Research, Princeton</span><span>NASA SPACE APPS CHAMPION ✦ Muammar Tazwar Asfi — Team Galactic Poet</span><span>BEST INNOVATION ✦ Dr Md Shamim Alam — Smart Textiles</span><span>YOUTH OF THE YEAR ✦ Fatiha Ayat — Promise Awards 2026</span><span>HACK FOR HUMANITY ✦ Notun Alo, JolRekha &amp; Social Catalyst</span></div></div>
     <div class="issue-note wrap"><span class="eyebrow">AMBITION HAS MANY FACES</span><p>Researchers. Problem-solvers. Quiet changemakers.</p><span class="sample-note">Real people · Real achievements</span></div>
 
-    <section class="section wrap featured-spotlight" id="editors-pick" aria-labelledby="featured-title">
-      <div class="featured-top-bar">
-        <div>
-          <p class="eyebrow">COVER FEATURE · THE PERSON BEHIND THE PROGRESS</p>
+    <section class="section wrap home-dual-feature" id="editors-pick" aria-label="Latest Featured Spotlight and Latest Article">
+      <div class="dual-feature-grid">
+        <article class="dual-card dual-spotlight-card" aria-labelledby="featured-title">
+          <div class="dual-card-top">
+            <span class="eyebrow">COVER FEATURE · SPOTLIGHT</span>
+            <span class="featured-pill-tag"><span class="pulse-dot" aria-hidden="true"></span> Today’s Lead Feature</span>
+          </div>
           <h2 id="featured-title">Featured Achiever Spotlight<span class="amber-dot">.</span></h2>
-        </div>
-        <span class="featured-pill-tag"><span class="pulse-dot" aria-hidden="true"></span> Today’s Lead Feature</span>
+          <div class="dual-spotlight-body">
+            <div class="dual-portrait">
+              <img class="nasir-photo" src="nasir%20.jpg" alt="Mohammad Nasir Uddin beside the OSH conference display" loading="lazy">
+              <span class="achievement-badge featured-badge">✦ First Prize · OSH 2026</span>
+            </div>
+            <div class="dual-copy">
+              <p class="eyebrow">RESEARCH &amp; EVIDENCE</p>
+              <h3>Mohammad Nasir Uddin</h3>
+              <p class="dual-dek">Safer industries start with stronger evidence—earning First Prize for his research paper at the 2nd Annual International OSH Research Conference 2026.</p>
+              <div class="dual-facts">
+                <span><strong>Event:</strong> 2nd Int’l OSH Conference</span>
+                <span><strong>Recognition:</strong> First Prize Paper</span>
+              </div>
+              <div class="dual-actions">
+                <a class="button dual-btn-primary spotlight-trigger" href="story.html?id=nasir" aria-label="Read Mohammad Nasir Uddin’s full story">Read his full story →</a>
+                <a class="button dual-btn-ghost" href="nominate.html">Nominate an Achiever</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dual-card dual-article-card" aria-labelledby="latest-article-title">
+          <div class="dual-card-top">
+            <span class="eyebrow">NEWSROOM · LATEST ARTICLE</span>
+            <span class="article-pill-tag">Peer-Reviewed Research</span>
+          </div>
+          <h2 id="latest-article-title">Latest Published Article<span class="teal-dot">.</span></h2>
+          <div class="dual-article-body" id="home-latest-article">
+            <p class="eyebrow">POLICY &amp; SOCIETY · 8 SEPTEMBER 2026</p>
+            <h3>Why National Climate Policies Struggle at Bangladesh’s Local Level — And What Must Change</h3>
+            <p class="dual-dek">A peer-reviewed study co-authored by researchers from seven Bangladeshi universities examines why strong national climate frameworks often stall between central ministries and local government institutions.</p>
+            <div class="dual-article-meta">
+              <span><strong>Author:</strong> <a href="author.html?id=akif">Mohammed Ahanaf Akif Rahman</a></span>
+              <span><strong>Read time:</strong> 6 min read</span>
+            </div>
+            <div class="dual-actions">
+              <a class="button dual-btn-article" href="article.html?id=climate-governance-bangladesh">Read Full Article →</a>
+              <a class="button dual-btn-ghost-dark" href="articles.html">All Articles</a>
+            </div>
+          </div>
+        </article>
       </div>
-      <article class="featured-achiever featured-editorial-grid">
-        <div class="featured-portrait featured-photo-frame">
-          <img class="nasir-photo" src="nasir%20.jpg" alt="Mohammad Nasir Uddin beside the OSH conference display" loading="lazy">
-          <span class="achievement-badge featured-badge">✦ First Prize · OSH 2026</span>
-          <span class="portrait-caption">FEATURED 23 NOVEMBER 2026 · PHOTO SUPPLIED</span>
-        </div>
-        <div class="featured-person-copy">
-          <p class="eyebrow">RESEARCH &amp; EVIDENCE · COVER STORY</p>
-          <h3>Mohammad Nasir Uddin<span class="amber-dot">.</span></h3>
-          <p class="featured-lead-dek">Safer industries start with stronger evidence—earning First Prize for his research paper at the 2nd Annual International OSH Research Conference 2026.</p>
-          <div class="featured-facts-strip">
-            <div class="fact-chip"><small>EVENT</small><strong>2nd Int’l OSH Conference</strong></div>
-            <div class="fact-chip"><small>RECOGNITION</small><strong>First Prize Paper</strong></div>
-            <div class="fact-chip"><small>CATEGORY</small><strong>Research &amp; Policy</strong></div>
-          </div>
-          <div class="featured-recognition">
-            <p>“Start with better evidence.”</p>
-            <span>Celebrating research that turns evidence into safer workplaces.</span>
-          </div>
-          <div class="featured-cta-row">
-            <a class="button featured-primary-btn spotlight-trigger" href="story.html?id=nasir" aria-label="Read Mohammad Nasir Uddin’s full story">Read his full story →</a>
-            <a class="button featured-ghost-btn" href="nominate.html">Nominate an Achiever</a>
-          </div>
-        </div>
-      </article>
     </section>
 
     <section class="section wrap latest-spotlights" id="stories" aria-labelledby="stories-title">
