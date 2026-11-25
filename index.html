@@ -53,8 +53,16 @@
         <a href="spotlights.html">Stories</a>
         <a href="articles.html">Articles</a>
         <a href="#categories">Categories</a>
-        <a href="advertise.html">Advertise</a>
-        <a href="about.html">About</a>
+        <div class="nav-dropdown" id="inside-rise-dropdown">
+          <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Inside The Rise <span aria-hidden="true">▾</span></button>
+          <div class="nav-drop-menu" role="menu">
+            <span class="nav-drop-label">INSIDE THE RISE</span>
+            <a href="about.html" role="menuitem">About Us</a>
+            <a href="contact.html" role="menuitem">Contact</a>
+            <a href="careers.html" role="menuitem">Life at The Rise</a>
+            <a href="advertise.html" role="menuitem">Partnership</a>
+          </div>
+        </div>
         <a class="mobile-only" href="nominate.html">Get Featured</a>
         <a class="mobile-only" href="#newsletter">Subscribe</a>
       </nav>
@@ -165,6 +173,20 @@
       </div>
       <div class="see-more-row" id="see-more-row"><button id="see-more-spotlights" class="button" type="button" aria-expanded="false" aria-controls="story-grid"><span class="see-more-label">See more</span> <span class="count-pill">2 more</span></button></div>
       <div class="empty-state" id="empty-state" hidden><h3>No spotlights found. Keep exploring.</h3><p>Try a person’s name, achievement, or a different category.</p><button class="button navy" id="empty-reset">Show all people</button></div><noscript><p>Enable JavaScript to search and filter stories. All five profiles are shown above.</p></noscript>
+    </section>
+
+    <section class="section wrap home-articles-section" id="home-articles-section" aria-labelledby="home-articles-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">IN-DEPTH REPORTING &amp; RESEARCH</p>
+          <h2 id="home-articles-title">Latest News Articles<span class="amber-dot">.</span></h2>
+        </div>
+        <a class="text-button" href="articles.html">All Articles <span class="link-mark" aria-hidden="true">→</span></a>
+      </div>
+      <div class="news-grid" id="home-news-grid"></div>
+      <div class="see-more-row" id="home-news-see-more-row" hidden>
+        <button id="home-news-see-more" class="button" type="button">See more articles</button>
+      </div>
     </section>
 
     <a class="ad-slot ad-leaderboard ad-fullrow wrap" href="https://uplcm.com/4/12335958" target="_blank" rel="noopener noreferrer" aria-label="Sponsored advertisement">
@@ -463,7 +485,7 @@
       <div class="ad-contact"><span class="ad-button ad-cta">Check Out →</span></div>
     </a>
   </main>
-  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div class="footer-about"><a href="#home" class="footer-logo">The Rise<span>.</span></a><p>An independent magazine concept celebrating the people who move us forward. Rooted in Bangladesh. Open to the world.</p><a class="contact-link" href="mailto:hello@therisebd.com">hello@therisebd.com</a></div><div><h2>Explore</h2><a href="spotlights.html">Latest Stories</a><a href="articles.html">Articles &amp; Newsroom</a><a href="#categories">Categories</a><a href="#trending">Most Read</a><a href="#editors-pick">Editor’s Pick</a></div><div><h2>Submit &amp; Join</h2><a href="nominate.html">Submit a Nomination</a><a href="submit-article.html">Submit an Article</a><a href="careers.html">Careers &amp; Jobs</a><a href="ambassador.html">Campus Ambassador &amp; Volunteer</a><a href="advertise.html">Advertise With Us</a><a href="about.html">About The Rise</a><a href="standards.html">Editorial Standards</a></div><div><h2>Follow</h2><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div></div><div class="footer-wordmark" aria-hidden="true">THE RISE<span>.</span></div><div class="footer-bottom"><span>© 2026 The Rise. All rights reserved.</span><span>PEOPLE. PURPOSE. PROGRESS.</span><a href="#home">Back to top</a></div></div></footer>
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div class="footer-about"><a href="#home" class="footer-logo">The Rise<span>.</span></a><p>An independent magazine concept celebrating the people who move us forward. Rooted in Bangladesh. Open to the world.</p><a class="contact-link" href="mailto:hello@therisebd.com">hello@therisebd.com</a></div><div><h2>Explore</h2><a href="spotlights.html">Latest Stories</a><a href="articles.html">Articles &amp; Newsroom</a><a href="#categories">Categories</a><a href="#trending">Most Read</a><a href="#editors-pick">Editor’s Pick</a></div><div><h2>Submit &amp; Join</h2><a href="nominate.html">Submit a Nomination</a><a href="submit-article.html">Submit an Article</a><a href="careers.html">Life at The Rise</a><a href="ambassador.html">Campus Ambassador &amp; Volunteer</a><a href="advertise.html">Partnership</a><a href="contact.html">Contact Us</a><a href="about.html">About The Rise</a><a href="standards.html">Editorial Standards</a></div><div><h2>Follow</h2><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div></div><div class="footer-wordmark" aria-hidden="true">THE RISE<span>.</span></div><div class="footer-bottom"><span>© 2026 The Rise. All rights reserved.</span><span>PEOPLE. PURPOSE. PROGRESS.</span><a href="#home">Back to top</a></div></div></footer>
   <button id="back-to-top" aria-label="Back to top" hidden>↑</button>
 
   <div class="site-menu" id="site-menu" data-lenis-prevent hidden role="dialog" aria-modal="true" aria-label="Site menu">
