@@ -600,8 +600,8 @@
   }
 
   function trackPageView() {
+    if (document.getElementById('nr-lock-screen')) return;
     var path = window.location.pathname.split('/').pop() || 'index.html';
-    if (path === 'newsroom.html') return;
     var state = load();
     var day = todayIso();
     var a = state.analytics;
@@ -3146,9 +3146,8 @@ window.addEventListener('load', function () {
 /* Live Site Hydration: Featured Spotlight, Custom Ads, Timed Popup & Custom Sections */
 (function () {
   var nr = window.RiseNewsroom;
-  if (!nr) return;
+  if (!nr || document.getElementById('nr-lock-screen')) return;
   var path = window.location.pathname.split('/').pop() || 'index.html';
-  if (path === 'newsroom.html') return;
 
   var state = nr.load();
 
@@ -3723,7 +3722,7 @@ window.addEventListener('load', function () {
 
   /* Pull latest cloud content on public pages */
   var path = window.location.pathname.split('/').pop() || 'index.html';
-  if (path !== 'newsroom.html') {
+  if (!document.getElementById('nr-lock-screen')) {
     sb.pullPublicContent();
     var params = new URLSearchParams(window.location.search);
     sb.restFetch('analytics_events', {
