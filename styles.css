@@ -2229,6 +2229,25 @@ html[data-theme="dark"] .nr-donut-hole{background:#141221;color:#fff}
 html[data-theme="dark"] .nr-form input,
 html[data-theme="dark"] .nr-form select,
 html[data-theme="dark"] .nr-form textarea{background:#1B182C;border-color:#2E2949;color:#fff}
+.nr-upload-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.nr-upload-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 12px;border:1px dashed #9CA3AF;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;background:#F9FAFB;color:#111827;white-space:nowrap}
+.nr-upload-btn:hover{border-color:#111827;background:#F3F4F6}
+html[data-theme="dark"] .nr-upload-btn{background:#1B182C;border-color:#4B4470;color:#fff}
+.nr-rte-wrap{border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#fff}
+.nr-rte-toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 10px;background:#F9FAFB;border-bottom:1px solid #E5E7EB}
+.nr-rte-toolbar select{width:auto;padding:5px 8px;font-size:12px;border-radius:6px}
+.nr-rte-btn{border:1px solid #E5E7EB;background:#fff;color:#111827;border-radius:6px;padding:5px 9px;font-size:12px;font-weight:700;cursor:pointer}
+.nr-rte-btn:hover{background:#EEF2FF;border-color:#6366F1}
+.nr-rte-editor{min-height:220px;max-height:460px;overflow-y:auto;padding:14px;font-size:15px;line-height:1.7;color:#111827;outline:none}
+.nr-rte-editor:empty:before{content:attr(data-placeholder);color:#9CA3AF;pointer-events:none}
+.nr-rte-editor img{max-width:100%;height:auto;border-radius:8px;margin:10px 0;display:block}
+.nr-rte-editor blockquote{border-left:3px solid #D97706;padding-left:12px;color:#4B5563;margin:10px 0;font-style:italic}
+.nr-rte-editor h2{font-size:1.35em;margin:14px 0 6px}
+.nr-rte-editor h3{font-size:1.15em;margin:12px 0 6px}
+html[data-theme="dark"] .nr-rte-wrap{background:#1B182C;border-color:#2E2949}
+html[data-theme="dark"] .nr-rte-toolbar{background:#141122;border-color:#2E2949}
+html[data-theme="dark"] .nr-rte-btn{background:#231F38;border-color:#3A345C;color:#fff}
+html[data-theme="dark"] .nr-rte-editor{color:#F3F4F6}
 html[data-theme="dark"] .nr-btn-primary{background:#000000}
 
 /* Timed Site-Wide Popup Modal & Custom Homepage Sections */

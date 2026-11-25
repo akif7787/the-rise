@@ -341,29 +341,68 @@
   function publishArticleDirect(payload) {
     var state = load();
     var id = slugify(payload.headline) + '-' + String(Date.now()).slice(-4);
-    var paragraphs = String(payload.bodyText || '').split(/\n\s*\n/).map(function (p) { return p.trim(); }).filter(Boolean);
-    if (!paragraphs.length) paragraphs = [payload.dek || payload.headline];
-    var wordCount = String(payload.bodyText || '').trim().split(/\s+/).filter(Boolean).length;
-    var readMins = Math.max(2, Math.ceil(wordCount / 180));
+    var bodyArr = [];
+    if (payload.bodyHtml && String(payload.bodyHtml).trim()) {
+      bodyArr = [String(payload.bodyHtml).trim()];
+    } else {
+      bodyArr = String(payload.bodyText || '').split(/\n\s*\n/).map(function (p) { return p.trim(); }).filter(Boolean);
+    }
+    if (!bodyArr.length) bodyArr = [payload.dek || payload.headline];
+    var plainWords = String(payload.bodyText || payload.bodyHtml || '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
+    var readMins = Math.max(2, Math.ceil(plainWords / 180));
     var art = {
       id: id,
       topic: payload.topic || 'Policy & Society',
       badgeClass: topicToBadge(payload.topic),
       headline: payload.headline,
-      dek: payload.dek || paragraphs[0],
+      dek: payload.dek || '',
       authorId: payload.authorId || '',
       author: payload.author || 'The Rise Editorial',
       affiliation: payload.affiliation || 'The Rise BD Newsroom · Dhaka',
-      date: formatDisplayDate(),
-      readTime: readMins + ' min read',
+      date: payload.date || formatDisplayDate(),
+      readTime: payload.readTime || (readMins + ' min read'),
       image: payload.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80',
       imageCaption: payload.imageCaption || 'Published from The Rise BD Newsroom.',
-      body: paragraphs,
+      body: bodyArr,
       sources: payload.sources ? [{ label: 'Source / Reference', url: payload.sources }] : []
     };
     state.publishedArticles.unshift(art);
     save(state);
     return art;
+  }
+
+  function updatePublishedArticle(id, payload) {
+    var state = load();
+    var bodyArr = [];
+    if (payload.bodyHtml && String(payload.bodyHtml).trim()) {
+      bodyArr = [String(payload.bodyHtml).trim()];
+    } else {
+      bodyArr = String(payload.bodyText || '').split(/\n\s*\n/).map(function (p) { return p.trim(); }).filter(Boolean);
+    }
+    var plainWords = String(payload.bodyText || payload.bodyHtml || '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
+    var readMins = Math.max(2, Math.ceil(plainWords / 180));
+    var existing = state.publishedArticles.find(function (x) { return x.id === id; });
+    var updated = Object.assign({}, existing || { id: id }, {
+      id: id,
+      topic: payload.topic || (existing && existing.topic) || 'Policy & Society',
+      badgeClass: topicToBadge(payload.topic || (existing && existing.topic)),
+      headline: payload.headline,
+      dek: payload.dek !== undefined ? payload.dek : ((existing && existing.dek) || ''),
+      authorId: payload.authorId !== undefined ? payload.authorId : ((existing && existing.authorId) || ''),
+      author: payload.author || (existing && existing.author) || 'The Rise Editorial',
+      affiliation: payload.affiliation || (existing && existing.affiliation) || 'The Rise BD Newsroom · Dhaka',
+      date: payload.date || (existing && existing.date) || formatDisplayDate(),
+      readTime: payload.readTime || (readMins + ' min read'),
+      image: payload.image || (existing && existing.image) || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80',
+      imageCaption: payload.imageCaption || (existing && existing.imageCaption) || 'Published from The Rise BD Newsroom.',
+      body: bodyArr.length ? bodyArr : ((existing && existing.body) || []),
+      sources: payload.sources ? [{ label: 'Source / Reference', url: payload.sources }] : ((existing && existing.sources) || [])
+    });
+    var idx = state.publishedArticles.findIndex(function (x) { return x.id === id; });
+    if (idx !== -1) state.publishedArticles[idx] = updated;
+    else state.publishedArticles.unshift(updated);
+    save(state);
+    return updated;
   }
 
   function deletePublishedArticle(id) {
@@ -753,6 +792,7 @@
     updateAdStatus: updateAdStatus,
     deleteSubscriber: deleteSubscriber,
     publishArticleDirect: publishArticleDirect,
+    updatePublishedArticle: updatePublishedArticle,
     deletePublishedArticle: deletePublishedArticle,
     publishSpotlightDirect: publishSpotlightDirect,
     deletePublishedStory: deletePublishedStory,
@@ -2559,9 +2599,9 @@ if (window.RiseNewsroom) window.RiseNewsroom.hydrateArticles(newsArticles);
   header.className = 'story-page-hero';
   header.append(
     textElement('span', `${article.topic.toUpperCase()} · EDITORIALLY ACCEPTED`, `achievement-badge news-topic-badge ${article.badgeClass}`),
-    textElement('h1', article.headline),
-    textElement('p', article.dek, 'story-lead-dek')
+    textElement('h1', article.headline)
   );
+  if (article.dek) header.append(textElement('p', article.dek, 'story-lead-dek'));
 
   const byline = document.createElement('div');
   byline.className = 'story-byline-bar';
@@ -2591,12 +2631,35 @@ if (window.RiseNewsroom) window.RiseNewsroom.hydrateArticles(newsArticles);
 
   mainCol.append(header, byline, coverWrap);
 
+  function sanitizeRichHtml(raw) {
+    const tpl = document.createElement('template');
+    tpl.innerHTML = String(raw || '');
+    tpl.content.querySelectorAll('script, style, iframe, object, embed').forEach((el) => el.remove());
+    tpl.content.querySelectorAll('*').forEach((el) => {
+      Array.from(el.attributes).forEach((attr) => {
+        const n = attr.name.toLowerCase();
+        const v = String(attr.value || '').trim().toLowerCase();
+        if (n.startsWith('on') || ((n === 'href' || n === 'src') && v.startsWith('javascript:'))) {
+          el.removeAttribute(attr.name);
+        }
+      });
+    });
+    return tpl.innerHTML;
+  }
+
   const body = document.createElement('div');
   body.className = 'story-page-body';
   article.body.forEach((para, idx) => {
-    const p = textElement('p', para);
-    if (idx === 0) p.className = 'story-lead-paragraph';
-    body.append(p);
+    const trimmed = String(para || '').trim();
+    if (/^<[a-z]/i.test(trimmed)) {
+      const richBox = document.createElement('div');
+      richBox.innerHTML = sanitizeRichHtml(trimmed);
+      body.append(richBox);
+    } else {
+      const p = textElement('p', trimmed);
+      if (idx === 0) p.className = 'story-lead-paragraph';
+      body.append(p);
+    }
     if (idx === 1) {
       if (article.inlinePhotos && article.inlinePhotos[0]) {
         const fig = document.createElement('figure');

@@ -174,17 +174,33 @@
         if (res[7].status === 'fulfilled' && Array.isArray(res[7].value) && res[7].value.length) {
           var pageViews = {};
           var storyViews = {};
+          var daily = {};
+          var totalVisits = 0;
           res[7].value.forEach(function (ev) {
-            if (ev.event_type === 'pageview' && ev.target_id) {
-              pageViews[ev.target_id] = (pageViews[ev.target_id] || 0) + 1;
+            var pg = ev.page || ev.target_id;
+            var day = (ev.created_at || '').slice(0, 10);
+            if (ev.event_type === 'pageview' && pg) {
+              totalVisits += 1;
+              pageViews[pg] = (pageViews[pg] || 0) + 1;
+              if (day) {
+                if (!daily[day]) daily[day] = { visits: 0, impressions: 0, unique: 0 };
+                daily[day].visits += 1;
+                daily[day].impressions += 4;
+                daily[day].unique += 1;
+              }
             }
-            if (ev.event_type === 'story' && ev.target_id) {
-              storyViews[ev.target_id] = (storyViews[ev.target_id] || 0) + 1;
+            if (ev.event_type === 'story' && (ev.item_id || ev.target_id)) {
+              var sid = ev.item_id || ev.target_id;
+              storyViews[sid] = (storyViews[sid] || 0) + 1;
             }
           });
-          state.analytics = state.analytics || { pageViews: {}, storyViews: {}, history: [] };
+          state.analytics = state.analytics || { pageViews: {}, storyViews: {}, daily: {}, history: [] };
+          state.analytics.totalVisits = Math.max(state.analytics.totalVisits || 0, totalVisits);
+          state.analytics.uniqueVisitors = Math.max(state.analytics.uniqueVisitors || 0, totalVisits);
+          state.analytics.totalImpressions = Math.max(state.analytics.totalImpressions || 0, totalVisits * 4);
           state.analytics.pageViews = Object.assign({}, state.analytics.pageViews, pageViews);
           state.analytics.storyViews = Object.assign({}, state.analytics.storyViews, storyViews);
+          state.analytics.daily = Object.assign({}, state.analytics.daily, daily);
         }
         nr.save(state);
         if (typeof newsArticles !== 'undefined') nr.hydrateArticles(newsArticles);
@@ -533,11 +549,47 @@
       pubBox.innerHTML = list.length ? list.map(function (art) {
         var inSelect = selList.some(function (x) { return x.type === 'article' && x.id === art.id; });
         var selBtn = '<button type="button" class="nr-btn ' + (inSelect ? 'nr-btn-primary' : 'nr-btn-ghost') + ' nr-sm" data-sel-art="' + esc(art.id) + '">' + (inSelect ? '★ In Rise Select' : '+ Rise Select') + '</button>';
+        var editBtn = currentUser && currentUser.role !== 'Moderator'
+          ? '<button type="button" class="nr-btn nr-btn-ghost nr-sm" data-edit-pub-art="' + esc(art.id) + '">Edit</button>'
+          : '';
         var delBtn = currentUser && currentUser.role !== 'Moderator'
           ? '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-del-pub-art="' + esc(art.id) + '">Delete</button>'
           : '';
-        return '<div class="nr-clean-row"><div><a href="article.html?id=' + encodeURIComponent(art.id) + '" target="_blank"><strong>' + esc(art.headline) + '</strong></a><br><small>' + esc(art.author) + ' · ' + esc(art.topic) + ' · ' + esc(art.date) + '</small></div><div class="nr-row-actions">' + selBtn + delBtn + '</div></div>';
+        return '<div class="nr-clean-row"><div><a href="article.html?id=' + encodeURIComponent(art.id) + '" target="_blank"><strong>' + esc(art.headline) + '</strong></a><br><small>' + esc(art.author) + ' · ' + esc(art.topic) + ' · ' + esc(art.date) + '</small></div><div class="nr-row-actions">' + selBtn + editBtn + delBtn + '</div></div>';
       }).join('') : '<p class="nr-empty">No published articles.</p>';
+
+      pubBox.querySelectorAll('[data-edit-pub-art]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var id = b.getAttribute('data-edit-pub-art');
+          var art = newsArticles.find(function (x) { return x.id === id; });
+          if (!art) return;
+          var editIdEl = document.getElementById('nr-art-edit-id');
+          if (editIdEl) editIdEl.value = art.id;
+          document.getElementById('nr-art-headline').value = art.headline || '';
+          document.getElementById('nr-art-dek').value = art.dek || '';
+          document.getElementById('nr-art-topic').value = art.topic || 'Policy & Society';
+          var authSel = document.getElementById('nr-art-author-select');
+          if (authSel && art.authorId) authSel.value = art.authorId;
+          var dateEl = document.getElementById('nr-art-date');
+          if (dateEl) dateEl.value = art.date || '';
+          document.getElementById('nr-art-image').value = art.image || '';
+          document.getElementById('nr-art-sources').value = (art.sources && art.sources[0] && art.sources[0].url) ? art.sources[0].url : '';
+          var ed = document.getElementById('nr-art-editor');
+          if (ed) {
+            var bodyHtml = (art.body || []).map(function (p) {
+              var t = String(p || '').trim();
+              return /^<[a-z]/i.test(t) ? t : '<p>' + esc(t) + '</p>';
+            }).join('');
+            ed.innerHTML = bodyHtml;
+          }
+          var subBtn = document.getElementById('nr-art-submit-btn');
+          var canBtn = document.getElementById('nr-art-cancel-edit');
+          if (subBtn) subBtn.textContent = 'Save Article Changes →';
+          if (canBtn) canBtn.hidden = false;
+          var form = document.getElementById('nr-direct-article-form');
+          if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
 
       pubBox.querySelectorAll('[data-sel-art]').forEach(function (b) {
         b.addEventListener('click', function () {
@@ -822,27 +874,158 @@
   }
 
   /* Form Handlers */
+  function uploadFileToMedia(file, onUrl, statusEl) {
+    if (!file) return;
+    if (statusEl) statusEl.textContent = 'Uploading image…';
+    var sb = sbReady();
+    if (sb && typeof sb.uploadMedia === 'function') {
+      sb.uploadMedia(file).then(function (url) {
+        if (url) {
+          onUrl(url);
+          if (statusEl) statusEl.textContent = 'Image uploaded!';
+          return;
+        }
+        var reader = new FileReader();
+        reader.onload = function () { onUrl(reader.result); if (statusEl) statusEl.textContent = 'Image attached!'; };
+        reader.readAsDataURL(file);
+      }).catch(function () {
+        var reader = new FileReader();
+        reader.onload = function () { onUrl(reader.result); if (statusEl) statusEl.textContent = 'Image attached!'; };
+        reader.readAsDataURL(file);
+      });
+    } else {
+      var reader = new FileReader();
+      reader.onload = function () { onUrl(reader.result); if (statusEl) statusEl.textContent = 'Image attached!'; };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  /* Google Docs-style Rich Text Editor Toolbar */
+  var artEditor = document.getElementById('nr-art-editor');
+  var rteToolbar = document.getElementById('nr-rte-toolbar');
+  if (artEditor && rteToolbar) {
+    rteToolbar.querySelectorAll('[data-rte-cmd]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        artEditor.focus();
+        document.execCommand(btn.getAttribute('data-rte-cmd'), false, null);
+      });
+    });
+    var fontSel = document.getElementById('nr-rte-font');
+    if (fontSel) fontSel.addEventListener('change', function () {
+      if (!fontSel.value) return;
+      artEditor.focus();
+      document.execCommand('fontName', false, fontSel.value);
+      fontSel.value = '';
+    });
+    var sizeSel = document.getElementById('nr-rte-size');
+    if (sizeSel) sizeSel.addEventListener('change', function () {
+      if (!sizeSel.value) return;
+      artEditor.focus();
+      document.execCommand('fontSize', false, sizeSel.value);
+      sizeSel.value = '';
+    });
+    var blockSel = document.getElementById('nr-rte-block');
+    if (blockSel) blockSel.addEventListener('change', function () {
+      artEditor.focus();
+      document.execCommand('formatBlock', false, blockSel.value);
+    });
+    var linkBtn = document.getElementById('nr-rte-link-btn');
+    if (linkBtn) linkBtn.addEventListener('click', function () {
+      var url = prompt('Enter link URL (https://...)');
+      if (url) {
+        artEditor.focus();
+        document.execCommand('createLink', false, url);
+      }
+    });
+    var inlineImgInput = document.getElementById('nr-rte-img-file');
+    if (inlineImgInput) inlineImgInput.addEventListener('change', function () {
+      var f = inlineImgInput.files && inlineImgInput.files[0];
+      if (!f) return;
+      uploadFileToMedia(f, function (url) {
+        artEditor.focus();
+        document.execCommand('insertHTML', false, '<figure class="story-inline-figure"><img src="' + esc(url) + '" alt="Article image"></figure><p><br></p>');
+      }, document.getElementById('nr-art-pub-msg'));
+      inlineImgInput.value = '';
+    });
+  }
+
+  var artCoverInput = document.getElementById('nr-art-image-file');
+  if (artCoverInput) {
+    artCoverInput.addEventListener('change', function () {
+      var f = artCoverInput.files && artCoverInput.files[0];
+      if (!f) return;
+      uploadFileToMedia(f, function (url) {
+        document.getElementById('nr-art-image').value = url;
+      }, document.getElementById('nr-art-pub-msg'));
+    });
+  }
+
+  var spotPhotoInput = document.getElementById('nr-spot-image-file');
+  if (spotPhotoInput) {
+    spotPhotoInput.addEventListener('change', function () {
+      var f = spotPhotoInput.files && spotPhotoInput.files[0];
+      if (!f) return;
+      uploadFileToMedia(f, function (url) {
+        document.getElementById('nr-spot-image').value = url;
+      }, document.getElementById('nr-spot-pub-msg'));
+    });
+  }
+
   var dirArtForm = document.getElementById('nr-direct-article-form');
+  var cancelEditBtn = document.getElementById('nr-art-cancel-edit');
+  function resetArticleFormMode() {
+    var editIdEl = document.getElementById('nr-art-edit-id');
+    if (editIdEl) editIdEl.value = '';
+    if (artEditor) artEditor.innerHTML = '';
+    var subBtn = document.getElementById('nr-art-submit-btn');
+    if (subBtn) subBtn.textContent = 'Publish Article Now →';
+    if (cancelEditBtn) cancelEditBtn.hidden = true;
+    if (dirArtForm) dirArtForm.reset();
+  }
+  if (cancelEditBtn) cancelEditBtn.addEventListener('click', resetArticleFormMode);
+
   if (dirArtForm) {
     dirArtForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      var editIdEl = document.getElementById('nr-art-edit-id');
+      var editId = editIdEl ? editIdEl.value.trim() : '';
+      var bodyHtml = artEditor ? artEditor.innerHTML.trim() : '';
+      var bodyText = artEditor ? (artEditor.innerText || '').trim() : '';
+      if (!bodyText && !/<img/i.test(bodyHtml)) {
+        document.getElementById('nr-art-pub-msg').textContent = 'Please write your article content first.';
+        return;
+      }
       var authorId = document.getElementById('nr-art-author-select').value;
       var authorObj = (typeof newsAuthors !== 'undefined' && authorId) ? newsAuthors[authorId] : null;
-      var art = nr.publishArticleDirect({
+      var dateInput = document.getElementById('nr-art-date');
+      var payload = {
         headline: document.getElementById('nr-art-headline').value.trim(),
         dek: document.getElementById('nr-art-dek').value.trim(),
         topic: document.getElementById('nr-art-topic').value,
         authorId: authorId,
         author: authorObj ? authorObj.name : 'The Rise Editorial Desk',
         affiliation: authorObj ? authorObj.institution : 'Dhaka, Bangladesh',
+        date: dateInput ? dateInput.value.trim() : '',
         image: document.getElementById('nr-art-image').value.trim(),
-        bodyText: document.getElementById('nr-art-body').value.trim(),
+        bodyHtml: bodyHtml,
+        bodyText: bodyText,
         sources: document.getElementById('nr-art-sources').value.trim()
-      });
+      };
+      var art;
+      if (editId && typeof nr.updatePublishedArticle === 'function') {
+        art = nr.updatePublishedArticle(editId, payload);
+        if (typeof newsArticles !== 'undefined') {
+          var idx = newsArticles.findIndex(function (x) { return x.id === editId; });
+          if (idx !== -1) newsArticles[idx] = art;
+        }
+        document.getElementById('nr-art-pub-msg').textContent = 'Article updated live!';
+      } else {
+        art = nr.publishArticleDirect(payload);
+        if (typeof newsArticles !== 'undefined') newsArticles.unshift(art);
+        document.getElementById('nr-art-pub-msg').textContent = 'Published live to articles.html & homepage!';
+      }
       sbUpsertArticle(art);
-      if (typeof newsArticles !== 'undefined') newsArticles.unshift(art);
-      document.getElementById('nr-art-pub-msg').textContent = 'Published live to articles.html & homepage!';
-      dirArtForm.reset();
+      resetArticleFormMode();
       renderAll();
     });
   }
