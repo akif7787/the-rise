@@ -3653,3 +3653,82 @@ window.addEventListener('load', function () {
   }
   syncCount();
 })();
+
+/* Supabase Cloud Sync Hooks for Public Forms & Live Content Pull */
+(function () {
+  var sb = window.RiseSupabase;
+  var nr = window.RiseNewsroom;
+  if (!sb || !nr) return;
+
+  /* Wrap public submission methods to also persist to Supabase Cloud */
+  var origSubmitArt = nr.submitArticle;
+  nr.submitArticle = function (payload) {
+    var res = origSubmitArt(payload);
+    sb.restFetch('article_submissions', {
+      method: 'POST',
+      body: {
+        author: res.author, email: res.email, whatsapp: res.whatsapp,
+        affiliation: res.affiliation, topic: res.topic, city: res.city,
+        headline: res.headline, dek: res.dek, body_text: res.bodyText, sources: res.sources
+      }
+    }).catch(function () {});
+    return res;
+  };
+
+  var origSubmitNom = nr.submitNomination;
+  nr.submitNomination = function (payload) {
+    var res = origSubmitNom(payload);
+    sb.restFetch('nomination_submissions', {
+      method: 'POST',
+      body: {
+        name: res.name, email: res.email, whatsapp: res.whatsapp,
+        address: res.address, category: res.category, achievement: res.achievement,
+        headline: res.headline, body_text: res.bodyText, proof_link: res.proofLink
+      }
+    }).catch(function () {});
+    return res;
+  };
+
+  var origSubmitAd = nr.submitAd;
+  nr.submitAd = function (payload) {
+    var res = origSubmitAd(payload);
+    sb.restFetch('ad_inquiries', {
+      method: 'POST',
+      body: { name: res.name, company: res.company, slot: res.slot, message: res.message }
+    }).catch(function () {});
+    return res;
+  };
+
+  var origAddSub = nr.addSubscriber;
+  nr.addSubscriber = function (email, source, topics) {
+    var clean = origAddSub(email, source, topics);
+    if (clean) {
+      sb.restFetch('newsletter_subscribers', {
+        method: 'POST',
+        headers: { 'Prefer': 'resolution=merge-duplicates' },
+        body: { email: clean, source: source || 'index.html', topics: topics || ['Latest Stories'] }
+      }).catch(function () {});
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'subscribe_welcome',
+          email: clean,
+          topics: topics || ['Latest Stories']
+        })
+      }).catch(function () {});
+    }
+    return clean;
+  };
+
+  /* Pull latest cloud content on public pages */
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  if (path !== 'newsroom.html') {
+    sb.pullPublicContent();
+    var params = new URLSearchParams(window.location.search);
+    sb.restFetch('analytics_events', {
+      method: 'POST',
+      body: { page: path, item_id: params.get('id') || '', event_type: 'pageview' }
+    }).catch(function () {});
+  }
+})();

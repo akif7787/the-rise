@@ -358,6 +358,12 @@
             });
             localStorage.setItem('rise_newsroom_v1', JSON.stringify(state));
           } catch (e) {}
+          if (window.RiseSupabase && typeof window.RiseSupabase.restFetch === 'function') {
+            window.RiseSupabase.restFetch('ad_inquiries', {
+              method: 'POST',
+              body: { name: name, company: company, slot: slot, message: message }
+            }).catch(function () {});
+          }
           var subject = 'The Rise — Advertising enquiry: ' + slot;
           var body = 'Name: ' + name + '\nCompany: ' + company + '\nSlot: ' + slot + '\n\n' + message;
           window.location.href = 'mailto:hello@therisebd.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
@@ -366,6 +372,7 @@
       }
     });
   </script>
+  <script src="supabase-bridge.js" defer></script>
   <script>
 /* Theme toggle: Light / Night — saved in localStorage, applied before paint by the head script. */
 (function () {

@@ -45,6 +45,157 @@
     if (directSpot) directSpot.closest('.nr-panel').style.display = isMod ? 'none' : '';
   }
 
+  function sbReady() {
+    return window.RiseSupabase || null;
+  }
+
+  function sbRest(path, opts) {
+    var sb = sbReady();
+    if (!sb || typeof sb.getAccessToken !== 'function') return Promise.resolve(null);
+    return sb.getAccessToken().then(function (tok) {
+      if (!tok) return null;
+      return sb.restFetch(path, Object.assign({ token: tok }, opts || {}));
+    }).catch(function (err) {
+      console.warn('Supabase sync skipped:', err && err.message ? err.message : err);
+      return null;
+    });
+  }
+
+  function sbSaveSetting(key, value) {
+    return sbRest('site_settings?on_conflict=key', {
+      method: 'POST',
+      headers: { Prefer: 'resolution=merge-duplicates' },
+      body: { key: key, value: value, updated_at: new Date().toISOString() }
+    });
+  }
+
+  function sbUpsertArticle(art) {
+    if (!art) return;
+    sbRest('news_articles?on_conflict=id', {
+      method: 'POST',
+      headers: { Prefer: 'resolution=merge-duplicates' },
+      body: {
+        id: art.id, topic: art.topic || 'Policy & Society', badge_class: art.badgeClass || 'policy',
+        headline: art.headline, dek: art.dek || '', author_id: art.authorId || '',
+        author: art.author || 'The Rise Editorial Desk', affiliation: art.affiliation || '',
+        date_label: art.date || 'Today', read_time: art.readTime || '5 min read',
+        image_url: art.image || '', image_caption: art.imageCaption || '',
+        body: art.body || [], sources: art.sources || []
+      }
+    });
+  }
+
+  function sbUpsertSpotlight(story, isFeatured) {
+    if (!story) return;
+    sbRest('spotlights?on_conflict=id', {
+      method: 'POST',
+      headers: { Prefer: 'resolution=merge-duplicates' },
+      body: {
+        id: story.id, name: story.name, category: story.category || 'Research',
+        cats: story.cats || story.category || 'Research', achievement: story.achievement || '',
+        image_url: story.localImage || '', monogram: story.monogram || '', color: story.color || '#111827',
+        summary: story.summary || '', headline: story.headline || story.name,
+        featured_date: story.featuredDate || 'Featured', journey: story.journey || [],
+        body: story.body || [], sources: story.sources || [], is_featured: !!isFeatured
+      }
+    });
+  }
+
+  function syncAdminFromSupabase() {
+    var sb = sbReady();
+    if (!sb) return Promise.resolve(false);
+    return sb.getAccessToken().then(function (tok) {
+      if (!tok) return false;
+      return Promise.allSettled([
+        sb.pullPublicContent(),
+        sb.restFetch('article_submissions?select=*&order=submitted_at.desc', { token: tok }),
+        sb.restFetch('nomination_submissions?select=*&order=submitted_at.desc', { token: tok }),
+        sb.restFetch('ad_inquiries?select=*&order=submitted_at.desc', { token: tok }),
+        sb.restFetch('newsletter_subscribers?select=*&order=subscribed_at.desc', { token: tok }),
+        sb.restFetch('team_roles?select=*&order=created_at.asc', { token: tok }),
+        sb.restFetch('ad_campaigns?select=*&order=created_at.desc', { token: tok }),
+        sb.restFetch('analytics_events?select=*&order=created_at.desc&limit=500', { token: tok })
+      ]).then(function (res) {
+        var state = nr.load();
+        if (res[1].status === 'fulfilled' && Array.isArray(res[1].value)) {
+          state.articlesQueue = res[1].value.map(function (r) {
+            return {
+              id: r.id, status: r.status, author: r.author, email: r.email,
+              whatsapp: r.whatsapp, affiliation: r.affiliation, topic: r.topic,
+              city: r.city, headline: r.headline, dek: r.dek, bodyText: r.body_text,
+              sources: r.sources, submittedAt: r.submitted_at
+            };
+          });
+        }
+        if (res[2].status === 'fulfilled' && Array.isArray(res[2].value)) {
+          state.nominationsQueue = res[2].value.map(function (r) {
+            return {
+              id: r.id, status: r.status, name: r.name, email: r.email,
+              whatsapp: r.whatsapp, address: r.address, category: r.category,
+              achievement: r.achievement, headline: r.headline, bodyText: r.body_text,
+              proofLink: r.proof_link, submittedAt: r.submitted_at
+            };
+          });
+        }
+        if (res[3].status === 'fulfilled' && Array.isArray(res[3].value)) {
+          state.adsQueue = res[3].value.map(function (r) {
+            return {
+              id: r.id, status: r.status, name: r.name, company: r.company,
+              slot: r.slot, message: r.message, submittedAt: r.submitted_at
+            };
+          });
+        }
+        if (res[4].status === 'fulfilled' && Array.isArray(res[4].value)) {
+          state.subscribers = res[4].value.map(function (r) {
+            return {
+              id: r.id, email: r.email, source: r.source,
+              topics: Array.isArray(r.topics) ? r.topics : ['Latest Stories'],
+              subscribedAt: r.subscribed_at
+            };
+          });
+        }
+        if (res[5].status === 'fulfilled' && Array.isArray(res[5].value) && res[5].value.length) {
+          state.team = res[5].value.map(function (r) {
+            return { id: r.id, name: r.name, email: r.email, role: r.role };
+          });
+        }
+        if (res[6].status === 'fulfilled' && Array.isArray(res[6].value)) {
+          state.adCampaigns = res[6].value.map(function (c) {
+            return {
+              id: c.id, name: c.name, advertiser: c.advertiser, runBy: c.run_by,
+              targets: Array.isArray(c.targets) ? c.targets : ['home_top'],
+              bannerSize: c.banner_size, mediaType: c.media_type, mediaUrl: c.media_url,
+              title: c.title, text: c.description, cta: c.cta, href: c.href,
+              startAt: c.start_at, endAt: c.end_at, status: c.status,
+              impressions: c.impressions, clicks: c.clicks, createdAt: c.created_at
+            };
+          });
+        }
+        if (res[7].status === 'fulfilled' && Array.isArray(res[7].value) && res[7].value.length) {
+          var pageViews = {};
+          var storyViews = {};
+          res[7].value.forEach(function (ev) {
+            if (ev.event_type === 'pageview' && ev.target_id) {
+              pageViews[ev.target_id] = (pageViews[ev.target_id] || 0) + 1;
+            }
+            if (ev.event_type === 'story' && ev.target_id) {
+              storyViews[ev.target_id] = (storyViews[ev.target_id] || 0) + 1;
+            }
+          });
+          state.analytics = state.analytics || { pageViews: {}, storyViews: {}, history: [] };
+          state.analytics.pageViews = Object.assign({}, state.analytics.pageViews, pageViews);
+          state.analytics.storyViews = Object.assign({}, state.analytics.storyViews, storyViews);
+        }
+        nr.save(state);
+        if (typeof newsArticles !== 'undefined') nr.hydrateArticles(newsArticles);
+        if (typeof stories !== 'undefined') nr.hydrateStories(stories);
+        if (typeof newsAuthors !== 'undefined') nr.hydrateAuthors(newsAuthors);
+        renderAll();
+        return true;
+      });
+    }).catch(function () { return false; });
+  }
+
   function unlock(user) {
     if (lockScreen) lockScreen.hidden = true;
     if (workspace) workspace.hidden = false;
@@ -62,28 +213,67 @@
     if (passInput) passInput.value = '';
   }
 
-  try {
-    var savedUser = sessionStorage.getItem(SESSION_USER_KEY);
-    if (savedUser) {
-      unlock(JSON.parse(savedUser));
+  /* Protected route check: verify active Supabase Auth session on load */
+  (function checkProtectedSession() {
+    var sb = sbReady();
+    if (sb && typeof sb.getCurrentSession === 'function') {
+      sb.getCurrentSession().then(function (user) {
+        if (user) {
+          unlock(user);
+          syncAdminFromSupabase();
+        } else {
+          lock();
+        }
+      }).catch(function () { lock(); });
+    } else {
+      try {
+        var savedUser = sessionStorage.getItem(SESSION_USER_KEY);
+        if (savedUser) unlock(JSON.parse(savedUser));
+      } catch (e) {}
     }
-  } catch (e) {}
+  })();
 
   if (lockForm) {
     lockForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var user = nr.authenticateUser(emailInput ? emailInput.value : '', passInput ? passInput.value : '');
-      if (user) {
-        if (lockError) lockError.textContent = '';
-        unlock(user);
+      var em = emailInput ? emailInput.value.trim() : '';
+      var pw = passInput ? passInput.value : '';
+      var sb = sbReady();
+      if (sb && typeof sb.signIn === 'function') {
+        if (lockError) lockError.textContent = 'Signing in via Supabase Auth…';
+        sb.signIn(em, pw).then(function (user) {
+          if (lockError) lockError.textContent = '';
+          unlock(user);
+          syncAdminFromSupabase();
+        }).catch(function (err) {
+          if (lockError) {
+            lockError.textContent = (err && err.message ? err.message : 'Invalid email or password.') +
+              ' (Ensure supabase-schema.sql is run & user exists in Supabase Auth -> Users)';
+          }
+        });
       } else {
-        if (lockError) lockError.textContent = 'Invalid email or password. Default Admin: admin@therisebd.com / rise2026';
+        var user = nr.authenticateUser(em, pw);
+        if (user) {
+          if (lockError) lockError.textContent = '';
+          unlock(user);
+        } else {
+          if (lockError) lockError.textContent = 'Invalid email or password.';
+        }
       }
     });
   }
 
   var logoutBtn = document.getElementById('nr-logout-btn');
-  if (logoutBtn) logoutBtn.addEventListener('click', lock);
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function () {
+      var sb = sbReady();
+      if (sb && typeof sb.signOut === 'function') {
+        sb.signOut().finally(lock);
+      } else {
+        lock();
+      }
+    });
+  }
 
   function switchTab(target) {
     document.querySelectorAll('[data-nr-tab]').forEach(function (b) {
@@ -184,7 +374,7 @@
     if (lineBox) {
       var days = Object.keys(a.daily || {}).sort().slice(-7);
       if (!days.length) {
-        lineBox.innerHTML = '<p class="nr-empty">No daily telemetry yet. Click "+ Sample Activity" or browse pages to see the live trend line.</p>';
+        lineBox.innerHTML = '<p class="nr-empty">No daily telemetry yet. Browse pages to see the live trend line.</p>';
       } else {
         if (days.length === 1) {
           var only = days[0];
@@ -315,8 +505,23 @@
             : '<span class="nr-pill-soft">' + esc(item.status.toUpperCase()) + '</span>';
           return '<div class="nr-q-card"><div><strong>' + esc(item.headline) + '</strong><p class="nr-sub-caption">By ' + esc(item.author) + ' · ' + esc(item.topic) + '</p></div><div class="nr-row-actions">' + actions + '</div></div>';
         }).join('');
-        qBox.querySelectorAll('[data-accept-art]').forEach(function (b) { b.addEventListener('click', function () { nr.acceptArticle(b.getAttribute('data-accept-art')); renderAll(); }); });
-        qBox.querySelectorAll('[data-reject-art]').forEach(function (b) { b.addEventListener('click', function () { nr.rejectArticle(b.getAttribute('data-reject-art')); renderAll(); }); });
+        qBox.querySelectorAll('[data-accept-art]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var id = b.getAttribute('data-accept-art');
+            var pub = nr.acceptArticle(id);
+            sbRest('article_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'published' } });
+            if (pub) sbUpsertArticle(pub);
+            renderAll();
+          });
+        });
+        qBox.querySelectorAll('[data-reject-art]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var id = b.getAttribute('data-reject-art');
+            nr.rejectArticle(id);
+            sbRest('article_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'rejected' } });
+            renderAll();
+          });
+        });
       }
     }
 
@@ -335,13 +540,18 @@
       }).join('') : '<p class="nr-empty">No published articles.</p>';
 
       pubBox.querySelectorAll('[data-sel-art]').forEach(function (b) {
-        b.addEventListener('click', function () { nr.toggleRiseSelect('article', b.getAttribute('data-sel-art')); renderAll(); });
+        b.addEventListener('click', function () {
+          nr.toggleRiseSelect('article', b.getAttribute('data-sel-art'));
+          sbSaveSetting('riseSelectIds', nr.load().riseSelectIds || []);
+          renderAll();
+        });
       });
 
       pubBox.querySelectorAll('[data-del-pub-art]').forEach(function (b) {
         b.addEventListener('click', function () {
           var id = b.getAttribute('data-del-pub-art');
           nr.deletePublishedArticle(id);
+          sbRest('news_articles?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
           var idx = newsArticles.findIndex(function (x) { return x.id === id; });
           if (idx !== -1) newsArticles.splice(idx, 1);
           renderAll();
@@ -363,8 +573,23 @@
             : '<span class="nr-pill-soft">' + esc(item.status.toUpperCase()) + '</span>';
           return '<div class="nr-q-card"><div><strong>' + esc(item.name) + '</strong><p class="nr-sub-caption">' + esc(item.achievement) + '</p></div><div class="nr-row-actions">' + actions + '</div></div>';
         }).join('');
-        qBox.querySelectorAll('[data-accept-nom]').forEach(function (b) { b.addEventListener('click', function () { nr.acceptNomination(b.getAttribute('data-accept-nom')); renderAll(); }); });
-        qBox.querySelectorAll('[data-reject-nom]').forEach(function (b) { b.addEventListener('click', function () { nr.rejectNomination(b.getAttribute('data-reject-nom')); renderAll(); }); });
+        qBox.querySelectorAll('[data-accept-nom]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var id = b.getAttribute('data-accept-nom');
+            var pub = nr.acceptNomination(id);
+            sbRest('nomination_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'published' } });
+            if (pub) sbUpsertSpotlight(pub, false);
+            renderAll();
+          });
+        });
+        qBox.querySelectorAll('[data-reject-nom]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var id = b.getAttribute('data-reject-nom');
+            nr.rejectNomination(id);
+            sbRest('nomination_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'rejected' } });
+            renderAll();
+          });
+        });
       }
     }
 
@@ -380,12 +605,17 @@
         return '<div class="nr-clean-row"><div><a href="story.html?id=' + encodeURIComponent(s.id) + '" target="_blank"><strong>' + esc(s.name) + '</strong></a><br><small>' + esc(s.achievement) + '</small></div><div class="nr-row-actions">' + selBtn + delBtn + '</div></div>';
       }).join('');
       pubBox.querySelectorAll('[data-sel-story]').forEach(function (b) {
-        b.addEventListener('click', function () { nr.toggleRiseSelect('story', b.getAttribute('data-sel-story')); renderAll(); });
+        b.addEventListener('click', function () {
+          nr.toggleRiseSelect('story', b.getAttribute('data-sel-story'));
+          sbSaveSetting('riseSelectIds', nr.load().riseSelectIds || []);
+          renderAll();
+        });
       });
       pubBox.querySelectorAll('[data-del-story]').forEach(function (b) {
         b.addEventListener('click', function () {
           var id = b.getAttribute('data-del-story');
           nr.deletePublishedStory(id);
+          sbRest('spotlights?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
           var idx = stories.findIndex(function (x) { return x.id === id; });
           if (idx !== -1) stories.splice(idx, 1);
           renderAll();
@@ -408,6 +638,7 @@
       b.addEventListener('click', function () {
         var id = b.getAttribute('data-del-author');
         nr.deleteAuthor(id);
+        sbRest('authors?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
         delete newsAuthors[id];
         renderAll();
       });
@@ -438,10 +669,21 @@
       }).join('') : '<p class="nr-empty">No active ad campaigns yet. Launch your first targeted ad above.</p>';
 
       campBox.querySelectorAll('[data-toggle-camp]').forEach(function (b) {
-        b.addEventListener('click', function () { nr.toggleAdCampaign(b.getAttribute('data-toggle-camp')); renderAll(); });
+        b.addEventListener('click', function () {
+          var id = b.getAttribute('data-toggle-camp');
+          nr.toggleAdCampaign(id);
+          var updated = (nr.load().adCampaigns || []).find(function (x) { return x.id === id; });
+          if (updated) sbRest('ad_campaigns?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: updated.status } });
+          renderAll();
+        });
       });
       campBox.querySelectorAll('[data-del-camp]').forEach(function (b) {
-        b.addEventListener('click', function () { nr.deleteAdCampaign(b.getAttribute('data-del-camp')); renderAll(); });
+        b.addEventListener('click', function () {
+          var id = b.getAttribute('data-del-camp');
+          nr.deleteAdCampaign(id);
+          sbRest('ad_campaigns?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
+          renderAll();
+        });
       });
     }
 
@@ -454,7 +696,12 @@
         '</select></div>';
     }).join('') : '<p class="nr-empty">No advertiser enquiries yet.</p>';
     box.querySelectorAll('[data-ad-status]').forEach(function (s) {
-      s.addEventListener('change', function () { nr.updateAdStatus(s.getAttribute('data-ad-status'), s.value); renderPills(nr.load()); });
+      s.addEventListener('change', function () {
+        var id = s.getAttribute('data-ad-status');
+        nr.updateAdStatus(id, s.value);
+        sbRest('ad_inquiries?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: s.value } });
+        renderPills(nr.load());
+      });
     });
   }
 
@@ -467,7 +714,12 @@
           '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-del-sub="' + esc(s.id) + '">Remove</button></div>';
       }).join('') : '<p class="nr-empty">No subscribers yet.</p>';
       subBox.querySelectorAll('[data-del-sub]').forEach(function (b) {
-        b.addEventListener('click', function () { nr.deleteSubscriber(b.getAttribute('data-del-sub')); renderAll(); });
+        b.addEventListener('click', function () {
+          var id = b.getAttribute('data-del-sub');
+          nr.deleteSubscriber(id);
+          sbRest('newsletter_subscribers?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
+          renderAll();
+        });
       });
     }
     var histBox = document.getElementById('nr-campaigns-history');
@@ -486,7 +738,11 @@
         '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-del-sec="' + esc(sec.id) + '">Delete</button></div>';
     }).join('') : '<p class="nr-empty">No custom homepage sections added yet.</p>';
     box.querySelectorAll('[data-del-sec]').forEach(function (b) {
-      b.addEventListener('click', function () { nr.deleteCustomSection(b.getAttribute('data-del-sec')); renderAll(); });
+      b.addEventListener('click', function () {
+        nr.deleteCustomSection(b.getAttribute('data-del-sec'));
+        sbSaveSetting('customSections', nr.load().customSections || []);
+        renderAll();
+      });
     });
   }
 
@@ -498,7 +754,12 @@
         '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-del-tm="' + esc(t.id) + '">Remove</button></div>';
     }).join('');
     box.querySelectorAll('[data-del-tm]').forEach(function (b) {
-      b.addEventListener('click', function () { nr.deleteTeamMember(b.getAttribute('data-del-tm')); renderAll(); });
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-del-tm');
+        nr.deleteTeamMember(id);
+        sbRest('team_roles?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
+        renderAll();
+      });
     });
   }
 
@@ -578,6 +839,7 @@
         bodyText: document.getElementById('nr-art-body').value.trim(),
         sources: document.getElementById('nr-art-sources').value.trim()
       });
+      sbUpsertArticle(art);
       if (typeof newsArticles !== 'undefined') newsArticles.unshift(art);
       document.getElementById('nr-art-pub-msg').textContent = 'Published live to articles.html & homepage!';
       dirArtForm.reset();
@@ -589,6 +851,7 @@
   if (dirSpotForm) {
     dirSpotForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      var isFeatured = document.getElementById('nr-spot-featured').checked;
       var story = nr.publishSpotlightDirect({
         name: document.getElementById('nr-spot-name').value.trim(),
         category: document.getElementById('nr-spot-category').value,
@@ -596,8 +859,9 @@
         achievement: document.getElementById('nr-spot-achievement').value.trim(),
         image: document.getElementById('nr-spot-image').value.trim(),
         bodyText: document.getElementById('nr-spot-body').value.trim(),
-        setFeatured: document.getElementById('nr-spot-featured').checked
+        setFeatured: isFeatured
       });
+      sbUpsertSpotlight(story, isFeatured);
       if (typeof stories !== 'undefined') stories.unshift(story);
       document.getElementById('nr-spot-pub-msg').textContent = 'Spotlight published & highlighted!';
       dirSpotForm.reset();
@@ -618,6 +882,14 @@
         website: document.getElementById('nr-auth-web').value.trim(),
         bio: document.getElementById('nr-auth-bio').value.trim()
       });
+      sbRest('authors?on_conflict=id', {
+        method: 'POST',
+        headers: { Prefer: 'resolution=merge-duplicates' },
+        body: {
+          id: au.id, name: au.name, role: au.role, institution: au.institution || '',
+          photo_url: au.photo || '', bio: au.bio || '', email: au.email || '', links: au.links || []
+        }
+      });
       if (typeof newsAuthors !== 'undefined') newsAuthors[au.id] = au;
       document.getElementById('nr-auth-msg').textContent = 'Author profile created!';
       authForm.reset();
@@ -635,7 +907,7 @@
       var file = fileInput && fileInput.files && fileInput.files[0];
 
       function launch(mediaUrl) {
-        nr.createAdCampaign({
+        var campPayload = {
           name: document.getElementById('nr-ac-name').value.trim(),
           advertiser: document.getElementById('nr-ac-advertiser').value.trim(),
           runBy: currentUser ? currentUser.name : 'Newsroom Admin',
@@ -649,6 +921,19 @@
           targets: targets,
           startAt: document.getElementById('nr-ac-start').value || '',
           endAt: document.getElementById('nr-ac-end').value || ''
+        };
+        nr.createAdCampaign(campPayload);
+        sbRest('ad_campaigns', {
+          method: 'POST',
+          body: {
+            name: campPayload.name, advertiser: campPayload.advertiser, run_by: campPayload.runBy,
+            targets: campPayload.targets, banner_size: campPayload.bannerSize, media_type: campPayload.mediaType,
+            media_url: campPayload.mediaUrl, title: campPayload.title, description: campPayload.text,
+            cta: campPayload.cta, href: campPayload.href,
+            start_at: campPayload.startAt ? new Date(campPayload.startAt).toISOString() : null,
+            end_at: campPayload.endAt ? new Date(campPayload.endAt).toISOString() : null,
+            status: 'active'
+          }
         });
         document.getElementById('nr-ac-msg').textContent = 'Ad campaign launched! Live on selected placements.';
         adCampForm.reset();
@@ -656,9 +941,23 @@
       }
 
       if (file) {
-        var reader = new FileReader();
-        reader.onload = function () { launch(reader.result); };
-        reader.readAsDataURL(file);
+        var sb = sbReady();
+        if (sb && typeof sb.uploadMedia === 'function') {
+          sb.uploadMedia(file).then(function (publicUrl) {
+            if (publicUrl) { launch(publicUrl); return; }
+            var reader = new FileReader();
+            reader.onload = function () { launch(reader.result); };
+            reader.readAsDataURL(file);
+          }).catch(function () {
+            var reader = new FileReader();
+            reader.onload = function () { launch(reader.result); };
+            reader.readAsDataURL(file);
+          });
+        } else {
+          var reader = new FileReader();
+          reader.onload = function () { launch(reader.result); };
+          reader.readAsDataURL(file);
+        }
       } else {
         launch('');
       }
@@ -671,6 +970,7 @@
       e.preventDefault();
       var lines = document.getElementById('nr-ticker-input').value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
       nr.saveTickerItems(lines);
+      sbSaveSetting('tickerItems', lines);
       document.getElementById('nr-ticker-msg').textContent = 'Homepage ticker bar updated!';
     });
   }
@@ -702,6 +1002,7 @@
         subtitle: document.getElementById('nr-ps-title').value.trim(),
         stats: stats
       });
+      sbSaveSetting('partnershipConfig', nr.load().partnershipConfig);
       document.getElementById('nr-ps-msg').textContent = 'Partnership stats updated on advertise.html!';
     });
   }
@@ -720,6 +1021,7 @@
         var arr = Array.isArray(cfg.collabs) ? cfg.collabs : [];
         arr.splice(Number(b.getAttribute('data-del-col')), 1);
         nr.savePartnershipConfig({ collabs: arr });
+        sbSaveSetting('partnershipConfig', nr.load().partnershipConfig);
         renderCollabsList();
       });
     });
@@ -750,6 +1052,7 @@
         m1: m1.m, l1: m1.l, m2: m2.m, l2: m2.l, m3: m3.m, l3: m3.l
       });
       nr.savePartnershipConfig({ collabs: arr });
+      sbSaveSetting('partnershipConfig', nr.load().partnershipConfig);
       document.getElementById('nr-col-msg').textContent = 'Collaboration slide added to advertise.html!';
       collabForm.reset();
       renderCollabsList();
@@ -770,6 +1073,7 @@
         endAt: document.getElementById('nr-pop-end').value || '',
         active: document.getElementById('nr-pop-active').checked
       });
+      sbSaveSetting('popup', nr.load().popup);
       document.getElementById('nr-pop-status').textContent = 'Popup scheduled & active on public pages!';
     });
   }
@@ -777,6 +1081,7 @@
   if (popClearBtn) {
     popClearBtn.addEventListener('click', function () {
       nr.clearPopup();
+      sbSaveSetting('popup', null);
       document.getElementById('nr-pop-status').textContent = 'Popup disabled.';
     });
   }
@@ -795,13 +1100,39 @@
         return Array.isArray(s.topics) ? s.topics.indexOf(topicFilter) !== -1 : topicFilter === 'Latest Stories';
       });
       nr.saveCampaign({ subject: '[' + topicFilter + '] ' + subject, headline: headline, body: body });
-      var bcc = targets.map(function (s) { return s.email; }).join(',');
-      if (bcc) {
-        window.location.href = 'mailto:hello@therisebd.com?bcc=' + encodeURIComponent(bcc) + '&subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(headline + '\n\n' + body);
+      var msgEl = document.getElementById('nr-camp-msg');
+      var emails = targets.map(function (s) { return s.email; });
+      if (!emails.length) {
+        if (msgEl) msgEl.textContent = 'Campaign logged (no matching subscribers yet).';
+        campForm.reset();
+        renderAll();
+        return;
       }
-      document.getElementById('nr-camp-msg').textContent = 'Campaign logged' + (bcc ? ' & opening email client for ' + targets.length + ' matching subscriber(s).' : ' (no matching subscribers yet).');
-      campForm.reset();
-      renderAll();
+      if (msgEl) msgEl.textContent = 'Sending to ' + emails.length + ' subscriber(s) via Resend…';
+      (sbReady() && typeof sbReady().getAccessToken === 'function' ? sbReady().getAccessToken() : Promise.resolve(null)).then(function (tok) {
+        return fetch('/api/send-email', {
+          method: 'POST',
+          headers: Object.assign({ 'Content-Type': 'application/json' }, tok ? { 'Authorization': 'Bearer ' + tok } : {}),
+          body: JSON.stringify({
+            action: 'broadcast',
+            recipients: emails,
+            subject: subject,
+            headline: headline,
+            body: body
+          })
+        }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); });
+      }).then(function (res) {
+        if (res.ok && res.data && res.data.ok) {
+          if (msgEl) msgEl.textContent = 'Sent to ' + res.data.sent + ' subscriber(s) via Resend!';
+          campForm.reset();
+          renderAll();
+        } else {
+          var errMsg = (res.data && res.data.error) || 'Resend API unavailable';
+          if (msgEl) msgEl.textContent = 'Logged locally. Resend pending: ' + errMsg;
+        }
+      }).catch(function () {
+        if (msgEl) msgEl.textContent = 'Logged locally. Deploy on Vercel with RESEND_API_KEY to send via Resend.';
+      });
     });
   }
 
@@ -817,6 +1148,7 @@
         ctaHref: document.getElementById('nr-sec-href').value.trim(),
         theme: document.getElementById('nr-sec-theme').value
       });
+      sbSaveSetting('customSections', nr.load().customSections || []);
       document.getElementById('nr-sec-msg').textContent = 'Section added to homepage!';
       secForm.reset();
       renderAll();
@@ -827,13 +1159,19 @@
   if (teamForm) {
     teamForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      nr.saveTeamMember({
+      var tm = {
         name: document.getElementById('nr-tm-name').value.trim(),
         email: document.getElementById('nr-tm-email').value.trim(),
         password: document.getElementById('nr-tm-pass').value.trim(),
         role: document.getElementById('nr-tm-role').value
+      };
+      nr.saveTeamMember(tm);
+      sbRest('team_roles?on_conflict=email', {
+        method: 'POST',
+        headers: { Prefer: 'resolution=merge-duplicates' },
+        body: { name: tm.name, email: tm.email, role: tm.role }
       });
-      document.getElementById('nr-tm-msg').textContent = 'Team member saved! They can now sign in with their email & password.';
+      document.getElementById('nr-tm-msg').textContent = 'Team member saved! Also invite/add them in Supabase Auth -> Users so they can sign in.';
       teamForm.reset();
       renderAll();
     });
@@ -877,13 +1215,15 @@
 
     socialForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      nr.saveSocialLinks({
+      var socPayload = {
         facebook: document.getElementById('nr-soc-facebook').value.trim(),
         linkedin: document.getElementById('nr-soc-linkedin').value.trim(),
         instagram: document.getElementById('nr-soc-instagram').value.trim(),
         youtube: document.getElementById('nr-soc-youtube').value.trim(),
         x: document.getElementById('nr-soc-x').value.trim()
-      });
+      };
+      nr.saveSocialLinks(socPayload);
+      sbSaveSetting('socialLinks', socPayload);
       document.getElementById('nr-soc-msg').textContent = 'Social links updated across the entire website!';
     });
   }
