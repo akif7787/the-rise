@@ -77,6 +77,9 @@
         articleReads: {},
         storyReads: {}
       },
+      recycleBin: [],
+      jobCirculars: [],
+      ambassadorCirculars: [],
       passcode: 'rise2026'
     };
   }
@@ -111,6 +114,9 @@
         campaigns: Array.isArray(parsed.campaigns) ? parsed.campaigns : [],
         team: Array.isArray(parsed.team) && parsed.team.length ? parsed.team : def.team,
         analytics: Object.assign(def.analytics, parsed.analytics || {}),
+        recycleBin: Array.isArray(parsed.recycleBin) ? parsed.recycleBin : [],
+        jobCirculars: Array.isArray(parsed.jobCirculars) ? parsed.jobCirculars : [],
+        ambassadorCirculars: Array.isArray(parsed.ambassadorCirculars) ? parsed.ambassadorCirculars : [],
         passcode: parsed.passcode || 'rise2026'
       };
     } catch (e) {
@@ -2194,6 +2200,32 @@ if (todayEl) {
       var packet = lines.join('\n');
       var subject = cfg.subjectPrefix + (values[cfg.subjectField] || 'Application');
 
+      var prefix = cfg.formId === 'ambassador-form' ? 'AMBASSADOR:' : 'CAREER:';
+      var slotVal = prefix + (values[cfg.subjectField] || 'General');
+      var applicantName = values['Full Name'] || 'Applicant';
+      var applicantContact = (values['Email Address'] || '') + ' | ' + (values['WhatsApp Number'] || '');
+      var msgJson = JSON.stringify(values);
+      try {
+        var st = load();
+        if (!Array.isArray(st.adsQueue)) st.adsQueue = [];
+        st.adsQueue.unshift({
+          id: 'app-' + Date.now(),
+          status: 'new',
+          name: applicantName,
+          company: applicantContact,
+          slot: slotVal,
+          message: msgJson,
+          submittedAt: new Date().toISOString()
+        });
+        save(st);
+      } catch (e) {}
+      if (window.RiseSupabase && typeof window.RiseSupabase.restFetch === 'function') {
+        window.RiseSupabase.restFetch('ad_inquiries', {
+          method: 'POST',
+          body: { name: applicantName, company: applicantContact, slot: slotVal, message: msgJson }
+        }).catch(function () {});
+      }
+
       if (mailBtn) {
         mailBtn.href = 'mailto:hello@therisebd.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(packet);
       }
@@ -3811,7 +3843,67 @@ window.addEventListener('load', function () {
   /* Pull latest cloud content on public pages */
   var path = window.location.pathname.split('/').pop() || 'index.html';
   if (!document.getElementById('nr-lock-screen')) {
-    sb.pullPublicContent();
+    sb.pullPublicContent().then(function (changed) {
+      if (!changed) return;
+      var st = nr.load();
+      if (path === 'careers.html' && Array.isArray(st.jobCirculars) && st.jobCirculars.length) {
+        var cGrid = document.querySelector('#circulars .circular-grid');
+        var roleSel = document.getElementById('car-role');
+        if (cGrid) {
+          cGrid.innerHTML = st.jobCirculars.map(function (job) {
+            return '<article class="circular-card">' +
+              '<div class="circular-top"><span class="circular-badge">' + String(job.type || 'OPENING').toUpperCase() + '</span><span class="circular-loc">' + String(job.location || 'Dhaka / Remote') + '</span></div>' +
+              '<h3>' + String(job.title || '') + '</h3>' +
+              '<p>' + String(job.description || '') + '</p>' +
+              (job.deadline ? '<p class="circular-meta"><strong>Deadline:</strong> ' + String(job.deadline) + '</p>' : '') +
+              '<button class="button navy apply-role-btn" type="button" data-role="' + String(job.title || '').replace(/"/g, '&quot;') + '">Apply Now →</button>' +
+              '</article>';
+          }).join('');
+          cGrid.querySelectorAll('.apply-role-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              if (roleSel) roleSel.value = btn.getAttribute('data-role') || '';
+              var ap = document.getElementById('apply');
+              if (ap) ap.scrollIntoView({ behavior: 'smooth' });
+            });
+          });
+        }
+        if (roleSel) {
+          st.jobCirculars.forEach(function (job) {
+            if (!Array.from(roleSel.options).some(function (o) { return o.value === job.title; })) {
+              var opt = document.createElement('option');
+              opt.value = job.title;
+              opt.textContent = job.title;
+              roleSel.appendChild(opt);
+            }
+          });
+        }
+      }
+      if (path === 'ambassador.html' && Array.isArray(st.ambassadorCirculars) && st.ambassadorCirculars.length) {
+        var tGrid = document.querySelector('.ambassador-page .standards-grid');
+        var trSel = document.getElementById('amb-track');
+        if (tGrid) {
+          tGrid.innerHTML = st.ambassadorCirculars.map(function (tr) {
+            return '<article class="standard-card">' +
+              '<span class="eyebrow">' + String(tr.campus || 'BANGLADESH').toUpperCase() + '</span>' +
+              '<h3>' + String(tr.title || '') + '</h3>' +
+              '<p>' + String(tr.description || '') + '</p>' +
+              (tr.perks ? '<p style="font-size:13px;opacity:.8"><strong>Perks:</strong> ' + String(tr.perks) + '</p>' : '') +
+              '<a class="button navy small" href="#amb-apply">Apply Now →</a>' +
+              '</article>';
+          }).join('');
+        }
+        if (trSel) {
+          st.ambassadorCirculars.forEach(function (tr) {
+            if (!Array.from(trSel.options).some(function (o) { return o.value === tr.title; })) {
+              var opt = document.createElement('option');
+              opt.value = tr.title;
+              opt.textContent = tr.title;
+              trSel.appendChild(opt);
+            }
+          });
+        }
+      }
+    });
     var params = new URLSearchParams(window.location.search);
     sb.restFetch('analytics_events', {
       method: 'POST',

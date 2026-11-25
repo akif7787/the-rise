@@ -140,6 +140,46 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true, sent: batchPayload.length, data: batchData });
     }
 
+    if (action === 'interview_invite') {
+      const member = await verifyNewsroomAuth(req.headers.authorization || '');
+      if (!member) {
+        return res.status(401).json({ ok: false, error: 'Unauthorized: valid Newsroom session required.' });
+      }
+      const to = String(body.to || '').trim().toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) {
+        return res.status(400).json({ ok: false, error: 'Valid applicant email is required.' });
+      }
+      const name = String(body.name || 'Applicant').trim();
+      const role = String(body.role || 'Open Role').trim();
+      const dateStr = String(body.date || '').trim();
+      const timeStr = String(body.time || '').trim();
+      const modeLink = String(body.location || '').trim();
+      const note = String(body.note || '').trim();
+      const subject = `Interview Invitation: ${role} — The Rise BD`;
+      const html = `
+        <div style="font-family:Georgia,serif;max-width:580px;margin:0 auto;padding:24px;color:#111827;">
+          <p style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin:0 0 8px;">THE RISE BD · RECRUITMENT</p>
+          <h1 style="font-size:24px;margin:0 0 12px;">Interview Invitation</h1>
+          <p style="font-size:15px;line-height:1.6;color:#374151;">Dear <strong>${escapeHtml(name)}</strong>,</p>
+          <p style="font-size:15px;line-height:1.6;color:#374151;">Thank you for applying for <strong>${escapeHtml(role)}</strong> at The Rise BD. We would like to invite you for an interview.</p>
+          <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px;margin:16px 0;font-family:sans-serif;font-size:14px;">
+            ${dateStr ? `<p style="margin:4px 0;"><strong>Date:</strong> ${escapeHtml(dateStr)}</p>` : ''}
+            ${timeStr ? `<p style="margin:4px 0;"><strong>Time:</strong> ${escapeHtml(timeStr)}</p>` : ''}
+            ${modeLink ? `<p style="margin:4px 0;"><strong>Meeting Link / Location:</strong> ${escapeHtml(modeLink)}</p>` : ''}
+          </div>
+          ${note ? `<p style="font-size:14px;line-height:1.6;color:#374151;white-space:pre-line;">${escapeHtml(note)}</p>` : ''}
+          <p style="font-size:13px;color:#6b7280;margin-top:20px;">Best regards,<br>The Rise BD Editorial &amp; Recruitment Desk</p>
+        </div>`;
+
+      const result = await sendResendEmail(apiKey, {
+        from: fromEmail,
+        to: [to],
+        subject,
+        html
+      });
+      return res.status(200).json({ ok: true, id: result.id });
+    }
+
     return res.status(400).json({ ok: false, error: 'Unsupported action' });
   } catch (err) {
     return res.status(500).json({ ok: false, error: err && err.message ? err.message : 'Email send failed' });

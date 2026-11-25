@@ -2255,6 +2255,31 @@ html[data-theme="dark"] .nr-rte-editor{color:#F3F4F6}
 .nr-art-block-preview{max-height:110px;border-radius:8px;object-fit:cover;border:1px solid #E5E7EB}
 html[data-theme="dark"] .nr-art-block{background:#161326;border-color:#2E2949}
 html[data-theme="dark"] .nr-art-block .nr-rte-editor{background:#1B182C;border-color:#2E2949}
+.nr-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(4px);display:grid;place-items:center;z-index:9999;padding:20px}
+.nr-modal-backdrop[hidden]{display:none}
+.nr-modal-card{width:100%;max-width:410px;background:#fff;color:#111;border:1px solid #E5E7EB;border-radius:16px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.28);text-align:center}
+.nr-modal-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:#111;color:#fff;margin-bottom:12px}
+.nr-modal-card h3{margin:0 0 8px;font-size:19px;font-weight:800;color:#111}
+.nr-modal-card p{margin:0 0 20px;font-size:13.5px;line-height:1.55;color:#4B5563}
+.nr-modal-actions{display:flex;gap:10px;justify-content:center}
+.nr-modal-actions button{min-width:116px;padding:10px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:1px solid #111;transition:.15s ease}
+.nr-modal-cancel{background:#fff;color:#111}
+.nr-modal-cancel:hover{background:#F3F4F6}
+.nr-modal-ok{background:#111;color:#fff}
+.nr-modal-ok:hover{background:#000}
+html[data-theme="dark"] .nr-modal-card{background:#0F0F12;color:#fff;border-color:#27272A}
+html[data-theme="dark"] .nr-modal-badge{background:#fff;color:#0F0F12}
+html[data-theme="dark"] .nr-modal-card h3{color:#fff}
+html[data-theme="dark"] .nr-modal-card p{color:#A1A1AA}
+html[data-theme="dark"] .nr-modal-cancel{background:#18181B;color:#fff;border-color:#3F3F46}
+html[data-theme="dark"] .nr-modal-cancel:hover{background:#27272A}
+html[data-theme="dark"] .nr-modal-ok{background:#fff;color:#0F0F12;border-color:#fff}
+html[data-theme="dark"] .nr-modal-ok:hover{background:#E4E4E7}
+.nr-detail-card{max-width:560px;text-align:left}
+.nr-detail-body{display:grid;gap:12px;margin-top:10px;font-size:13px}
+.nr-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:#F9FAFB;padding:12px;border-radius:10px;border:1px solid #E5E7EB}
+.nr-detail-preview{max-height:170px;width:100%;object-fit:cover;border-radius:10px;border:1px solid #E5E7EB}
+html[data-theme="dark"] .nr-detail-grid{background:#18181B;border-color:#27272A}
 html[data-theme="dark"] .nr-btn-primary{background:#000000}
 
 /* Timed Site-Wide Popup Modal & Custom Homepage Sections */

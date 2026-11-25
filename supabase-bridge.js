@@ -119,6 +119,8 @@
           if (row.key === 'riseSelectIds' && Array.isArray(row.value)) state.riseSelectIds = row.value;
           if (row.key === 'partnershipConfig' && row.value) state.partnershipConfig = row.value;
           if (row.key === 'recycleBin' && Array.isArray(row.value)) state.recycleBin = row.value;
+          if (row.key === 'jobCirculars' && Array.isArray(row.value)) state.jobCirculars = row.value;
+          if (row.key === 'ambassadorCirculars' && Array.isArray(row.value)) state.ambassadorCirculars = row.value;
         });
         changed = true;
       }
