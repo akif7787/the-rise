@@ -11,13 +11,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#6335EB">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=4">
   <meta name="robots" content="noindex, nofollow">
   <title>The Rise BD Newsroom — Editorial &amp; Publishing Suite</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=19">
   <script src="script.js" defer></script>
   <script src="newsroom.js" defer></script>
 </head>
@@ -107,6 +107,7 @@
 
         <nav class="nr-subtabs" aria-label="Newsroom sections">
           <button type="button" class="nr-subtab active" data-nr-tab="insights">Overview</button>
+          <button type="button" class="nr-subtab" data-nr-tab="riseselect">The Rise Select</button>
           <button type="button" class="nr-subtab" data-nr-tab="articles">Articles <span class="nr-count" id="nr-pill-articles">0</span></button>
           <button type="button" class="nr-subtab" data-nr-tab="spotlights">Spotlights <span class="nr-count" id="nr-pill-nominations">0</span></button>
           <button type="button" class="nr-subtab" data-nr-tab="authors">Authors</button>
@@ -166,6 +167,26 @@
                 <span class="nr-pill-soft">Recent Activity</span>
               </div>
               <div id="nr-activity-feed" class="nr-feed-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <!-- TAB: THE RISE SELECT CURATION -->
+        <section class="nr-tab-panel" id="nr-tab-riseselect" hidden>
+          <div class="nr-grid-2-eq">
+            <article class="nr-panel">
+              <div class="nr-panel-head">
+                <h2>Currently Highlighted in “The Rise Select” (Top 4)</h2>
+                <span class="nr-pill-soft">Homepage Top Row</span>
+              </div>
+              <div id="nr-riseselect-active" class="nr-clean-list"></div>
+            </article>
+            <article class="nr-panel">
+              <div class="nr-panel-head">
+                <h2>Pick Spotlights or Articles to Highlight</h2>
+                <span class="nr-pill-soft">Click to Toggle</span>
+              </div>
+              <div id="nr-riseselect-picker" class="nr-clean-list"></div>
             </article>
           </div>
         </section>
@@ -466,6 +487,13 @@
                 <span class="nr-pill-soft">Broadcast to Subscribers</span>
               </div>
               <form id="nr-campaign-form" class="nr-form">
+                <select id="nr-camp-topic">
+                  <option value="ALL">Send to: All Subscribers</option>
+                  <option value="Latest Stories">Send to: Latest Stories subscribers</option>
+                  <option value="Youth Stars">Send to: Youth Stars subscribers</option>
+                  <option value="Tech Recap">Send to: Tech Recap subscribers</option>
+                  <option value="Op-Ed">Send to: Op-Ed subscribers</option>
+                </select>
                 <input id="nr-camp-subject" type="text" placeholder="Email Subject Line" required>
                 <input id="nr-camp-headline" type="text" placeholder="Newsletter Issue Headline" required>
                 <textarea id="nr-camp-body" rows="5" placeholder="Write your newsletter message for all subscribers..." required></textarea>

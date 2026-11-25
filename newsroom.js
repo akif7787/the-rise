@@ -13,8 +13,8 @@
   var lockError = document.getElementById('nr-lock-error');
 
   var ROLE_TABS = {
-    Admin: ['insights', 'articles', 'spotlights', 'authors', 'ads', 'newsletter', 'sections', 'team', 'settings'],
-    Editor: ['insights', 'articles', 'spotlights', 'authors'],
+    Admin: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'ads', 'newsletter', 'sections', 'team', 'settings'],
+    Editor: ['insights', 'riseselect', 'articles', 'spotlights', 'authors'],
     Moderator: ['insights', 'articles', 'spotlights', 'newsletter']
   };
 
@@ -320,16 +320,23 @@
       }
     }
 
-    /* Published Articles Manage & Delete */
+    /* Published Articles Manage, Rise Select & Delete */
     var pubBox = document.getElementById('nr-published-articles-list');
     if (pubBox && typeof newsArticles !== 'undefined') {
       var list = newsArticles.slice();
+      var selList = state.riseSelectIds || [];
       pubBox.innerHTML = list.length ? list.map(function (art) {
+        var inSelect = selList.some(function (x) { return x.type === 'article' && x.id === art.id; });
+        var selBtn = '<button type="button" class="nr-btn ' + (inSelect ? 'nr-btn-primary' : 'nr-btn-ghost') + ' nr-sm" data-sel-art="' + esc(art.id) + '">' + (inSelect ? '★ In Rise Select' : '+ Rise Select') + '</button>';
         var delBtn = currentUser && currentUser.role !== 'Moderator'
           ? '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-del-pub-art="' + esc(art.id) + '">Delete</button>'
           : '';
-        return '<div class="nr-clean-row"><div><a href="article.html?id=' + encodeURIComponent(art.id) + '" target="_blank"><strong>' + esc(art.headline) + '</strong></a><br><small>' + esc(art.author) + ' · ' + esc(art.topic) + ' · ' + esc(art.date) + '</small></div><div class="nr-row-actions">' + delBtn + '</div></div>';
+        return '<div class="nr-clean-row"><div><a href="article.html?id=' + encodeURIComponent(art.id) + '" target="_blank"><strong>' + esc(art.headline) + '</strong></a><br><small>' + esc(art.author) + ' · ' + esc(art.topic) + ' · ' + esc(art.date) + '</small></div><div class="nr-row-actions">' + selBtn + delBtn + '</div></div>';
       }).join('') : '<p class="nr-empty">No published articles.</p>';
+
+      pubBox.querySelectorAll('[data-sel-art]').forEach(function (b) {
+        b.addEventListener('click', function () { nr.toggleRiseSelect('article', b.getAttribute('data-sel-art')); renderAll(); });
+      });
 
       pubBox.querySelectorAll('[data-del-pub-art]').forEach(function (b) {
         b.addEventListener('click', function () {
@@ -363,18 +370,17 @@
 
     var pubBox = document.getElementById('nr-published-stories-list');
     if (pubBox && typeof stories !== 'undefined') {
+      var selListS = state.riseSelectIds || [];
       pubBox.innerHTML = stories.map(function (s) {
-        var isFeat = state.featuredSpotlightId === s.id;
-        var featBtn = isFeat
-          ? '<span class="nr-trend up">★ Featured</span>'
-          : '<button type="button" class="nr-btn nr-btn-ghost nr-sm" data-feat-story="' + esc(s.id) + '">Highlight on Home</button>';
+        var inSel = selListS.some(function (x) { return x.type === 'story' && x.id === s.id; });
+        var selBtn = '<button type="button" class="nr-btn ' + (inSel ? 'nr-btn-primary' : 'nr-btn-ghost') + ' nr-sm" data-sel-story="' + esc(s.id) + '">' + (inSel ? '★ In Rise Select' : '+ Rise Select') + '</button>';
         var delBtn = currentUser && currentUser.role !== 'Moderator'
           ? '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-del-story="' + esc(s.id) + '">Delete</button>'
           : '';
-        return '<div class="nr-clean-row"><div><a href="story.html?id=' + encodeURIComponent(s.id) + '" target="_blank"><strong>' + esc(s.name) + '</strong></a><br><small>' + esc(s.achievement) + '</small></div><div class="nr-row-actions">' + featBtn + delBtn + '</div></div>';
+        return '<div class="nr-clean-row"><div><a href="story.html?id=' + encodeURIComponent(s.id) + '" target="_blank"><strong>' + esc(s.name) + '</strong></a><br><small>' + esc(s.achievement) + '</small></div><div class="nr-row-actions">' + selBtn + delBtn + '</div></div>';
       }).join('');
-      pubBox.querySelectorAll('[data-feat-story]').forEach(function (b) {
-        b.addEventListener('click', function () { nr.setFeaturedSpotlight(b.getAttribute('data-feat-story')); renderAll(); });
+      pubBox.querySelectorAll('[data-sel-story]').forEach(function (b) {
+        b.addEventListener('click', function () { nr.toggleRiseSelect('story', b.getAttribute('data-sel-story')); renderAll(); });
       });
       pubBox.querySelectorAll('[data-del-story]').forEach(function (b) {
         b.addEventListener('click', function () {
@@ -456,7 +462,8 @@
     var subBox = document.getElementById('nr-subs-list');
     if (subBox) {
       subBox.innerHTML = state.subscribers.length ? state.subscribers.map(function (s) {
-        return '<div class="nr-clean-row"><div><strong>' + esc(s.email) + '</strong><br><small>Subscribed via ' + esc(friendlyPageName(s.source)) + ' · ' + esc(fmtDate(s.subscribedAt)) + '</small></div>' +
+        var topicsTxt = Array.isArray(s.topics) && s.topics.length ? s.topics.join(', ') : 'Latest Stories';
+        return '<div class="nr-clean-row"><div><strong>' + esc(s.email) + '</strong><br><small>Topics: <strong>' + esc(topicsTxt) + '</strong> · via ' + esc(friendlyPageName(s.source)) + ' · ' + esc(fmtDate(s.subscribedAt)) + '</small></div>' +
           '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-del-sub="' + esc(s.id) + '">Remove</button></div>';
       }).join('') : '<p class="nr-empty">No subscribers yet.</p>';
       subBox.querySelectorAll('[data-del-sub]').forEach(function (b) {
@@ -495,10 +502,55 @@
     });
   }
 
+  function renderRiseSelectTab(state) {
+    var activeBox = document.getElementById('nr-riseselect-active');
+    var pickerBox = document.getElementById('nr-riseselect-picker');
+    if (!activeBox || !pickerBox) return;
+    var selList = state.riseSelectIds || [];
+
+    activeBox.innerHTML = selList.length ? selList.map(function (sel, i) {
+      var title = sel.id;
+      if (sel.type === 'article' && typeof newsArticles !== 'undefined') {
+        var a = newsArticles.find(function (x) { return x.id === sel.id; });
+        if (a) title = a.headline;
+      } else if (sel.type === 'story' && typeof stories !== 'undefined') {
+        var s = stories.find(function (x) { return x.id === sel.id; });
+        if (s) title = s.name + ' — ' + s.achievement;
+      }
+      return '<div class="nr-clean-row"><div><span class="nr-pill-soft">0' + (i + 1) + ' · ' + esc(sel.type.toUpperCase()) + '</span> <strong>' + esc(title) + '</strong></div>' +
+        '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-rs-toggle="' + esc(sel.type) + ':' + esc(sel.id) + '">Remove</button></div>';
+    }).join('') : '<p class="nr-empty">No custom selections yet — pick any 4 items on the right to highlight at the top of the homepage.</p>';
+
+    var allItems = [];
+    if (typeof newsArticles !== 'undefined') {
+      newsArticles.forEach(function (a) { allItems.push({ type: 'article', id: a.id, title: a.headline, sub: 'Article · ' + a.topic }); });
+    }
+    if (typeof stories !== 'undefined') {
+      stories.forEach(function (s) { allItems.push({ type: 'story', id: s.id, title: s.name + ' — ' + s.achievement, sub: 'Spotlight · ' + s.category }); });
+    }
+
+    pickerBox.innerHTML = allItems.map(function (it) {
+      var isOn = selList.some(function (x) { return x.type === it.type && x.id === it.id; });
+      return '<div class="nr-clean-row"><div><strong>' + esc(it.title) + '</strong><br><small>' + esc(it.sub) + '</small></div>' +
+        '<button type="button" class="nr-btn ' + (isOn ? 'nr-btn-primary' : 'nr-btn-ghost') + ' nr-sm" data-rs-toggle="' + esc(it.type) + ':' + esc(it.id) + '">' + (isOn ? '★ Selected' : '+ Select') + '</button></div>';
+    }).join('');
+
+    [activeBox, pickerBox].forEach(function (container) {
+      container.querySelectorAll('[data-rs-toggle]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var parts = b.getAttribute('data-rs-toggle').split(':');
+          nr.toggleRiseSelect(parts[0], parts.slice(1).join(':'));
+          renderAll();
+        });
+      });
+    });
+  }
+
   function renderAll() {
     var state = nr.load();
     renderPills(state);
     renderInsights(state);
+    renderRiseSelectTab(state);
     renderArticlesTab(state);
     renderSpotlightsTab(state);
     renderAuthorsTab();
@@ -734,15 +786,20 @@
     campForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var state = nr.load();
+      var topicFilter = document.getElementById('nr-camp-topic') ? document.getElementById('nr-camp-topic').value : 'ALL';
       var subject = document.getElementById('nr-camp-subject').value.trim();
       var headline = document.getElementById('nr-camp-headline').value.trim();
       var body = document.getElementById('nr-camp-body').value.trim();
-      nr.saveCampaign({ subject: subject, headline: headline, body: body });
-      var bcc = state.subscribers.map(function (s) { return s.email; }).join(',');
+      var targets = state.subscribers.filter(function (s) {
+        if (topicFilter === 'ALL') return true;
+        return Array.isArray(s.topics) ? s.topics.indexOf(topicFilter) !== -1 : topicFilter === 'Latest Stories';
+      });
+      nr.saveCampaign({ subject: '[' + topicFilter + '] ' + subject, headline: headline, body: body });
+      var bcc = targets.map(function (s) { return s.email; }).join(',');
       if (bcc) {
         window.location.href = 'mailto:hello@therisebd.com?bcc=' + encodeURIComponent(bcc) + '&subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(headline + '\n\n' + body);
       }
-      document.getElementById('nr-camp-msg').textContent = 'Campaign logged' + (bcc ? ' & opening email client with ' + state.subscribers.length + ' subscribers.' : ' (add subscribers first to mailto).');
+      document.getElementById('nr-camp-msg').textContent = 'Campaign logged' + (bcc ? ' & opening email client for ' + targets.length + ' matching subscriber(s).' : ' (no matching subscribers yet).');
       campForm.reset();
       renderAll();
     });
