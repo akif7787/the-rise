@@ -118,6 +118,7 @@
           if (row.key === 'customSections' && Array.isArray(row.value)) state.customSections = row.value;
           if (row.key === 'riseSelectIds' && Array.isArray(row.value)) state.riseSelectIds = row.value;
           if (row.key === 'partnershipConfig' && row.value) state.partnershipConfig = row.value;
+          if (row.key === 'recycleBin' && Array.isArray(row.value)) state.recycleBin = row.value;
         });
         changed = true;
       }

@@ -13,9 +13,9 @@
   var lockError = document.getElementById('nr-lock-error');
 
   var ROLE_TABS = {
-    Admin: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'ads', 'newsletter', 'sections', 'team', 'settings'],
-    Editor: ['insights', 'riseselect', 'articles', 'spotlights', 'authors'],
-    Moderator: ['insights', 'articles', 'spotlights', 'newsletter']
+    Admin: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'ads', 'newsletter', 'sections', 'team', 'recyclebin', 'settings'],
+    Editor: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'recyclebin'],
+    Moderator: ['insights', 'articles', 'spotlights', 'newsletter', 'recyclebin']
   };
 
   var currentUser = null;
@@ -358,6 +358,91 @@
     set('nr-pill-nominations', state.nominationsQueue.filter(function (n) { return n.status === 'pending'; }).length);
     set('nr-pill-ads', state.adsQueue.filter(function (a) { return a.status === 'new'; }).length);
     set('nr-pill-subs', state.subscribers.length);
+    set('nr-pill-bin', (state.recycleBin || []).length);
+  }
+
+  function confirmDelete(label) {
+    return window.confirm('Are you sure you want to delete "' + (label || 'this item') + '"?\n\nIt will be moved to the Recycle Bin so you can restore it anytime.');
+  }
+
+  function moveToRecycleBin(kind, label, sub, item) {
+    var st = nr.load();
+    if (!Array.isArray(st.recycleBin)) st.recycleBin = [];
+    st.recycleBin.unshift({
+      id: 'bin-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+      kind: kind,
+      label: label || 'Deleted Item',
+      sub: sub || '',
+      item: item,
+      deletedAt: new Date().toISOString(),
+      deletedBy: currentUser ? currentUser.name : 'Admin'
+    });
+    nr.save(st);
+    sbSaveSetting('recycleBin', st.recycleBin);
+  }
+
+  function restoreFromRecycleBin(binId) {
+    var st = nr.load();
+    if (!Array.isArray(st.recycleBin)) return;
+    var idx = st.recycleBin.findIndex(function (x) { return x.id === binId; });
+    if (idx === -1) return;
+    var entry = st.recycleBin.splice(idx, 1)[0];
+    var it = entry.item;
+    if (entry.kind === 'article' && it) {
+      if (!Array.isArray(st.publishedArticles)) st.publishedArticles = [];
+      st.publishedArticles.unshift(it);
+      if (typeof newsArticles !== 'undefined' && !newsArticles.some(function (x) { return x.id === it.id; })) newsArticles.unshift(it);
+      sbUpsertArticle(it);
+    } else if (entry.kind === 'story' && it) {
+      if (!Array.isArray(st.publishedStories)) st.publishedStories = [];
+      st.publishedStories.unshift(it);
+      if (typeof stories !== 'undefined' && !stories.some(function (x) { return x.id === it.id; })) stories.unshift(it);
+      sbUpsertSpotlight(it, false);
+    } else if (entry.kind === 'author' && it) {
+      st.customAuthors = st.customAuthors || {};
+      st.customAuthors[it.id] = it;
+      if (typeof newsAuthors !== 'undefined') newsAuthors[it.id] = it;
+      sbRest('authors?on_conflict=id', {
+        method: 'POST', headers: { Prefer: 'resolution=merge-duplicates' },
+        body: { id: it.id, name: it.name, role: it.role, institution: it.institution || '', photo_url: it.photo || '', bio: it.bio || '', email: it.email || '', links: it.links || [] }
+      });
+    } else if (entry.kind === 'adCampaign' && it) {
+      if (!Array.isArray(st.adCampaigns)) st.adCampaigns = [];
+      st.adCampaigns.unshift(it);
+      sbRest('ad_campaigns', {
+        method: 'POST',
+        body: {
+          name: it.name, advertiser: it.advertiser, run_by: it.runBy, targets: it.targets || ['home_top'],
+          banner_size: it.bannerSize, media_type: it.mediaType, media_url: it.mediaUrl, title: it.title,
+          description: it.text, cta: it.cta, href: it.href, status: it.status || 'active'
+        }
+      });
+    } else if (entry.kind === 'subscriber' && it) {
+      if (!Array.isArray(st.subscribers)) st.subscribers = [];
+      st.subscribers.unshift(it);
+      sbRest('newsletter_subscribers?on_conflict=email', {
+        method: 'POST', headers: { Prefer: 'resolution=merge-duplicates' },
+        body: { email: it.email, source: it.source || 'index.html', topics: it.topics || ['Latest Stories'] }
+      });
+    } else if (entry.kind === 'customSection' && it) {
+      if (!Array.isArray(st.customSections)) st.customSections = [];
+      st.customSections.push(it);
+      sbSaveSetting('customSections', st.customSections);
+    } else if (entry.kind === 'teamMember' && it) {
+      if (!Array.isArray(st.team)) st.team = [];
+      st.team.push(it);
+      sbRest('team_roles?on_conflict=email', {
+        method: 'POST', headers: { Prefer: 'resolution=merge-duplicates' },
+        body: { name: it.name, email: it.email, role: it.role }
+      });
+    } else if (entry.kind === 'collab' && it) {
+      st.partnershipConfig = st.partnershipConfig || {};
+      if (!Array.isArray(st.partnershipConfig.collabs)) st.partnershipConfig.collabs = [];
+      st.partnershipConfig.collabs.unshift(it);
+      sbSaveSetting('partnershipConfig', st.partnershipConfig);
+    }
+    nr.save(st);
+    sbSaveSetting('recycleBin', st.recycleBin);
   }
 
   function renderInsights(state) {
@@ -574,14 +659,7 @@
           if (dateEl) dateEl.value = art.date || '';
           document.getElementById('nr-art-image').value = art.image || '';
           document.getElementById('nr-art-sources').value = (art.sources && art.sources[0] && art.sources[0].url) ? art.sources[0].url : '';
-          var ed = document.getElementById('nr-art-editor');
-          if (ed) {
-            var bodyHtml = (art.body || []).map(function (p) {
-              var t = String(p || '').trim();
-              return /^<[a-z]/i.test(t) ? t : '<p>' + esc(t) + '</p>';
-            }).join('');
-            ed.innerHTML = bodyHtml;
-          }
+          setArticleBlocksFromBody(art.body || []);
           var subBtn = document.getElementById('nr-art-submit-btn');
           var canBtn = document.getElementById('nr-art-cancel-edit');
           if (subBtn) subBtn.textContent = 'Save Article Changes →';
@@ -602,6 +680,9 @@
       pubBox.querySelectorAll('[data-del-pub-art]').forEach(function (b) {
         b.addEventListener('click', function () {
           var id = b.getAttribute('data-del-pub-art');
+          var art = newsArticles.find(function (x) { return x.id === id; });
+          if (!confirmDelete(art ? art.headline : 'this article')) return;
+          if (art) moveToRecycleBin('article', art.headline, (art.author || '') + ' · ' + (art.topic || ''), Object.assign({}, art));
           nr.deletePublishedArticle(id);
           sbRest('news_articles?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
           var idx = newsArticles.findIndex(function (x) { return x.id === id; });
@@ -666,6 +747,9 @@
       pubBox.querySelectorAll('[data-del-story]').forEach(function (b) {
         b.addEventListener('click', function () {
           var id = b.getAttribute('data-del-story');
+          var stObj = stories.find(function (x) { return x.id === id; });
+          if (!confirmDelete(stObj ? stObj.name : 'this spotlight')) return;
+          if (stObj) moveToRecycleBin('story', stObj.name, stObj.achievement || '', Object.assign({}, stObj));
           nr.deletePublishedStory(id);
           sbRest('spotlights?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
           var idx = stories.findIndex(function (x) { return x.id === id; });
@@ -689,6 +773,9 @@
     box.querySelectorAll('[data-del-author]').forEach(function (b) {
       b.addEventListener('click', function () {
         var id = b.getAttribute('data-del-author');
+        var au = newsAuthors[id];
+        if (!confirmDelete(au ? au.name : 'this author')) return;
+        if (au) moveToRecycleBin('author', au.name, (au.role || '') + ' · ' + (au.institution || ''), Object.assign({}, au));
         nr.deleteAuthor(id);
         sbRest('authors?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
         delete newsAuthors[id];
@@ -715,10 +802,42 @@
           '<div class="nr-row-actions">' +
           '<span class="nr-pill-soft">' + imps + ' Imps</span>' +
           '<span class="nr-pill-soft">' + clicks + ' Clicks (' + ctr + '% CTR)</span>' +
+          '<button type="button" class="nr-btn nr-btn-ghost nr-sm" data-edit-camp="' + esc(c.id) + '">Edit</button>' +
           '<button type="button" class="nr-btn nr-btn-ghost nr-sm" data-toggle-camp="' + esc(c.id) + '">' + (c.status === 'active' ? 'Pause' : 'Resume') + '</button>' +
           '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-del-camp="' + esc(c.id) + '">Delete</button>' +
           '</div></div>';
       }).join('') : '<p class="nr-empty">No active ad campaigns yet. Launch your first targeted ad above.</p>';
+
+      campBox.querySelectorAll('[data-edit-camp]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var id = b.getAttribute('data-edit-camp');
+          var camp = (nr.load().adCampaigns || []).find(function (x) { return x.id === id; });
+          if (!camp) return;
+          var editIdEl = document.getElementById('nr-ac-edit-id');
+          if (editIdEl) editIdEl.value = camp.id;
+          document.getElementById('nr-ac-name').value = camp.name || '';
+          document.getElementById('nr-ac-advertiser').value = camp.advertiser || '';
+          document.getElementById('nr-ac-size').value = camp.bannerSize || '1280x120';
+          document.getElementById('nr-ac-media-type').value = camp.mediaType || 'image';
+          document.getElementById('nr-ac-media-url').value = camp.mediaUrl || '';
+          document.getElementById('nr-ac-title').value = camp.title || '';
+          document.getElementById('nr-ac-text').value = camp.text || '';
+          document.getElementById('nr-ac-cta').value = camp.cta || '';
+          document.getElementById('nr-ac-href').value = camp.href || '';
+          document.getElementById('nr-ac-start').value = camp.startAt ? String(camp.startAt).slice(0, 16) : '';
+          document.getElementById('nr-ac-end').value = camp.endAt ? String(camp.endAt).slice(0, 16) : '';
+          var tgs = camp.targets || [];
+          document.querySelectorAll('input[name="nr-ac-target"]').forEach(function (cb) {
+            cb.checked = tgs.indexOf(cb.value) !== -1;
+          });
+          var subBtn = document.getElementById('nr-ac-submit-btn');
+          var canBtn = document.getElementById('nr-ac-cancel-edit');
+          if (subBtn) subBtn.textContent = 'Save Ad Campaign Changes →';
+          if (canBtn) canBtn.hidden = false;
+          var form = document.getElementById('nr-ad-campaign-form');
+          if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
 
       campBox.querySelectorAll('[data-toggle-camp]').forEach(function (b) {
         b.addEventListener('click', function () {
@@ -732,6 +851,9 @@
       campBox.querySelectorAll('[data-del-camp]').forEach(function (b) {
         b.addEventListener('click', function () {
           var id = b.getAttribute('data-del-camp');
+          var camp = (nr.load().adCampaigns || []).find(function (x) { return x.id === id; });
+          if (!confirmDelete(camp ? camp.name : 'this ad campaign')) return;
+          if (camp) moveToRecycleBin('adCampaign', camp.name, camp.advertiser || '', Object.assign({}, camp));
           nr.deleteAdCampaign(id);
           sbRest('ad_campaigns?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
           renderAll();
@@ -768,6 +890,9 @@
       subBox.querySelectorAll('[data-del-sub]').forEach(function (b) {
         b.addEventListener('click', function () {
           var id = b.getAttribute('data-del-sub');
+          var sub = (nr.load().subscribers || []).find(function (x) { return x.id === id; });
+          if (!confirmDelete(sub ? sub.email : 'this subscriber')) return;
+          if (sub) moveToRecycleBin('subscriber', sub.email, 'Source: ' + (sub.source || 'index.html'), Object.assign({}, sub));
           nr.deleteSubscriber(id);
           sbRest('newsletter_subscribers?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
           renderAll();
@@ -791,7 +916,11 @@
     }).join('') : '<p class="nr-empty">No custom homepage sections added yet.</p>';
     box.querySelectorAll('[data-del-sec]').forEach(function (b) {
       b.addEventListener('click', function () {
-        nr.deleteCustomSection(b.getAttribute('data-del-sec'));
+        var id = b.getAttribute('data-del-sec');
+        var sec = (nr.load().customSections || []).find(function (x) { return x.id === id; });
+        if (!confirmDelete(sec ? sec.title : 'this section')) return;
+        if (sec) moveToRecycleBin('customSection', sec.title, sec.eyebrow || '', Object.assign({}, sec));
+        nr.deleteCustomSection(id);
         sbSaveSetting('customSections', nr.load().customSections || []);
         renderAll();
       });
@@ -808,6 +937,9 @@
     box.querySelectorAll('[data-del-tm]').forEach(function (b) {
       b.addEventListener('click', function () {
         var id = b.getAttribute('data-del-tm');
+        var tm = (nr.load().team || []).find(function (x) { return x.id === id; });
+        if (!confirmDelete(tm ? tm.name : 'this team member')) return;
+        if (tm) moveToRecycleBin('teamMember', tm.name, (tm.role || '') + ' · ' + (tm.email || ''), Object.assign({}, tm));
         nr.deleteTeamMember(id);
         sbRest('team_roles?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
         renderAll();
@@ -859,6 +991,50 @@
     });
   }
 
+  function renderRecycleBinTab(state) {
+    var box = document.getElementById('nr-recycle-list');
+    if (!box) return;
+    var bin = state.recycleBin || [];
+    box.innerHTML = bin.length ? bin.map(function (entry) {
+      return '<div class="nr-clean-row"><div><span class="nr-pill-soft">' + esc(String(entry.kind || '').toUpperCase()) + '</span> <strong>' + esc(entry.label) + '</strong>' +
+        '<br><small>' + (entry.sub ? esc(entry.sub) + ' · ' : '') + 'Deleted by ' + esc(entry.deletedBy || 'Admin') + ' · ' + esc(fmtDate(entry.deletedAt)) + '</small></div>' +
+        '<div class="nr-row-actions">' +
+        '<button type="button" class="nr-btn nr-btn-primary nr-sm" data-bin-restore="' + esc(entry.id) + '">↺ Restore</button>' +
+        '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-bin-purge="' + esc(entry.id) + '">Delete Forever</button>' +
+        '</div></div>';
+    }).join('') : '<p class="nr-empty">Recycle Bin is empty. Deleted items will appear here.</p>';
+
+    box.querySelectorAll('[data-bin-restore]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        restoreFromRecycleBin(b.getAttribute('data-bin-restore'));
+        renderAll();
+      });
+    });
+    box.querySelectorAll('[data-bin-purge]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (!window.confirm('Permanently delete this item? This cannot be undone.')) return;
+        var st = nr.load();
+        st.recycleBin = (st.recycleBin || []).filter(function (x) { return x.id !== b.getAttribute('data-bin-purge'); });
+        nr.save(st);
+        sbSaveSetting('recycleBin', st.recycleBin);
+        renderAll();
+      });
+    });
+  }
+
+  var emptyBinBtn = document.getElementById('nr-empty-bin-btn');
+  if (emptyBinBtn) {
+    emptyBinBtn.addEventListener('click', function () {
+      var st = nr.load();
+      if (!(st.recycleBin || []).length) return;
+      if (!window.confirm('Permanently delete ALL ' + st.recycleBin.length + ' items in the Recycle Bin? This cannot be undone.')) return;
+      st.recycleBin = [];
+      nr.save(st);
+      sbSaveSetting('recycleBin', []);
+      renderAll();
+    });
+  }
+
   function renderAll() {
     var state = nr.load();
     renderPills(state);
@@ -871,6 +1047,7 @@
     renderNewsletterTab(state);
     renderSectionsTab(state);
     renderTeamTab(state);
+    renderRecycleBinTab(state);
   }
 
   /* Form Handlers */
@@ -900,52 +1077,183 @@
     }
   }
 
-  /* Google Docs-style Rich Text Editor Toolbar */
-  var artEditor = document.getElementById('nr-art-editor');
+  /* Alternating Text + Optional Image Section Builder (standard editorial font) */
+  var blocksBox = document.getElementById('nr-art-blocks');
+  var addBlockBtn = document.getElementById('nr-add-art-block');
   var rteToolbar = document.getElementById('nr-rte-toolbar');
-  if (artEditor && rteToolbar) {
+  var activeBlockEditor = null;
+
+  function createArticleBlockEl(idx, initial) {
+    var data = initial || {};
+    var wrap = document.createElement('div');
+    wrap.className = 'nr-art-block';
+    wrap.innerHTML =
+      '<div class="nr-art-block-head"><span>Section ' + (idx + 1) + '</span>' +
+      (idx > 0 ? '<button type="button" class="nr-btn nr-btn-danger nr-sm nr-remove-block">Remove</button>' : '') +
+      '</div>' +
+      '<div class="nr-rte-editor" contenteditable="true" data-placeholder="Write paragraphs for this section..."></div>' +
+      '<div class="nr-upload-row">' +
+        '<input type="text" class="nr-block-img-url" placeholder="Optional photo after this section (URL or upload →)" value="' + esc(data.imageUrl || '') + '">' +
+        '<label class="nr-upload-btn">📷 Photo<input type="file" class="nr-block-img-file" accept="image/*" hidden></label>' +
+      '</div>' +
+      '<input type="text" class="nr-block-img-cap" placeholder="Optional photo caption" value="' + esc(data.caption || '') + '"' + (data.imageUrl ? '' : ' hidden') + '>' +
+      '<img class="nr-art-block-preview" alt="Section preview"' + (data.imageUrl ? ' src="' + esc(data.imageUrl) + '"' : ' hidden') + '>';
+
+    var ed = wrap.querySelector('.nr-rte-editor');
+    if (data.html) ed.innerHTML = data.html;
+    ed.addEventListener('focus', function () { activeBlockEditor = ed; });
+
+    var urlIn = wrap.querySelector('.nr-block-img-url');
+    var fileIn = wrap.querySelector('.nr-block-img-file');
+    var capIn = wrap.querySelector('.nr-block-img-cap');
+    var prevImg = wrap.querySelector('.nr-art-block-preview');
+
+    function syncPreview(val) {
+      var clean = String(val || '').trim();
+      if (clean) {
+        prevImg.src = clean;
+        prevImg.hidden = false;
+        capIn.hidden = false;
+      } else {
+        prevImg.removeAttribute('src');
+        prevImg.hidden = true;
+        capIn.hidden = true;
+      }
+    }
+    urlIn.addEventListener('input', function () { syncPreview(urlIn.value); });
+    fileIn.addEventListener('change', function () {
+      var f = fileIn.files && fileIn.files[0];
+      if (!f) return;
+      uploadFileToMedia(f, function (url) {
+        urlIn.value = url;
+        syncPreview(url);
+      }, document.getElementById('nr-art-pub-msg'));
+    });
+
+    var remBtn = wrap.querySelector('.nr-remove-block');
+    if (remBtn) {
+      remBtn.addEventListener('click', function () {
+        wrap.remove();
+        renumberArticleBlocks();
+      });
+    }
+    return wrap;
+  }
+
+  function renumberArticleBlocks() {
+    if (!blocksBox) return;
+    blocksBox.querySelectorAll('.nr-art-block').forEach(function (blk, i) {
+      var sp = blk.querySelector('.nr-art-block-head span');
+      if (sp) sp.textContent = 'Section ' + (i + 1);
+    });
+  }
+
+  function initDefaultArticleBlocks() {
+    if (!blocksBox) return;
+    blocksBox.innerHTML = '';
+    blocksBox.appendChild(createArticleBlockEl(0, {}));
+    blocksBox.appendChild(createArticleBlockEl(1, {}));
+    activeBlockEditor = blocksBox.querySelector('.nr-rte-editor');
+  }
+
+  function setArticleBlocksFromBody(bodyArr) {
+    if (!blocksBox) return;
+    var combined = (bodyArr || []).map(function (p) {
+      var t = String(p || '').trim();
+      return /^<[a-z]/i.test(t) ? t : '<p>' + esc(t) + '</p>';
+    }).join('');
+    var tmp = document.createElement('div');
+    tmp.innerHTML = combined;
+    var sections = [];
+    var curHtml = '';
+    Array.from(tmp.childNodes).forEach(function (node) {
+      if (node.nodeType === 1 && node.tagName === 'FIGURE' && node.querySelector('img')) {
+        var img = node.querySelector('img');
+        var cap = node.querySelector('figcaption');
+        sections.push({
+          html: curHtml,
+          imageUrl: img.getAttribute('src') || '',
+          caption: cap ? cap.textContent : ''
+        });
+        curHtml = '';
+      } else {
+        curHtml += node.outerHTML || esc(node.textContent || '');
+      }
+    });
+    if (curHtml.trim() || !sections.length) {
+      sections.push({ html: curHtml, imageUrl: '', caption: '' });
+    }
+    blocksBox.innerHTML = '';
+    sections.forEach(function (sec, i) {
+      blocksBox.appendChild(createArticleBlockEl(i, sec));
+    });
+    activeBlockEditor = blocksBox.querySelector('.nr-rte-editor');
+  }
+
+  function collectArticleBlocksContent() {
+    if (!blocksBox) return { bodyHtml: '', bodyText: '' };
+    var htmlParts = [];
+    var textParts = [];
+    blocksBox.querySelectorAll('.nr-art-block').forEach(function (blk) {
+      var ed = blk.querySelector('.nr-rte-editor');
+      var urlIn = blk.querySelector('.nr-block-img-url');
+      var capIn = blk.querySelector('.nr-block-img-cap');
+      var h = ed ? ed.innerHTML.trim() : '';
+      var t = ed ? (ed.innerText || '').trim() : '';
+      var imgUrl = urlIn ? urlIn.value.trim() : '';
+      var cap = capIn ? capIn.value.trim() : '';
+      if (t) {
+        htmlParts.push(h);
+        textParts.push(t);
+      }
+      if (imgUrl) {
+        htmlParts.push('<figure class="story-inline-figure"><img src="' + esc(imgUrl) + '" alt="' + esc(cap || 'Article photo') + '" loading="lazy">' + (cap ? '<figcaption>' + esc(cap) + '</figcaption>' : '') + '</figure>');
+      }
+    });
+    return { bodyHtml: htmlParts.join('\n'), bodyText: textParts.join('\n\n') };
+  }
+
+  if (blocksBox) initDefaultArticleBlocks();
+  if (addBlockBtn) {
+    addBlockBtn.addEventListener('click', function () {
+      var count = blocksBox.querySelectorAll('.nr-art-block').length;
+      var el = createArticleBlockEl(count, {});
+      blocksBox.appendChild(el);
+      var ed = el.querySelector('.nr-rte-editor');
+      if (ed) { activeBlockEditor = ed; ed.focus(); }
+    });
+  }
+
+  if (rteToolbar) {
     rteToolbar.querySelectorAll('[data-rte-cmd]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        artEditor.focus();
+        var ed = activeBlockEditor || (blocksBox && blocksBox.querySelector('.nr-rte-editor'));
+        if (ed) ed.focus();
         document.execCommand(btn.getAttribute('data-rte-cmd'), false, null);
       });
-    });
-    var fontSel = document.getElementById('nr-rte-font');
-    if (fontSel) fontSel.addEventListener('change', function () {
-      if (!fontSel.value) return;
-      artEditor.focus();
-      document.execCommand('fontName', false, fontSel.value);
-      fontSel.value = '';
     });
     var sizeSel = document.getElementById('nr-rte-size');
     if (sizeSel) sizeSel.addEventListener('change', function () {
       if (!sizeSel.value) return;
-      artEditor.focus();
+      var ed = activeBlockEditor || (blocksBox && blocksBox.querySelector('.nr-rte-editor'));
+      if (ed) ed.focus();
       document.execCommand('fontSize', false, sizeSel.value);
       sizeSel.value = '';
     });
     var blockSel = document.getElementById('nr-rte-block');
     if (blockSel) blockSel.addEventListener('change', function () {
-      artEditor.focus();
+      var ed = activeBlockEditor || (blocksBox && blocksBox.querySelector('.nr-rte-editor'));
+      if (ed) ed.focus();
       document.execCommand('formatBlock', false, blockSel.value);
     });
     var linkBtn = document.getElementById('nr-rte-link-btn');
     if (linkBtn) linkBtn.addEventListener('click', function () {
       var url = prompt('Enter link URL (https://...)');
       if (url) {
-        artEditor.focus();
+        var ed = activeBlockEditor || (blocksBox && blocksBox.querySelector('.nr-rte-editor'));
+        if (ed) ed.focus();
         document.execCommand('createLink', false, url);
       }
-    });
-    var inlineImgInput = document.getElementById('nr-rte-img-file');
-    if (inlineImgInput) inlineImgInput.addEventListener('change', function () {
-      var f = inlineImgInput.files && inlineImgInput.files[0];
-      if (!f) return;
-      uploadFileToMedia(f, function (url) {
-        artEditor.focus();
-        document.execCommand('insertHTML', false, '<figure class="story-inline-figure"><img src="' + esc(url) + '" alt="Article image"></figure><p><br></p>');
-      }, document.getElementById('nr-art-pub-msg'));
-      inlineImgInput.value = '';
     });
   }
 
@@ -976,7 +1284,7 @@
   function resetArticleFormMode() {
     var editIdEl = document.getElementById('nr-art-edit-id');
     if (editIdEl) editIdEl.value = '';
-    if (artEditor) artEditor.innerHTML = '';
+    initDefaultArticleBlocks();
     var subBtn = document.getElementById('nr-art-submit-btn');
     if (subBtn) subBtn.textContent = 'Publish Article Now →';
     if (cancelEditBtn) cancelEditBtn.hidden = true;
@@ -989,8 +1297,9 @@
       e.preventDefault();
       var editIdEl = document.getElementById('nr-art-edit-id');
       var editId = editIdEl ? editIdEl.value.trim() : '';
-      var bodyHtml = artEditor ? artEditor.innerHTML.trim() : '';
-      var bodyText = artEditor ? (artEditor.innerText || '').trim() : '';
+      var collected = collectArticleBlocksContent();
+      var bodyHtml = collected.bodyHtml;
+      var bodyText = collected.bodyText;
       if (!bodyText && !/<img/i.test(bodyHtml)) {
         document.getElementById('nr-art-pub-msg').textContent = 'Please write your article content first.';
         return;
@@ -1081,9 +1390,22 @@
   }
 
   var adCampForm = document.getElementById('nr-ad-campaign-form');
+  var adCampCancelBtn = document.getElementById('nr-ac-cancel-edit');
+  function resetAdCampFormMode() {
+    var editIdEl = document.getElementById('nr-ac-edit-id');
+    if (editIdEl) editIdEl.value = '';
+    var subBtn = document.getElementById('nr-ac-submit-btn');
+    if (subBtn) subBtn.textContent = 'Launch Ad Campaign →';
+    if (adCampCancelBtn) adCampCancelBtn.hidden = true;
+    if (adCampForm) adCampForm.reset();
+  }
+  if (adCampCancelBtn) adCampCancelBtn.addEventListener('click', resetAdCampFormMode);
+
   if (adCampForm) {
     adCampForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      var editIdEl = document.getElementById('nr-ac-edit-id');
+      var editId = editIdEl ? editIdEl.value.trim() : '';
       var targets = [];
       adCampForm.querySelectorAll('input[name="nr-ac-target"]:checked').forEach(function (cb) { targets.push(cb.value); });
       var fileInput = document.getElementById('nr-ac-file');
@@ -1105,21 +1427,24 @@
           startAt: document.getElementById('nr-ac-start').value || '',
           endAt: document.getElementById('nr-ac-end').value || ''
         };
-        nr.createAdCampaign(campPayload);
-        sbRest('ad_campaigns', {
-          method: 'POST',
-          body: {
-            name: campPayload.name, advertiser: campPayload.advertiser, run_by: campPayload.runBy,
-            targets: campPayload.targets, banner_size: campPayload.bannerSize, media_type: campPayload.mediaType,
-            media_url: campPayload.mediaUrl, title: campPayload.title, description: campPayload.text,
-            cta: campPayload.cta, href: campPayload.href,
-            start_at: campPayload.startAt ? new Date(campPayload.startAt).toISOString() : null,
-            end_at: campPayload.endAt ? new Date(campPayload.endAt).toISOString() : null,
-            status: 'active'
-          }
-        });
-        document.getElementById('nr-ac-msg').textContent = 'Ad campaign launched! Live on selected placements.';
-        adCampForm.reset();
+        var sbBody = {
+          name: campPayload.name, advertiser: campPayload.advertiser, run_by: campPayload.runBy,
+          targets: campPayload.targets, banner_size: campPayload.bannerSize, media_type: campPayload.mediaType,
+          media_url: campPayload.mediaUrl, title: campPayload.title, description: campPayload.text,
+          cta: campPayload.cta, href: campPayload.href,
+          start_at: campPayload.startAt ? new Date(campPayload.startAt).toISOString() : null,
+          end_at: campPayload.endAt ? new Date(campPayload.endAt).toISOString() : null
+        };
+        if (editId && typeof nr.updateAdCampaign === 'function') {
+          nr.updateAdCampaign(editId, campPayload);
+          sbRest('ad_campaigns?id=eq.' + encodeURIComponent(editId), { method: 'PATCH', body: sbBody });
+          document.getElementById('nr-ac-msg').textContent = 'Ad campaign updated!';
+        } else {
+          nr.createAdCampaign(campPayload);
+          sbRest('ad_campaigns', { method: 'POST', body: Object.assign({ status: 'active' }, sbBody) });
+          document.getElementById('nr-ac-msg').textContent = 'Ad campaign launched! Live on selected placements.';
+        }
+        resetAdCampFormMode();
         renderAll();
       }
 
@@ -1200,12 +1525,17 @@
     }).join('');
     box.querySelectorAll('[data-del-col]').forEach(function (b) {
       b.addEventListener('click', function () {
+        var idx = Number(b.getAttribute('data-del-col'));
         var cfg = nr.load().partnershipConfig || {};
         var arr = Array.isArray(cfg.collabs) ? cfg.collabs : [];
-        arr.splice(Number(b.getAttribute('data-del-col')), 1);
+        var removed = arr[idx];
+        if (!confirmDelete(removed ? (removed.tab || removed.title) : 'this collaboration slide')) return;
+        if (removed) moveToRecycleBin('collab', removed.tab || removed.title, removed.tag || '', Object.assign({}, removed));
+        arr.splice(idx, 1);
         nr.savePartnershipConfig({ collabs: arr });
         sbSaveSetting('partnershipConfig', nr.load().partnershipConfig);
         renderCollabsList();
+        renderAll();
       });
     });
   }

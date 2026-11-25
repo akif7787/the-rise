@@ -2248,6 +2248,13 @@ html[data-theme="dark"] .nr-rte-wrap{background:#1B182C;border-color:#2E2949}
 html[data-theme="dark"] .nr-rte-toolbar{background:#141122;border-color:#2E2949}
 html[data-theme="dark"] .nr-rte-btn{background:#231F38;border-color:#3A345C;color:#fff}
 html[data-theme="dark"] .nr-rte-editor{color:#F3F4F6}
+.nr-art-blocks{display:grid;gap:12px}
+.nr-art-block{border:1px solid #E5E7EB;border-radius:10px;padding:10px;background:#FAFAFA;display:grid;gap:8px}
+.nr-art-block-head{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.05em}
+.nr-art-block .nr-rte-editor{min-height:110px;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:10px 12px}
+.nr-art-block-preview{max-height:110px;border-radius:8px;object-fit:cover;border:1px solid #E5E7EB}
+html[data-theme="dark"] .nr-art-block{background:#161326;border-color:#2E2949}
+html[data-theme="dark"] .nr-art-block .nr-rte-editor{background:#1B182C;border-color:#2E2949}
 html[data-theme="dark"] .nr-btn-primary{background:#000000}
 
 /* Timed Site-Wide Popup Modal & Custom Homepage Sections */

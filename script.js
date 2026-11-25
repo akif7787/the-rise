@@ -737,6 +737,30 @@
     save(state);
   }
 
+  function updateAdCampaign(id, payload) {
+    var state = load();
+    var idx = (state.adCampaigns || []).findIndex(function (x) { return x.id === id; });
+    if (idx === -1) return null;
+    var cur = state.adCampaigns[idx];
+    var updated = Object.assign({}, cur, {
+      name: payload.name || cur.name,
+      advertiser: payload.advertiser || cur.advertiser,
+      bannerSize: payload.bannerSize || cur.bannerSize,
+      mediaType: payload.mediaType || cur.mediaType,
+      mediaUrl: payload.mediaUrl !== undefined ? payload.mediaUrl : cur.mediaUrl,
+      title: payload.title || cur.title,
+      text: payload.text !== undefined ? payload.text : cur.text,
+      cta: payload.cta || cur.cta,
+      href: payload.href || cur.href,
+      targets: Array.isArray(payload.targets) && payload.targets.length ? payload.targets : cur.targets,
+      startAt: payload.startAt !== undefined ? payload.startAt : cur.startAt,
+      endAt: payload.endAt !== undefined ? payload.endAt : cur.endAt
+    });
+    state.adCampaigns[idx] = updated;
+    save(state);
+    return updated;
+  }
+
   function saveTickerItems(itemsArr) {
     var state = load();
     state.tickerItems = itemsArr.filter(Boolean);
@@ -802,6 +826,7 @@
     saveAdPlacement: saveAdPlacement,
     deleteAdPlacement: deleteAdPlacement,
     createAdCampaign: createAdCampaign,
+    updateAdCampaign: updateAdCampaign,
     toggleAdCampaign: toggleAdCampaign,
     deleteAdCampaign: deleteAdCampaign,
     recordAdImpression: recordAdImpression,
