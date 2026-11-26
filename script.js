@@ -259,7 +259,7 @@
       affiliation: item.affiliation || (item.city ? item.city + ', Bangladesh' : 'Bangladesh'),
       date: formatDisplayDate(),
       readTime: readMins + ' min read',
-      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80',
+      image: item.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80',
       imageCaption: 'Published via The Rise BD Newsroom.',
       body: paragraphs,
       sources: item.sources ? [{ label: 'Author Reference / Source', url: item.sources }] : []
@@ -297,7 +297,7 @@
       category: item.category || 'Research',
       cats: (item.category || 'Research') + ' Awards',
       achievement: item.achievement,
-      localImage: 'nasir%20.jpg',
+      localImage: item.localImage || 'nasir%20.jpg',
       sample: false,
       alt: item.name + ' — ' + item.achievement,
       summary: item.achievement + ' (' + item.address + ').',
@@ -3354,8 +3354,13 @@ window.addEventListener('load', function () {
   }
 
   /* 4. Timed Site-Wide Popup */
-  var pop = state.popup;
-  if (pop && pop.active && pop.title) {
+  function hydratePopupAndAds() {
+  var freshState = nr.load();
+  var pop = freshState.popup;
+  var existingPop = document.querySelector('.rise-popup-overlay');
+  if (!(pop && pop.active && pop.title)) {
+    if (existingPop) existingPop.remove();
+  } else if (!existingPop) {
     var now = Date.now();
     var startMs = pop.startAt ? Date.parse(pop.startAt) : 0;
     var endMs = pop.endAt ? Date.parse(pop.endAt) : Infinity;
@@ -3408,7 +3413,7 @@ window.addEventListener('load', function () {
 
   /* 6. Meta-Style Section-Wise Ad Campaign Targeting & Live Impression/Click Tracking */
   var nowTs = Date.now();
-  var activeCamps = (state.adCampaigns || []).filter(function (c) {
+  var activeCamps = (freshState.adCampaigns || []).filter(function (c) {
     if (c.status !== 'active') return false;
     var s = c.startAt ? Date.parse(c.startAt) : 0;
     var e = c.endAt ? Date.parse(c.endAt) : Infinity;
@@ -3443,17 +3448,27 @@ window.addEventListener('load', function () {
     });
   }
 
+  var allPagesCamp = findCampaignFor('all_pages');
+  if (allPagesCamp) {
+    document.querySelectorAll('.ad-slot').forEach(function (sl) {
+      renderTargetedCampaign(sl, allPagesCamp);
+    });
+  }
   if (path === 'index.html' || path === '') {
     var topCamp = findCampaignFor('home_top');
     if (topCamp) renderTargetedCampaign(document.querySelector('.ad-fullrow'), topCamp);
     var lowerCamp = findCampaignFor('home_lower');
     if (lowerCamp) {
       var targetLower = document.querySelector('#newsletter');
-      if (targetLower) {
+      var existingLower = document.getElementById('nr-lower-ad-slot');
+      if (targetLower && !existingLower) {
         var lowerSlot = document.createElement('a');
+        lowerSlot.id = 'nr-lower-ad-slot';
         lowerSlot.className = 'ad-slot ad-leaderboard ad-fullrow wrap';
         targetLower.parentNode.insertBefore(lowerSlot, targetLower);
         renderTargetedCampaign(lowerSlot, lowerCamp);
+      } else if (existingLower) {
+        renderTargetedCampaign(existingLower, lowerCamp);
       }
     }
   } else if (path === 'article.html') {
@@ -3480,6 +3495,9 @@ window.addEventListener('load', function () {
     var spotCamp = findCampaignFor('spotlights_page');
     if (spotCamp) renderTargetedCampaign(document.querySelector('.ad-slot'), spotCamp);
   }
+  }
+  hydratePopupAndAds();
+  window.addEventListener('rise:cloud-synced', hydratePopupAndAds);
 })();
 
 /* Homepage Latest News Articles (First 3 + See More) */
@@ -3514,6 +3532,10 @@ window.addEventListener('load', function () {
     });
   }
   renderHomeNews();
+  window.addEventListener('rise:cloud-synced', function () {
+    if (typeof newsArticles !== 'undefined') window.RiseNewsroom.hydrateArticles(newsArticles);
+    renderHomeNews();
+  });
 })();
 
 /* Site-Wide Social Links Sync + Article Share Bar + Category Dropdown + Reader Follow Strip */
@@ -3850,12 +3872,46 @@ window.addEventListener('load', function () {
     return clean;
   };
 
+  function pruneDeletedFromDom() {
+    var st = nr.load();
+    var delS = st.deletedStoryIds || [];
+    var delA = st.deletedArticleIds || [];
+    (st.recycleBin || []).forEach(function (entry) {
+      if (entry.kind === 'story' && entry.item && entry.item.id && delS.indexOf(entry.item.id) === -1) delS.push(entry.item.id);
+      if (entry.kind === 'article' && entry.item && entry.item.id && delA.indexOf(entry.item.id) === -1) delA.push(entry.item.id);
+    });
+    delS.forEach(function (did) {
+      document.querySelectorAll('a[href*="story.html?id=' + did + '"]').forEach(function (a) {
+        var card = a.closest('article, .spotlight-card, .dual-card, .story-card');
+        if (card) card.remove();
+      });
+    });
+    delA.forEach(function (did) {
+      document.querySelectorAll('a[href*="article.html?id=' + did + '"]').forEach(function (a) {
+        var card = a.closest('article, .news-card');
+        if (card) card.remove();
+      });
+    });
+    var sg = document.getElementById('story-grid');
+    if (sg) {
+      var visCount = sg.querySelectorAll('.spotlight-card:not([hidden])').length;
+      var fs = document.getElementById('filter-status');
+      if (fs) fs.textContent = visCount ? ('Showing ' + visCount + ' spotlight' + (visCount === 1 ? '' : 's')) : 'No spotlights published right now.';
+      document.querySelectorAll('.count-pill').forEach(function (p) { p.textContent = String(visCount); });
+    }
+  }
+  pruneDeletedFromDom();
+
   /* Pull latest cloud content on public pages */
   var path = window.location.pathname.split('/').pop() || 'index.html';
   if (!document.getElementById('nr-lock-screen')) {
     sb.pullPublicContent().then(function (changed) {
       if (!changed) return;
       var st = nr.load();
+      if (typeof newsArticles !== 'undefined') nr.hydrateArticles(newsArticles);
+      if (typeof stories !== 'undefined') nr.hydrateStories(stories);
+      if (typeof newsAuthors !== 'undefined') nr.hydrateAuthors(newsAuthors);
+      pruneDeletedFromDom();
       if (path === 'careers.html' && Array.isArray(st.jobCirculars) && st.jobCirculars.length) {
         var cGrid = document.querySelector('#circulars .circular-grid');
         var roleSel = document.getElementById('car-role');

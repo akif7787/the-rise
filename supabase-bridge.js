@@ -55,7 +55,7 @@
       var state = nr.load();
       var changed = false;
 
-      if (results[0].status === 'fulfilled' && Array.isArray(results[0].value) && results[0].value.length) {
+      if (results[0].status === 'fulfilled' && Array.isArray(results[0].value)) {
         state.publishedArticles = results[0].value.map(function (r) {
           return {
             id: r.id, topic: r.topic, badgeClass: r.badge_class || 'policy',
@@ -70,7 +70,7 @@
         changed = true;
       }
 
-      if (results[1].status === 'fulfilled' && Array.isArray(results[1].value) && results[1].value.length) {
+      if (results[1].status === 'fulfilled' && Array.isArray(results[1].value)) {
         state.publishedStories = results[1].value.map(function (r) {
           return {
             id: r.id, name: r.name, category: r.category, cats: r.cats || r.category,
@@ -121,11 +121,16 @@
           if (row.key === 'recycleBin' && Array.isArray(row.value)) state.recycleBin = row.value;
           if (row.key === 'jobCirculars' && Array.isArray(row.value)) state.jobCirculars = row.value;
           if (row.key === 'ambassadorCirculars' && Array.isArray(row.value)) state.ambassadorCirculars = row.value;
+          if (row.key === 'deletedArticleIds' && Array.isArray(row.value)) state.deletedArticleIds = row.value;
+          if (row.key === 'deletedStoryIds' && Array.isArray(row.value)) state.deletedStoryIds = row.value;
         });
         changed = true;
       }
 
-      if (changed) nr.save(state);
+      if (changed) {
+        nr.save(state);
+        try { window.dispatchEvent(new CustomEvent('rise:cloud-synced')); } catch (e) {}
+      }
       return changed;
     }).catch(function () { return false; });
   }

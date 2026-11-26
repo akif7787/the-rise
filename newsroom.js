@@ -13,9 +13,9 @@
   var lockError = document.getElementById('nr-lock-error');
 
   var ROLE_TABS = {
-    Admin: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'ads', 'newsletter', 'sections', 'team', 'recruitment', 'contacts', 'recyclebin', 'settings'],
-    Editor: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'recruitment', 'contacts', 'recyclebin'],
-    Moderator: ['insights', 'articles', 'spotlights', 'newsletter', 'recruitment', 'contacts', 'recyclebin']
+    Admin: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'ads', 'newsletter', 'sections', 'team', 'recruitment', 'contacts', 'photocards', 'recyclebin', 'settings'],
+    Editor: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'recruitment', 'contacts', 'photocards', 'recyclebin'],
+    Moderator: ['insights', 'articles', 'spotlights', 'newsletter', 'recruitment', 'contacts', 'photocards', 'recyclebin']
   };
 
   var currentUser = null;
@@ -202,7 +202,15 @@
           state.analytics.storyViews = Object.assign({}, state.analytics.storyViews, storyViews);
           state.analytics.daily = Object.assign({}, state.analytics.daily, daily);
         }
+        var binStories = (state.recycleBin || []).filter(function (e) { return e.kind === 'story' && e.item && e.item.id; }).map(function (e) { return e.item.id; });
+        var binArticles = (state.recycleBin || []).filter(function (e) { return e.kind === 'article' && e.item && e.item.id; }).map(function (e) { return e.item.id; });
+        state.deletedStoryIds = Array.from(new Set((state.deletedStoryIds || []).concat(binStories)));
+        state.deletedArticleIds = Array.from(new Set((state.deletedArticleIds || []).concat(binArticles)));
+        state.publishedStories = (state.publishedStories || []).filter(function (s) { return state.deletedStoryIds.indexOf(s.id) === -1; });
+        state.publishedArticles = (state.publishedArticles || []).filter(function (a) { return state.deletedArticleIds.indexOf(a.id) === -1; });
         nr.save(state);
+        if (binStories.length) sbSaveSetting('deletedStoryIds', state.deletedStoryIds);
+        if (binArticles.length) sbSaveSetting('deletedArticleIds', state.deletedArticleIds);
         if (typeof newsArticles !== 'undefined') nr.hydrateArticles(newsArticles);
         if (typeof stories !== 'undefined') nr.hydrateStories(stories);
         if (typeof newsAuthors !== 'undefined') nr.hydrateAuthors(newsAuthors);
@@ -215,14 +223,16 @@
   function unlock(user) {
     if (lockScreen) lockScreen.hidden = true;
     if (workspace) workspace.hidden = false;
-    try { sessionStorage.setItem(SESSION_USER_KEY, JSON.stringify(user)); } catch (e) {}
+
+  try { sessionStorage.setItem(SESSION_USER_KEY, JSON.stringify(user)); } catch (e) {}
     applyRolePermissions(user);
     switchTab('insights');
     renderAll();
   }
 
   function lock() {
-    try { sessionStorage.removeItem(SESSION_USER_KEY); } catch (e) {}
+
+  try { sessionStorage.removeItem(SESSION_USER_KEY); } catch (e) {}
     currentUser = null;
     if (workspace) workspace.hidden = true;
     if (lockScreen) lockScreen.hidden = false;
@@ -242,7 +252,8 @@
         }
       }).catch(function () { lock(); });
     } else {
-      try {
+
+  try {
         var savedUser = sessionStorage.getItem(SESSION_USER_KEY);
         if (savedUser) unlock(JSON.parse(savedUser));
       } catch (e) {}
@@ -315,7 +326,8 @@
   }
 
   function fmtDate(iso) {
-    try {
+
+  try {
       return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
     } catch (e) {
       return iso || '';
@@ -432,13 +444,19 @@
     var it = entry.item;
     if (entry.kind === 'article' && it) {
       if (!Array.isArray(st.publishedArticles)) st.publishedArticles = [];
+      st.publishedArticles = st.publishedArticles.filter(function (x) { return x.id !== it.id; });
       st.publishedArticles.unshift(it);
+      st.deletedArticleIds = (st.deletedArticleIds || []).filter(function (x) { return x !== it.id; });
       if (typeof newsArticles !== 'undefined' && !newsArticles.some(function (x) { return x.id === it.id; })) newsArticles.unshift(it);
+      sbSaveSetting('deletedArticleIds', st.deletedArticleIds);
       sbUpsertArticle(it);
     } else if (entry.kind === 'story' && it) {
       if (!Array.isArray(st.publishedStories)) st.publishedStories = [];
+      st.publishedStories = st.publishedStories.filter(function (x) { return x.id !== it.id; });
       st.publishedStories.unshift(it);
+      st.deletedStoryIds = (st.deletedStoryIds || []).filter(function (x) { return x !== it.id; });
       if (typeof stories !== 'undefined' && !stories.some(function (x) { return x.id === it.id; })) stories.unshift(it);
+      sbSaveSetting('deletedStoryIds', st.deletedStoryIds);
       sbUpsertSpotlight(it, false);
     } else if (entry.kind === 'author' && it) {
       st.customAuthors = st.customAuthors || {};
@@ -657,18 +675,21 @@
         qBox.innerHTML = '<p class="nr-empty">No pending article submissions.</p>';
       } else {
         qBox.innerHTML = state.articlesQueue.map(function (item) {
+          var revBtn = '<button type="button" class="nr-btn nr-btn-ghost nr-sm" data-review-art="' + esc(item.id) + '">👁 Review &amp; Edit</button>';
           var actions = item.status === 'pending'
-            ? '<button type="button" class="nr-btn nr-btn-primary nr-sm" data-accept-art="' + esc(item.id) + '">Accept &amp; Publish</button>' +
+            ? revBtn +
+              '<button type="button" class="nr-btn nr-btn-primary nr-sm" data-accept-art="' + esc(item.id) + '">Accept &amp; Publish</button>' +
               '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-reject-art="' + esc(item.id) + '">Reject</button>'
-            : '<span class="nr-pill-soft">' + esc(item.status.toUpperCase()) + '</span>';
+            : revBtn + '<span class="nr-pill-soft">' + esc(item.status.toUpperCase()) + '</span>';
           return '<div class="nr-q-card"><div><strong>' + esc(item.headline) + '</strong><p class="nr-sub-caption">By ' + esc(item.author) + ' · ' + esc(item.topic) + '</p></div><div class="nr-row-actions">' + actions + '</div></div>';
         }).join('');
+        qBox.querySelectorAll('[data-review-art]').forEach(function (b) {
+          b.addEventListener('click', function () { openSubmissionReview('article', b.getAttribute('data-review-art')); });
+        });
         qBox.querySelectorAll('[data-accept-art]').forEach(function (b) {
           b.addEventListener('click', function () {
             var id = b.getAttribute('data-accept-art');
-            var pub = nr.acceptArticle(id);
-            sbRest('article_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'published' } });
-            if (pub) sbUpsertArticle(pub);
+            publishAcceptedArticle(id);
             renderAll();
           });
         });
@@ -741,6 +762,7 @@
           confirmDelete(art ? art.headline : 'this article', function () {
             if (art) moveToRecycleBin('article', art.headline, (art.author || '') + ' · ' + (art.topic || ''), Object.assign({}, art));
             nr.deletePublishedArticle(id);
+            sbSaveSetting('deletedArticleIds', nr.load().deletedArticleIds || []);
             sbRest('news_articles?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
             var idx = newsArticles.findIndex(function (x) { return x.id === id; });
             if (idx !== -1) newsArticles.splice(idx, 1);
@@ -758,18 +780,21 @@
         qBox.innerHTML = '<p class="nr-empty">No pending nominations.</p>';
       } else {
         qBox.innerHTML = state.nominationsQueue.map(function (item) {
+          var revBtn = '<button type="button" class="nr-btn nr-btn-ghost nr-sm" data-review-nom="' + esc(item.id) + '">👁 Review &amp; Edit</button>';
           var actions = item.status === 'pending'
-            ? '<button type="button" class="nr-btn nr-btn-primary nr-sm" data-accept-nom="' + esc(item.id) + '">Accept &amp; Publish</button>' +
+            ? revBtn +
+              '<button type="button" class="nr-btn nr-btn-primary nr-sm" data-accept-nom="' + esc(item.id) + '">Accept &amp; Publish</button>' +
               '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-reject-nom="' + esc(item.id) + '">Reject</button>'
-            : '<span class="nr-pill-soft">' + esc(item.status.toUpperCase()) + '</span>';
+            : revBtn + '<span class="nr-pill-soft">' + esc(item.status.toUpperCase()) + '</span>';
           return '<div class="nr-q-card"><div><strong>' + esc(item.name) + '</strong><p class="nr-sub-caption">' + esc(item.achievement) + '</p></div><div class="nr-row-actions">' + actions + '</div></div>';
         }).join('');
+        qBox.querySelectorAll('[data-review-nom]').forEach(function (b) {
+          b.addEventListener('click', function () { openSubmissionReview('nomination', b.getAttribute('data-review-nom')); });
+        });
         qBox.querySelectorAll('[data-accept-nom]').forEach(function (b) {
           b.addEventListener('click', function () {
             var id = b.getAttribute('data-accept-nom');
-            var pub = nr.acceptNomination(id);
-            sbRest('nomination_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'published' } });
-            if (pub) sbUpsertSpotlight(pub, false);
+            publishAcceptedNomination(id);
             renderAll();
           });
         });
@@ -809,6 +834,7 @@
           confirmDelete(stObj ? stObj.name : 'this spotlight', function () {
             if (stObj) moveToRecycleBin('story', stObj.name, stObj.achievement || '', Object.assign({}, stObj));
             nr.deletePublishedStory(id);
+            sbSaveSetting('deletedStoryIds', nr.load().deletedStoryIds || []);
             sbRest('spotlights?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
             var idx = stories.findIndex(function (x) { return x.id === id; });
             if (idx !== -1) stories.splice(idx, 1);
@@ -1182,7 +1208,8 @@
 
   function parseApplicantDetails(item) {
     var parsed = {};
-    try { parsed = JSON.parse(item.message || '{}'); } catch (e) {}
+
+  try { parsed = JSON.parse(item.message || '{}'); } catch (e) {}
     if (!parsed || typeof parsed !== 'object') parsed = {};
     return {
       email: parsed['Email Address'] || '',
@@ -1404,6 +1431,7 @@
     renderTeamTab(state);
     renderRecruitmentTab(state);
     renderContactsTab(state);
+    refreshPhotoCardAutofill();
     renderRecycleBinTab(state);
   }
 
@@ -2248,6 +2276,647 @@
       });
     });
   }
+
+  /* Photo Card Studio (Native 157+ Editorial, Fashion & News Templates + Brand & Resize) */
+  var PC_MODES = [
+    { id: 'fashion_cover', cat: 'Fashion & Vogue', name: 'Vogue Cover', frame: 'thin_gold' },
+    { id: 'fashion_frame', cat: 'Fashion & Vogue', name: 'Lookbook Mat', frame: 'bold_black' },
+    { id: 'news', cat: 'Editorial News', name: 'Editorial Noir', frame: 'none' },
+    { id: 'center_badge', cat: 'Spotlights', name: 'Center Spotlight', frame: 'double_white' },
+    { id: 'breaking', cat: 'Breaking', name: 'Breaking Flash', frame: 'none' },
+    { id: 'quote', cat: 'Quotes', name: 'Quote Voice', frame: 'corner_brackets' },
+    { id: 'split_bottom', cat: 'Business & Tech', name: 'Briefing Split', frame: 'none' },
+    { id: 'minimal_light', cat: 'Special', name: 'Clean Paper', frame: 'bold_black' }
+  ];
+  var PC_PALETTES = [
+    { label: 'Obsidian Gold', bg: '#0B1120', fg: '#FFFFFF', accent: '#F59E0B', bar: '#111827' },
+    { label: 'Noir Crimson', bg: '#111827', fg: '#FFFFFF', accent: '#DC2626', bar: '#7F1D1D' },
+    { label: 'Emerald Luxe', bg: '#064E3B', fg: '#FFFFFF', accent: '#34D399', bar: '#022C22' },
+    { label: 'Midnight Cyan', bg: '#1E1B4B', fg: '#FFFFFF', accent: '#38BDF8', bar: '#0F172A' },
+    { label: 'Ivory Classic', bg: '#FAF7F2', fg: '#111827', accent: '#B45309', bar: '#111827' },
+    { label: 'Slate Amber', bg: '#1E293B', fg: '#FFFFFF', accent: '#FBBF24', bar: '#0F172A' },
+    { label: 'Forest Lime', bg: '#14532D', fg: '#FFFFFF', accent: '#A3E635', bar: '#052E16' },
+    { label: 'Studio White', bg: '#FFFFFF', fg: '#111827', accent: '#111827', bar: '#F3F4F6' },
+    { label: 'Burgundy Silk', bg: '#4C0519', fg: '#FFFFFF', accent: '#FDA4AF', bar: '#27030D' },
+    { label: 'Royal Navy', bg: '#0F172A', fg: '#FFFFFF', accent: '#60A5FA', bar: '#020617' },
+    { label: 'Charcoal Rose', bg: '#18181B', fg: '#FFFFFF', accent: '#FB7185', bar: '#09090B' },
+    { label: 'Sand & Ink', bg: '#F5F0E6', fg: '#1C1917', accent: '#9A3412', bar: '#1C1917' },
+    { label: 'Teal Horizon', bg: '#134E4A', fg: '#FFFFFF', accent: '#2DD4BF', bar: '#042F2E' },
+    { label: 'Plum Couture', bg: '#3B0764', fg: '#FFFFFF', accent: '#E879F9', bar: '#1E0338' },
+    { label: 'Bronze Dusk', bg: '#27272A', fg: '#FFFFFF', accent: '#D97706', bar: '#18181B' },
+    { label: 'Deep Ocean', bg: '#0C4A6E', fg: '#FFFFFF', accent: '#7DD3FC', bar: '#082F49' },
+    { label: 'Espresso Cream', bg: '#292524', fg: '#FAF5F0', accent: '#F59E0B', bar: '#1C1917' },
+    { label: 'Pearl Minimal', bg: '#F8FAFC', fg: '#0F172A', accent: '#0F172A', bar: '#E2E8F0' },
+    { label: 'Cobalt Press', bg: '#172554', fg: '#FFFFFF', accent: '#FACC15', bar: '#0F172A' },
+    { label: 'Olive Editorial', bg: '#1A2E05', fg: '#FFFFFF', accent: '#BEF264', bar: '#0F1A03' }
+  ];
+  var PC_TEMPLATES = [];
+  (function build157Templates() {
+    var idx = 1;
+    for (var p = 0; p < PC_PALETTES.length; p++) {
+      for (var m = 0; m < PC_MODES.length; m++) {
+        if (PC_TEMPLATES.length >= 157) break;
+        var pal = PC_PALETTES[p];
+        var mod = PC_MODES[m];
+        PC_TEMPLATES.push({
+          id: 'tpl-' + idx,
+          num: idx,
+          cat: mod.cat,
+          label: mod.name + ' #' + idx,
+          bg: pal.bg,
+          fg: pal.fg,
+          accent: pal.accent,
+          bar: pal.bar,
+          mode: mod.id,
+          frame: mod.frame
+        });
+        idx++;
+      }
+    }
+  })();
+  var activePcCat = 'All';
+  var activePcTpl = PC_TEMPLATES[0];
+  var pcLoadedImg = null;
+  var pcLogoImg = null;
+
+  function refreshPhotoCardAutofill() {
+    var sel = document.getElementById('nr-pc-autofill');
+    if (!sel) return;
+    var cur = sel.value;
+    var opts = '<option value="">— Write custom card or pick an article/spotlight —</option>';
+    if (typeof newsArticles !== 'undefined') {
+      newsArticles.forEach(function (a) {
+        opts += '<option value="art:' + esc(a.id) + '">Article: ' + esc(a.headline) + '</option>';
+      });
+    }
+    if (typeof stories !== 'undefined') {
+      stories.forEach(function (s) {
+        opts += '<option value="story:' + esc(s.id) + '">Spotlight: ' + esc(s.name + ' — ' + s.achievement) + '</option>';
+      });
+    }
+    sel.innerHTML = opts;
+    if (cur) sel.value = cur;
+  }
+
+  function wrapCanvasLines(ctx, text, maxW) {
+    var words = String(text || '').split(/\s+/);
+    var lines = [];
+    var line = '';
+    words.forEach(function (w) {
+      var test = line ? line + ' ' + w : w;
+      if (ctx.measureText(test).width > maxW && line) {
+        lines.push(line);
+        line = w;
+      } else {
+        line = test;
+      }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  function drawPhotoCard() {
+    var canvas = document.getElementById('nr-pc-canvas');
+    if (!canvas) return;
+    var sizeStr = (document.getElementById('nr-pc-size') || {}).value || '1080x1080';
+    var W = 1080, H = 1080;
+    if (sizeStr === 'custom') {
+      W = Math.max(400, Math.min(2400, Number((document.getElementById('nr-pc-cw') || {}).value) || 1080));
+      H = Math.max(400, Math.min(2400, Number((document.getElementById('nr-pc-ch') || {}).value) || 1080));
+    } else {
+      var parts = sizeStr.split('x');
+      W = Number(parts[0]) || 1080;
+      H = Number(parts[1]) || 1080;
+    }
+    canvas.width = W;
+    canvas.height = H;
+    var dimLbl = document.getElementById('nr-pc-dim-label');
+    if (dimLbl) dimLbl.textContent = W + ' × ' + H;
+
+    var ctx = canvas.getContext('2d');
+    var tpl = activePcTpl;
+    var c1 = (document.getElementById('nr-pc-c1') || {}).value || tpl.bg;
+    var c2 = (document.getElementById('nr-pc-c2') || {}).value || tpl.accent;
+    var useCustomColors = (document.getElementById('nr-pc-c1') || {}).dataset && document.getElementById('nr-pc-c1').dataset.touched === '1';
+    var bgCol = useCustomColors ? c1 : tpl.bg;
+    var accCol = useCustomColors ? c2 : tpl.accent;
+    var fontFam = (document.getElementById('nr-pc-font') || {}).value || 'Georgia, serif';
+    var frameStyle = (document.getElementById('nr-pc-frame') || {}).value || 'auto';
+    if (frameStyle === 'auto') frameStyle = tpl.frame || 'none';
+    var zoomPct = (Number((document.getElementById('nr-pc-zoom') || {}).value) || 100) / 100;
+    var posXPct = (Number((document.getElementById('nr-pc-posx') || {}).value) || 50) / 100;
+    var posPct = (Number((document.getElementById('nr-pc-pos') || {}).value) || 50) / 100;
+    var brandTxt = (document.getElementById('nr-pc-brand') || {}).value || 'The Rise.';
+
+    ctx.fillStyle = bgCol;
+    ctx.fillRect(0, 0, W, H);
+
+    var tag = ((document.getElementById('nr-pc-tag') || {}).value || 'THE RISE BD').toUpperCase();
+    var headline = (document.getElementById('nr-pc-headline') || {}).value || '';
+    var sub = (document.getElementById('nr-pc-sub') || {}).value || '';
+    var isLight = tpl.bg === '#FAF7F2' || tpl.bg === '#FFFFFF' || tpl.bg === '#F5F0E6' || tpl.bg === '#F8FAFC';
+
+    function drawScaledBg(bx, by, bw, bh) {
+      if (!pcLoadedImg || !pcLoadedImg.complete || !pcLoadedImg.naturalWidth) return;
+      var iw = pcLoadedImg.naturalWidth, ih = pcLoadedImg.naturalHeight;
+      var sc = Math.max(bw / iw, bh / ih) * zoomPct;
+      var dw = iw * sc, dh = ih * sc;
+      var dx = bx + (bw - dw) * posXPct;
+      var dy = by + (bh - dh) * posPct;
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(bx, by, bw, bh);
+      ctx.clip();
+      ctx.drawImage(pcLoadedImg, dx, dy, dw, dh);
+      ctx.restore();
+    }
+
+    function drawFrameOverlay() {
+      if (frameStyle === 'thin_gold') {
+        ctx.strokeStyle = accCol;
+        ctx.lineWidth = 4;
+        ctx.strokeRect(28, 28, W - 56, H - 56);
+      } else if (frameStyle === 'double_white') {
+        ctx.strokeStyle = isLight ? 'rgba(17,24,39,0.55)' : 'rgba(255,255,255,0.65)';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(22, 22, W - 44, H - 44);
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(34, 34, W - 68, H - 68);
+      } else if (frameStyle === 'bold_black') {
+        ctx.strokeStyle = isLight ? '#111827' : '#FFFFFF';
+        ctx.lineWidth = 14;
+        ctx.strokeRect(7, 7, W - 14, H - 14);
+      } else if (frameStyle === 'corner_brackets') {
+        ctx.strokeStyle = accCol;
+        ctx.lineWidth = 5;
+        var len = 46, m = 28;
+        [[m, m, 1, 1], [W - m, m, -1, 1], [m, H - m, 1, -1], [W - m, H - m, -1, -1]].forEach(function (pt) {
+          ctx.beginPath();
+          ctx.moveTo(pt[0] + pt[2] * len, pt[1]);
+          ctx.lineTo(pt[0], pt[1]);
+          ctx.lineTo(pt[0], pt[1] + pt[3] * len);
+          ctx.stroke();
+        });
+      }
+    }
+
+    function drawBrandHeader(bx, by) {
+      if (pcLogoImg && pcLogoImg.complete && pcLogoImg.naturalWidth > 0) {
+        var lh = 46;
+        var lw = (pcLogoImg.naturalWidth / pcLogoImg.naturalHeight) * lh;
+        ctx.drawImage(pcLogoImg, bx, by, lw, lh);
+      } else {
+        ctx.fillStyle = accCol;
+        ctx.fillRect(bx, by, 10, 42);
+        ctx.fillStyle = isLight && !(pcLoadedImg && pcLoadedImg.naturalWidth && tpl.mode !== 'fashion_frame' && tpl.mode !== 'split_bottom') ? tpl.fg : '#FFFFFF';
+        ctx.font = 'bold 34px ' + fontFam;
+        ctx.fillText(brandTxt, bx + 22, by + 33);
+      }
+    }
+
+    if (tpl.mode === 'fashion_frame' || tpl.mode === 'minimal_light') {
+      var padF = Math.round(W * 0.08);
+      var imgH = Math.round(H * 0.56);
+      ctx.fillStyle = '#E5E7EB';
+      ctx.fillRect(padF, padF, W - padF * 2, imgH);
+      drawScaledBg(padF, padF, W - padF * 2, imgH);
+      ctx.fillStyle = accCol;
+      ctx.font = 'bold 20px Inter, system-ui, sans-serif';
+      ctx.fillText(tag, padF, padF + imgH + 54);
+      ctx.fillStyle = tpl.fg;
+      ctx.font = 'italic bold ' + (W > H ? 36 : 44) + 'px ' + fontFam;
+      var fLines = wrapCanvasLines(ctx, headline, W - padF * 2).slice(0, 3);
+      var fy = padF + imgH + 104;
+      fLines.forEach(function (ln) { ctx.fillText(ln, padF, fy); fy += 52; });
+      if (sub) {
+        ctx.fillStyle = isLight ? '#4B5563' : 'rgba(255,255,255,0.8)';
+        ctx.font = '500 22px Inter, system-ui, sans-serif';
+        ctx.fillText(sub + ' · ' + brandTxt, padF, Math.min(fy + 8, H - 36));
+      }
+      drawFrameOverlay();
+      return;
+    }
+
+    if (tpl.mode === 'fashion_cover') {
+      drawScaledBg(0, 0, W, H);
+      var gTop = ctx.createLinearGradient(0, 0, 0, H * 0.35);
+      gTop.addColorStop(0, 'rgba(0,0,0,0.68)');
+      gTop.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = gTop;
+      ctx.fillRect(0, 0, W, H * 0.35);
+      var gBot = ctx.createLinearGradient(0, H * 0.42, 0, H);
+      gBot.addColorStop(0, 'rgba(0,0,0,0)');
+      gBot.addColorStop(1, 'rgba(0,0,0,0.9)');
+      ctx.fillStyle = gBot;
+      ctx.fillRect(0, H * 0.42, W, H * 0.58);
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold ' + (W > H ? 70 : 88) + 'px ' + fontFam;
+      var mastUp = brandTxt.toUpperCase();
+      var mastW = ctx.measureText(mastUp).width;
+      ctx.fillText(mastUp, (W - mastW) / 2, 126);
+
+      var padC = Math.round(W * 0.075);
+      ctx.fillStyle = accCol;
+      ctx.font = 'bold 22px Inter, system-ui, sans-serif';
+      ctx.fillText(tag, padC, H - 255);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'italic bold ' + (W > H ? 38 : 48) + 'px ' + fontFam;
+      var cLines = wrapCanvasLines(ctx, headline, W - padC * 2).slice(0, 3);
+      var cy = H - 200;
+      cLines.forEach(function (ln) { ctx.fillText(ln, padC, cy); cy += 56; });
+      if (sub) {
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.font = '500 22px Inter, system-ui, sans-serif';
+        ctx.fillText(sub + '  ·  therisebd.com', padC, H - 52);
+      }
+      drawFrameOverlay();
+      return;
+    }
+
+    /* News, Breaking, Center Spotlight, Quote, Briefing Split */
+    var splitH = tpl.mode === 'split_bottom' ? Math.round(H * 0.52) : H;
+    drawScaledBg(0, 0, W, splitH);
+    if (pcLoadedImg && pcLoadedImg.naturalWidth && tpl.mode !== 'split_bottom') {
+      var grad = ctx.createLinearGradient(0, H * 0.12, 0, H);
+      grad.addColorStop(0, 'rgba(0,0,0,0.22)');
+      grad.addColorStop(0.55, 'rgba(0,0,0,0.74)');
+      grad.addColorStop(1, bgCol);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    var pad = Math.round(W * 0.068);
+    drawBrandHeader(pad, pad);
+
+    var tagY = tpl.mode === 'split_bottom' ? Math.round(H * 0.56) : (W > H ? Math.round(H * 0.40) : Math.round(H * 0.53));
+    if (tpl.mode === 'quote') tagY = Math.round(H * 0.36);
+    ctx.font = 'bold 22px Inter, system-ui, sans-serif';
+    var tagW = ctx.measureText(tag).width + 32;
+    ctx.fillStyle = accCol;
+    ctx.fillRect(pad, tagY, tagW, 40);
+    ctx.fillStyle = '#111827';
+    if (tpl.mode === 'breaking') ctx.fillStyle = '#FFFFFF';
+    ctx.fillText(tag, pad + 16, tagY + 28);
+
+    ctx.fillStyle = tpl.fg;
+    var headSize = W > H ? 42 : 52;
+    ctx.font = 'bold ' + headSize + 'px ' + fontFam;
+    var lines = wrapCanvasLines(ctx, tpl.mode === 'quote' ? ('“' + headline + '”') : headline, W - pad * 2).slice(0, 4);
+    var curY = tagY + 94;
+    lines.forEach(function (ln) {
+      ctx.fillText(ln, pad, curY);
+      curY += Math.round(headSize * 1.24);
+    });
+
+    if (sub) {
+      ctx.fillStyle = isLight ? '#4B5563' : 'rgba(255,255,255,0.84)';
+      ctx.font = '500 24px Inter, system-ui, sans-serif';
+      ctx.fillText(sub, pad, Math.min(curY + 14, H - 96));
+    }
+
+    ctx.fillStyle = tpl.bar;
+    ctx.fillRect(0, H - 64, W, 64);
+    ctx.fillStyle = (tpl.bar === '#F3F4F6' || tpl.bar === '#E2E8F0') ? '#111827' : '#FFFFFF';
+    ctx.font = '600 22px Inter, system-ui, sans-serif';
+    ctx.fillText('therisebd.com', pad, H - 24);
+    var dateTxt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date());
+    var dw2 = ctx.measureText(dateTxt).width;
+    ctx.fillText(dateTxt, W - pad - dw2, H - 24);
+    drawFrameOverlay();
+  }
+
+  (function initPhotoCardStudio() {
+    var tplGrid = document.getElementById('nr-pc-templates');
+    var catRow = document.getElementById('nr-pc-cats');
+    if (!tplGrid) return;
+
+    var cats = ['All', 'Fashion & Vogue', 'Editorial News', 'Breaking', 'Quotes', 'Spotlights', 'Business & Tech', 'Special'];
+    function renderTplGallery() {
+      var list = activePcCat === 'All' ? PC_TEMPLATES : PC_TEMPLATES.filter(function (t) { return t.cat === activePcCat; });
+      var cntEl = document.getElementById('nr-pc-tpl-count');
+      if (cntEl) cntEl.textContent = list.length + ' Templates';
+      tplGrid.innerHTML = list.map(function (t) {
+        var isLightT = t.bg === '#FAF7F2' || t.bg === '#FFFFFF' || t.bg === '#F5F0E6' || t.bg === '#F8FAFC';
+        var bgGrad = isLightT
+          ? 'linear-gradient(180deg, rgba(0,0,0,0.06) 0%, ' + t.bg + ' 58%)'
+          : 'linear-gradient(180deg, rgba(15,23,42,0.35) 0%, ' + t.bg + ' 72%)';
+        var frameCss = t.frame === 'thin_gold' ? 'border:1.5px solid ' + t.accent + ';'
+          : (t.frame === 'bold_black' ? 'border:3px solid ' + t.fg + ';'
+          : (t.frame === 'double_white' ? 'box-shadow:inset 0 0 0 2px rgba(255,255,255,.45);' : ''));
+        return '<button type="button" class="nr-pc-tpl-btn' + (activePcTpl.id === t.id ? ' active' : '') + '" data-pc-tpl="' + esc(t.id) + '">' +
+          '<div class="nr-pc-mini" style="background:' + bgGrad + ';background-color:' + t.bg + ';color:' + t.fg + ';' + frameCss + '">' +
+            '<div class="nr-pc-mini-top">THE RISE.</div>' +
+            '<div class="nr-pc-mini-mid">' +
+              '<span class="nr-pc-mini-badge" style="background:' + t.accent + ';color:' + (t.mode === 'breaking' ? '#fff' : '#111827') + '">' + esc(t.cat) + '</span>' +
+              '<div class="nr-pc-mini-head">Headline <span style="color:' + t.accent + '">Story</span> Card</div>' +
+            '</div>' +
+            '<div class="nr-pc-mini-foot" style="background:' + t.bar + ';color:' + ((t.bar === '#F3F4F6' || t.bar === '#E2E8F0') ? '#111827' : '#fff') + '">therisebd.com</div>' +
+          '</div>' +
+          '<span>' + esc(t.label) + '</span></button>';
+      }).join('');
+      tplGrid.querySelectorAll('[data-pc-tpl]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          activePcTpl = PC_TEMPLATES.find(function (t) { return t.id === b.getAttribute('data-pc-tpl'); }) || PC_TEMPLATES[0];
+          var c1El = document.getElementById('nr-pc-c1');
+          var c2El = document.getElementById('nr-pc-c2');
+          if (c1El) { c1El.value = activePcTpl.bg; delete c1El.dataset.touched; }
+          if (c2El) { c2El.value = activePcTpl.accent; }
+          renderTplGallery();
+          drawPhotoCard();
+        });
+      });
+    }
+
+    if (catRow) {
+      catRow.innerHTML = cats.map(function (c) {
+        return '<button type="button" class="nr-pc-cat-btn' + (c === activePcCat ? ' active' : '') + '" data-pc-cat="' + esc(c) + '">' + esc(c) + '</button>';
+      }).join('');
+      catRow.querySelectorAll('[data-pc-cat]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          activePcCat = b.getAttribute('data-pc-cat');
+          catRow.querySelectorAll('.nr-pc-cat-btn').forEach(function (x) { x.classList.remove('active'); });
+          b.classList.add('active');
+          renderTplGallery();
+        });
+      });
+    }
+    renderTplGallery();
+
+    function loadPcImage(src, isLogo) {
+      if (!src) {
+        if (isLogo) pcLogoImg = null; else pcLoadedImg = null;
+        drawPhotoCard();
+        return;
+      }
+      var img = new Image();
+      if (!src.startsWith('data:')) img.crossOrigin = 'anonymous';
+      img.onload = function () { if (isLogo) pcLogoImg = img; else pcLoadedImg = img; drawPhotoCard(); };
+      img.onerror = function () { if (isLogo) pcLogoImg = null; else pcLoadedImg = null; drawPhotoCard(); };
+      img.src = src;
+    }
+
+    var sizeSel = document.getElementById('nr-pc-size');
+    var customSizeRow = document.getElementById('nr-pc-custom-size-row');
+    if (sizeSel) sizeSel.addEventListener('change', function () {
+      if (customSizeRow) customSizeRow.hidden = sizeSel.value !== 'custom';
+      drawPhotoCard();
+    });
+    ['nr-pc-cw', 'nr-pc-ch', 'nr-pc-font', 'nr-pc-frame', 'nr-pc-tag', 'nr-pc-headline', 'nr-pc-sub', 'nr-pc-brand'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) { el.addEventListener('input', drawPhotoCard); el.addEventListener('change', drawPhotoCard); }
+    });
+    ['nr-pc-c1', 'nr-pc-c2'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', function () {
+        document.getElementById('nr-pc-c1').dataset.touched = '1';
+        drawPhotoCard();
+      });
+    });
+    var zoomEl = document.getElementById('nr-pc-zoom');
+    if (zoomEl) zoomEl.addEventListener('input', function () {
+      var zv = document.getElementById('nr-pc-zoom-val');
+      if (zv) zv.textContent = zoomEl.value + '%';
+      drawPhotoCard();
+    });
+    var posXEl = document.getElementById('nr-pc-posx');
+    if (posXEl) posXEl.addEventListener('input', function () {
+      var pxv = document.getElementById('nr-pc-posx-val');
+      if (pxv) pxv.textContent = posXEl.value + '%';
+      drawPhotoCard();
+    });
+    var posEl = document.getElementById('nr-pc-pos');
+    if (posEl) posEl.addEventListener('input', function () {
+      var pv = document.getElementById('nr-pc-pos-val');
+      if (pv) pv.textContent = posEl.value + '%';
+      drawPhotoCard();
+    });
+
+    var pcUrlIn = document.getElementById('nr-pc-img-url');
+    if (pcUrlIn) pcUrlIn.addEventListener('input', function () { loadPcImage(pcUrlIn.value.trim(), false); });
+    var pcFileIn = document.getElementById('nr-pc-img-file');
+    if (pcFileIn) pcFileIn.addEventListener('change', function () {
+      var f = pcFileIn.files && pcFileIn.files[0];
+      if (!f) return;
+      var reader = new FileReader();
+      reader.onload = function () { if (pcUrlIn) pcUrlIn.value = ''; loadPcImage(reader.result, false); };
+      reader.readAsDataURL(f);
+    });
+    var pcLogoIn = document.getElementById('nr-pc-logo-file');
+    var pcLogoClear = document.getElementById('nr-pc-logo-clear');
+    if (pcLogoIn) pcLogoIn.addEventListener('change', function () {
+      var f = pcLogoIn.files && pcLogoIn.files[0];
+      if (!f) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        if (pcLogoClear) pcLogoClear.hidden = false;
+        loadPcImage(reader.result, true);
+      };
+      reader.readAsDataURL(f);
+    });
+    if (pcLogoClear) pcLogoClear.addEventListener('click', function () {
+      pcLogoImg = null;
+      if (pcLogoIn) pcLogoIn.value = '';
+      pcLogoClear.hidden = true;
+      drawPhotoCard();
+    });
+    var autofill = document.getElementById('nr-pc-autofill');
+    if (autofill) autofill.addEventListener('change', function () {
+      var val = autofill.value;
+      if (!val) return;
+      var parts = val.split(':');
+      var kind = parts[0];
+      var id = parts.slice(1).join(':');
+      if (kind === 'art' && typeof newsArticles !== 'undefined') {
+        var a = newsArticles.find(function (x) { return x.id === id; });
+        if (a) {
+          document.getElementById('nr-pc-tag').value = a.topic || 'THE RISE BD';
+          document.getElementById('nr-pc-headline').value = a.headline || '';
+          document.getElementById('nr-pc-sub').value = 'By ' + (a.author || 'The Rise Editorial');
+          if (pcUrlIn) pcUrlIn.value = a.image || '';
+          loadPcImage(a.image || '');
+        }
+      } else if (kind === 'story' && typeof stories !== 'undefined') {
+        var s = stories.find(function (x) { return x.id === id; });
+        if (s) {
+          document.getElementById('nr-pc-tag').value = 'SPOTLIGHT · ' + (s.category || 'ACHIEVER');
+          document.getElementById('nr-pc-headline').value = s.name + ': ' + s.achievement;
+          document.getElementById('nr-pc-sub').value = s.headline || '';
+          if (pcUrlIn) pcUrlIn.value = s.localImage || '';
+          loadPcImage(s.localImage || '');
+        }
+      }
+    });
+
+    var dlBtn = document.getElementById('nr-pc-download');
+    if (dlBtn) dlBtn.addEventListener('click', function () {
+      var canvas = document.getElementById('nr-pc-canvas');
+      if (!canvas) return;
+      try {
+        var a = document.createElement('a');
+        a.download = 'the-rise-card-' + Date.now() + '.png';
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+      } catch (e) {
+        alert('Tip: For external URLs that block canvas export, upload the photo directly from your device.');
+      }
+    });
+
+    var toArtBtn = document.getElementById('nr-pc-to-article');
+    if (toArtBtn) toArtBtn.addEventListener('click', function () {
+      var canvas = document.getElementById('nr-pc-canvas');
+      document.getElementById('nr-art-headline').value = (document.getElementById('nr-pc-headline') || {}).value || '';
+      try {
+        if (canvas) document.getElementById('nr-art-image').value = canvas.toDataURL('image/png');
+      } catch (e) {}
+      switchTab('articles');
+    });
+
+    drawPhotoCard();
+  })();
+
+  function publishAcceptedArticle(id) {
+    var pub = nr.acceptArticle(id);
+    if (pub) {
+      var st = nr.load();
+      st.deletedArticleIds = (st.deletedArticleIds || []).filter(function (x) { return x !== pub.id; });
+      nr.save(st);
+      if (typeof newsArticles !== 'undefined' && !newsArticles.some(function (x) { return x.id === pub.id; })) {
+        newsArticles.unshift(pub);
+      }
+      sbSaveSetting('deletedArticleIds', st.deletedArticleIds);
+      sbUpsertArticle(pub);
+    }
+    sbRest('article_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'published' } });
+    return pub;
+  }
+
+  function publishAcceptedNomination(id) {
+    var pub = nr.acceptNomination(id);
+    if (pub) {
+      var st = nr.load();
+      st.deletedStoryIds = (st.deletedStoryIds || []).filter(function (x) { return x !== pub.id; });
+      nr.save(st);
+      if (typeof stories !== 'undefined' && !stories.some(function (x) { return x.id === pub.id; })) {
+        stories.unshift(pub);
+      }
+      sbSaveSetting('deletedStoryIds', st.deletedStoryIds);
+      sbUpsertSpotlight(pub, false);
+    }
+    sbRest('nomination_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'published' } });
+    return pub;
+  }
+
+  function openSubmissionReview(kind, id) {
+    var st = nr.load();
+    var item = kind === 'article'
+      ? (st.articlesQueue || []).find(function (x) { return x.id === id; })
+      : (st.nominationsQueue || []).find(function (x) { return x.id === id; });
+    if (!item) return;
+    var modal = document.getElementById('nr-sub-review-modal');
+    if (!modal) return;
+    document.getElementById('nr-sr-id').value = id;
+    document.getElementById('nr-sr-kind').value = kind;
+    document.getElementById('nr-sr-badge').textContent = kind === 'article' ? 'ARTICLE SUBMISSION' : 'SPOTLIGHT NOMINATION';
+    document.getElementById('nr-sr-title').textContent = kind === 'article' ? 'Review & Edit Article' : 'Review & Edit Spotlight';
+    document.getElementById('nr-sr-meta').textContent = kind === 'article'
+      ? ('By ' + (item.author || '') + ' · ' + (item.email || '') + ' · ' + (item.whatsapp || ''))
+      : ('Contact: ' + (item.email || '') + ' · ' + (item.whatsapp || '') + ' · ' + (item.address || ''));
+    document.getElementById('nr-sr-headline').value = kind === 'article' ? (item.headline || '') : (item.name || '');
+    document.getElementById('nr-sr-dek').value = kind === 'article' ? (item.dek || '') : (item.achievement || '');
+    document.getElementById('nr-sr-cat').value = kind === 'article' ? (item.topic || '') : (item.category || '');
+    document.getElementById('nr-sr-source').value = kind === 'article' ? (item.sources || '') : (item.proofLink || '');
+    document.getElementById('nr-sr-image').value = kind === 'article' ? (item.image || '') : (item.localImage || '');
+    document.getElementById('nr-sr-body').value = item.bodyText || '';
+    document.getElementById('nr-sr-msg').textContent = '';
+    modal.hidden = false;
+  }
+
+  (function initSubmissionReviewModal() {
+    var modal = document.getElementById('nr-sub-review-modal');
+    var form = document.getElementById('nr-sr-form');
+    if (!modal || !form) return;
+    var closeBtn = document.getElementById('nr-sr-cancel');
+    if (closeBtn) closeBtn.addEventListener('click', function () { modal.hidden = true; });
+    modal.addEventListener('click', function (ev) { if (ev.target === modal) modal.hidden = true; });
+
+    var imgFile = document.getElementById('nr-sr-img-file');
+    if (imgFile) imgFile.addEventListener('change', function () {
+      var f = imgFile.files && imgFile.files[0];
+      if (!f) return;
+      uploadFileToMedia(f, function (url) {
+        document.getElementById('nr-sr-image').value = url;
+      }, document.getElementById('nr-sr-msg'));
+    });
+
+    function saveReviewDraft() {
+      var id = document.getElementById('nr-sr-id').value;
+      var kind = document.getElementById('nr-sr-kind').value;
+      var st = nr.load();
+      var item = kind === 'article'
+        ? (st.articlesQueue || []).find(function (x) { return x.id === id; })
+        : (st.nominationsQueue || []).find(function (x) { return x.id === id; });
+      if (!item) return null;
+      if (kind === 'article') {
+        item.headline = document.getElementById('nr-sr-headline').value.trim();
+        item.dek = document.getElementById('nr-sr-dek').value.trim();
+        item.topic = document.getElementById('nr-sr-cat').value.trim() || item.topic;
+        item.sources = document.getElementById('nr-sr-source').value.trim();
+        item.image = document.getElementById('nr-sr-image').value.trim();
+        item.bodyText = document.getElementById('nr-sr-body').value.trim();
+        sbRest('article_submissions?id=eq.' + encodeURIComponent(id), {
+          method: 'PATCH',
+          body: { headline: item.headline, dek: item.dek, topic: item.topic, sources: item.sources, body_text: item.bodyText }
+        });
+      } else {
+        item.name = document.getElementById('nr-sr-headline').value.trim();
+        item.achievement = document.getElementById('nr-sr-dek').value.trim();
+        item.category = document.getElementById('nr-sr-cat').value.trim() || item.category;
+        item.proofLink = document.getElementById('nr-sr-source').value.trim();
+        item.localImage = document.getElementById('nr-sr-image').value.trim();
+        item.bodyText = document.getElementById('nr-sr-body').value.trim();
+        sbRest('nomination_submissions?id=eq.' + encodeURIComponent(id), {
+          method: 'PATCH',
+          body: { name: item.name, achievement: item.achievement, category: item.category, proof_link: item.proofLink, body_text: item.bodyText }
+        });
+      }
+      nr.save(st);
+      return { id: id, kind: kind };
+    }
+
+    var saveBtn = document.getElementById('nr-sr-save');
+    if (saveBtn) saveBtn.addEventListener('click', function () {
+      saveReviewDraft();
+      document.getElementById('nr-sr-msg').textContent = 'Draft changes saved!';
+      renderAll();
+    });
+
+    var rejBtn = document.getElementById('nr-sr-reject');
+    if (rejBtn) rejBtn.addEventListener('click', function () {
+      var id = document.getElementById('nr-sr-id').value;
+      var kind = document.getElementById('nr-sr-kind').value;
+      if (kind === 'article') {
+        nr.rejectArticle(id);
+        sbRest('article_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'rejected' } });
+      } else {
+        nr.rejectNomination(id);
+        sbRest('nomination_submissions?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: 'rejected' } });
+      }
+      modal.hidden = true;
+      renderAll();
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var info = saveReviewDraft();
+      if (!info) return;
+      if (info.kind === 'article') publishAcceptedArticle(info.id);
+      else publishAcceptedNomination(info.id);
+      document.getElementById('nr-sr-msg').textContent = 'Published live to therisebd.com!';
+      renderAll();
+      setTimeout(function () { modal.hidden = true; }, 800);
+    });
+  })();
 
   try {
     if ('BroadcastChannel' in window) {
