@@ -13,9 +13,9 @@
   var lockError = document.getElementById('nr-lock-error');
 
   var ROLE_TABS = {
-    Admin: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'ads', 'newsletter', 'sections', 'team', 'recruitment', 'recyclebin', 'settings'],
-    Editor: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'recruitment', 'recyclebin'],
-    Moderator: ['insights', 'articles', 'spotlights', 'newsletter', 'recruitment', 'recyclebin']
+    Admin: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'ads', 'newsletter', 'sections', 'team', 'recruitment', 'contacts', 'recyclebin', 'settings'],
+    Editor: ['insights', 'riseselect', 'articles', 'spotlights', 'authors', 'recruitment', 'contacts', 'recyclebin'],
+    Moderator: ['insights', 'articles', 'spotlights', 'newsletter', 'recruitment', 'contacts', 'recyclebin']
   };
 
   var currentUser = null;
@@ -360,11 +360,13 @@
     var recruitCount = (state.adsQueue || []).filter(function (x) {
       return String(x.slot || '').indexOf('CAREER:') === 0 || String(x.slot || '').indexOf('AMBASSADOR:') === 0;
     }).length;
+    var contactsCount = (state.adsQueue || []).filter(function (x) { return x.slot === 'General Contact Message'; }).length;
     set('nr-pill-articles', artCount);
     set('nr-pill-nominations', spotCount);
     set('nr-pill-ads', activeAdsCount);
     set('nr-pill-subs', (state.subscribers || []).length);
     set('nr-pill-recruit', recruitCount);
+    set('nr-pill-contacts', contactsCount);
     set('nr-pill-bin', (state.recycleBin || []).length);
   }
 
@@ -990,7 +992,7 @@
     if (!box) return;
     var adInquiriesOnly = (state.adsQueue || []).filter(function (x) {
       var sl = String(x.slot || '');
-      return sl.indexOf('CAREER:') !== 0 && sl.indexOf('AMBASSADOR:') !== 0;
+      return sl.indexOf('CAREER:') !== 0 && sl.indexOf('AMBASSADOR:') !== 0 && sl !== 'General Contact Message';
     });
     box.innerHTML = adInquiriesOnly.length ? adInquiriesOnly.map(function (item) {
       return '<div class="nr-q-card"><div><strong>' + esc(item.company || item.name) + '</strong> <span class="nr-pill-soft">' + esc(item.slot) + '</span><p class="nr-sub-caption">' + esc(item.message) + '</p></div>' +
@@ -1342,6 +1344,52 @@
     renderApplicantList('nr-amb-applicants-list', ambApps, 'No ambassador or volunteer applications yet.');
   }
 
+  function renderContactsTab(state) {
+    var box = document.getElementById('nr-contact-messages-list');
+    if (!box) return;
+    var msgs = (state.adsQueue || []).filter(function (x) { return x.slot === 'General Contact Message'; });
+    box.innerHTML = msgs.length ? msgs.map(function (m) {
+      var email = m.company || '';
+      var stLabel = m.status === 'contacted' ? 'REPLIED' : (m.status === 'active' ? 'RESOLVED' : 'NEW');
+      return '<div class="nr-q-card" style="flex-wrap:wrap">' +
+        '<div style="flex:1;min-width:240px"><strong>' + esc(m.name) + '</strong> <span class="nr-pill-soft">' + esc(email) + '</span> <span class="nr-trend ' + (m.status === 'active' ? 'up' : 'warn') + '">' + esc(stLabel) + '</span>' +
+        (m.submittedAt ? '<br><small>' + esc(fmtDate(m.submittedAt)) + '</small>' : '') +
+        '<p class="nr-sub-caption" style="margin-top:6px">' + esc(m.message) + '</p></div>' +
+        '<div class="nr-row-actions">' +
+        (email ? '<a class="nr-btn nr-btn-primary nr-sm" href="mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent('Re: Your message to The Rise BD') + '">✉ Reply</a>' : '') +
+        '<select data-ct-status="' + esc(m.id) + '">' +
+        '<option value="new"' + (m.status === 'new' ? ' selected' : '') + '>NEW</option>' +
+        '<option value="contacted"' + (m.status === 'contacted' ? ' selected' : '') + '>REPLIED</option>' +
+        '<option value="active"' + (m.status === 'active' ? ' selected' : '') + '>RESOLVED</option>' +
+        '</select>' +
+        '<button type="button" class="nr-btn nr-btn-danger nr-sm" data-del-ct="' + esc(m.id) + '">Delete</button>' +
+        '</div></div>';
+    }).join('') : '<p class="nr-empty">No Contact Us messages yet.</p>';
+
+    box.querySelectorAll('[data-ct-status]').forEach(function (s) {
+      s.addEventListener('change', function () {
+        var id = s.getAttribute('data-ct-status');
+        nr.updateAdStatus(id, s.value);
+        sbRest('ad_inquiries?id=eq.' + encodeURIComponent(id), { method: 'PATCH', body: { status: s.value } });
+        renderAll();
+      });
+    });
+    box.querySelectorAll('[data-del-ct]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-del-ct');
+        var item = (nr.load().adsQueue || []).find(function (x) { return x.id === id; });
+        confirmDelete(item ? ('message from ' + item.name) : 'this message', function () {
+          if (item) moveToRecycleBin('applicant', item.name, 'Contact Message · ' + (item.company || ''), Object.assign({}, item));
+          var st = nr.load();
+          st.adsQueue = (st.adsQueue || []).filter(function (x) { return x.id !== id; });
+          nr.save(st);
+          sbRest('ad_inquiries?id=eq.' + encodeURIComponent(id), { method: 'DELETE' });
+          renderAll();
+        });
+      });
+    });
+  }
+
   function renderAll() {
     var state = nr.load();
     renderPills(state);
@@ -1355,6 +1403,7 @@
     renderSectionsTab(state);
     renderTeamTab(state);
     renderRecruitmentTab(state);
+    renderContactsTab(state);
     renderRecycleBinTab(state);
   }
 
