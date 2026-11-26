@@ -3565,7 +3565,17 @@ window.addEventListener('load', function () {
       if (nr) {
         nr.submitAd({ name: name, company: email, slot: 'General Contact Message', message: msg });
       }
-      document.getElementById('ct-status').textContent = 'Message received and logged in The Rise BD Newsroom!';
+      var ctStatus = document.getElementById('ct-status');
+      if (ctStatus) ctStatus.textContent = 'Sending your message…';
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'contact_message', name: name, email: email, message: msg })
+      }).then(function (r) {
+        if (ctStatus) ctStatus.textContent = r.ok ? 'Message sent to hello@therisebd.com & logged in Newsroom!' : 'Message logged in Newsroom!';
+      }).catch(function () {
+        if (ctStatus) ctStatus.textContent = 'Message logged in The Rise BD Newsroom!';
+      });
       contactForm.reset();
     });
   }

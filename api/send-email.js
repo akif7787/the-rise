@@ -180,6 +180,32 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true, id: result.id });
     }
 
+    if (action === 'contact_message') {
+      const name = String(body.name || 'Visitor').trim();
+      const visitorEmail = String(body.email || '').trim().toLowerCase();
+      const msg = String(body.message || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(visitorEmail) || !msg) {
+        return res.status(400).json({ ok: false, error: 'Valid email and message are required.' });
+      }
+      const inbox = process.env.CONTACT_INBOX_EMAIL || 'hello@therisebd.com';
+      const html = `
+        <div style="font-family:Georgia,serif;max-width:580px;margin:0 auto;padding:24px;color:#111827;">
+          <p style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#6b7280;margin:0 0 8px;">THE RISE BD · CONTACT FORM</p>
+          <h1 style="font-size:22px;margin:0 0 12px;">New Contact Message</h1>
+          <p style="font-size:14px;color:#374151;"><strong>From:</strong> ${escapeHtml(name)} (${escapeHtml(visitorEmail)})</p>
+          <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px;margin:14px 0;font-size:15px;line-height:1.65;white-space:pre-line;">${escapeHtml(msg)}</div>
+        </div>`;
+
+      const result = await sendResendEmail(apiKey, {
+        from: fromEmail,
+        to: [inbox],
+        reply_to: visitorEmail,
+        subject: `Contact Message from ${name} — The Rise BD`,
+        html
+      });
+      return res.status(200).json({ ok: true, id: result.id });
+    }
+
     return res.status(400).json({ ok: false, error: 'Unsupported action' });
   } catch (err) {
     return res.status(500).json({ ok: false, error: err && err.message ? err.message : 'Email send failed' });

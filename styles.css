@@ -2345,11 +2345,15 @@ html[data-theme="dark"] .art-share-btn,html[data-theme="dark"] .art-cat-jump sel
 
 /* Contact Page (contact.html) */
 .contact-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:32px;margin-top:28px;margin-bottom:60px}
-.contact-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px}
-.contact-info-list{display:grid;gap:20px}
+.contact-card{background:#fff;color:#111827;border:1px solid var(--line);border-radius:16px;padding:28px}
+.contact-card.whatsapp-card{background:#128C7E;color:#fff}
+.contact-card.email-card{background:#000000;color:#fff}
+.contact-info-list{display:grid;gap:20px;color:#111827}
+.contact-info-list a{color:#111827}
 .contact-info-item{padding-bottom:16px;border-bottom:1px solid var(--line)}
 .contact-info-item:last-child{border-bottom:0;padding-bottom:0}
-html[data-theme="dark"] .contact-card{background:#0A0A0A;border-color:#27272A}
+html[data-theme="dark"] .contact-card{background:#0A0A0A;color:#F3F4F6;border-color:#27272A}
+html[data-theme="dark"] .contact-info-list,html[data-theme="dark"] .contact-info-list a{color:#F3F4F6}
 @media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
 
 /* Partnership Showcase & High-Contrast Cards (advertise.html) */
